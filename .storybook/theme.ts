@@ -44,8 +44,8 @@ export const theme540 = create({
 
   buttonBg: PAPER,
   buttonBorder: BORDER,
-  booleanBg: PAPER,
-  booleanSelectedBg: INK,
+  booleanBg: BORDER, // track of the on/off switches
+  booleanSelectedBg: WHITE, // the selected half: white chip with ink text
 
   inputBg: WHITE,
   inputBorder: BORDER,
