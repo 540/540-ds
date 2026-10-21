@@ -1,0 +1,104 @@
+/* Cycle — a ring of phases. Idle: thin border, tertiary number. Done: filled in primary.
+   Active: filled in the inverse, 18 % bigger. A mark paints the node red, green or yellow. */
+
+.cycle {
+  display: block;
+  inline-size: 100%;
+  max-block-size: calc(100svh - 360px);
+  font-family: var(--font-family-base);
+}
+
+.ring {
+  fill: none;
+  stroke: var(--color-border-default);
+  stroke-width: 3;
+}
+
+.arc {
+  fill: none;
+  stroke: var(--color-text-primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.node circle {
+  stroke-width: 3;
+  transition:
+    fill 0.3s,
+    stroke 0.3s,
+    transform 0.3s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.node[data-state='idle'] circle {
+  fill: var(--color-bg-default);
+  stroke: var(--color-border-default);
+}
+
+.node[data-state='done'] circle {
+  fill: var(--color-text-primary);
+  stroke: var(--color-text-primary);
+}
+
+.node[data-state='active'] circle {
+  fill: var(--color-bg-inverse);
+  stroke: var(--color-bg-inverse);
+  transform: scale(1.18);
+}
+
+.node[data-mark] circle {
+  transform: scale(1.18);
+}
+
+.node[data-mark='red'] circle {
+  fill: var(--540-status-red);
+  stroke: var(--540-status-red);
+}
+
+.node[data-mark='green'] circle {
+  fill: var(--540-status-green);
+  stroke: var(--540-status-green);
+}
+
+.node[data-mark='yellow'] circle {
+  fill: var(--color-bg-accent);
+  stroke: var(--color-bg-accent);
+}
+
+.number {
+  font-size: 26px;
+  font-weight: var(--540-font-weight-bold);
+  fill: var(--color-text-tertiary);
+}
+
+.node[data-state='done'] .number,
+.node[data-state='active'] .number,
+.node[data-mark='red'] .number,
+.node[data-mark='green'] .number {
+  fill: var(--color-text-inverse);
+}
+
+.node[data-mark='yellow'] .number {
+  fill: var(--540-neutral-950);
+}
+
+.label {
+  font-size: 28px;
+  font-weight: var(--540-font-weight-regular);
+  fill: var(--color-text-tertiary);
+}
+
+.node:not([data-state='idle']) .label,
+.node[data-mark] .label {
+  fill: var(--color-text-primary);
+  font-weight: var(--540-font-weight-bold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc,
+  .node circle {
+    transition: none;
+  }
+}

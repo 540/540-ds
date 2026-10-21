@@ -8,6 +8,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ---- Inline: bold and code inside any text ---- */
+.text strong,
+.text b {
+  font-weight: var(--540-font-weight-bold);
+}
+
+.text code,
+.mono {
+  font-family: var(--font-family-mono);
+  font-size: 0.92em;
+}
+
 /* ---- Variants (one per text style) ---- */
 .variant-statement {
   font-size: var(--text-statement-size);

@@ -1,0 +1,81 @@
+/* Sheet — a panel that rises from the bottom edge over the stop, 84 % of the window high,
+   with a veil dimming the stop behind. Inside, type drops to the web scale so it all fits. */
+
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  background: var(--color-bg-overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+
+.veil[data-open] {
+  opacity: 1;
+}
+
+.sheet {
+  position: fixed;
+  inset-inline-start: 50%;
+  inset-block-end: 0;
+  z-index: 3;
+  inline-size: min(calc(100vw - 96px), 1080px);
+  block-size: 84svh;
+  translate: -50% 100%;
+  visibility: hidden;
+  transition:
+    translate 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s 0.55s;
+}
+
+.sheet[data-open] {
+  translate: -50% 0;
+  visibility: visible;
+  transition:
+    translate 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.panel {
+  box-sizing: border-box;
+  block-size: 100%;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: var(--space-l);
+  padding: var(--space-m) var(--space-2xl) var(--space-xl);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-block-end: 0;
+  border-radius: var(--radius-default) var(--radius-default) 0 0;
+  overflow: auto;
+  text-align: center;
+}
+
+/* The handle */
+.panel::before {
+  content: '';
+  display: block;
+  inline-size: 40px;
+  block-size: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-strong);
+  margin-inline: auto;
+}
+
+.header {
+  display: grid;
+  gap: var(--space-s);
+  justify-items: center;
+}
+
+.body {
+  min-block-size: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .veil,
+  .sheet {
+    transition: none;
+  }
+}

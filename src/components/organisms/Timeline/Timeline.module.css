@@ -44,6 +44,11 @@
   background: var(--color-text-primary);
 }
 
+/* A warning step: the dot goes red; the text stays neutral */
+.alert .dot {
+  background: var(--540-status-red);
+}
+
 .text {
   display: grid;
   gap: var(--space-s);

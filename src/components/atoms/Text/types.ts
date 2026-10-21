@@ -42,6 +42,8 @@ export type TextProps = {
   wrap?: TextWrap;
   /** Maximum width with a name: half (half grid), wide (three quarters), prose (62ch), narrow (38ch). */
   measure?: TextMeasure;
+  /** Monospaced, a bit smaller: a command, a file name. */
+  mono?: boolean;
   className?: string;
   children: ReactNode;
 } & Omit<ComponentPropsWithoutRef<'p'>, 'children' | 'className'>;

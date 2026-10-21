@@ -1,0 +1,107 @@
+/* Schema — the drawing vocabulary of the talks: boxes, lines, arrowheads and six text sizes,
+   all in the neutral inks. The accent only fills pills. */
+
+.frame {
+  margin-block-start: var(--space-3xl);
+  inline-size: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: var(--padding-page);
+  box-sizing: border-box;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.caption {
+  margin-block-start: var(--space-3xl);
+  margin-inline: auto;
+  max-inline-size: calc((var(--size-container) - var(--grid-gutter)) / 2);
+}
+
+.schema {
+  display: block;
+  inline-size: min(100%, 1800px, calc((100svh - 430px) * 3.122));
+  min-inline-size: 1200px;
+  block-size: auto;
+  margin-inline: auto;
+  font-family: var(--font-family-base);
+}
+
+.layer {
+  opacity: 1;
+}
+
+.guided .layer {
+  opacity: 0.18;
+  transition: opacity 0.55s ease;
+}
+
+.guided .layer[data-on] {
+  opacity: 1;
+}
+
+.voice {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Shapes ---- */
+.node { fill: none; stroke: var(--color-border-strong); stroke-width: 1.15; }
+.highlighted { fill: none; stroke: var(--color-text-primary); stroke-width: 1.6; }
+.note { fill: none; stroke: var(--color-border-default); stroke-width: 1.2; stroke-dasharray: 11 7; }
+.pill { fill: var(--color-bg-accent); }
+.inverse { fill: var(--color-bg-inverse); }
+.dot { fill: var(--color-text-primary); }
+.arc { fill: none; stroke: var(--color-border-strong); stroke-width: 1.6; }
+.icon { fill: none; stroke: var(--color-text-primary); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.iconBox { fill: none; stroke: var(--color-border-strong); stroke-width: 1.15; }
+.iconFill { fill: var(--color-text-primary); }
+
+/* ---- Lines ---- */
+.line { fill: none; stroke: var(--color-text-secondary); stroke-width: 1.15; }
+.lineStrong { fill: none; stroke: var(--color-text-primary); stroke-width: 1.4; }
+.lineDashed { fill: none; stroke: var(--color-text-tertiary); stroke-width: 1.2; stroke-dasharray: 11 7; }
+.arrowhead { fill: none; stroke: var(--color-text-secondary); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.arrowheadFill { fill: var(--color-text-primary); }
+
+/* ---- Series (charts) ---- */
+.series { fill: none; stroke: var(--color-text-secondary); stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round; }
+.seriesDashed { fill: none; stroke: var(--color-text-tertiary); stroke-width: 2.5; stroke-dasharray: 12 9; stroke-linejoin: round; }
+.accent { fill: none; stroke: var(--color-bg-accent); stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+.accentThin { fill: none; stroke: var(--color-bg-accent); stroke-width: 2.5; }
+.accentDashed { fill: none; stroke: var(--color-bg-accent); stroke-width: 2.5; stroke-dasharray: 14 10; }
+.accentDotted { fill: none; stroke: var(--color-bg-accent); stroke-width: 2.5; stroke-dasharray: 3 9; }
+.accentDot { fill: var(--color-bg-accent); stroke: var(--color-bg-default); stroke-width: 3; }
+
+/* ---- Text ---- */
+.title { fill: var(--color-text-primary); font-size: 32px; font-weight: var(--540-font-weight-bold); }
+.nodeText { fill: var(--color-text-primary); font-size: 26px; font-weight: var(--540-font-weight-bold); }
+.nodeSub { fill: var(--color-text-secondary); font-size: 21px; }
+.circleText { fill: var(--color-text-primary); font-size: 26px; font-weight: var(--540-font-weight-bold); }
+.pillText { fill: var(--540-neutral-950); font-size: 23px; font-weight: var(--540-font-weight-bold); }
+.inverseText { fill: var(--color-text-inverse); font-size: 26px; font-weight: var(--540-font-weight-bold); }
+.noteText { fill: var(--color-text-secondary); font-size: 24px; }
+.label { fill: var(--color-text-tertiary); font-size: 22px; }
+.coreTitle { fill: var(--color-text-primary); font-size: 44px; font-weight: var(--540-font-weight-bold); }
+.coreSub { fill: var(--color-text-secondary); font-size: 26px; }
+.micro { fill: var(--color-text-tertiary); font-size: 19px; font-weight: var(--540-font-weight-bold); letter-spacing: 0.16em; }
+.sideText { fill: var(--color-text-tertiary); font-size: 24px; font-weight: var(--540-font-weight-bold); }
+
+/* Data schemas: text one step bigger */
+.data .label { font-size: 30px; }
+.data .noteText { font-size: 32px; }
+.data .micro { font-size: 26px; }
+.data .sideText { font-size: 32px; }
+.data .pillText { font-size: 32px; }
+.data .nodeText,
+.data .inverseText { font-size: 34px; }
+.data .title { font-size: 44px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .guided .layer {
+    transition: none;
+  }
+}

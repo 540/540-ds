@@ -14,15 +14,23 @@ export function Timeline({ id, title, description, steps, className }: TimelineP
       <SectionHeader title={title} description={description} titleId={`${id}-title`} align="center" />
       <ol className={styles.list}>
         {steps.map((step, i) => (
-          <li key={i} className={styles.step} data-stop="">
+          <li key={i} className={[styles.step, step.alert ? styles.alert : ''].filter(Boolean).join(' ')} data-stop="">
             <span className={styles.dot} aria-hidden="true" />
             <div className={styles.text}>
+              {step.kicker ? (
+                <Text variant="body-s" tone="secondary">
+                  {step.kicker}
+                </Text>
+              ) : null}
               <Text as="h3" variant="title-s" wrap="balance">
                 {step.title}
               </Text>
-              <Text variant="body-m" tone="secondary" wrap="pretty">
-                {step.body}
-              </Text>
+              {step.body ? (
+                <Text variant="body-m" tone="secondary" wrap="pretty">
+                  {step.body}
+                </Text>
+              ) : null}
+              {step.extra}
             </div>
           </li>
         ))}

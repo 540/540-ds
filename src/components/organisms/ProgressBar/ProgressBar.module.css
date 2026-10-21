@@ -1,0 +1,54 @@
+/* ProgressBar — a 2 px track with a fill that grows from the left, a dot at each end and,
+   optionally, milestone dots that light up as they are reached. */
+
+.bar {
+  display: grid;
+  gap: var(--space-l);
+  margin-block-start: var(--space-2xl);
+}
+
+.track {
+  position: relative;
+  block-size: 2px;
+  background: var(--color-border-default);
+  margin-block: var(--space-s);
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--color-border-strong);
+  transform-origin: left center;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dot {
+  position: absolute;
+  top: 50%;
+  inline-size: 16px;
+  block-size: 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-text-primary);
+  transform: translate(-50%, -50%);
+}
+
+.milestone {
+  background: var(--color-border-default);
+  transition: background 0.3s;
+}
+
+.milestone[data-on] {
+  background: var(--color-text-primary);
+}
+
+.ends {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill,
+  .milestone {
+    transition: none;
+  }
+}

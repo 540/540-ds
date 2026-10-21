@@ -14,6 +14,7 @@ export function Text({
   align,
   wrap = TEXT_DEFAULTS.wrap,
   measure = TEXT_DEFAULTS.measure,
+  mono = false,
   className,
   children,
   ...rest
@@ -26,6 +27,7 @@ export function Text({
     align ? styles[`align-${align}`] : '',
     wrap !== 'auto' ? styles[`wrap-${wrap}`] : '',
     measure !== 'none' ? styles[`measure-${measure}`] : '',
+    mono ? styles.mono : '',
     className ?? '',
   ]
     .filter(Boolean)

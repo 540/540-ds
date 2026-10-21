@@ -1,0 +1,11 @@
+/* Question — a question and its answer, under a hairline, centered. */
+
+.question {
+  display: grid;
+  gap: var(--space-s);
+  justify-items: center;
+  padding-block-start: var(--space-l);
+  border-block-start: 1px solid var(--color-border-default);
+  inline-size: 100%;
+  text-align: center;
+}

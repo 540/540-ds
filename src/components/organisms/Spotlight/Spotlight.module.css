@@ -1,0 +1,16 @@
+/* Spotlight — the piece holding the center of the window is lit; the rest stays at 14 %. */
+
+.spotlight {
+  opacity: 0.14;
+  transition: opacity 0.35s ease;
+}
+
+.spotlight[data-on] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight {
+    opacity: 1;
+  }
+}

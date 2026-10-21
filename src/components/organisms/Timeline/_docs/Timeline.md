@@ -6,6 +6,8 @@ La línea de tiempo: **un eje vertical a media retícula con un punto y un títu
 2. **Lista ordenada** a media retícula (588 px), 48 px por debajo de la cabecera.
 3. **Cada paso:** un punto de 16 px en tinta primaria, el título en `title-s` y el cuerpo en `body-m` secundario, centrados, con 24 px entre piezas. Entre pasos, 72 px, y en ese hueco el eje de 2 px en `--color-border-strong`.
 
+Cada paso puede llevar además un **antetítulo** (`kicker`, una fecha, «Zoom · marzo») en `body-s` secundario encima del título, y un **extra** debajo del cuerpo: un Flow con la pieza del mes, o una Sheet dentro de un Step para ampliar un hito.
+
 Cada paso lleva `data-stop`: Deck lo cuenta como parada.
 
 ## Cuándo usarlo
@@ -23,6 +25,8 @@ Cada paso lleva `data-stop`: Deck lo cuenta como parada.
 Ninguna.
 
 ## Estados
+
+Un paso con `alert` pinta su punto en rojo: es «el problema» de la cronología. El texto sigue en negro y gris; el color solo va en el punto.
 
 El eje se dibuja de arriba abajo y el punto aparece cuando el paso entra en pantalla, con animaciones guiadas por el scroll (`animation-timeline: view()`) donde el navegador lo soporta; nada con `prefers-reduced-motion`. Las charlas además iluminan el mes actual y atenúan los demás con GSAP; eso queda para los efectos.
 

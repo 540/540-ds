@@ -1,0 +1,35 @@
+/* Steps — a block the arrow walks through: what is not due yet is not seen, and enters like the
+   original Reveal (opacity and 12 px). */
+
+.step {
+  transition:
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.steps[data-guided] .step:not([data-on]) {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.steps[data-guided] .step.collapse:not([data-on]) {
+  display: none;
+}
+
+/* Several versions of a block in the same cell: only the one of the step shows */
+.stack {
+  display: grid;
+  justify-items: center;
+}
+
+.stack > .step {
+  grid-area: 1 / 1;
+  inline-size: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    transition: none;
+  }
+}

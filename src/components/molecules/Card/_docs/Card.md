@@ -6,6 +6,13 @@ Número, título y explicación. **Caja con borde o banda de lado a lado.** La m
 2. **Título**, un `h3` por defecto. En la caja va en `body-l`; en la banda, en `title-m`.
 3. **Explicación** en `body-s-light`: dos o tres frases seguidas.
 
+Y las piezas opcionales que añaden las charlas:
+
+4. **Antetítulo** (`kicker`) en `body-s` secundario, encima del título: «Cliente», «Lo que medimos». En gris siempre, también cuando en la charla era «el problema».
+5. **Retrato** (`portrait`): redondo, de 160 px, encima del encabezado. Es la única imagen redonda del sistema.
+6. **Pie** (`footer`) bajo una línea fina: una fuente, una fecha, en `body-s` secundario.
+7. **Después** (`after`) bajo una línea fuerte: un bloque de etiqueta y texto que cuenta qué cambió.
+
 Entre el encabezado y la explicación, 36 px (`--padding-section`).
 
 ## Cuándo usarlo
@@ -33,6 +40,10 @@ Entre el encabezado y la explicación, 36 px (`--padding-section`).
 `row`: no hay caja. La raya de abajo del todo la pone CardList, porque una fila no sabe si es la última. Devuelve la columna con su relleno y va dentro de un CardList, que es quien la saca de la columna.
 
 `align="center"` centra todo y acota la explicación a 62 caracteres.
+
+## Énfasis
+
+Entre varias tarjetas, `emphasis` señala una: `highlighted` crece un 4 % y coge el borde fuerte; `dimmed` se atenúa al 25 %. Se usan juntas (una destacada, las demás atenuadas) y suelen llegar con el último paso de un Steps. Transición de 0,4 s, apagada con `prefers-reduced-motion`.
 
 ## Estados
 
@@ -84,4 +95,4 @@ El fondo es el de la página; la separa el borde.
 
 ## Equivalencias con Figma
 
-Página `Card` del archivo de diseño, set `Card` (13:27). `Variante = boxed / row` es `variant`; `Alineación` es `align`; `Estado = abierta / plegada / encendida` es `state` (`open` / `folded` / `active`); `ordinal` es `ordinal`. En las charlas es `card`, `card-row`, `card-revela`, `card-activa` y `card-centrada` en base-540.css.
+Página `Card` del archivo de diseño, set `Card` (13:27). `Variante = boxed / row` es `variant`; `Alineación` es `align`; `Estado = abierta / plegada / encendida` es `state` (`open` / `folded` / `active`); `ordinal` es `ordinal`. En las charlas es `card`, `card-row`, `card-revela`, `card-activa` y `card-centrada` en base-540.css, y `card-pie`, `card-despues`, `destacable` / `destacada`, `image-redonda` y `tono-rojo` en el CSS propio de cada charla.
