@@ -14,5 +14,13 @@ const config: StorybookConfig = {
   ],
   // Controls, Viewport and Backgrounds are built into Storybook core since v9.
   framework: '@storybook/react-vite',
+  staticDirs: ['../public'], // favicon, brand logo and other static files
+  core: {
+    disableWhatsNewNotifications: true, // no Storybook news banner in the sidebar
+  },
+  features: {
+    sidebarOnboardingChecklist: false, // no "Get started" widget: this is a branded catalogue
+    menuOnboardingChecklist: false,
+  },
 };
 export default config;
