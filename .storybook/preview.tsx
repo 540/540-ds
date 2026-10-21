@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
+import type { ReactNode } from 'react';
 import type { Preview } from '@storybook/react-vite';
+import { DocsContainer } from '@storybook/addon-docs/blocks';
+import type { DocsContainerProps } from '@storybook/addon-docs/blocks';
+import { DocsCover } from './DocsCover';
 import { addons } from 'storybook/preview-api';
 import { GLOBALS_UPDATED } from 'storybook/internal/core-events';
 import '../src/styles/global.css';
@@ -36,6 +40,15 @@ const preview: Preview = {
     a11y: {
       // 'todo' shows violations in the a11y panel without failing tests
       test: 'todo',
+    },
+    docs: {
+      // Every docs page opens with the level kicker and the 540 logo
+      container: ({ context, children }: DocsContainerProps & { children?: ReactNode }) => (
+        <DocsContainer context={context}>
+          <DocsCover context={context} />
+          {children}
+        </DocsContainer>
+      ),
     },
     viewport: {
       // The three reference widths the system is designed at (Figma → Anchos de pantalla)
