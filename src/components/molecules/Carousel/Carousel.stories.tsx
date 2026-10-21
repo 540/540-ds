@@ -12,7 +12,7 @@ const CASOS = [
   <CaseItem key="1" src={pintura} title="Primer caso" description="Una frase que cuenta de qué iba el caso." href="#caso-1" />,
   <CaseItem key="2" src={david} title="Segundo caso" description="Una frase que cuenta de qué iba este otro." href="#caso-2" />,
   <CaseItem key="3" src={fachada} title="Tercer caso" description="Una frase más, igual de corta." href="#caso-3" />,
-  <CaseItem key="4" src={pintura} title="540 Design System" description="Este mismo sistema, en Storybook." href="#ds" />,
+  <CaseItem key="4" src={pintura} title="Cuarto caso" description="Y una cuarta pieza para que la tira se pase." href="#caso-4" />,
 ];
 
 const meta = {
@@ -67,5 +67,5 @@ export const Lados: Story = {
 export const ConCabecera: Story = {
   name: 'Con cabecera',
   parameters: { docs: { description: { story: 'La tira cuelga de un título y los mandos suben a su fila. Con cabecera no hay puntos solos: al lado de un título compiten con él.' } } },
-  args: { controls: 'row', header: <SectionHeader title="Casos" description="Lo que hemos construido, en orden." /> },
+  args: { controls: 'row', header: <SectionHeader title="Título de la tira" description="Una entradilla corta." /> },
 };

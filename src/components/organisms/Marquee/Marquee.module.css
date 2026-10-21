@@ -1,0 +1,38 @@
+/* Marquee — a strip of short pieces that scrolls endlessly between two hairlines. */
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-xl);
+  border-block: 1px solid var(--color-border-default);
+}
+
+.strip {
+  display: flex;
+  width: max-content;
+  animation: scroll var(--marquee-duration, 40s) linear infinite;
+}
+
+.piece {
+  white-space: nowrap;
+  padding-inline-end: var(--space-xl);
+}
+
+.marquee:hover .strip {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateZ(0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip {
+    animation: none;
+  }
+}

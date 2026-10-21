@@ -1,0 +1,60 @@
+/* Flow — chained steps: pills separated by 48 px with an arrow centered in the gap,
+   never touching a pill. A column on narrow screens, a row from 600 px. */
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3xl);
+  margin: var(--space-3xl) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  padding: var(--space-m) var(--space-xl);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-pill);
+  text-align: center;
+}
+
+.highlighted {
+  border-color: transparent;
+  background: var(--color-bg-inverse);
+}
+
+.highlighted .label {
+  color: var(--color-text-inverse);
+}
+
+/* The arrow: "↓" in the column, centered in the 48 px gap above the pill */
+.step + .step::before {
+  content: '↓';
+  position: absolute;
+  inset-block-end: 100%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, calc(-1 * var(--space-3xl) / 2 + 50%));
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+  font-size: var(--text-body-m-size);
+  line-height: 1;
+}
+
+@media (min-width: 600px) {
+  .flow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* "→" in the row, centered in the gap to the left of the pill */
+  .step + .step::before {
+    content: '→';
+    inset-block-end: auto;
+    inset-block-start: 50%;
+    inset-inline-start: auto;
+    inset-inline-end: 100%;
+    transform: translate(calc(-1 * var(--space-3xl) / 2 + 50%), -50%);
+  }
+}
