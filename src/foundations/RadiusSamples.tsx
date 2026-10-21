@@ -22,12 +22,12 @@ function Sample({ name, label, usage }: { name: string; label: string; usage?: s
 /** The two radii of the system. */
 export function RadiusSamples() {
   return (
-    <>
+    <div className={styles.block}>
       <div className={styles.grid}>
         {radiusTokens.map((t) => (
           <Sample key={t.name} name={t.name} label={t.label} usage={t.usage} />
         ))}
       </div>
-    </>
+    </div>
   );
 }

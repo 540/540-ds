@@ -44,10 +44,10 @@ function Specimen({ style }: { style: (typeof textStyles)[number] }) {
 /** The thirteen text styles rendered with their live tokens. */
 export function TypeSpecimens() {
   return (
-    <>
+    <div className={styles.block}>
       {textStyles.map((s) => (
         <Specimen key={s.key} style={s} />
       ))}
-    </>
+    </div>
   );
 }

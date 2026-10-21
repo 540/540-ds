@@ -5,7 +5,7 @@ import { colorPrimitives } from '../tokens/manifest';
 /** All primitive colors, grouped as in Figma. */
 export function ColorPrimitives() {
   return (
-    <>
+    <div className={styles.block}>
       {colorPrimitives.map((group) => (
         <section key={group.title} className={styles.section}>
           <h3 className={styles.sectionTitle}>{group.title}</h3>
@@ -17,6 +17,6 @@ export function ColorPrimitives() {
           </div>
         </section>
       ))}
-    </>
+    </div>
   );
 }

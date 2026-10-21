@@ -37,7 +37,7 @@ type Props = { tokens: MeasureToken[]; bar?: boolean };
 /** A table of measure tokens with their live value and an optional proportional bar. */
 export function MeasureTable({ tokens, bar = true }: Props) {
   return (
-    <>
+    <div className={styles.block}>
     <table className={styles.table}>
       <thead>
         <tr>
@@ -54,6 +54,6 @@ export function MeasureTable({ tokens, bar = true }: Props) {
         ))}
       </tbody>
     </table>
-    </>
+    </div>
   );
 }

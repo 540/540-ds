@@ -1,5 +1,10 @@
 /* Styles for the "Fundamentos" documentation pages. They use semantic tokens only. */
 
+/* Root of every documentation block: air before and after, so headings never touch it */
+.block {
+  margin-block: var(--space-xl) var(--space-3xl);
+}
+
 .section {
   margin-block: var(--space-3xl);
 }
@@ -72,8 +77,9 @@
 .swatchValue {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 11px;
+  line-height: 1.4;
   color: var(--color-text-secondary);
-  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 .swatchValue {

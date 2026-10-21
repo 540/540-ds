@@ -33,3 +33,25 @@
   color: var(--color-text-primary);
   border-color: var(--color-border-default);
 }
+
+/* Vertical rhythm of the docs page: headings always get air above them */
+.sbdocs.sbdocs-content h2 {
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-l);
+}
+
+.sbdocs.sbdocs-content h3 {
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-m);
+}
+
+.sbdocs.sbdocs-content h1 + p,
+.sbdocs.sbdocs-content h2 + p,
+.sbdocs.sbdocs-content h3 + p {
+  margin-top: 0;
+}
+
+.sbdocs.sbdocs-content p,
+.sbdocs.sbdocs-content ul {
+  line-height: 1.6;
+}

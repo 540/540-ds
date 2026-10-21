@@ -19,7 +19,7 @@ function useTheme(): 'light' | 'dark' {
 export function SemanticColors() {
   const theme = useTheme();
   return (
-    <>
+    <div className={styles.block}>
       <p className={styles.sectionDescription}>
         Tema activo: <strong>{theme === 'dark' ? 'Oscuro' : 'Claro'}</strong>. Cámbialo con el selector «Tema» de la barra superior.
       </p>
@@ -85,6 +85,6 @@ export function SemanticColors() {
           </tbody>
         </table>
       </section>
-    </>
+    </div>
   );
 }

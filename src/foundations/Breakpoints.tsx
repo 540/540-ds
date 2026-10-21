@@ -10,7 +10,7 @@ const RANGES = [
 /** The three ranges and the two breakpoints. */
 export function Breakpoints() {
   return (
-    <>
+    <div className={styles.block}>
       {RANGES.map((r) => (
         <div key={r.label} className={styles.rangeRow}>
           <div>
@@ -25,6 +25,6 @@ export function Breakpoints() {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
