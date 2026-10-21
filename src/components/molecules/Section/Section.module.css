@@ -1,0 +1,24 @@
+/* Section — a band of the page: full-bleed background, content in the column, the system's vertical air.
+   Two pieces on purpose: if the background lived in the column it would stop at 1200 px. */
+
+.section {
+  position: relative;
+  padding-block: var(--padding-section-block);
+}
+
+.tone-default {
+  background: transparent;
+}
+
+.tone-raised {
+  background: var(--color-bg-row-active);
+}
+
+/* The column fills the band and stops at --size-container, centered */
+.column {
+  position: relative;
+  max-width: var(--size-container);
+  margin-inline: auto;
+  padding-inline: var(--padding-page);
+  box-sizing: content-box;
+}
