@@ -1,0 +1,66 @@
+/* Dialog — a window that covers the page to tell one thing. A real <dialog>: closed, it paints
+   nothing; the veil is the browser's ::backdrop. Half the grid wide. No shadow: the veil separates. */
+
+.dialog {
+  box-sizing: border-box;
+  width: calc((var(--size-container) - var(--grid-gutter)) / 2);
+  max-width: calc(100% - var(--padding-page) * 2);
+  max-height: calc(100svh - var(--padding-page) * 2);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-default);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  overflow: hidden;
+}
+
+.dialog::backdrop {
+  background: var(--color-bg-overlay);
+}
+
+/* The inner wrapper: what tells the veil from the panel is the click target */
+.inner {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100svh - var(--padding-page) * 2);
+}
+
+/* On short screens the portrait crops instead of eating the dialog */
+.media {
+  flex: none;
+  max-height: 50svh;
+  overflow: hidden;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--padding-card);
+  min-height: 0;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-l);
+}
+
+/* Only the text scrolls: title and cross stay in view */
+.content {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-l);
+}
+
+.dialog:focus {
+  outline: none;
+}

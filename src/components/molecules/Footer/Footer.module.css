@@ -1,0 +1,122 @@
+/* Footer — the brand with its tagline, the columns of links, the networks and the signature.
+   The top only exists if there is something to put in it. The closing is separated by air, not a line. */
+
+.footer {
+  display: grid;
+  gap: var(--space-3xl);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3xl) var(--grid-gutter-wide);
+}
+
+.brand {
+  display: grid;
+  gap: var(--space-l);
+  align-content: start;
+}
+
+.home {
+  display: inline-flex;
+  width: fit-content;
+  color: inherit;
+}
+
+.home:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.tagline {
+  max-width: 38ch;
+}
+
+.groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xl) var(--grid-gutter-wide);
+}
+
+.group {
+  display: grid;
+  gap: var(--space-l);
+  align-content: start;
+}
+
+.groupTitle {
+  text-transform: uppercase;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  color: inherit;
+  text-decoration-line: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--space-xs);
+}
+
+.link:hover {
+  text-decoration-line: underline;
+}
+
+.link:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.networks {
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: var(--space-m);
+}
+
+.network {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--size-control-xs);
+  block-size: var(--size-control-xs);
+  color: var(--color-text-primary);
+}
+
+.network:hover {
+  color: var(--color-text-accent-inverse);
+}
+
+.network:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.closing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-s) var(--space-xl);
+  padding-top: var(--space-xl);
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legal li + li::before {
+  content: '·';
+  margin-inline-end: var(--space-s);
+}

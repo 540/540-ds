@@ -1,0 +1,92 @@
+/* Carousel — a strip that is paged with the dots below. One piece per slot. */
+
+.carousel {
+  position: relative;
+  display: grid;
+  gap: var(--space-3xl);
+}
+
+.headerRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+.window {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: var(--grid-gutter);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slot {
+  flex: 0 0 var(--carousel-item, 100%);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 600px) {
+  .slot {
+    flex-basis: var(--carousel-item, calc((100% - var(--grid-gutter)) / 2));
+  }
+}
+
+/* ---- Controls ---- */
+.dots {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-l);
+}
+
+.row .dots {
+  flex: 1;
+}
+
+.arrows {
+  display: inline-flex;
+  gap: var(--space-s);
+}
+
+/* Sides: the arrows beside the strip, one on each side, no dots. The window keeps the wide
+   gutter free on both sides so the arrows never cover the end pieces. */
+.sides .window {
+  padding-inline: var(--grid-gutter-wide);
+}
+
+.side {
+  position: absolute;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.sidePrev {
+  inset-inline-start: calc((var(--grid-gutter-wide) - var(--size-control-md)) / 2);
+}
+
+.sideNext {
+  inset-inline-end: calc((var(--grid-gutter-wide) - var(--size-control-md)) / 2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    scroll-behavior: auto;
+  }
+}

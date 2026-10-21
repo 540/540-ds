@@ -7,7 +7,7 @@ import doc from './_docs/Image.md?raw';
 import pintura from '../../../assets/samples/charla-pintura.webp';
 import david from '../../../assets/samples/charla-david.webp';
 import fachada from '../../../assets/samples/charla-fachada.webp';
-import retrato from '../../../assets/samples/retrato.jpg';
+import retrato from '../../../assets/samples/retrato.svg';
 import logoCliente from '../../../assets/samples/jakala-claro.png';
 
 const Caption = ({ children }: { children: ReactNode }) => (
@@ -125,7 +125,7 @@ export const Retrato: Story = {
   },
   render: () => (
     <div style={{ width: 240, borderRadius: 'var(--radius-default)', overflow: 'hidden' }}>
-      <Image src={retrato} alt="Retrato de un miembro del equipo" ratio="1:1" />
+      <Image src={retrato} alt="Retrato neutro de una persona" ratio="1:1" />
     </div>
   ),
 };
