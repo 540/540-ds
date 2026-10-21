@@ -1,0 +1,8 @@
+/* CardList — the stack of full-width bands. Leaves the column to the window edge so each band's
+   line crosses the whole screen, and closes the stack with the last line. No gap: the line separates. */
+
+.list {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  border-block-end: 1px solid var(--color-border-default);
+}
