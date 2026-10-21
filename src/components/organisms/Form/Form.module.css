@@ -1,0 +1,16 @@
+/* Form — places the fields with 24 px between them and puts the submit at the end of the row. */
+
+.form {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.fields {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.submit {
+  display: flex;
+  justify-content: flex-end;
+}

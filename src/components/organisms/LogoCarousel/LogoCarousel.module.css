@@ -1,0 +1,63 @@
+/* LogoCarousel — the strip of client logos. Equal slots, an odd number of them (3 / 5 / 7) so
+   there is always a center: the middle one at full ink and 8 % bigger, the rest even and dimmed. */
+
+.carousel {
+  --slots: 3;
+  overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  .carousel {
+    --slots: 5;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel {
+    --slots: 7;
+  }
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.track[data-jump] {
+  transition: none;
+}
+
+.slot {
+  flex: 0 0 calc(100% / var(--slots));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: calc(var(--size-logo-client) * 1.08);
+  padding-inline: var(--space-s);
+}
+
+/* The logo fits inside the same box for all, never cropped, evened by the theme's filter */
+.logo {
+  display: block;
+  max-inline-size: 100%;
+  block-size: var(--size-logo-client);
+  object-fit: contain;
+  filter: var(--filter-logo-client);
+  scale: 1;
+  transition:
+    scale 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.6s ease;
+}
+
+.center .logo {
+  filter: var(--filter-logo-client-center);
+  scale: 1.08;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .logo {
+    transition: none;
+  }
+}
