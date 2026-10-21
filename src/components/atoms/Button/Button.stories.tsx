@@ -95,7 +95,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = { tags: ['dev'] };
+export const Playground: Story = { tags: ['dev'], parameters: { layout: 'centered' } };
 
 export const Variantes: Story = {
   parameters: {
