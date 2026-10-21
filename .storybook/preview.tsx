@@ -3,6 +3,7 @@ import type { Preview } from '@storybook/react-vite';
 import { addons } from 'storybook/preview-api';
 import { GLOBALS_UPDATED } from 'storybook/internal/core-events';
 import '../src/styles/global.css';
+import './docs.css';
 
 type Theme = 'light' | 'dark';
 

@@ -1,0 +1,35 @@
+/* Makes Storybook's documentation pages follow the active theme (data-theme on <html>),
+   so Fundamentos and component docs read correctly in dark mode without extra boxes. */
+
+.sbdocs.sbdocs-wrapper {
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+}
+
+.sbdocs.sbdocs-content h1,
+.sbdocs.sbdocs-content h2,
+.sbdocs.sbdocs-content h3,
+.sbdocs.sbdocs-content h4,
+.sbdocs.sbdocs-content p,
+.sbdocs.sbdocs-content li {
+  color: var(--color-text-primary);
+}
+
+.sbdocs.sbdocs-content h2 {
+  border-bottom-color: var(--color-border-default);
+}
+
+.sbdocs.sbdocs-content code {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+}
+
+.sbdocs.sbdocs-content table,
+.sbdocs.sbdocs-content table tr,
+.sbdocs.sbdocs-content table th,
+.sbdocs.sbdocs-content table td {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+}

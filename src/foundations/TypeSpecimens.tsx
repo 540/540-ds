@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react';
 import styles from './foundations.module.css';
-import { Surface } from './Surface';
 import { textStyles } from '../tokens/manifest';
 import { useTokenValue } from './useTokenValue';
 
@@ -40,10 +39,10 @@ function Specimen({ style }: { style: (typeof textStyles)[number] }) {
 /** The thirteen text styles rendered with their live tokens. */
 export function TypeSpecimens() {
   return (
-    <Surface>
+    <>
       {textStyles.map((s) => (
         <Specimen key={s.key} style={s} />
       ))}
-    </Surface>
+    </>
   );
 }

@@ -1,5 +1,4 @@
 import styles from './foundations.module.css';
-import { Surface } from './Surface';
 import { BREAKPOINTS, DESIGN_WIDTHS } from '../tokens/breakpoints';
 
 const RANGES = [
@@ -11,7 +10,7 @@ const RANGES = [
 /** The three ranges and the two breakpoints. */
 export function Breakpoints() {
   return (
-    <Surface>
+    <>
       {RANGES.map((r) => (
         <div key={r.label} className={styles.rangeRow}>
           <div>
@@ -26,6 +25,6 @@ export function Breakpoints() {
           </div>
         </div>
       ))}
-    </Surface>
+    </>
   );
 }

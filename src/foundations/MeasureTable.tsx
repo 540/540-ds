@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react';
 import styles from './foundations.module.css';
-import { Surface } from './Surface';
 import type { MeasureToken } from '../tokens/manifest';
 import { useTokenValue } from './useTokenValue';
 
@@ -38,7 +37,7 @@ type Props = { tokens: MeasureToken[]; bar?: boolean };
 /** A table of measure tokens with their live value and an optional proportional bar. */
 export function MeasureTable({ tokens, bar = true }: Props) {
   return (
-    <Surface>
+    <>
     <table className={styles.table}>
       <thead>
         <tr>
@@ -55,6 +54,6 @@ export function MeasureTable({ tokens, bar = true }: Props) {
         ))}
       </tbody>
     </table>
-    </Surface>
+    </>
   );
 }
