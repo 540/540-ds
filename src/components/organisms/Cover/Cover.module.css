@@ -1,0 +1,52 @@
+/* Cover — the first stop: the title in statement, the question, the lead, the event, the client
+   logo and the full-bleed photo. Everything centered; the photo is glued to the bottom. */
+
+.cover {
+  padding-block-start: calc(var(--padding-section-block) + var(--space-xl) * 2 + var(--size-control-xs));
+  padding-block-end: 0;
+}
+
+.block {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3xl);
+}
+
+.text {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2xl);
+}
+
+.line {
+  display: block;
+}
+
+.client {
+  display: flex;
+  justify-content: center;
+}
+
+.client img {
+  block-size: var(--size-logo-client);
+  inline-size: auto;
+}
+
+.clientDark {
+  display: none;
+}
+
+:global([data-theme='dark']) .clientLight {
+  display: none;
+}
+
+:global([data-theme='dark']) .clientDark {
+  display: block;
+}
+
+/* The photo bleeds: full viewport width, no radius */
+.photo {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  overflow: hidden;
+}

@@ -1,0 +1,16 @@
+/* Punchline — the sentence that closes a block: statement at three quarters, under a hairline,
+   with an optional transition to what comes next. */
+
+.punchline {
+  padding-block: var(--space-3xl);
+  border-block-start: 1px solid var(--color-border-default);
+  text-align: center;
+}
+
+.inside {
+  margin-block-start: var(--space-3xl);
+}
+
+.transition {
+  margin: var(--space-xl) auto 0;
+}

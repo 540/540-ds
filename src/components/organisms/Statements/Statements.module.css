@@ -1,0 +1,25 @@
+/* Statements — the sentences of the journey, stacked, one stop each. The stack keeps its own
+   rhythm: 1.5 statement sizes between sentences, half a screen above the first one. */
+
+.section {
+  min-block-size: 0;
+  display: block;
+  padding-block-start: calc(50svh - 68px);
+}
+
+.section > [data-slide-stage] {
+  max-inline-size: none;
+}
+
+.stack {
+  position: relative;
+  margin-inline: calc(50% - 50vw);
+  display: grid;
+  gap: calc(var(--text-statement-size) * 1.5);
+}
+
+.stop {
+  display: grid;
+  justify-items: center;
+  padding-inline: var(--padding-page);
+}

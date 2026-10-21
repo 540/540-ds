@@ -15,7 +15,7 @@ const meta = {
   tags: ['autodocs', '!dev'],
   parameters: { docs: { description: { component: doc } }, layout: 'fullscreen' },
   args: {
-    tagline: 'Una charla sobre dejar de entregar pantallas y entregar el sistema que las produce.',
+    tagline: 'Una línea que resume de qué iba la charla.',
     networks: NETWORKS,
     copyright: '© 2026 540',
     ...DECK_FOOTER_DEFAULTS,

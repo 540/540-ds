@@ -8,14 +8,14 @@ import { DECK_DEFAULTS, DECK_THEMES } from './types';
 import doc from './_docs/Deck.md?raw';
 
 const ITEMS = [
-  { href: '#contexto', label: 'Contexto' },
-  { href: '#tesis', label: 'Tres tesis' },
-  { href: '#servicios', label: 'Servicios' },
+  { href: '#contexto', label: 'Primera parada' },
+  { href: '#tesis', label: 'Tesis' },
+  { href: '#tarjetas', label: 'Tarjetas' },
   { href: '#cierre', label: 'Cierre' },
 ];
 
 const FOOTER = {
-  tagline: 'Una charla sobre dejar de entregar pantallas y entregar el sistema que las produce.',
+  tagline: 'Una línea que resume de qué iba la charla.',
   networks: [
     { network: 'linkedin' as const, href: 'https://linkedin.com/company/540-degrees', label: 'LinkedIn de 540' },
     { network: 'x' as const, href: 'https://x.com/540deg', label: 'X de 540' },
@@ -34,19 +34,19 @@ function DemoDeck(props: Partial<React.ComponentProps<typeof Deck>>) {
       <Slide id="portada">
         <Stack gap="var(--space-2xl)">
           <Text as="h1" variant="statement" wrap="balance" measure="wide" align="center">
-            Dejar de entregar pantallas y entregar el sistema
+            Título de la charla en una o dos líneas
           </Text>
           <Text variant="body-m" tone="secondary" wrap="balance" measure="half" align="center">
-            ¿Qué pasa cuando el archivo de Figma deja de ser la fuente de verdad?
+            ¿La pregunta que abre la charla?
           </Text>
         </Stack>
       </Slide>
       <Slide id="contexto">
-        <SectionHeader title="El contexto" description="Un equipo pequeño, una web, y meses probando herramientas." align="center" />
+        <SectionHeader title="Título de la primera parada" description="Una entradilla corta que la presenta." align="center" />
       </Slide>
       <Slide id="tesis">
         <div style={{ display: 'grid', gap: 'calc(var(--text-statement-size) * 1.5)' }}>
-          {['Lo que se mantiene es lo que se usa.', 'El criterio vive en el código.', 'Una parada, una idea.'].map((frase, i) => (
+          {['La primera tesis de la charla.', 'La segunda tesis, en una línea.', 'La tercera tesis, que cierra.'].map((frase, i) => (
             <div key={frase} data-stop="">
               <Text as="p" variant="statement" wrap="balance" measure="wide" align="center">
                 <span aria-hidden="true">0{i + 1} </span>
@@ -59,18 +59,18 @@ function DemoDeck(props: Partial<React.ComponentProps<typeof Deck>>) {
       <Slide id="historia" tone="raised">
         <Stack>
           <Text as="h2" variant="title-m" wrap="balance">
-            Lo que creía
+            Título de una historia
           </Text>
           <Text variant="body-l" tone="secondary" wrap="pretty" measure="half" align="center">
-            Que un sistema de diseño era un archivo de Figma bien ordenado. Que si las pantallas estaban limpias, el resto venía solo.
+            Un párrafo que cuenta algo, a media retícula y en gris, sobre una banda levantada.
           </Text>
         </Stack>
       </Slide>
-      <Slide id="servicios">
+      <Slide id="tarjetas">
         <Stack gap="var(--space-3xl)">
-          <SectionHeader title="Cuatro servicios" align="center" />
+          <SectionHeader title="Cuatro tarjetas" align="center" />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'var(--grid-gutter)', width: '100%', textAlign: 'start' }}>
-            {['Producto', 'Sistemas de diseño', 'Formación', 'Acompañamiento'].map((t, i) => (
+            {['Primera', 'Segunda', 'Tercera', 'Cuarta'].map((t, i) => (
               <Card key={t} ordinal={`0${i + 1}`} title={t} align="center">
                 Dos o tres frases sobre lo que hace este apartado y para quién.
               </Card>
@@ -80,7 +80,7 @@ function DemoDeck(props: Partial<React.ComponentProps<typeof Deck>>) {
       </Slide>
       <Slide id="cierre">
         <Text as="p" variant="statement" wrap="balance" measure="wide" align="center">
-          La IA acelera el ciclo. <strong>El criterio sigue siendo nuestro.</strong>
+          La frase de cierre. <strong>Con el giro en negrita.</strong>
         </Text>
       </Slide>
     </Deck>

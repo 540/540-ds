@@ -51,10 +51,10 @@ export const Raised: Story = {
     children: (
       <div style={{ display: 'grid', gap: 'var(--space-xl)', justifyItems: 'center' }}>
         <Text as="h2" variant="title-m" wrap="balance">
-          Lo que creía
+          Título de la parada
         </Text>
         <Text variant="body-l" tone="secondary" wrap="pretty" measure="half" align="center">
-          Que un sistema de diseño era un archivo de Figma bien ordenado. Que si las pantallas estaban limpias, el resto venía solo.
+          Un párrafo de ejemplo, a media retícula y en gris, que acompaña al título de la parada.
         </Text>
       </div>
     ),
@@ -72,7 +72,7 @@ export const SinAltoMinimo: Story = {
         <Text variant="micro-light" tone="secondary" as="span" aria-hidden="true">
           01
         </Text>
-        <SectionHeader title="Lo desechable" align="center" />
+        <SectionHeader title="Título del bloque" align="center" />
       </div>
     ),
   },

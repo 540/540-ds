@@ -1,0 +1,9 @@
+/* Quote — a sentence someone said, in statement, with its attribution under it. */
+
+.figure {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-xl);
+  margin: 0;
+  text-align: center;
+}

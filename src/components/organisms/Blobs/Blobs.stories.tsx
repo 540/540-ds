@@ -33,7 +33,7 @@ export const DetrasDeUnaParada: Story = {
     <div style={{ position: 'relative', minHeight: '100svh', display: 'grid', placeItems: 'center' }}>
       <Blobs />
       <Text variant="statement" align="center" wrap="balance" measure="wide">
-        Donde otros terminan, nosotros empezamos.
+        Una frase en statement sobre las manchas.
       </Text>
     </div>
   ),
