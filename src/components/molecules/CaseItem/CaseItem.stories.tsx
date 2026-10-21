@@ -8,9 +8,9 @@ import david from '../../../assets/samples/charla-david.webp';
 import fachada from '../../../assets/samples/charla-fachada.webp';
 
 const CASOS = [
-  { src: pintura, title: 'Jakala', description: 'Un sistema de diseño que el equipo de desarrollo usa de verdad.', href: '#jakala' },
-  { src: david, title: 'Saltoki', description: 'La calculadora de ahorro energético, de cinco pasos.', href: '#saltoki' },
-  { src: fachada, title: 'Herramientas PIM', description: 'Un catálogo de producto para un equipo que no diseña.', href: '#pim' },
+  { src: pintura, title: 'Nombre del caso', description: 'Una frase que cuenta de qué iba el caso.', href: '#caso-1' },
+  { src: david, title: 'Otro caso', description: 'Una frase que cuenta de qué iba este otro.', href: '#caso-2' },
+  { src: fachada, title: 'Un tercer caso', description: 'Una frase más, igual de corta.', href: '#caso-3' },
 ];
 
 const meta = {

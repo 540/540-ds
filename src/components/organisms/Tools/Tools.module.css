@@ -1,0 +1,53 @@
+/* Tools — a grid of tools: logo normalised by ink area, name and an optional verdict, centered. */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  column-gap: var(--grid-gutter);
+  row-gap: var(--space-3xl);
+  margin-block-start: var(--space-2xl);
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  grid-column: span 12;
+}
+
+@media (min-width: 600px) {
+  .item {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cols-4 .item {
+    grid-column: span 3;
+  }
+
+  .cols-3 .item {
+    grid-column: span 4;
+  }
+}
+
+.tool {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-s);
+  text-align: center;
+  max-inline-size: 38ch;
+  margin-inline: auto;
+}
+
+/* A common optical box; the per-brand correction comes from measuring each file's ink */
+.logo {
+  block-size: 52px;
+  inline-size: 52px;
+  object-fit: contain;
+  margin-block-end: var(--space-s);
+  scale: var(--tool-scale, 1);
+}
+
+:global([data-theme='dark']) .invert {
+  filter: invert(1);
+}

@@ -8,7 +8,7 @@ import pintura from '../../../assets/samples/charla-pintura.webp';
 import david from '../../../assets/samples/charla-david.webp';
 import fachada from '../../../assets/samples/charla-fachada.webp';
 import retrato from '../../../assets/samples/retrato.svg';
-import logoCliente from '../../../assets/samples/jakala-claro.png';
+import logoCliente from '../../../assets/samples/logo-cliente.svg';
 
 const Caption = ({ children }: { children: ReactNode }) => (
   <Text variant="micro" tone="secondary" as="span">
@@ -136,13 +136,13 @@ export const SinRecorte: Story = {
     docs: {
       description: {
         story:
-          'Un logotipo de cliente con `auto`: no se puede recortar, así que el archivo pone el alto. A cambio hay que reservarle el sitio con `width` y `height` (aquí 1315 × 546), o la página salta al cargar.',
+          'Un logotipo de cliente con `auto`: no se puede recortar, así que el archivo pone el alto. A cambio hay que reservarle el sitio con `width` y `height` (aquí 320 × 120), o la página salta al cargar.',
       },
     },
   },
   render: () => (
     <div style={{ width: 320 }}>
-      <Image src={logoCliente} alt="Jakala" ratio="auto" width={1315} height={546} />
+      <Image src={logoCliente} alt="Logotipo del cliente" ratio="auto" width={320} height={120} />
     </div>
   ),
 };

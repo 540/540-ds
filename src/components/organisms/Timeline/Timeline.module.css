@@ -1,0 +1,87 @@
+/* Timeline — a vertical axis at half the grid: a dot and a title per step, joined by a 2 px line.
+   Each step is a stop. The line draws and the dot pops as the step enters the screen. */
+
+.list {
+  list-style: none;
+  margin: var(--space-3xl) auto 0;
+  padding: 0;
+  max-width: calc((var(--size-container) - var(--grid-gutter)) / 2);
+}
+
+.step {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-xl);
+  padding-block-start: calc(var(--space-xl) * 3);
+}
+
+.step:first-child {
+  padding-block-start: 0;
+}
+
+/* The axis between steps: a continuous 2 px line */
+.step::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 50%;
+  inline-size: 2px;
+  block-size: calc(var(--space-xl) * 3 - 8px);
+  transform: translateX(-50%);
+  transform-origin: 50% 0;
+  background: var(--color-border-strong);
+}
+
+.step:first-child::before {
+  content: none;
+}
+
+.dot {
+  inline-size: 16px;
+  block-size: 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-text-primary);
+}
+
+.text {
+  display: grid;
+  gap: var(--space-s);
+  justify-items: center;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .step::before {
+      scale: 1 0;
+      animation: draw linear both;
+      animation-timeline: view();
+      animation-range: contain 0% contain 40%;
+    }
+
+    .dot {
+      scale: 0;
+      animation: pop linear both;
+      animation-timeline: view();
+      animation-range: contain 8% contain 24%;
+    }
+  }
+}
+
+@keyframes draw {
+  from {
+    scale: 1 0;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+@keyframes pop {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
+  }
+}
