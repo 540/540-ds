@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorPrimitives, SemanticColors } from './index';
+
+<Meta title="Fundamentos/Color" />
+
+# Color
+
+El color vive en dos capas. Los **primitivos** son el valor en bruto con nombre: un amarillo, un gris. Los **semánticos** dicen para qué sirve un color y apuntan a un primitivo. Un componente solo puede usar tokens semánticos.
+
+El tema (claro u oscuro) cambia el alias de los semánticos, nunca el nombre. Usa el selector **Tema** de la barra superior para ver ambos.
+
+## Semánticos
+
+<SemanticColors />
+
+## Primitivos
+
+Solo se aliasan. Ningún componente los toca.
+
+<ColorPrimitives />

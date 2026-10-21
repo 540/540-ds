@@ -1,0 +1,254 @@
+/* Styles for the "Fundamentos" documentation pages. They use semantic tokens only. */
+
+.section {
+  margin-block: var(--space-2xl);
+}
+
+.sectionTitle {
+  font-family: var(--font-family-base);
+  font-size: var(--text-title-s-size);
+  font-weight: var(--text-title-s-weight);
+  line-height: 1.2;
+  margin: 0 0 var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+.sectionDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--text-body-s-size);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-l);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-l);
+}
+
+.swatch {
+  display: flex;
+  gap: var(--space-m);
+  align-items: center;
+  font-family: var(--font-family-base);
+}
+
+.swatchChip {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: var(--radius-default);
+  border: 1px solid var(--color-border-default);
+  background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.swatchChip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--swatch-color);
+}
+
+.swatchText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.swatchLabel {
+  font-size: var(--text-body-s-bold-size);
+  font-weight: var(--text-body-s-bold-weight);
+  color: var(--color-text-primary);
+}
+
+.swatchToken,
+.swatchValue {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  word-break: break-all;
+}
+
+.swatchValue {
+  color: var(--color-text-tertiary);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-family-base);
+  font-size: var(--text-body-s-size);
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: var(--space-s) var(--space-m);
+  border-bottom: 1px solid var(--color-border-default);
+  vertical-align: middle;
+  color: var(--color-text-primary);
+}
+
+.table th {
+  font-weight: var(--text-body-s-bold-weight);
+  color: var(--color-text-secondary);
+  font-size: var(--text-micro-size);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+}
+
+.muted {
+  color: var(--color-text-secondary);
+}
+
+.badge {
+  display: inline-block;
+  font-size: var(--text-micro-bold-size);
+  font-weight: var(--text-micro-bold-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px var(--space-s);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-accent-subtle);
+  color: var(--color-text-accent-inverse);
+  border: 1px solid var(--color-border-default);
+}
+
+.bar {
+  height: 16px;
+  background: var(--color-bg-inverse);
+  border-radius: 2px;
+}
+
+.specimen {
+  padding: var(--space-l) 0;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.specimenMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-l);
+  margin-bottom: var(--space-m);
+  font-family: var(--font-family-base);
+  font-size: var(--text-micro-size);
+  color: var(--color-text-secondary);
+}
+
+.specimenLabel {
+  font-size: var(--text-body-s-bold-size);
+  font-weight: var(--text-body-s-bold-weight);
+  color: var(--color-text-primary);
+}
+
+.specimenSample {
+  font-family: var(--font-family-base);
+  color: var(--color-text-primary);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.specimenNote {
+  margin-top: var(--space-s);
+  font-size: var(--text-micro-size);
+  color: var(--color-text-tertiary);
+}
+
+.radiusSample {
+  width: 120px;
+  height: 72px;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-strong);
+}
+
+.rangeRow {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--space-l);
+  align-items: center;
+  padding: var(--space-m) 0;
+  border-bottom: 1px solid var(--color-border-default);
+  font-family: var(--font-family-base);
+}
+
+.rangeBar {
+  height: 24px;
+  background: var(--color-bg-inverse);
+  border-radius: 2px;
+}
+
+.themeCard {
+  padding: var(--padding-card);
+  border-radius: var(--radius-default);
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-default);
+  font-family: var(--font-family-base);
+}
+
+/* Surface that follows the active theme, so docs stay readable in dark mode */
+.surface {
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+  padding: var(--space-xl);
+  border-radius: var(--radius-default);
+  border: 1px solid var(--color-border-default);
+  margin-block: var(--space-l);
+}
+
+.surface .section:first-child {
+  margin-top: 0;
+}
+
+.surface .section:last-child {
+  margin-bottom: 0;
+}
+
+/* Storybook's docs theme styles headings and tables globally; these selectors are
+   more specific so the surface keeps the active theme in dark mode. */
+.surface h3.sectionTitle {
+  color: var(--color-text-primary);
+}
+
+.surface p.sectionDescription,
+.surface p.specimenNote {
+  color: var(--color-text-secondary);
+}
+
+.surface p.specimenSample {
+  color: var(--color-text-primary);
+}
+
+.surface table.table,
+.surface table.table tbody tr,
+.surface table.table thead tr {
+  background: transparent;
+  border: 0;
+}
+
+.surface table.table th,
+.surface table.table td {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-border-default);
+  color: var(--color-text-primary);
+}
+
+.surface table.table th {
+  color: var(--color-text-secondary);
+}
+
+.surface table.table td.muted {
+  color: var(--color-text-secondary);
+}

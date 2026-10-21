@@ -1,0 +1,17 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Breakpoints } from './index';
+
+<Meta title="Fundamentos/Anchos de pantalla" />
+
+# Anchos de pantalla
+
+Tres tramos y dos saltos. El sistema no tiene «una versión móvil»: tiene una sola web que se reparte de tres maneras.
+
+<Breakpoints />
+
+## Lo que hay que respetar
+
+- **Los saltos no son tokens.** Una regla `@media` no puede leer una variable CSS, así que 600 y 1024 son los únicos dos números en bruto que el sistema permite. Viven en `src/tokens/breakpoints.ts`.
+- **Móvil primero, siempre `min-width`.** El tramo estrecho es la base y los anchos lo amplían.
+- **El reparto que se escribe es el de escritorio.** La rejilla deduce los otros dos: en tablet nada baja de media fila y en móvil todo ocupa la fila.
+- **Baja lo que depende del ancho; no baja lo que depende del ojo.** Titulares, márgenes de página, aire de sección y canales, sí. Cuerpo de texto, altos de control y tamaños de icono, no.

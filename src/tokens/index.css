@@ -1,0 +1,5 @@
+/* Design tokens entry point. Import this once (global.css does it). */
+@import './primitives.css';
+@import './semantic-color.css';
+@import './semantic-typography.css';
+@import './semantic-measure.css';

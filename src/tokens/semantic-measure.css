@@ -1,0 +1,59 @@
+/* ==========================================================================
+   SEMANTIC MEASURE TOKENS — space, padding, sizes, grid and radius.
+   Single mode: the theme never moves a measure.
+   Mobile first: page margins, section air and gutters grow at >= 1024px.
+   Source: Figma → Medidas. Mobile values marked PROVISIONAL were not in Figma.
+   ========================================================================== */
+
+:root {
+  /* Spacing — the seven steps all the air comes from */
+  --space-xs: var(--540-size-4);
+  --space-s: var(--540-size-8);
+  --space-m: var(--540-size-12);
+  --space-l: var(--540-size-16);
+  --space-xl: var(--540-size-24);
+  --space-2xl: var(--540-size-32);
+  --space-3xl: var(--540-size-48);
+
+  /* Padding — page, section and card. Mobile values (PROVISIONAL, not in Figma). */
+  --padding-page: var(--540-size-20); /* PROVISIONAL mobile value; desktop = 28 */
+  --padding-section: var(--540-size-24); /* PROVISIONAL mobile value; desktop = 36 */
+  --padding-section-block: var(--540-size-64); /* PROVISIONAL mobile value; desktop = 120 */
+  --padding-card: var(--540-size-24);
+
+  /* Size — control heights, icons, logos, column width (do not change with width) */
+  --size-control-xs: var(--540-size-24);
+  --size-control-sm: var(--540-size-36);
+  --size-control-md: var(--540-size-45);
+  --size-icon-sm: var(--540-size-16);
+  --size-icon-md: var(--540-size-18);
+  --size-logo-xs: var(--540-size-24);
+  --size-logo-sm: var(--540-size-32);
+  --size-logo-md: var(--540-size-48);
+  --size-logo-client: var(--540-size-94);
+  --size-container: var(--540-size-1200);
+
+  /* Grid — twelve columns in the three ranges, two gutters. Mobile values PROVISIONAL. */
+  --grid-columns: 12;
+  --grid-gutter: var(--540-size-16); /* PROVISIONAL mobile value; desktop = 24 */
+  --grid-gutter-wide: var(--540-size-48); /* PROVISIONAL mobile value; desktop = 120 */
+
+  /* Radius — a card and a pill */
+  --radius-default: var(--540-size-10);
+  --radius-pill: var(--540-size-pill);
+
+  /* Focus ring — the "halo", one token the theme re-points */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-border-focus);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --padding-page: var(--540-size-28);
+    --padding-section: var(--540-size-36);
+    --padding-section-block: var(--540-size-120);
+    --grid-gutter: var(--540-size-24);
+    --grid-gutter-wide: var(--540-size-120);
+  }
+}

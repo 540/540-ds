@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { MeasureTable } from './index';
+import { spacingTokens, paddingTokens, gridTokens } from '../tokens/manifest';
+
+<Meta title="Fundamentos/Espaciado" />
+
+# Espaciado
+
+Todo el aire del sistema sale de siete peldaños. Las medidas no cambian con el tema, pero los márgenes de página, el aire de sección y los canales sí bajan en móvil.
+
+Los valores marcados **provisional** no estaban en Figma: son una propuesta para revisar.
+
+## Escala de espacio
+
+<MeasureTable tokens={spacingTokens} />
+
+## Relleno
+
+El relleno de página, de sección y de tarjeta.
+
+<MeasureTable tokens={paddingTokens} />
+
+## Retícula
+
+Doce columnas en los tres tramos y dos canales.
+
+<MeasureTable tokens={gridTokens} />

@@ -1,0 +1,16 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TypeSpecimens } from './index';
+
+<Meta title="Fundamentos/Tipografía" />
+
+# Tipografía
+
+**DM Sans**, cargada desde Google Fonts en su versión variable (pesos 100 a 1000, tamaño óptico automático).
+
+Trece estilos. El componente de texto *es* la escala: no hay un Heading ni un Label aparte. El nivel del encabezado (h1, h2…) no lo decide el estilo, por eso ningún estilo se llama como un elemento.
+
+Los cinco estilos grandes bajan de tamaño por debajo de 1024 px. Cuerpo, interfaz y micro no cambian: un 16 se lee igual en un móvil que en un monitor. Cambia el **Viewport** en la barra superior para verlo.
+
+Cada estilo son cuatro tokens: `-size`, `-weight`, `-line-height` y `-letter-spacing`.
+
+<TypeSpecimens />

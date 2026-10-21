@@ -1,0 +1,101 @@
+/* ==========================================================================
+   SEMANTIC TYPOGRAPHY TOKENS — the thirteen text styles.
+   Mobile first: base values are the small scale; at >= 1024px the five large
+   styles grow to their desktop size. Body, micro and UI sizes never change
+   ("a 16 se lee igual en un móvil que en un monitor").
+   Source: Figma → Tipografía.
+   ========================================================================== */
+
+:root {
+  --font-family-base: var(--540-font-family-sans);
+
+  /* Statement — the sentence of a stop on the journey */
+  --text-statement-size: var(--540-font-size-48);
+  --text-statement-weight: var(--540-font-weight-extrabold);
+  --text-statement-line-height: var(--540-line-height-tight);
+  --text-statement-letter-spacing: var(--540-letter-spacing-tight);
+
+  /* Title L — section subtitle */
+  --text-title-l-size: var(--540-font-size-28);
+  --text-title-l-weight: var(--540-font-weight-regular);
+  --text-title-l-line-height: var(--540-line-height-solid);
+  --text-title-l-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Title M — block title */
+  --text-title-m-size: var(--540-font-size-26);
+  --text-title-m-weight: var(--540-font-weight-regular);
+  --text-title-m-line-height: var(--540-line-height-solid);
+  --text-title-m-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Title S — card title */
+  --text-title-s-size: var(--540-font-size-22);
+  --text-title-s-weight: var(--540-font-weight-regular);
+  --text-title-s-line-height: var(--540-line-height-solid);
+  --text-title-s-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Title XS — minor title */
+  --text-title-xs-size: var(--540-font-size-20);
+  --text-title-xs-weight: var(--540-font-weight-regular);
+  --text-title-xs-line-height: var(--540-line-height-solid);
+  --text-title-xs-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Body L — lead / highlighted text */
+  --text-body-l-size: var(--540-font-size-18);
+  --text-body-l-weight: var(--540-font-weight-regular);
+  --text-body-l-line-height: var(--540-line-height-solid);
+  --text-body-l-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Body M — running text */
+  --text-body-m-size: var(--540-font-size-16);
+  --text-body-m-weight: var(--540-font-weight-regular);
+  --text-body-m-line-height: var(--540-line-height-solid);
+  --text-body-m-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Body S — interface text */
+  --text-body-s-size: var(--540-font-size-14);
+  --text-body-s-weight: var(--540-font-weight-regular);
+  --text-body-s-line-height: var(--540-line-height-solid);
+  --text-body-s-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Body S Light — secondary text */
+  --text-body-s-light-size: var(--540-font-size-14);
+  --text-body-s-light-weight: var(--540-font-weight-light);
+  --text-body-s-light-line-height: var(--540-line-height-solid);
+  --text-body-s-light-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Body S Bold — emphasised interface text */
+  --text-body-s-bold-size: var(--540-font-size-14);
+  --text-body-s-bold-weight: var(--540-font-weight-bold);
+  --text-body-s-bold-line-height: var(--540-line-height-solid);
+  --text-body-s-bold-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Micro — small print that reads on its own */
+  --text-micro-size: var(--540-font-size-12);
+  --text-micro-weight: var(--540-font-weight-regular);
+  --text-micro-line-height: var(--540-line-height-solid);
+  --text-micro-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Micro Light — supporting small print: data labels, captions */
+  --text-micro-light-size: var(--540-font-size-12);
+  --text-micro-light-weight: var(--540-font-weight-light);
+  --text-micro-light-line-height: var(--540-line-height-solid);
+  --text-micro-light-letter-spacing: var(--540-letter-spacing-normal);
+
+  /* Micro Bold — uppercase labels */
+  --text-micro-bold-size: var(--540-font-size-12);
+  --text-micro-bold-weight: var(--540-font-weight-bold);
+  --text-micro-bold-line-height: var(--540-line-height-solid);
+  --text-micro-bold-letter-spacing: var(--540-letter-spacing-normal);
+}
+
+/* Desktop scale. 1024 is one of the two raw breakpoints allowed by the system
+   (see breakpoints.ts): a @media condition cannot read a CSS variable. */
+@media (min-width: 1024px) {
+  :root {
+    --text-statement-size: var(--540-font-size-64);
+    --text-title-l-size: var(--540-font-size-36);
+    --text-title-m-size: var(--540-font-size-32);
+    --text-title-s-size: var(--540-font-size-26);
+    --text-title-xs-size: var(--540-font-size-22);
+  }
+}

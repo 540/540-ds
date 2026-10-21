@@ -1,0 +1,89 @@
+/* ==========================================================================
+   SEMANTIC COLOR TOKENS — what a color is FOR, pointing to a primitive.
+   Two modes: light (default) and dark. The theme changes the alias, never the name.
+   Switch with <html data-theme="dark">.
+   Source: Figma → Color → "Semánticos · Claro" / "Semánticos · Oscuro".
+   ========================================================================== */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* Background */
+  --color-bg-default: var(--540-neutral-50);
+  --color-bg-inverse: var(--540-neutral-950);
+  --color-bg-surface: var(--540-neutral-50);
+  --color-bg-subtle: var(--540-neutral-100);
+  --color-bg-accent: var(--540-accent-yellow);
+  --color-bg-accent-subtle: var(--540-accent-yellow-subtle);
+  --color-bg-inverse-active: var(--540-neutral-800);
+  --color-bg-neutral-hover: var(--540-neutral-100);
+  --color-bg-row-active: var(--540-neutral-100);
+  --color-bg-neutral-active: var(--540-neutral-200);
+  --color-bg-disabled: var(--540-neutral-100);
+  --color-bg-error: var(--540-status-red-subtle);
+  --color-bg-overlay: var(--540-neutral-950-veil);
+  --color-bg-success: var(--540-status-green-subtle);
+  --color-bg-nav: var(--540-neutral-50-veil);
+
+  /* Text */
+  --color-text-primary: var(--540-neutral-950);
+  --color-text-secondary: var(--540-neutral-600);
+  --color-text-tertiary: var(--540-neutral-450);
+  --color-text-disabled: var(--540-neutral-300);
+  --color-text-inverse: var(--540-neutral-white);
+  --color-text-inverse-secondary: var(--540-neutral-200);
+  --color-text-accent: var(--540-accent-yellow);
+  --color-text-accent-inverse: var(--540-accent-gold);
+  --color-text-on-media: var(--540-neutral-white);
+  --color-text-error: var(--540-status-red);
+  --color-text-success: var(--540-status-green);
+
+  /* Border */
+  --color-border-default: var(--540-neutral-100);
+  --color-border-strong: var(--540-neutral-900);
+  --color-border-default-inverse: var(--540-neutral-900);
+  --color-border-strong-inverse: var(--540-neutral-white);
+  --color-border-focus: var(--540-neutral-950);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Background */
+  --color-bg-default: var(--540-neutral-black);
+  --color-bg-inverse: var(--540-neutral-50);
+  --color-bg-surface: var(--540-neutral-925);
+  --color-bg-subtle: var(--540-neutral-925);
+  --color-bg-accent: var(--540-accent-yellow);
+  --color-bg-accent-subtle: var(--540-accent-yellow-subtle);
+  --color-bg-inverse-active: var(--540-neutral-200);
+  --color-bg-neutral-hover: var(--540-neutral-925);
+  --color-bg-row-active: var(--540-neutral-875);
+  --color-bg-neutral-active: var(--540-neutral-875);
+  --color-bg-disabled: var(--540-neutral-875);
+  --color-bg-error: var(--540-status-red-subtle);
+  --color-bg-overlay: var(--540-neutral-950-veil);
+  --color-bg-success: var(--540-status-green-subtle);
+  --color-bg-nav: var(--540-neutral-black-veil);
+
+  /* Text */
+  --color-text-primary: var(--540-neutral-white);
+  --color-text-secondary: var(--540-neutral-200);
+  --color-text-tertiary: var(--540-neutral-300);
+  --color-text-disabled: var(--540-neutral-600);
+  --color-text-inverse: var(--540-neutral-950);
+  --color-text-inverse-secondary: var(--540-neutral-600);
+  --color-text-accent: var(--540-accent-yellow);
+  --color-text-accent-inverse: var(--540-accent-gold);
+  --color-text-on-media: var(--540-neutral-white);
+  --color-text-error: var(--540-status-red-soft);
+  --color-text-success: var(--540-status-green-soft);
+
+  /* Border */
+  --color-border-default: var(--540-neutral-875);
+  --color-border-strong: var(--540-neutral-white);
+  --color-border-default-inverse: var(--540-neutral-100);
+  --color-border-strong-inverse: var(--540-neutral-950);
+  --color-border-focus: var(--540-neutral-white);
+}

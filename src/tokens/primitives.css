@@ -1,0 +1,88 @@
+/* ==========================================================================
+   PRIMITIVE TOKENS — raw values with a name.
+   Source of truth: Figma "540 · Design System" → Color / Tipografía / Medidas.
+   Components NEVER use these directly. They only use semantic tokens.
+   ========================================================================== */
+
+:root {
+  /* ---- Color: accent ---- */
+  --540-accent-yellow: #fef401;
+  --540-accent-yellow-subtle: #fef4011a;
+  --540-accent-gold: #876e00;
+
+  /* ---- Color: neutral ---- */
+  --540-neutral-white: #ffffff;
+  --540-neutral-50: #f5f5f3;
+  --540-neutral-100: #e8e8e6;
+  --540-neutral-200: #dcdcd9;
+  --540-neutral-300: #aaaaaa;
+  --540-neutral-450: #70706e;
+  --540-neutral-600: #555553;
+  --540-neutral-800: #3a3a38;
+  --540-neutral-875: #1c1c1c;
+  --540-neutral-900: #2a2a28;
+  --540-neutral-925: #0e0e0e;
+  --540-neutral-950: #1a1a18;
+  --540-neutral-black: #000000;
+
+  /* ---- Color: veils (translucent) ---- */
+  --540-neutral-50-veil: #f5f5f3b3;
+  --540-neutral-950-veil: #1a1a18b3;
+  --540-neutral-black-veil: #000000b3;
+
+  /* ---- Color: status ---- */
+  --540-status-red: #c83f43;
+  --540-status-red-soft: #d9686c;
+  --540-status-red-subtle: #c83f431a;
+  --540-status-green: #257f54;
+  --540-status-green-soft: #3aa06e;
+  --540-status-green-subtle: #257f541a;
+
+  /* ---- Typography ---- */
+  --540-font-family-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --540-font-size-12: 12px;
+  --540-font-size-14: 14px;
+  --540-font-size-16: 16px;
+  --540-font-size-18: 18px;
+  --540-font-size-20: 20px;
+  --540-font-size-22: 22px;
+  --540-font-size-26: 26px;
+  --540-font-size-28: 28px;
+  --540-font-size-32: 32px;
+  --540-font-size-36: 36px;
+  --540-font-size-48: 48px;
+  --540-font-size-64: 64px;
+
+  --540-font-weight-light: 350; /* Figma shows Light (300); code asks for 350, as the file notes */
+  --540-font-weight-regular: 400;
+  --540-font-weight-bold: 700;
+  --540-font-weight-extrabold: 800;
+
+  --540-line-height-tight: 0.9;
+  --540-line-height-solid: 1;
+
+  --540-letter-spacing-tight: -0.03em; /* -3% in Figma */
+  --540-letter-spacing-normal: 0;
+
+  /* ---- Size scale (px) ---- */
+  --540-size-0: 0px;
+  --540-size-4: 4px;
+  --540-size-8: 8px;
+  --540-size-10: 10px;
+  --540-size-12: 12px;
+  --540-size-16: 16px;
+  --540-size-18: 18px;
+  --540-size-20: 20px;
+  --540-size-24: 24px;
+  --540-size-28: 28px;
+  --540-size-32: 32px;
+  --540-size-36: 36px;
+  --540-size-45: 45px;
+  --540-size-48: 48px;
+  --540-size-64: 64px;
+  --540-size-94: 94px;
+  --540-size-120: 120px;
+  --540-size-1200: 1200px;
+  --540-size-pill: 9999px;
+}
