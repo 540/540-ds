@@ -1,0 +1,106 @@
+/* Deck — the frame of a talk: blobs behind, the fixed top bar that hides while navigating,
+   the stops, the side index and the footer as the last stop. */
+
+.deck {
+  position: relative;
+  min-height: 100svh;
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+}
+
+/* ---- Top bar: fixed, over everything; hides when navigating, comes back near the top edge ---- */
+.bar {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 2;
+  width: 100%;
+  background: var(--color-bg-default);
+  transition:
+    transform 0.45s ease,
+    opacity 0.45s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .bar {
+    background: var(--color-bg-nav);
+    -webkit-backdrop-filter: var(--filter-nav);
+    backdrop-filter: var(--filter-nav);
+  }
+}
+
+.bar[data-hidden] {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-l);
+  max-width: var(--size-container);
+  margin-inline: auto;
+  padding-inline: var(--padding-page);
+  box-sizing: content-box;
+}
+
+.narrow {
+  display: block;
+  flex: 1;
+}
+
+.wide {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .narrow {
+    display: none;
+  }
+
+  .wide {
+    display: block;
+    flex: 1;
+  }
+}
+
+/* ---- Stops ---- */
+.main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Side index: stuck to the right edge, visible once past the cover ---- */
+.index {
+  position: fixed;
+  inset-inline-end: 0;
+  inset-block-start: 50%;
+  z-index: 5;
+  transform: translateY(-50%);
+  padding-inline-end: var(--padding-page);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.32s ease,
+    visibility 0.32s;
+}
+
+.index[data-visible] {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 900px) {
+  .index {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .index {
+    transition: none;
+  }
+}
