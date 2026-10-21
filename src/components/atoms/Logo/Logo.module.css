@@ -1,0 +1,20 @@
+/* Logo — the 540 logotype. The height rules, the width follows; it inherits the ink from its context. */
+
+.logo {
+  display: block;
+  width: auto;
+  color: var(--color-text-primary);
+  flex: none;
+}
+
+.size-md {
+  height: var(--size-logo-md);
+}
+
+.size-sm {
+  height: var(--size-logo-sm);
+}
+
+.size-xs {
+  height: var(--size-logo-xs);
+}
