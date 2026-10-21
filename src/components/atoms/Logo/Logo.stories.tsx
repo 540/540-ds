@@ -6,7 +6,7 @@ import { LOGO_DEFAULTS, LOGO_SIZES } from './types';
 import doc from './_docs/Logo.md?raw';
 
 const Caption = ({ children }: { children: ReactNode }) => (
-  <Text variant="micro" tone="tertiary" as="span">
+  <Text variant="micro" tone="secondary" as="span">
     {children}
   </Text>
 );

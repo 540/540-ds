@@ -1,0 +1,28 @@
+/* Image — content image. Crops to fill its box and never deforms (cover, centered).
+   The only piece of the system without a token: just proportion and crop. */
+
+.image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ratio-2-1 {
+  aspect-ratio: 2 / 1;
+}
+
+.ratio-1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+/* The container owns the height: what a section background needs */
+.ratio-fill {
+  height: 100%;
+}
+
+/* The file owns the height: the only one that does not crop. Reserve its room. */
+.ratio-auto {
+  height: auto;
+  object-fit: fill;
+}

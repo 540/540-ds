@@ -7,7 +7,7 @@ import doc from './_docs/Text.md?raw';
 const MUESTRA = 'Diseño que trasciende';
 
 const Caption = ({ children }: { children: ReactNode }) => (
-  <Text variant="micro" tone="tertiary" as="span">
+  <Text variant="micro" tone="secondary" as="span">
     {children}
   </Text>
 );
@@ -32,7 +32,7 @@ const meta = {
     tone: {
       control: 'select',
       options: [...TEXT_TONES],
-      description: 'Color del texto, por significado. `accent` solo es amarillo en tema oscuro.',
+      description: 'La tinta: `primary` (negro) o `secondary` (gris). Text no va en colores.',
       table: { type: { summary: TEXT_TONES.join(' | ') }, defaultValue: { summary: TEXT_DEFAULTS.tone } },
     },
     as: {
@@ -124,25 +124,16 @@ export const Tonos: Story = {
     docs: {
       description: {
         story:
-          'Los siete tonos sobre el fondo del tema; `inverse` va sobre fondo invertido porque es su único sitio. Cambia el **Tema** y fíjate en `accent`: amarillo en oscuro, primario en claro.',
+          'Las dos tintas: negro para lo que se lee y gris para lo que acompaña. Son las únicas del texto, como en las charlas. Cambia el **Tema** y verás que se invierten (blanco y gris claro sobre negro).',
       },
     },
   },
   render: () => (
     <Stack gap="var(--space-l)">
       {TEXT_TONES.map((tone) => (
-        <div
-          key={tone}
-          style={{
-            padding: 'var(--space-m) var(--space-l)',
-            borderRadius: 'var(--radius-default)',
-            background: tone === 'inverse' ? 'var(--color-bg-inverse)' : 'transparent',
-          }}
-        >
-          <Text variant="body-l" tone={tone}>
-            {tone} · {MUESTRA}
-          </Text>
-        </div>
+        <Text key={tone} variant="body-l" tone={tone}>
+          {tone} · {MUESTRA}
+        </Text>
       ))}
     </Stack>
   ),
@@ -187,7 +178,7 @@ export const Anchos: Story = {
     <Stack gap="var(--space-3xl)">
       {(['wide', 'half', 'prose', 'narrow'] as const).map((measure) => (
         <Stack key={measure} gap="var(--space-s)">
-          <Text variant="micro" tone="tertiary" as="span" align="center">
+          <Text variant="micro" tone="secondary" as="span" align="center">
             measure = {measure}
           </Text>
           <Text variant="body-l" align="center" wrap="pretty" measure={measure} style={{ outline: '1px dashed var(--color-border-default)' }}>
