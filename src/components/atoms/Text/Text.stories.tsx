@@ -1,63 +1,135 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Text, TEXT_ALIGNS, TEXT_MEASURES, TEXT_TONES, TEXT_VARIANTS, TEXT_WRAPS } from './Text';
+import type { ReactNode } from 'react';
+import { Text } from './Text';
+import { TEXT_ALIGNS, TEXT_DEFAULTS, TEXT_ELEMENTS, TEXT_MEASURES, TEXT_TONES, TEXT_VARIANTS, TEXT_WRAPS } from './types';
+import doc from './_docs/Text.md?raw';
+
+const MUESTRA = 'Diseño que trasciende';
+
+const Caption = ({ children }: { children: ReactNode }) => (
+  <Text variant="micro" tone="tertiary" as="span">
+    {children}
+  </Text>
+);
+
+const Stack = ({ gap = 'var(--space-xl)', children }: { gap?: string; children: ReactNode }) => (
+  <div style={{ display: 'grid', gap }}>{children}</div>
+);
 
 const meta = {
   title: 'Átomos/Text',
   component: Text,
-  parameters: {
-    layout: 'padded',
-  },
+  tags: ['autodocs', '!dev'],
+  parameters: { docs: { description: { component: doc } }, layout: 'padded' },
+  args: { children: MUESTRA, ...TEXT_DEFAULTS },
   argTypes: {
-    variant: { control: 'select', options: TEXT_VARIANTS, description: 'Estilo de texto' },
-    tone: { control: 'select', options: TEXT_TONES, description: 'Tono (color)' },
+    variant: {
+      control: 'select',
+      options: [...TEXT_VARIANTS],
+      description: 'Uno de los trece estilos de texto. Decide tamaño, peso, interlineado y tracking; no decide la etiqueta.',
+      table: { type: { summary: TEXT_VARIANTS.join(' | ') }, defaultValue: { summary: TEXT_DEFAULTS.variant } },
+    },
+    tone: {
+      control: 'select',
+      options: [...TEXT_TONES],
+      description: 'Color del texto, por significado. `accent` solo es amarillo en tema oscuro.',
+      table: { type: { summary: TEXT_TONES.join(' | ') }, defaultValue: { summary: TEXT_DEFAULTS.tone } },
+    },
     as: {
       control: 'select',
-      options: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'div', 'figcaption', 'blockquote', 'li', 'label'],
-      description: 'Etiqueta HTML',
+      options: [...TEXT_ELEMENTS],
+      description: 'Etiqueta HTML. Se elige por el significado en el documento (un `h1` por pantalla), nunca por el tamaño.',
+      table: { type: { summary: TEXT_ELEMENTS.join(' | ') }, defaultValue: { summary: TEXT_DEFAULTS.as } },
     },
-    align: { control: 'radio', options: TEXT_ALIGNS, description: 'Alineación' },
-    wrap: { control: 'radio', options: TEXT_WRAPS, description: 'Reparto de líneas' },
-    measure: { control: 'select', options: TEXT_MEASURES, description: 'Ancho máximo' },
-    children: { control: 'text', description: 'Contenido' },
-  },
-  args: {
-    variant: 'body-m',
-    tone: 'primary',
-    as: 'p',
-    wrap: 'auto',
-    measure: 'none',
-    children: 'Diseño que trasciende',
+    align: {
+      control: 'inline-radio',
+      options: [...TEXT_ALIGNS],
+      description: 'Alineación horizontal. Sin valor, hereda la del contenedor.',
+      table: { type: { summary: TEXT_ALIGNS.join(' | ') } },
+    },
+    wrap: {
+      control: 'inline-radio',
+      options: [...TEXT_WRAPS],
+      description: '`balance` para frases y títulos (líneas de largo parecido); `pretty` para párrafos (sin palabra suelta al final).',
+      table: { type: { summary: TEXT_WRAPS.join(' | ') }, defaultValue: { summary: TEXT_DEFAULTS.wrap } },
+    },
+    measure: {
+      control: 'select',
+      options: [...TEXT_MEASURES],
+      description: 'Ancho máximo con nombre: `wide` (tres cuartos), `half` (media retícula), `prose` (62 caracteres), `narrow` (38). Centrado, el bloque también se centra.',
+      table: { type: { summary: TEXT_MEASURES.join(' | ') }, defaultValue: { summary: TEXT_DEFAULTS.measure } },
+    },
+    children: {
+      control: 'text',
+      description: 'El texto.',
+      table: { type: { summary: 'ReactNode' } },
+    },
+    className: { control: false, table: { disable: true } },
   },
 } satisfies Meta<typeof Text>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Cambia las opciones desde el panel de controles. */
-export const Playground: Story = {};
+export const Playground: Story = { tags: ['dev'] };
 
-/** Los trece estilos, de mayor a menor. */
 export const Escala: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Los trece estilos, de mayor a menor, con el mismo texto. A la izquierda de cada uno, el nombre de la variante. Cambia el **Viewport** para ver crecer los cuatro títulos desde 1024 px, y el selector **Escala → Proyección** para ver la escala de sala.',
+      },
+    },
+  },
   render: () => (
-    <div style={{ display: 'grid', gap: 'var(--space-xl)' }}>
+    <Stack>
       {TEXT_VARIANTS.map((variant) => (
-        <div key={variant} style={{ display: 'grid', gap: 'var(--space-xs)' }}>
-          <Text variant="micro" tone="tertiary" as="span">
-            {variant}
-          </Text>
-          <Text variant={variant}>{variant === 'statement' ? '540°' : 'Diseño que trasciende'}</Text>
-        </div>
+        <Stack key={variant} gap="var(--space-xs)">
+          <Caption>{variant}</Caption>
+          <Text variant={variant}>{variant === 'statement' ? '540°' : MUESTRA}</Text>
+        </Stack>
       ))}
-    </div>
+    </Stack>
   ),
 };
 
-/** Los siete tonos sobre el fondo del tema. El tono inverse se muestra sobre fondo invertido. */
-export const Tonos: Story = {
-  parameters: { controls: { disable: true } },
+export const EstiloYEtiqueta: Story = {
+  name: 'Estilo y etiqueta',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Tres `h2` con tres estilos distintos. El nivel del encabezado es el mismo para el lector de pantalla; lo que cambia es cómo se ve. Es la razón de que `variant` y `as` sean dos opciones y no una.',
+      },
+    },
+  },
   render: () => (
-    <div style={{ display: 'grid', gap: 'var(--space-l)' }}>
+    <Stack>
+      <Text as="h2" variant="statement">
+        Un h2 en statement
+      </Text>
+      <Text as="h2" variant="title-l">
+        Un h2 en title-l
+      </Text>
+      <Text as="h2" variant="body-s-bold">
+        Un h2 en body-s-bold
+      </Text>
+    </Stack>
+  ),
+};
+
+export const Tonos: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Los siete tonos sobre el fondo del tema; `inverse` va sobre fondo invertido porque es su único sitio. Cambia el **Tema** y fíjate en `accent`: amarillo en oscuro, primario en claro.',
+      },
+    },
+  },
+  render: () => (
+    <Stack gap="var(--space-l)">
       {TEXT_TONES.map((tone) => (
         <div
           key={tone}
@@ -68,40 +140,53 @@ export const Tonos: Story = {
           }}
         >
           <Text variant="body-l" tone={tone}>
-            {tone} · Diseño que trasciende
+            {tone} · {MUESTRA}
           </Text>
         </div>
       ))}
-    </div>
+    </Stack>
   ),
 };
 
-/** El estilo y la etiqueta se eligen por separado: tres h2 con tres estilos distintos. */
-export const EstiloYEtiqueta: Story = {
-  name: 'Estilo y etiqueta',
-  parameters: { controls: { disable: true } },
+export const RepartoDeLineas: Story = {
+  name: 'Reparto de líneas',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'La misma frase con los tres valores de `wrap`, en una columna estrecha. `balance` reparte las palabras para que las líneas midan parecido; `pretty` evita que la última línea se quede con una sola palabra.',
+      },
+    },
+  },
   render: () => (
-    <div style={{ display: 'grid', gap: 'var(--space-xl)' }}>
-      <Text as="h2" variant="statement">
-        Un h2 en statement
-      </Text>
-      <Text as="h2" variant="title-l">
-        Un h2 en title-l
-      </Text>
-      <Text as="h2" variant="body-s-bold">
-        Un h2 en body-s-bold
-      </Text>
-    </div>
+    <Stack gap="var(--space-3xl)">
+      {TEXT_WRAPS.map((wrap) => (
+        <Stack key={wrap} gap="var(--space-s)">
+          <Caption>wrap = {wrap}</Caption>
+          <div style={{ maxWidth: 520 }}>
+            <Text variant="title-m" wrap={wrap}>
+              Dejar de entregar pantallas y entregar el sistema que las produce
+            </Text>
+          </div>
+        </Stack>
+      ))}
+    </Stack>
   ),
 };
 
-/** Los cuatro anchos con nombre, centrados. */
 export const Anchos: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Los cuatro anchos con nombre, centrados, con el contorno punteado para ver la caja. Son las cuatro medidas que ya usan las charlas: así no hace falta escribir anchos a mano.',
+      },
+    },
+  },
   render: () => (
-    <div style={{ display: 'grid', gap: 'var(--space-3xl)' }}>
+    <Stack gap="var(--space-3xl)">
       {(['wide', 'half', 'prose', 'narrow'] as const).map((measure) => (
-        <div key={measure} style={{ display: 'grid', gap: 'var(--space-s)' }}>
+        <Stack key={measure} gap="var(--space-s)">
           <Text variant="micro" tone="tertiary" as="span" align="center">
             measure = {measure}
           </Text>
@@ -109,28 +194,8 @@ export const Anchos: Story = {
             Una charla sobre dejar de entregar pantallas y entregar el sistema que las produce. Cada parada del recorrido pesa igual que las
             demás: misma escala, mismo aire, mismo tratamiento.
           </Text>
-        </div>
+        </Stack>
       ))}
-    </div>
-  ),
-};
-
-/** Reparto de líneas: balance para frases y títulos, pretty para párrafos. */
-export const RepartoDeLineas: Story = {
-  name: 'Reparto de líneas',
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div style={{ display: 'grid', gap: 'var(--space-3xl)', maxWidth: 520 }}>
-      {TEXT_WRAPS.map((wrap) => (
-        <div key={wrap} style={{ display: 'grid', gap: 'var(--space-s)' }}>
-          <Text variant="micro" tone="tertiary" as="span">
-            wrap = {wrap}
-          </Text>
-          <Text variant="title-m" wrap={wrap}>
-            Dejar de entregar pantallas y entregar el sistema que las produce
-          </Text>
-        </div>
-      ))}
-    </div>
+    </Stack>
   ),
 };
