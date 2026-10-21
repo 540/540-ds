@@ -25,12 +25,18 @@
   border-color: var(--color-border-default);
 }
 
-.sbdocs.sbdocs-content table,
-.sbdocs.sbdocs-content table tr,
-.sbdocs.sbdocs-content table th,
-.sbdocs.sbdocs-content table td {
+/* MDX tables follow the theme. The controls table (argstable) keeps Storybook's own styling. */
+.sbdocs.sbdocs-content table:not(.docblock-argstable):not(.sb-argstableBlock),
+.sbdocs.sbdocs-content table:not(.docblock-argstable):not(.sb-argstableBlock) :is(tr, th, td) {
   background: transparent;
   color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+}
+
+/* The story canvas inside docs follows the theme too, so stories stay visible in dark mode */
+.sbdocs.sbdocs-content .sbdocs-preview,
+.sbdocs.sbdocs-content .docs-story {
+  background: var(--color-bg-default);
   border-color: var(--color-border-default);
 }
 

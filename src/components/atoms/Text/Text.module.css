@@ -1,0 +1,179 @@
+/* Text — the type scale as a component. Uses semantic tokens only. */
+
+.text {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-optical-sizing: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Variants (one per text style) ---- */
+.variant-statement {
+  font-size: var(--text-statement-size);
+  font-weight: var(--text-statement-weight);
+  line-height: var(--text-statement-line-height);
+  letter-spacing: var(--text-statement-letter-spacing);
+}
+
+.variant-title-l {
+  font-size: var(--text-title-l-size);
+  font-weight: var(--text-title-l-weight);
+  line-height: var(--text-title-l-line-height);
+  letter-spacing: var(--text-title-l-letter-spacing);
+}
+
+.variant-title-m {
+  font-size: var(--text-title-m-size);
+  font-weight: var(--text-title-m-weight);
+  line-height: var(--text-title-m-line-height);
+  letter-spacing: var(--text-title-m-letter-spacing);
+}
+
+.variant-title-s {
+  font-size: var(--text-title-s-size);
+  font-weight: var(--text-title-s-weight);
+  line-height: var(--text-title-s-line-height);
+  letter-spacing: var(--text-title-s-letter-spacing);
+}
+
+.variant-title-xs {
+  font-size: var(--text-title-xs-size);
+  font-weight: var(--text-title-xs-weight);
+  line-height: var(--text-title-xs-line-height);
+  letter-spacing: var(--text-title-xs-letter-spacing);
+}
+
+.variant-body-l {
+  font-size: var(--text-body-l-size);
+  font-weight: var(--text-body-l-weight);
+  line-height: var(--text-body-l-line-height);
+  letter-spacing: var(--text-body-l-letter-spacing);
+}
+
+.variant-body-m {
+  font-size: var(--text-body-m-size);
+  font-weight: var(--text-body-m-weight);
+  line-height: var(--text-body-m-line-height);
+  letter-spacing: var(--text-body-m-letter-spacing);
+}
+
+.variant-body-s {
+  font-size: var(--text-body-s-size);
+  font-weight: var(--text-body-s-weight);
+  line-height: var(--text-body-s-line-height);
+  letter-spacing: var(--text-body-s-letter-spacing);
+}
+
+.variant-body-s-light {
+  font-size: var(--text-body-s-light-size);
+  font-weight: var(--text-body-s-light-weight);
+  line-height: var(--text-body-s-light-line-height);
+  letter-spacing: var(--text-body-s-light-letter-spacing);
+}
+
+.variant-body-s-bold {
+  font-size: var(--text-body-s-bold-size);
+  font-weight: var(--text-body-s-bold-weight);
+  line-height: var(--text-body-s-bold-line-height);
+  letter-spacing: var(--text-body-s-bold-letter-spacing);
+}
+
+.variant-micro {
+  font-size: var(--text-micro-size);
+  font-weight: var(--text-micro-weight);
+  line-height: var(--text-micro-line-height);
+  letter-spacing: var(--text-micro-letter-spacing);
+}
+
+.variant-micro-light {
+  font-size: var(--text-micro-light-size);
+  font-weight: var(--text-micro-light-weight);
+  line-height: var(--text-micro-light-line-height);
+  letter-spacing: var(--text-micro-light-letter-spacing);
+}
+
+.variant-micro-bold {
+  font-size: var(--text-micro-bold-size);
+  font-weight: var(--text-micro-bold-weight);
+  line-height: var(--text-micro-bold-line-height);
+  letter-spacing: var(--text-micro-bold-letter-spacing);
+  text-transform: uppercase;
+}
+
+/* ---- Tones ---- */
+.tone-primary {
+  color: var(--color-text-primary);
+}
+
+.tone-secondary {
+  color: var(--color-text-secondary);
+}
+
+.tone-tertiary {
+  color: var(--color-text-tertiary);
+}
+
+.tone-inverse {
+  color: var(--color-text-inverse);
+}
+
+/* Rule of the system: never yellow text on a light background.
+   On paper, accent text falls back to primary; in dark, it is the yellow. */
+.tone-accent {
+  color: var(--color-text-primary);
+}
+
+:global([data-theme='dark']) .tone-accent {
+  color: var(--color-text-accent);
+}
+
+.tone-error {
+  color: var(--color-text-error);
+}
+
+.tone-success {
+  color: var(--color-text-success);
+}
+
+/* ---- Alignment ---- */
+.align-start {
+  text-align: start;
+}
+
+.align-center {
+  text-align: center;
+}
+
+/* ---- Line wrapping ---- */
+.wrap-balance {
+  text-wrap: balance;
+}
+
+.wrap-pretty {
+  text-wrap: pretty;
+}
+
+/* ---- Measure (max width). Centered text also centers the box. ---- */
+.measure-half {
+  max-width: calc((var(--size-container) - var(--grid-gutter)) / 2);
+}
+
+.measure-wide {
+  max-width: calc(var(--size-container) * 0.75);
+}
+
+.measure-prose {
+  max-width: 62ch;
+}
+
+.measure-narrow {
+  max-width: 38ch;
+}
+
+.align-center.measure-half,
+.align-center.measure-wide,
+.align-center.measure-prose,
+.align-center.measure-narrow {
+  margin-inline: auto;
+}
