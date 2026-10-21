@@ -1,0 +1,13 @@
+/* Closing — the last slide before the footer: a statement sentence, and optionally a body
+   at half the grid and a final line. */
+
+.closing {
+  text-align: center;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-l);
+  margin: var(--space-2xl) auto 0;
+  justify-items: center;
+}

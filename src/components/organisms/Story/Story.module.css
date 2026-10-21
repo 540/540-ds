@@ -1,0 +1,9 @@
+/* Story — a story or an objection: title and paragraphs at half the grid, centered, on a raised band. */
+
+.story {
+  display: grid;
+  gap: var(--space-xl);
+  justify-items: center;
+  max-width: calc((var(--size-container) - var(--grid-gutter)) / 2);
+  margin-inline: auto;
+}

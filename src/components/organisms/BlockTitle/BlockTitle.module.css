@@ -1,0 +1,63 @@
+/* BlockTitle — a numbered block title and, right behind it, its photo. The section has no
+   minimum height so the photo peeks under it; the photo reveals and zooms as you scroll. */
+
+.title {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-l);
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.layer {
+  scale: 1.18;
+  transform-origin: center;
+}
+
+/* Reveal from the bottom and settle the zoom while the photo crosses the screen.
+   Scroll-driven where supported; a static photo elsewhere. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .photo {
+      clip-path: inset(100% 0 0 0);
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+
+    .layer {
+      animation: settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes settle {
+  from {
+    scale: 1.18;
+    translate: 0 -4%;
+  }
+  to {
+    scale: 1;
+    translate: 0 4%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    scale: 1;
+  }
+}
