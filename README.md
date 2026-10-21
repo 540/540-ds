@@ -89,6 +89,10 @@ Para **cambiar a qué apunta un uso** (que los bordes fuertes usen otro gris), e
 
 Lo mismo vale para un tamaño de espacio o de letra: primitivo, semántico y manifest.
 
+## Normas para montar una charla
+
+Están en `src/docs/normas-charlas.md` y se leen en Storybook en **Introducción / Normas para charlas**. Son obligatorias para cualquier presentación hecha con el sistema, la monte una persona o un agente: estructura, fotos de bloque, texto, márgenes, dónde puede ir el amarillo, efectos y la lista final de comprobación. El `CLAUDE.md` del proyecto obliga a leerlas antes de montar una charla con Claude.
+
 ## Cómo pedir un componente nuevo
 
 Abre Claude Code en la carpeta del proyecto y pídeselo con estos datos:
