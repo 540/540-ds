@@ -1,0 +1,35 @@
+/* Menu — the desktop nav bar: three columns, the middle one as wide as it needs.
+   Logo left, destinations centered on the bar, theme toggle right. */
+
+.menu {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+}
+
+.home {
+  display: inline-flex;
+  color: inherit;
+}
+
+.home:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.end {
+  display: inline-flex;
+  justify-self: end;
+}

@@ -1,0 +1,116 @@
+/* Card — number, title and explanation. A bordered box, or a band edge to edge.
+   Square corners: the radius is reserved for what gets pressed. No shadow: the border separates. */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-section);
+  height: 100%;
+  box-sizing: border-box;
+  padding: var(--padding-card);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-default);
+}
+
+.header {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-s);
+}
+
+.window {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.body {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-l);
+  min-height: 0;
+}
+
+/* ---- Centered ---- */
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.center .header,
+.center .body {
+  justify-items: center;
+}
+
+.center .window {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+/* ---- Row: a band edge to edge, inside a CardList ---- */
+.row {
+  display: block;
+  height: auto;
+  gap: 0;
+  padding: var(--space-2xl) max(var(--padding-page), (100% - var(--size-container)) / 2);
+  border: 0;
+  border-top: 1px solid var(--color-border-default);
+  background: transparent;
+  transition: background-color 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.row .ordinal {
+  padding-top: var(--space-xs);
+}
+
+.row .body {
+  max-width: 62ch;
+  padding-top: var(--space-l);
+  gap: var(--space-l);
+}
+
+@media (min-width: 600px) {
+  .row .header {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+    gap: var(--grid-gutter);
+  }
+
+  .row .window {
+    margin-inline-start: calc((100% - var(--grid-gutter)) / 3 + var(--grid-gutter));
+  }
+
+  .row.center .header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .row.center .window {
+    margin-inline: auto;
+  }
+}
+
+/* Folded: the window closes to zero and is clipped; the text stays in the document */
+.row.folded .window {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.32s ease;
+}
+
+.row.folded .window > .body {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Active: open, on the active-row background */
+.row.active {
+  background: var(--color-bg-row-active);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .row.folded .window {
+    transition: none;
+  }
+}

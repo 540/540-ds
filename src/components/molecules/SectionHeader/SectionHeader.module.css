@@ -1,0 +1,14 @@
+/* SectionHeader — title and lead. Start fills the column; center caps at half the grid. */
+
+.header {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3xl);
+}
+
+.center {
+  justify-items: center;
+  max-width: calc((var(--size-container) - var(--grid-gutter)) / 2);
+  margin-inline: auto;
+  text-align: center;
+}
