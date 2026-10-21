@@ -1,0 +1,76 @@
+/* MenuItem — a destination of the nav bar. Hover and press scale the label; focus is a 2 px line
+   under the word, not a ring: on a lone word the ring weighs more than the word. */
+
+.item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: var(--font-family-base);
+  font-optical-sizing: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration-line: none;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--color-text-primary);
+}
+
+.label {
+  display: inline-block;
+  transform-origin: center;
+  transition: transform 0.16s ease;
+}
+
+.item:hover .label,
+.forceHover .label {
+  transform: scale(1.09);
+}
+
+.item:active .label,
+.forceActive .label {
+  transform: scale(0.97);
+}
+
+.item:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.item:focus-visible .label,
+.forceFocus .label {
+  box-shadow: 0 2px 0 var(--color-border-focus);
+}
+
+/* ---- Sizes ---- */
+.size-sm {
+  min-height: var(--size-control-xs);
+  font-size: var(--text-micro-size);
+  font-weight: var(--text-micro-weight);
+  line-height: var(--text-micro-line-height);
+  text-transform: uppercase;
+}
+
+.size-lg {
+  min-height: var(--size-control-md);
+  padding-block: var(--space-m);
+  font-size: var(--text-title-m-size);
+  font-weight: var(--text-title-m-weight);
+  line-height: var(--text-title-m-line-height);
+}
+
+/* ---- Current: bold and nothing else ---- */
+.current {
+  font-weight: var(--text-micro-bold-weight);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label {
+    transition: none;
+  }
+
+  .item:hover .label,
+  .item:active .label {
+    transform: none;
+  }
+}
