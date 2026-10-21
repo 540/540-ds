@@ -1,0 +1,33 @@
+/* TeamMember — a person: portrait, role, name and two lines. The three at the same level,
+   separated by --space-l: no box in between. */
+
+.member {
+  display: grid;
+  gap: var(--space-l);
+  justify-items: start;
+}
+
+.center {
+  justify-items: center;
+  text-align: center;
+}
+
+.portrait {
+  width: 100%;
+}
+
+.link {
+  color: inherit;
+  text-decoration-line: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--space-xs);
+}
+
+.link:hover {
+  text-decoration-line: underline;
+}
+
+.link:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}

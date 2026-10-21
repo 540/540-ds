@@ -1,0 +1,71 @@
+/* CaseItem — a portfolio case: the photo, and over it the name and the sentence anchored at the
+   bottom on a veil. The zoom of the image is the only thing that says it is pressed. */
+
+.item {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  color: var(--color-text-on-media);
+  text-decoration: none;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.frame > img {
+  height: 100%;
+  transition: transform 0.32s ease;
+}
+
+/* Only linked cases zoom: without a destination it would promise something that does not happen */
+.linked:hover .frame > img,
+.linked.forceHover .frame > img {
+  transform: scale(1.05);
+}
+
+.linked:active .frame > img,
+.linked.forceActive .frame > img {
+  transform: scale(1.04);
+}
+
+.linked:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-border-strong-inverse);
+  outline-offset: calc(-1 * var(--focus-ring-width) - var(--focus-ring-offset));
+}
+
+/* The veil is not decoration: without it a light name on a light photo disappears */
+.veil {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-image-veil);
+  pointer-events: none;
+}
+
+.data {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  display: grid;
+  gap: var(--space-s);
+  padding: var(--padding-card);
+}
+
+/* Text over media does not follow the theme: white in both */
+.data > * {
+  color: var(--color-text-on-media);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame > img {
+    transition: none;
+  }
+
+  .linked:hover .frame > img,
+  .linked:active .frame > img {
+    transform: none;
+  }
+}

@@ -1,0 +1,73 @@
+/* NavMobile — logo and a button that opens the menu full screen. The bar is transparent over
+   whatever is behind; only the panel paints. Horizontal padding belongs to the bar row, not here. */
+
+.nav {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+}
+
+.home {
+  display: inline-flex;
+  color: inherit;
+}
+
+.home:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.end {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+/* The panel: a real <dialog>, full screen */
+.panel {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: var(--padding-page);
+  border: 0;
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+}
+
+.panel[open] {
+  display: flex;
+}
+
+.panel::backdrop {
+  background: transparent;
+}
+
+.panelBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
