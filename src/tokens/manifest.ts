@@ -119,29 +119,41 @@ export type TextStyle = {
   sizeDesktop: number;
   weight: number;
   weightName: string;
-  lineHeight: number;
+  lineHeight: number | 'normal';
+  fluid?: string;
+  projection?: number;
   letterSpacing: string;
   usage: string;
   note?: string;
 };
 
 export const textStyles: TextStyle[] = [
-  { key: 'statement', label: 'Statement', tokenPrefix: '--text-statement', sizeMobile: 48, sizeDesktop: 64, weight: 800, weightName: 'ExtraBold', lineHeight: 0.9, letterSpacing: '-3 %', usage: 'La frase de una parada del recorrido, la que cruza el centro de la pantalla.' },
-  { key: 'title-l', label: 'Título / L', tokenPrefix: '--text-title-l', sizeMobile: 28, sizeDesktop: 36, weight: 400, weightName: 'Regular', lineHeight: 1, letterSpacing: '0', usage: 'Subtítulo de sección.' },
-  { key: 'title-m', label: 'Título / M', tokenPrefix: '--text-title-m', sizeMobile: 26, sizeDesktop: 32, weight: 400, weightName: 'Regular', lineHeight: 1, letterSpacing: '0', usage: 'Título de bloque.' },
-  { key: 'title-s', label: 'Título / S', tokenPrefix: '--text-title-s', sizeMobile: 22, sizeDesktop: 26, weight: 400, weightName: 'Regular', lineHeight: 1, letterSpacing: '0', usage: 'Título de tarjeta.' },
-  { key: 'title-xs', label: 'Título / XS', tokenPrefix: '--text-title-xs', sizeMobile: 20, sizeDesktop: 22, weight: 400, weightName: 'Regular', lineHeight: 1, letterSpacing: '0', usage: 'Título menor.' },
-  { key: 'body-l', label: 'Body / L', tokenPrefix: '--text-body-l', sizeMobile: 18, sizeDesktop: 18, weight: 400, weightName: 'Regular', lineHeight: 1, letterSpacing: '0', usage: 'Entradilla y texto destacado.' },
-  { key: 'body-m', label: 'Body / M', tokenPrefix: '--text-body-m', sizeMobile: 16, sizeDesktop: 16, weight: 400, weightName: 'Regular', lineHeight: 1, letterSpacing: '0', usage: 'Texto corrido.' },
-  { key: 'body-s', label: 'Body / S', tokenPrefix: '--text-body-s', sizeMobile: 14, sizeDesktop: 14, weight: 400, weightName: 'Regular', lineHeight: 1, letterSpacing: '0', usage: 'Texto de interfaz.' },
-  { key: 'body-s-light', label: 'Body / S Light', tokenPrefix: '--text-body-s-light', sizeMobile: 14, sizeDesktop: 14, weight: 350, weightName: 'Light (350)', lineHeight: 1, letterSpacing: '0', usage: 'Texto secundario.', note: 'En Figma se ve con peso 300 porque solo tiene instancias estáticas; el código usa 350, que a 14 px no se rompe.' },
-  { key: 'body-s-bold', label: 'Body / S Bold', tokenPrefix: '--text-body-s-bold', sizeMobile: 14, sizeDesktop: 14, weight: 700, weightName: 'Bold', lineHeight: 1, letterSpacing: '0', usage: 'Texto de interfaz enfatizado.' },
-  { key: 'micro', label: 'Body / Micro', tokenPrefix: '--text-micro', sizeMobile: 12, sizeDesktop: 12, weight: 400, weightName: 'Regular', lineHeight: 1, letterSpacing: '0', usage: 'Letra pequeña que se lee sola: el ordinal de una banda.' },
-  { key: 'micro-light', label: 'Body / Micro Light', tokenPrefix: '--text-micro-light', sizeMobile: 12, sizeDesktop: 12, weight: 350, weightName: 'Light (350)', lineHeight: 1, letterSpacing: '0', usage: 'Letra pequeña de apoyo: etiquetas de dato, pies.', note: 'Mismo caso que Body / S Light: 350 en código, 300 en Figma.' },
-  { key: 'micro-bold', label: 'Body / Micro Bold', tokenPrefix: '--text-micro-bold', sizeMobile: 12, sizeDesktop: 12, weight: 700, weightName: 'Bold', lineHeight: 1, letterSpacing: '0', usage: 'Etiquetas en mayúsculas.' },
+  { key: 'statement', label: 'Statement', tokenPrefix: '--text-statement', sizeMobile: 20, sizeDesktop: 76, fluid: 'clamp(20px, 5.1vw, 76px)', weight: 800, weightName: 'ExtraBold', lineHeight: 0.9, letterSpacing: '-3 %', usage: 'La frase de una parada del recorrido, la que cruza el centro de la pantalla.', note: 'En Figma es 64 / 48 px; en las charlas es fluido (5,1 % del ancho, entre 20 y 76 px). Manda el código.' },
+  { key: 'title-l', label: 'Título / L', tokenPrefix: '--text-title-l', sizeMobile: 28, sizeDesktop: 36, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 42, letterSpacing: '0', usage: 'Subtítulo de sección.' },
+  { key: 'title-m', label: 'Título / M', tokenPrefix: '--text-title-m', sizeMobile: 26, sizeDesktop: 32, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 36, letterSpacing: '0', usage: 'Título de bloque.' },
+  { key: 'title-s', label: 'Título / S', tokenPrefix: '--text-title-s', sizeMobile: 22, sizeDesktop: 26, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 28, letterSpacing: '0', usage: 'Título de tarjeta.' },
+  { key: 'title-xs', label: 'Título / XS', tokenPrefix: '--text-title-xs', sizeMobile: 20, sizeDesktop: 22, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 22, letterSpacing: '0', usage: 'Título menor.' },
+  { key: 'body-l', label: 'Body / L', tokenPrefix: '--text-body-l', sizeMobile: 18, sizeDesktop: 18, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 22, letterSpacing: '0', usage: 'Entradilla y texto destacado.' },
+  { key: 'body-m', label: 'Body / M', tokenPrefix: '--text-body-m', sizeMobile: 16, sizeDesktop: 16, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 20, letterSpacing: '0', usage: 'Texto corrido.' },
+  { key: 'body-s', label: 'Body / S', tokenPrefix: '--text-body-s', sizeMobile: 14, sizeDesktop: 14, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 18, letterSpacing: '0', usage: 'Texto de interfaz.' },
+  { key: 'body-s-light', label: 'Body / S Light', tokenPrefix: '--text-body-s-light', sizeMobile: 14, sizeDesktop: 14, weight: 350, weightName: 'Light (350)', lineHeight: 'normal', projection: 18, letterSpacing: '0', usage: 'Texto secundario.', note: 'En Figma se ve con peso 300 porque solo tiene instancias estáticas; el código usa 350, que a 14 px no se rompe.' },
+  { key: 'body-s-bold', label: 'Body / S Bold', tokenPrefix: '--text-body-s-bold', sizeMobile: 14, sizeDesktop: 14, weight: 700, weightName: 'Bold', lineHeight: 'normal', projection: 14, letterSpacing: '0', usage: 'Texto de interfaz enfatizado.' },
+  { key: 'micro', label: 'Body / Micro', tokenPrefix: '--text-micro', sizeMobile: 12, sizeDesktop: 12, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 12, letterSpacing: '0', usage: 'Letra pequeña que se lee sola: el ordinal de una banda.' },
+  { key: 'micro-light', label: 'Body / Micro Light', tokenPrefix: '--text-micro-light', sizeMobile: 12, sizeDesktop: 12, weight: 350, weightName: 'Light (350)', lineHeight: 'normal', projection: 12, letterSpacing: '0', usage: 'Letra pequeña de apoyo: etiquetas de dato, pies.', note: 'Mismo caso que Body / S Light: 350 en código, 300 en Figma.' },
+  { key: 'micro-bold', label: 'Body / Micro Bold', tokenPrefix: '--text-micro-bold', sizeMobile: 12, sizeDesktop: 12, weight: 700, weightName: 'Bold', lineHeight: 'normal', projection: 12, letterSpacing: '0', usage: 'Etiquetas en mayúsculas.' },
 ];
 
 export type MeasureToken = { name: string; label: string; usage?: string; mobile?: number; desktop?: number; provisional?: boolean };
+
+export type EffectToken = { name: string; label: string; light: string; dark: string; usage: string };
+
+export const effectTokens: EffectToken[] = [
+  { name: '--gradient-halo', label: 'Halo', light: '--540-gradient-gray-paper', dark: '--540-gradient-gray', usage: 'El resplandor del pie de la charla.' },
+  { name: '--gradient-image-veil', label: 'Velo de imagen', light: '--540-gradient-image-veil', dark: '--540-gradient-image-veil', usage: 'Degradado sobre fotografías para que el texto se lea.' },
+  { name: '--filter-logo-client', label: 'Filtro logo cliente', light: '--540-filter-logo-paper', dark: '--540-filter-logo-black', usage: 'Pone los logotipos de cliente en gris (claro) o en blanco (oscuro).' },
+  { name: '--filter-logo-client-center', label: 'Filtro logo cliente · centro', light: '--540-filter-logo-paper-center', dark: '--540-filter-logo-black-center', usage: 'Igual, a opacidad completa para el logo central.' },
+  { name: '--filter-nav', label: 'Desenfoque de barra', light: '--540-filter-nav-blur', dark: '--540-filter-nav-blur', usage: 'El desenfoque de la barra de navegación translúcida.' },
+];
 
 export const spacingTokens: MeasureToken[] = [
   { name: '--space-xs', label: 'XS' },
@@ -154,16 +166,16 @@ export const spacingTokens: MeasureToken[] = [
 ];
 
 export const paddingTokens: MeasureToken[] = [
-  { name: '--padding-page', label: 'Page', usage: 'Margen lateral de página.', mobile: 20, desktop: 28, provisional: true },
-  { name: '--padding-section', label: 'Section', usage: 'Relleno interno de sección.', mobile: 24, desktop: 36, provisional: true },
-  { name: '--padding-section-block', label: 'Section Block', usage: 'Aire vertical entre bloques de sección.', mobile: 64, desktop: 120, provisional: true },
+  { name: '--padding-page', label: 'Page', usage: 'Margen lateral de página.', mobile: 16, desktop: 28 },
+  { name: '--padding-section', label: 'Section', usage: 'Relleno interno de sección.' },
+  { name: '--padding-section-block', label: 'Section Block', usage: 'Aire vertical entre bloques de sección.', mobile: 48, desktop: 120 },
   { name: '--padding-card', label: 'Card', usage: 'Relleno de tarjeta.' },
 ];
 
 export const gridTokens: MeasureToken[] = [
   { name: '--grid-columns', label: 'Columnas', usage: 'Doce en los tres tramos.' },
-  { name: '--grid-gutter', label: 'Gutter', usage: 'Canal entre columnas.', mobile: 16, desktop: 24, provisional: true },
-  { name: '--grid-gutter-wide', label: 'Gutter Wide', usage: 'Canal ancho entre bloques.', mobile: 48, desktop: 120, provisional: true },
+  { name: '--grid-gutter', label: 'Gutter', usage: 'Canal entre columnas.', mobile: 16, desktop: 24 },
+  { name: '--grid-gutter-wide', label: 'Gutter Wide', usage: 'Canal ancho entre bloques.', mobile: 48, desktop: 120 },
 ];
 
 export const sizeTokens: MeasureToken[] = [

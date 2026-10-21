@@ -1,7 +1,7 @@
 /* Styles for the "Fundamentos" documentation pages. They use semantic tokens only. */
 
 .section {
-  margin-block: var(--space-2xl);
+  margin-block: var(--space-3xl);
 }
 
 .sectionTitle {
@@ -16,19 +16,20 @@
 .sectionDescription {
   font-family: var(--font-family-base);
   font-size: var(--text-body-s-size);
+  line-height: 1.5;
   color: var(--color-text-secondary);
-  margin: 0 0 var(--space-l);
+  margin: 0 0 var(--space-xl);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--space-l);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-2xl) var(--space-xl);
 }
 
 .swatch {
   display: flex;
-  gap: var(--space-m);
+  gap: var(--space-l);
   align-items: center;
   font-family: var(--font-family-base);
 }
@@ -57,7 +58,7 @@
 .swatchText {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--space-xs);
   min-width: 0;
 }
 
@@ -89,7 +90,7 @@
 .table th,
 .table td {
   text-align: left;
-  padding: var(--space-s) var(--space-m);
+  padding: var(--space-m) var(--space-l);
   border-bottom: 1px solid var(--color-border-default);
   vertical-align: middle;
   color: var(--color-text-primary);
@@ -132,15 +133,15 @@
 }
 
 .specimen {
-  padding: var(--space-l) 0;
+  padding: var(--space-xl) 0;
   border-bottom: 1px solid var(--color-border-default);
 }
 
 .specimenMeta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-s) var(--space-l);
-  margin-bottom: var(--space-m);
+  gap: var(--space-s) var(--space-xl);
+  margin-bottom: var(--space-l);
   font-family: var(--font-family-base);
   font-size: var(--text-micro-size);
   color: var(--color-text-secondary);
@@ -160,7 +161,8 @@
 }
 
 .specimenNote {
-  margin-top: var(--space-s);
+  margin-top: var(--space-m);
+  line-height: 1.5;
   font-size: var(--text-micro-size);
   color: var(--color-text-tertiary);
 }
@@ -174,10 +176,10 @@
 
 .rangeRow {
   display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: var(--space-l);
+  grid-template-columns: 160px 1fr;
+  gap: var(--space-xl);
   align-items: center;
-  padding: var(--space-m) 0;
+  padding: var(--space-l) 0;
   border-bottom: 1px solid var(--color-border-default);
   font-family: var(--font-family-base);
 }
@@ -195,4 +197,9 @@
   color: var(--color-text-primary);
   border: 1px solid var(--color-border-default);
   font-family: var(--font-family-base);
+}
+
+.sectionTitle + .grid,
+.sectionTitle + .table {
+  margin-top: var(--space-l);
 }

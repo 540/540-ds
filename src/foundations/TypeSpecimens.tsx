@@ -19,7 +19,12 @@ function Specimen({ style }: { style: (typeof textStyles)[number] }) {
         <span className={styles.specimenLabel}>{style.label}</span>
         <span className={styles.mono}>{style.tokenPrefix}-*</span>
         <span>
-          {style.sizeMobile === style.sizeDesktop ? `${style.sizeDesktop}px` : `${style.sizeMobile}px móvil · ${style.sizeDesktop}px escritorio`} · ahora {size}
+          {style.fluid
+            ? `${style.fluid}`
+            : style.sizeMobile === style.sizeDesktop
+              ? `${style.sizeDesktop}px`
+              : `${style.sizeMobile}px móvil · ${style.sizeDesktop}px escritorio`}
+          {style.projection && style.projection !== style.sizeDesktop ? ` · ${style.projection}px proyección` : ''} · ahora {size}
         </span>
         <span>DM Sans {style.weightName}</span>
         <span>Interlineado {style.lineHeight}</span>

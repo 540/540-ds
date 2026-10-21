@@ -8,7 +8,7 @@ export function useTokenValue(name: string): string {
     const read = () => setValue(getComputedStyle(document.documentElement).getPropertyValue(name).trim());
     read();
     const observer = new MutationObserver(read);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-scale'] });
     window.addEventListener('resize', read);
     return () => {
       observer.disconnect();
@@ -32,7 +32,7 @@ export function useResolvedValue(name: string, property: string = 'background-co
     const read = () => setValue(getComputedStyle(probe).getPropertyValue(property).trim());
     read();
     const observer = new MutationObserver(read);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-scale'] });
     window.addEventListener('resize', read);
     return () => {
       observer.disconnect();

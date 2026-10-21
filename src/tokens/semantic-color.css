@@ -2,7 +2,7 @@
    SEMANTIC COLOR TOKENS — what a color is FOR, pointing to a primitive.
    Two modes: light (default) and dark. The theme changes the alias, never the name.
    Switch with <html data-theme="dark">.
-   Source: Figma → Color → "Semánticos · Claro" / "Semánticos · Oscuro".
+   Source: Figma → Color (Claro / Oscuro) and the talks' base-540.css (gradients, filters).
    ========================================================================== */
 
 :root,
@@ -45,6 +45,13 @@
   --color-border-default-inverse: var(--540-neutral-900);
   --color-border-strong-inverse: var(--540-neutral-white);
   --color-border-focus: var(--540-neutral-950);
+
+  /* Gradients and filters */
+  --gradient-halo: var(--540-gradient-gray-paper);
+  --gradient-image-veil: var(--540-gradient-image-veil);
+  --filter-logo-client: var(--540-filter-logo-paper);
+  --filter-logo-client-center: var(--540-filter-logo-paper-center);
+  --filter-nav: var(--540-filter-nav-blur);
 }
 
 [data-theme='dark'] {
@@ -86,4 +93,11 @@
   --color-border-default-inverse: var(--540-neutral-100);
   --color-border-strong-inverse: var(--540-neutral-950);
   --color-border-focus: var(--540-neutral-white);
+
+  /* Gradients and filters */
+  --gradient-halo: var(--540-gradient-gray);
+  --gradient-image-veil: var(--540-gradient-image-veil);
+  --filter-logo-client: var(--540-filter-logo-black);
+  --filter-logo-client-center: var(--540-filter-logo-black-center);
+  --filter-nav: var(--540-filter-nav-blur);
 }

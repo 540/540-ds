@@ -7,7 +7,9 @@ import { ColorPrimitives, SemanticColors } from './index';
 
 El color vive en dos capas. Los **primitivos** son el valor en bruto con nombre: un amarillo, un gris. Los **semánticos** dicen para qué sirve un color y apuntan a un primitivo. Un componente solo puede usar tokens semánticos.
 
-El tema (claro u oscuro) cambia el alias de los semánticos, nunca el nombre. Usa el selector **Tema** de la barra superior para ver ambos.
+El tema (claro u oscuro) cambia el alias de los semánticos, nunca el nombre. Usa el selector **Tema** de la barra superior para ver ambos. Las charlas se proyectan en oscuro por defecto.
+
+**Regla:** nunca texto amarillo sobre fondo claro. `--color-text-accent` solo se usa en oscuro; sobre papel el acento va en `--color-text-accent-inverse` (dorado) o se reserva para fondos y trazos.
 
 ## Semánticos
 

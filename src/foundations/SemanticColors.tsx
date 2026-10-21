@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './foundations.module.css';
 import { ColorSwatch } from './ColorSwatch';
-import { semanticColors } from '../tokens/manifest';
+import { effectTokens, semanticColors } from '../tokens/manifest';
 
 function useTheme(): 'light' | 'dark' {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -49,6 +49,33 @@ export function SemanticColors() {
           <tbody>
             {semanticColors.flatMap((g) => g.items).map((item) => (
               <tr key={item.name}>
+                <td className={styles.mono}>{item.name}</td>
+                <td className={styles.mono}>{item.light}</td>
+                <td className={styles.mono}>{item.dark}</td>
+                <td className={styles.muted}>{item.usage}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>Degradados y filtros</h3>
+        <p className={styles.sectionDescription}>Vienen del código de las charlas, no de Figma. También cambian con el tema.</p>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Token</th>
+              <th>Claro</th>
+              <th>Oscuro</th>
+              <th>Uso</th>
+            </tr>
+          </thead>
+          <tbody>
+            {effectTokens.map((item) => (
+              <tr key={item.name}>
+                <td>{item.label}</td>
                 <td className={styles.mono}>{item.name}</td>
                 <td className={styles.mono}>{item.light}</td>
                 <td className={styles.mono}>{item.dark}</td>
