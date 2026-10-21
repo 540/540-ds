@@ -110,32 +110,6 @@
   color: var(--color-text-secondary);
 }
 
-.tone-tertiary {
-  color: var(--color-text-tertiary);
-}
-
-.tone-inverse {
-  color: var(--color-text-inverse);
-}
-
-/* Rule of the system: never yellow text on a light background.
-   On paper, accent text falls back to primary; in dark, it is the yellow. */
-.tone-accent {
-  color: var(--color-text-primary);
-}
-
-:global([data-theme='dark']) .tone-accent {
-  color: var(--color-text-accent);
-}
-
-.tone-error {
-  color: var(--color-text-error);
-}
-
-.tone-success {
-  color: var(--color-text-success);
-}
-
 /* ---- Alignment ---- */
 .align-start {
   text-align: start;

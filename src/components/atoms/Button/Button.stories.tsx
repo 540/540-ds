@@ -8,7 +8,7 @@ import { BUTTON_DEFAULTS, BUTTON_SIZES, BUTTON_VARIANTS } from './types';
 import doc from './_docs/Button.md?raw';
 
 const Caption = ({ children }: { children: ReactNode }) => (
-  <Text variant="micro" tone="tertiary" as="span">
+  <Text variant="micro" tone="secondary" as="span">
     {children}
   </Text>
 );

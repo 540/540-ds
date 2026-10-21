@@ -16,7 +16,7 @@ export const TEXT_VARIANTS = [
   'micro-bold',
 ] as const;
 
-export const TEXT_TONES = ['primary', 'secondary', 'tertiary', 'inverse', 'accent', 'error', 'success'] as const;
+export const TEXT_TONES = ['primary', 'secondary'] as const;
 export const TEXT_ALIGNS = ['start', 'center'] as const;
 export const TEXT_WRAPS = ['auto', 'balance', 'pretty'] as const;
 export const TEXT_MEASURES = ['none', 'half', 'wide', 'prose', 'narrow'] as const;
@@ -32,7 +32,7 @@ export type TextElement = (typeof TEXT_ELEMENTS)[number];
 export type TextProps = {
   /** Which of the thirteen text styles to use. Independent from the HTML element. */
   variant?: TextVariant;
-  /** Color of the text, by meaning. */
+  /** Ink: primary (black) or secondary (gray). Text has no other colors, as in the talks. */
   tone?: TextTone;
   /** The HTML element to render. Choose it by document meaning, not by size. */
   as?: TextElement;

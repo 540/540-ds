@@ -42,17 +42,14 @@ Los cuatro títulos crecen desde 1024 px. En **proyección** (dentro de las diap
 
 ## Tonos
 
-Siete tonos, uno por cada token de color de texto. El de por defecto es `primary`. Las charlas usan sobre todo `primary` y `secondary`.
+Dos tintas, y solo dos: **negro y gris, como en las charlas.** El de por defecto es `primary`.
 
 | `tone` | Token | Para qué |
 |---|---|---|
-| `primary` | `--color-text-primary` | Texto principal |
-| `secondary` | `--color-text-secondary` | Texto de apoyo |
-| `tertiary` | `--color-text-tertiary` | Metadatos y pies. Es el límite de contraste: solo texto corto |
-| `inverse` | `--color-text-inverse` | Texto sobre `--color-bg-inverse` |
-| `accent` | `--color-text-accent` | El amarillo, **solo en tema oscuro** |
-| `error` | `--color-text-error` | Mensajes de error |
-| `success` | `--color-text-success` | Mensajes de éxito |
+| `primary` | `--color-text-primary` | Lo que se lee: títulos, frases, cuerpo |
+| `secondary` | `--color-text-secondary` | Lo que acompaña: descripciones, pies, ordinales |
+
+El texto no va en colores. El amarillo es para fondos y trazos; el texto sobre fondo invertido o sobre foto lo resuelve el contenedor con `--color-text-inverse` o `--color-text-on-media`, no una opción de Text.
 
 ## Alineación, reparto de líneas y ancho
 
@@ -77,9 +74,9 @@ Text no tiene estados interactivos. Lo único que cambia es el tema (claro u osc
 
 El estilo lo decide el diseño; la etiqueta la decide el documento: qué es un título de primer nivel, qué es un párrafo. Por eso ninguna variante se llama como un elemento HTML, y por eso elegir `as="h3"` "porque queda más pequeño" es un error: el tamaño lo da `variant`.
 
-### Nunca texto amarillo sobre fondo claro
+### El texto no va en colores
 
-`--color-text-accent` (amarillo) solo se usa como color de texto cuando el fondo es oscuro. Por eso el tono `accent` se pinta como `primary` en el tema claro. Sobre papel, el acento va a fondos y trazos (`--color-bg-accent`), nunca a letras; si hace falta un acento legible en texto, es el dorado `--color-text-accent-inverse`.
+Negro y gris. El amarillo de marca va a fondos y trazos (`--color-bg-accent`), nunca a letras: sobre papel no pasa el contraste y sobre negro compite con la frase. Los estados de error y éxito tienen sus tokens, pero viven en los componentes que los necesitan (un campo de formulario), no en Text.
 
 ### Sin márgenes
 
@@ -88,7 +85,7 @@ Encadenar textos con márgenes propios hace que cada charla acabe con un ritmo d
 ## Accesibilidad
 
 - **Estructura.** Elige `as` por el significado: un solo `h1` por pantalla, `h2` para secciones, `p` para párrafos. Los lectores de pantalla navegan por esa estructura, no por el tamaño.
-- **Contraste.** Todos los tonos sobre su fondo previsto cumplen AA (4,5:1 en texto normal). `tertiary` es el límite: solo metadatos. `inverse` solo sobre `--color-bg-inverse`.
+- **Contraste.** Negro sobre papel 16:1; gris (`secondary`) sobre papel 7,5:1. En oscuro, blanco 21:1 y gris claro 15:1. Todos muy por encima de AA.
 - **Decoración.** Los ordinales decorativos ("01", "90°") van con `aria-hidden` en el contenedor, no dentro de Text.
 - **Mayúsculas.** `micro-bold` pone las mayúsculas por CSS, así que el lector de pantalla lee el texto tal y como está escrito.
 
@@ -103,8 +100,8 @@ Encadenar textos con márgenes propios hace que cada charla acabe con un ritmo d
 **Don't**
 
 - Elegir `as` por el tamaño.
-- Texto `accent` sobre fondo claro.
-- Texto largo en `micro` o en `tertiary`.
+- Texto en color. Negro y gris.
+- Texto largo en `micro`.
 - Añadir márgenes a Text: el aire es del contenedor.
 
 ## Equivalencias con Figma
