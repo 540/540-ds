@@ -1,0 +1,17 @@
+/* SocialIcon — a brand mark as an icon: filled, original path, inherits the ink. Always aria-hidden. */
+
+.icon {
+  display: block;
+  flex: none;
+  fill: currentColor;
+}
+
+.size-md {
+  inline-size: var(--size-icon-md);
+  block-size: var(--size-icon-md);
+}
+
+.size-sm {
+  inline-size: var(--size-icon-sm);
+  block-size: var(--size-icon-sm);
+}

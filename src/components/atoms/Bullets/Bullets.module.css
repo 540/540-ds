@@ -1,0 +1,79 @@
+/* Bullets — the dots that say which page a strip is on. The active one gets longer
+   instead of changing color: length reads in grayscale; color alone does not. */
+
+.bullets {
+  display: flex;
+  gap: var(--space-m);
+  align-items: center;
+}
+
+.bullet {
+  inline-size: var(--space-m);
+  block-size: var(--space-m);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-default);
+  cursor: pointer;
+  transition:
+    inline-size 0.32s ease,
+    background-color 0.24s ease;
+}
+
+.bullet:hover {
+  background: var(--color-text-secondary);
+}
+
+.bullet:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.active {
+  inline-size: var(--space-3xl);
+  background: var(--color-text-primary);
+}
+
+.active:hover {
+  background: var(--color-text-primary);
+}
+
+/* Vertical: at the edge of the window, right-aligned, small gap, bars instead of dots.
+   Stacked, what is compared is the length, and a circle has no length. */
+.vertical {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-s);
+}
+
+.vertical .bullet {
+  inline-size: var(--space-l);
+  block-size: var(--space-xs);
+  background: var(--color-text-tertiary);
+}
+
+.vertical .bullet:hover {
+  background: var(--color-text-primary);
+}
+
+.vertical .active {
+  inline-size: var(--space-2xl);
+  background: var(--color-text-primary);
+}
+
+/* A bigger hit area than the 4 px bar, without changing what is drawn */
+.vertical .bullet {
+  position: relative;
+}
+
+.vertical .bullet::after {
+  content: '';
+  position: absolute;
+  inset: -10px -8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bullet {
+    transition: none;
+  }
+}
