@@ -1,0 +1,88 @@
+/* DeckFooter — the last stop of a talk: a full screen with the halo rising from the bottom,
+   the logo, the tagline, the networks, the thanks and the signature, all centered. */
+
+.pie {
+  position: relative;
+  min-block-size: 100svh;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  background: var(--color-bg-default);
+}
+
+.halo {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 50%;
+  width: 120vw;
+  aspect-ratio: 1;
+  transform: translate(-50%, 50%);
+  pointer-events: none;
+  background: var(--gradient-halo);
+}
+
+.column {
+  position: relative;
+  max-width: var(--size-container);
+  margin-inline: auto;
+  padding-inline: var(--padding-page);
+  box-sizing: content-box;
+}
+
+.footer {
+  display: grid;
+  gap: var(--space-3xl);
+  justify-items: center;
+  text-align: center;
+}
+
+.brand {
+  display: grid;
+  gap: var(--space-l);
+  justify-items: center;
+}
+
+.home {
+  display: inline-flex;
+  color: inherit;
+}
+
+.home:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.tagline {
+  max-width: 38ch;
+}
+
+.networks {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.network {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--size-control-xs);
+  block-size: var(--size-control-xs);
+  color: var(--color-text-primary);
+}
+
+.network:hover {
+  color: var(--color-text-accent-inverse);
+}
+
+.network:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.closing {
+  padding-top: var(--space-xl);
+}

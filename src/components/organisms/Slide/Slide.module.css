@@ -1,0 +1,39 @@
+/* Slide — a stop of the talk: a Section that fills the screen and centers its content
+   on a 16:9 stage. Every stop weighs the same: same scale, same air, same treatment. */
+
+.slide {
+  position: relative;
+  padding-block: var(--padding-section-block);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+}
+
+.full {
+  min-block-size: 100svh;
+}
+
+.tone-default {
+  background: transparent;
+}
+
+.tone-raised {
+  background: var(--color-bg-row-active);
+}
+
+/* The keyboard navigation does not draw a focus box on the stop */
+.slide:focus,
+.slide:focus-visible {
+  outline: none;
+}
+
+/* The column: the content stage, 16:9 at most */
+.stage {
+  position: relative;
+  width: 100%;
+  max-inline-size: min(calc(var(--size-container) + var(--padding-page) * 2), calc(100svh * 16 / 9));
+  margin-inline: auto;
+  padding-inline: var(--padding-page);
+  box-sizing: border-box;
+  text-align: center;
+}

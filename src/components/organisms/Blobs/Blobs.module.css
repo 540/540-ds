@@ -1,0 +1,66 @@
+/* Blobs — two soft yellow stains that drift behind the page. Decoration: aria-hidden, no pointer. */
+
+.blobs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.a,
+.b {
+  position: absolute;
+  width: 42vw;
+  aspect-ratio: 1;
+  will-change: transform;
+}
+
+.a {
+  inset-block-start: -12%;
+  inset-inline-end: -8%;
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--color-bg-accent) 11%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-accent) 4%, transparent) 42%,
+    transparent 68%
+  );
+  animation: driftA 34s ease-in-out infinite alternate;
+}
+
+.b {
+  inset-block-end: -16%;
+  inset-inline-start: -12%;
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--color-bg-accent) 7%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-accent) 3%, transparent) 40%,
+    transparent 66%
+  );
+  animation: driftB 47s ease-in-out infinite alternate;
+}
+
+@keyframes driftA {
+  from {
+    transform: translateZ(0) scale(1);
+  }
+  to {
+    transform: translate3d(-7%, 9%, 0) scale(1.14);
+  }
+}
+
+@keyframes driftB {
+  from {
+    transform: translateZ(0) scale(1.1);
+  }
+  to {
+    transform: translate3d(8%, -7%, 0) scale(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a,
+  .b {
+    animation: none;
+  }
+}
