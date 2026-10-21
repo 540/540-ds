@@ -4,4 +4,49 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # 540 Design System
 
-Página provisional. Se completará en la Fase 4 con la explicación de cómo está organizado el sistema.
+El sistema de diseño de 540, en código. Sirve para **montar las presentaciones de las charlas** y la web con las mismas piezas, y para que diseño y desarrollo miren el mismo catálogo. Si este Storybook y el archivo de Figma discrepan, manda el código.
+
+## Cómo está organizado
+
+La barra de la izquierda sigue el orden en el que se construye una pantalla: primero los valores, luego las piezas pequeñas, luego las compuestas.
+
+| Sección | Qué hay | Para qué |
+|---|---|---|
+| **Fundamentos** | Color, tipografía, espaciado, tamaños, radios y anchos de pantalla | Los tokens: los valores con nombre de los que sale todo. Cada página lee el valor real del CSS, así que nunca se desfasa del código |
+| **Átomos** | Text, Button, Logo, Image, ThemeToggle, Bullets, MenuItem, SocialIcon | Las piezas que no se dividen más |
+| **Moléculas** | SectionHeader, Section, Card, Menu, CaseItem, TeamMember, Footer, NavMobile, Field, Carousel, Dialog | Piezas hechas de átomos: una cabecera, una tarjeta, un campo |
+| **Organismos** | Deck, Slide, Cover, Closing, Statements, BlockTitle, Story, Quote, Punchline, Timeline, Flow, Tools, Marquee, CardList, Form, LogoCarousel, DeckFooter, Blobs | Bloques enteros de una charla o de una página, hechos de moléculas |
+
+## Cómo se lee una página de componente
+
+Cada componente tiene una sola página, **Docs**, con todo junto:
+
+1. **La ficha**, arriba: para qué sirve, cuándo usarlo y cuándo no, anatomía, variantes, estados, decisiones de diseño, accesibilidad, buenas y malas prácticas, y la equivalencia con Figma.
+2. **El Playground** con su tabla de controles: cambia las opciones y escribe tu propio texto. Es la única entrada que aparece además en la barra lateral.
+3. **Las historias**, al final: cada variante, estado y caso de uso, con un párrafo que dice qué mirar.
+
+## La barra de arriba
+
+- **Tema**: claro u oscuro. Las charlas se proyectan en oscuro; la web va en claro.
+- **Escala**: web o proyección. En proyección el texto sube un punto para leerse desde el fondo de una sala.
+- **Viewport**: móvil (375), tablet (768) y escritorio (1440), los tres anchos en los que se diseña.
+- **Fondos** y **accesibilidad**: el panel de accesibilidad señala contrastes y nombres que faltan.
+
+## Las reglas que más se repiten
+
+- **Los componentes solo usan tokens semánticos** (`--color-text-primary`, `--space-l`…), nunca primitivos (`--540-neutral-950`). Los primitivos solo se aliasan.
+- **El texto va en negro y gris.** El amarillo de marca es para fondos y trazos, nunca para letras.
+- **Sin sombras.** La profundidad se consigue con fondos y bordes.
+- **Lo único redondo es lo que se pulsa.** Tarjetas y fotos llevan esquinas rectas.
+- **Móvil primero**, con dos saltos: 600 y 1024. Baja lo que depende del ancho (titulares, márgenes); no baja lo que depende del ojo (cuerpo, controles, iconos).
+- **Una charla es un Deck con Slides dentro.** Cada Slide es una parada; el índice lateral, el teclado y la barra los pone el Deck.
+
+## Montar una charla
+
+Dentro de un `Deck`: una `Cover`, las paradas (`Slide`, `Statements`, `BlockTitle`, `Story`, `Quote`, `Timeline`…), un `Closing` y el pie. La historia *Charla de demostración* de **Organismos / Deck** es una charla entera de ejemplo con textos de relleno.
+
+## Fuentes de verdad
+
+- **Este código** (`~/Projects/540-ds`).
+- **Las charlas anteriores** (`base-540.css` y `navegacion-540.js`), de donde salen las piezas de presentación.
+- **El archivo de Figma** «540 · Design System», que documenta la mayoría de los componentes y de donde se copian las fichas.
