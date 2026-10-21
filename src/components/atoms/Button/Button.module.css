@@ -1,0 +1,170 @@
+/* Button — the action that triggers something. Semantic tokens only.
+   Hover inverts the fill; active fills one step more: three surfaces, never two. */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: var(--space-s);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-family-base);
+  font-optical-sizing: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--text-body-s-size);
+  font-weight: var(--text-body-s-weight);
+  line-height: var(--text-body-s-line-height);
+  letter-spacing: var(--text-body-s-letter-spacing);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.12s ease,
+    border-color 0.12s ease,
+    color 0.12s ease;
+}
+
+.button:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
+
+/* ---- Sizes ---- */
+.size-md {
+  min-height: var(--size-control-md);
+  padding-inline: var(--space-xl);
+}
+
+.size-sm {
+  min-height: var(--size-control-sm);
+  padding-inline: var(--space-l);
+}
+
+/* ---- Icon ---- */
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.icon > svg {
+  display: block;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
+.size-sm .icon > svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+/* ---- Icon only: a square as tall as the control; the label stays for screen readers ---- */
+.iconOnly {
+  padding-inline: 0;
+}
+
+.iconOnly.size-md {
+  width: var(--size-control-md);
+}
+
+.iconOnly.size-sm {
+  width: var(--size-control-sm);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Variants ---- */
+.variant-primary {
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.variant-primary:hover:not(:disabled),
+.variant-primary.forceHover {
+  background: transparent;
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+.variant-primary:active:not(:disabled),
+.variant-primary.forceActive {
+  background: var(--color-bg-inverse-active);
+  border-color: transparent;
+  color: var(--color-text-inverse);
+}
+
+.variant-primary:disabled {
+  background: var(--color-bg-disabled);
+  color: var(--color-text-disabled);
+}
+
+.variant-outline {
+  background: transparent;
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+.variant-outline:hover:not(:disabled),
+.variant-outline.forceHover {
+  background: var(--color-bg-inverse);
+  border-color: transparent;
+  color: var(--color-text-inverse);
+}
+
+.variant-outline:active:not(:disabled),
+.variant-outline.forceActive {
+  background: var(--color-bg-inverse-active);
+  border-color: transparent;
+  color: var(--color-text-inverse);
+}
+
+.variant-outline:disabled {
+  border-color: var(--color-border-default);
+  color: var(--color-text-disabled);
+}
+
+.variant-ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+.variant-ghost:hover:not(:disabled),
+.variant-ghost.forceHover {
+  background: var(--color-bg-neutral-hover);
+}
+
+.variant-ghost:active:not(:disabled),
+.variant-ghost.forceActive {
+  background: var(--color-bg-neutral-active);
+}
+
+.variant-ghost:disabled {
+  color: var(--color-text-disabled);
+}
+
+/* Forced focus ring for documentation only (the browser draws the real one) */
+.forceFocus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
