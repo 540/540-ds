@@ -1,10 +1,16 @@
 import type { ReactNode } from 'react';
 
 export type TimelineStep = {
+  /** A small line above the title: a date, "Zoom · marzo". In secondary. */
+  kicker?: ReactNode;
   /** The title of the step: a month, a milestone. */
   title: ReactNode;
   /** What happened, body-m secondary. */
-  body: ReactNode;
+  body?: ReactNode;
+  /** A warning step: the dot goes red. The text stays in the neutral inks. */
+  alert?: boolean;
+  /** Anything after the body: a Flow, a Sheet inside a Step. */
+  extra?: ReactNode;
 };
 
 export type TimelineProps = {

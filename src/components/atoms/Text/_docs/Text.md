@@ -64,6 +64,10 @@ El texto no va en colores. El amarillo es para fondos y trazos; el texto sobre f
 | `prose` | 62 caracteres | cuerpo de una tarjeta en fila |
 | `narrow` | 38 caracteres | lema del pie, fichas de herramientas |
 
+## Negrita y monoespaciada
+
+Dentro de cualquier Text, `<strong>` va en negrita (700) y `<code>` en la monoespaciada un 8 % más pequeña, en el mismo color. Es lo que hacen las charlas con «la parte que importa» y con los `/comandos`. Con `mono`, el texto entero va en monoespaciada: una fuente, una fecha, un nombre de archivo.
+
 ## Estados
 
 Text no tiene estados interactivos. Lo único que cambia es el tema (claro u oscuro) y la escala (web o proyección), y ambos vienen de los tokens.

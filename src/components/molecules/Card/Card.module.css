@@ -30,6 +30,46 @@
   min-height: 0;
 }
 
+/* ---- Portrait, footer and after ---- */
+.portrait {
+  inline-size: 160px;
+  block-size: 160px;
+  border-radius: var(--radius-pill);
+  margin-inline: auto;
+  margin-block-end: calc(var(--space-s) - var(--padding-section));
+}
+
+.footer {
+  inline-size: 100%;
+  padding-block-start: var(--space-l);
+  border-block-start: 1px solid var(--color-border-default);
+}
+
+.after {
+  display: grid;
+  gap: var(--space-s);
+  inline-size: 100%;
+  padding-block-start: var(--space-l);
+  border-block-start: 1px solid var(--color-border-strong);
+}
+
+/* ---- Emphasis among several cards ---- */
+.card {
+  transition:
+    opacity 0.4s,
+    transform 0.4s,
+    border-color 0.4s;
+}
+
+.highlighted {
+  transform: scale(1.04);
+  border-color: var(--color-border-strong);
+}
+
+.dimmed {
+  opacity: 0.25;
+}
+
 /* ---- Centered ---- */
 .center {
   align-items: center;
@@ -109,6 +149,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .card,
   .row,
   .row.folded .window {
     transition: none;

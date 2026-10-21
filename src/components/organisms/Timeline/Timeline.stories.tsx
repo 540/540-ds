@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Text } from '../../atoms/Text';
+import { Sheet } from '../Sheet';
+import { Step, Steps } from '../Steps';
 import { Timeline } from './Timeline';
 import doc from './_docs/Timeline.md?raw';
 
@@ -28,6 +31,34 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = { tags: ['dev'] };
+
+export const ConAvisoYZoom: Story = {
+  name: 'Con aviso y zoom',
+  parameters: { docs: { description: { story: 'Pasos con antetítulo (la fecha), uno de aviso con el punto en rojo, y uno de zoom: dentro de un Steps, la flecha abre la hoja con el detalle del hito.' } } },
+  args: {
+    id: 'recorrido-aviso',
+    steps: [
+      { kicker: 'Mes uno', title: 'Primer hito', body: 'Lo que pasó en el primer mes.' },
+      { kicker: 'El problema', title: 'Algo que no funcionaba como debía.', alert: true },
+      { kicker: 'Mes tres', title: 'Tercer hito', body: 'Lo que cambió después.' },
+      {
+        kicker: 'Zoom · mes cuatro',
+        title: 'Un hito con detalle',
+        extra: (
+          <Steps total={1}>
+            <Step from={1}>
+              <Sheet kicker="Zoom · mes cuatro" title="Un hito con detalle" description="Pulsa → con este paso a la vista para abrir la hoja.">
+                <Text variant="body-m" tone="secondary">
+                  El detalle ampliado del hito.
+                </Text>
+              </Sheet>
+            </Step>
+          </Steps>
+        ),
+      },
+    ],
+  },
+};
 
 export const CuatroPasos: Story = {
   name: 'Cuatro pasos',

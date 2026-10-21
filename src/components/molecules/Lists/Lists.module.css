@@ -1,0 +1,45 @@
+/* Lists — the three lists of the talks: plain centered items, items with an arrow, and
+   label + text pairs. None has bullets: the air separates. */
+
+.simple {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-m);
+  justify-items: center;
+  text-align: center;
+}
+
+.arrows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-m);
+  justify-items: center;
+  text-align: center;
+}
+
+.arrows li {
+  display: flex;
+  gap: var(--space-s);
+  align-items: baseline;
+}
+
+.arrow {
+  color: var(--color-text-secondary);
+}
+
+.problems {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.problem {
+  display: grid;
+  gap: var(--space-s);
+}

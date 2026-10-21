@@ -1,0 +1,12 @@
+/* Screenshot — a capture at a fixed height (so the layout does not jump) with rounded corners. */
+
+.screenshot {
+  display: block;
+  block-size: min(calc(100svh - 470px), 560px);
+  inline-size: auto;
+  max-inline-size: 100%;
+  margin-inline: auto;
+  margin-block-start: var(--space-2xl);
+  border-radius: var(--radius-default);
+  object-fit: contain;
+}

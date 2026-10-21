@@ -1,0 +1,70 @@
+/* Heartbeat — a red heart that beats, with a wave expanding around it. Pure decoration. */
+
+.heartbeat {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 200px;
+  block-size: 200px;
+  margin: var(--space-2xl) auto 0;
+}
+
+.wave {
+  position: absolute;
+  inline-size: 144px;
+  block-size: 144px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--540-status-red);
+  animation: wave 1.6s ease-out infinite;
+}
+
+.heart {
+  position: relative;
+  inline-size: 116px;
+  block-size: 116px;
+  fill: none;
+  stroke: var(--540-status-red);
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  animation: beat 1.6s ease-out infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: scale(0.86);
+    opacity: 0.35;
+  }
+  45%,
+  100% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  9% {
+    transform: scale(1.14);
+  }
+  20% {
+    transform: scale(1.03);
+  }
+  29% {
+    transform: scale(1.09);
+  }
+  42%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave,
+  .heart {
+    animation: none;
+  }
+}

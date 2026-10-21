@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Card } from './Card';
-import { CARD_ALIGNS, CARD_DEFAULTS, CARD_STATES, CARD_VARIANTS } from './types';
+import retrato from '../../../assets/samples/retrato.svg';
+import { Text } from '../../atoms/Text';
+import { CARD_ALIGNS, CARD_DEFAULTS, CARD_EMPHASES, CARD_STATES, CARD_VARIANTS } from './types';
 import doc from './_docs/Card.md?raw';
 
 const SERVICIOS = [
@@ -36,6 +38,16 @@ const meta = {
       table: { type: { summary: CARD_STATES.join(' | ') }, defaultValue: { summary: CARD_DEFAULTS.state } },
     },
     ordinal: { control: 'text', description: 'Número opcional («01»). Decorativo.', table: { type: { summary: 'string' } } },
+    kicker: { control: 'text', description: 'Antetítulo en `body-s` secundario («Cliente», «Lo que medimos»).', table: { type: { summary: 'ReactNode' } } },
+    portrait: { control: false, description: 'Retrato redondo de 160 px encima del encabezado.', table: { type: { summary: '{ src, alt }' } } },
+    footer: { control: 'text', description: 'Pie bajo una línea fina: una fuente, una fecha.', table: { type: { summary: 'ReactNode' } } },
+    after: { control: 'text', description: 'Bloque «después» bajo una línea fuerte.', table: { type: { summary: 'ReactNode' } } },
+    emphasis: {
+      control: 'inline-radio',
+      options: [...CARD_EMPHASES],
+      description: 'Entre varias: `highlighted` crece un 4 % con borde fuerte; `dimmed` se atenúa al 25 %.',
+      table: { type: { summary: CARD_EMPHASES.join(' | ') }, defaultValue: { summary: CARD_DEFAULTS.emphasis } },
+    },
     title: { control: 'text', description: 'El título.', table: { type: { summary: 'ReactNode' } } },
     level: { control: 'inline-radio', options: ['h2', 'h3', 'h4'], description: 'Nivel del título.', table: { defaultValue: { summary: CARD_DEFAULTS.level } } },
     children: { control: 'text', description: 'La explicación: dos o tres frases.', table: { type: { summary: 'ReactNode' } } },
@@ -86,6 +98,70 @@ export const Centrada: Story = {
       <Card align="center" title="No se tira">
         El criterio con el que se tomaron las decisiones. Eso es lo que hay que escribir en el sistema.
       </Card>
+    </div>
+  ),
+};
+
+export const ConAntetituloYPie: Story = {
+  name: 'Con antetítulo y pie',
+  parameters: { docs: { description: { story: 'El antetítulo en gris encima del título, y un pie bajo una línea fina con la fuente. A la derecha, el bloque «después» bajo una línea fuerte.' } } },
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--grid-gutter)', maxWidth: 800 }}>
+      <Card
+        align="center"
+        kicker="Lo que leímos"
+        title="Un título con su fuente"
+        footer={
+          <Text variant="body-s" tone="secondary">
+            <code>«Título del artículo» · mes 2026</code>
+          </Text>
+        }
+      >
+        Dos o tres frases sobre lo que dice el artículo, con <strong>la parte que importa</strong> en negrita.
+      </Card>
+      <Card
+        align="center"
+        kicker="Antes"
+        title="Cómo se hacía"
+        after={
+          <>
+            <Text variant="body-s" tone="secondary">
+              Después
+            </Text>
+            <Text variant="body-s-light">Cómo se hace ahora, en una frase.</Text>
+          </>
+        }
+      >
+        Cómo se hacía antes, en dos frases.
+      </Card>
+    </div>
+  ),
+};
+
+export const Destacada: Story = {
+  name: 'Destacada entre atenuadas',
+  parameters: { docs: { description: { story: 'Cinco tarjetas compactas: la primera destacada (crece un 4 % con borde fuerte) y las demás al 25 %. Es el final del contexto de la charla, cuando se señala una pieza.' } } },
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 'var(--grid-gutter)', padding: 'var(--space-s)' }}>
+      {['App', 'Panel', 'Servicio', 'Base', 'Cola'].map((t, i) => (
+        <Card key={t} align="center" kicker="Pieza" title={t} emphasis={i === 0 ? 'highlighted' : 'dimmed'}>
+          Una frase sobre esta pieza.
+        </Card>
+      ))}
+    </div>
+  ),
+};
+
+export const ConRetrato: Story = {
+  name: 'Con retrato',
+  parameters: { docs: { description: { story: 'Dos personas en tarjeta, con el retrato redondo de 160 px encima. Es «Quiénes somos» de la charla.' } } },
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--grid-gutter)', maxWidth: 800 }}>
+      {['Nombre Apellido', 'Nombre Apellido'].map((n, i) => (
+        <Card key={i} align="center" portrait={{ src: retrato, alt: `Retrato de ${n}` }} title={n}>
+          Rol y una frase sobre qué hace esta persona.
+        </Card>
+      ))}
     </div>
   ),
 };

@@ -64,6 +64,7 @@ const meta = {
       description: 'El texto.',
       table: { type: { summary: 'ReactNode' } },
     },
+    mono: { control: 'boolean', description: 'Monoespaciada, un poco más pequeña: un comando, un nombre de archivo.', table: { defaultValue: { summary: 'false' } } },
     className: { control: false, table: { disable: true } },
   },
 } satisfies Meta<typeof Text>;
@@ -162,6 +163,24 @@ export const RepartoDeLineas: Story = {
         </Stack>
       ))}
     </Stack>
+  ),
+};
+
+export const NegritaYCodigo: Story = {
+  name: 'Negrita y código',
+  parameters: { docs: { description: { story: 'Dentro de cualquier texto, `strong` va en negrita y `code` en monoespaciada un 8 % más pequeña. Con `mono`, el texto entero.' } } },
+  render: () => (
+    <div style={{ display: 'grid', gap: 'var(--space-l)', maxWidth: 560 }}>
+      <Text variant="body-m">
+        Una frase con <strong>la parte que importa</strong> en negrita y un <code>/comando</code> en monoespaciada.
+      </Text>
+      <Text variant="title-s">
+        Un título con <code>/comando</code> dentro
+      </Text>
+      <Text variant="body-s" tone="secondary" mono>
+        «Título de un artículo» · mes 2026
+      </Text>
+    </div>
   ),
 };
 
