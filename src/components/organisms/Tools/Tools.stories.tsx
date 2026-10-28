@@ -4,19 +4,19 @@ import { Slide } from '../Slide';
 import { Tools } from './Tools';
 import { TOOLS_DEFAULTS } from './types';
 import doc from './_docs/Tools.md?raw';
-import logo from '../../../assets/samples/logo-cliente.svg';
+import logo from '../../../assets/samples/logo-540-claro.svg';
 
 const TOOLS = [
-  { src: logo, name: 'Herramienta uno' },
-  { src: logo, name: 'Herramienta dos' },
-  { src: logo, name: 'Herramienta tres' },
-  { src: logo, name: 'Herramienta cuatro' },
+  { src: logo, invertInDark: true, name: 'Herramienta uno' },
+  { src: logo, invertInDark: true, name: 'Herramienta dos' },
+  { src: logo, invertInDark: true, name: 'Herramienta tres' },
+  { src: logo, invertInDark: true, name: 'Herramienta cuatro' },
 ];
 
 const DESCARTADAS = [
-  { src: logo, name: 'Herramienta cinco', verdict: 'Por qué se descartó, en una línea.' },
-  { src: logo, name: 'Herramienta seis', verdict: 'Otra razón corta.' },
-  { src: logo, name: 'Herramienta siete', verdict: 'Y una tercera.' },
+  { src: logo, invertInDark: true, name: 'Herramienta cinco', verdict: 'Por qué se descartó, en una línea.' },
+  { src: logo, invertInDark: true, name: 'Herramienta seis', verdict: 'Otra razón corta.' },
+  { src: logo, invertInDark: true, name: 'Herramienta siete', verdict: 'Y una tercera.' },
 ];
 
 const meta = {

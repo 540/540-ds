@@ -1,0 +1,93 @@
+/* Bars — horizontal bars: the label, a bar that grows from the left with its figure at the tip,
+   and an optional detail. Ink for the story, gray for the context, yellow for the one row. */
+
+.bars {
+  display: grid;
+  gap: var(--space-m);
+  text-align: start;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-m);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'label detail'
+    'track track';
+  column-gap: var(--space-l);
+  row-gap: var(--space-xs);
+  align-items: center;
+  transition: opacity 0.35s;
+}
+
+@media (min-width: 600px) {
+  .row {
+    grid-template-columns: minmax(8rem, 2fr) minmax(0, 5fr) auto;
+    grid-template-areas: 'label track detail';
+  }
+}
+
+.row[data-dimmed] {
+  opacity: 0.3;
+}
+
+.label {
+  grid-area: label;
+}
+
+.track {
+  grid-area: track;
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  min-inline-size: 0;
+}
+
+.fill {
+  flex: none;
+  block-size: var(--space-xl);
+  max-inline-size: calc(100% - 5ch);
+  transition: inline-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tone-ink {
+  background: var(--color-bg-inverse);
+}
+
+.tone-context {
+  background: var(--color-text-tertiary);
+}
+
+.tone-accent {
+  background: var(--color-bg-accent);
+}
+
+.value {
+  flex: none;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail {
+  grid-area: detail;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  composes: row;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill,
+  .row {
+    transition: none;
+  }
+}

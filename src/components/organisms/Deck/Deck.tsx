@@ -10,6 +10,9 @@ import { DECK_DEFAULTS } from './types';
 import type { DeckProps, DeckTheme } from './types';
 import { useDeckNavigation } from './useDeckNavigation';
 
+/** The side index never paints more than this many marks; longer talks share them out evenly. */
+const MAX_MARKS = 20;
+
 function readTheme(key: string, fallback: DeckTheme): DeckTheme {
   if (!key) return fallback;
   try {
@@ -108,6 +111,12 @@ export function Deck({
   const toggle = <ThemeToggle dark={theme === 'dark'} onToggle={toggleTheme} />;
   const classes = [styles.deck, className ?? ''].filter(Boolean).join(' ');
 
+  // Up to MAX_MARKS stops, one mark each; beyond that, each mark stands for a stretch of stops
+  const marks = Math.min(stops.length, MAX_MARKS);
+  const grouped = stops.length > MAX_MARKS;
+  const markOf = (stop: number) => (grouped ? Math.min(marks - 1, Math.floor((stop * marks) / stops.length)) : stop);
+  const firstStopOf = (mark: number) => (grouped ? Math.ceil((mark * stops.length) / marks) : mark);
+
   return (
     <div className={classes} data-theme={theme} data-deck="">
       {blobs ? <Blobs /> : null}
@@ -135,11 +144,11 @@ export function Deck({
         <div className={styles.index} data-visible={indexVisible ? '' : undefined}>
           <Bullets
             orientation="vertical"
-            count={stops.length}
-            current={current + 1}
-            onSelect={(page) => goTo(page - 1)}
+            count={marks}
+            current={markOf(current) + 1}
+            onSelect={(mark) => goTo(firstStopOf(mark - 1))}
             label={indexLabel}
-            itemLabel="Parada"
+            itemLabel={grouped ? 'Tramo' : 'Parada'}
             aria-label={indexLabel}
           />
         </div>

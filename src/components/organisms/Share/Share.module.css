@@ -1,0 +1,61 @@
+/* Share — a whole as one bar split into its parts, and a legend with each part's percentage. */
+
+.share {
+  display: grid;
+  gap: var(--space-m);
+  text-align: start;
+}
+
+.bar {
+  display: flex;
+  gap: 2px;
+  block-size: var(--space-xl);
+}
+
+.segment {
+  flex: none;
+  transition: inline-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tone-ink {
+  background: var(--color-bg-inverse);
+}
+
+.tone-context {
+  background: var(--color-text-tertiary);
+}
+
+.tone-accent {
+  background: var(--color-bg-accent);
+}
+
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-xl);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.swatch {
+  flex: none;
+  inline-size: var(--space-m);
+  block-size: var(--space-m);
+}
+
+.percent {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segment {
+    transition: none;
+  }
+}

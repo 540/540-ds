@@ -23,7 +23,13 @@ Ninguna. El ordinal se puede quitar con `numbered={false}`.
 
 ## Estados
 
-Ninguno visual. Las charlas iluminan la frase actual y atenúan las demás con GSAP; eso queda para los efectos de movimiento.
+| Estado | Qué se ve |
+|---|---|
+| La frase que ocupa el centro de la pantalla | Encendida |
+| Las ya dichas | Al 14 % |
+| Las que vienen | Ocultas: no se adelanta lo que aún no se ha dicho |
+
+El cambio es un fundido de 0,35 s. Con `prefers-reduced-motion` todas se ven encendidas. El lector de pantalla lee todas siempre.
 
 ## Decisiones de diseño
 

@@ -21,6 +21,7 @@ Entre el encabezado y la explicación, 36 px (`--padding-section`).
 - La ficha práctica de Formación.
 - Cualquier rejilla de cosas comparables entre sí.
 - Una lista de apartados que se recorre de arriba abajo, con `row` dentro de un CardList.
+- Un antes y un ahora: dos tarjetas con un `ArrowList` o un `SimpleList` en el cuerpo.
 
 ## Cuándo no
 

@@ -68,7 +68,7 @@ const preview: Preview = {
     options: {
       // Sidebar order: top-level sections first, then alphabetical inside each
       storySort: {
-        order: ['Introducción', ['Bienvenida', 'Normas para charlas'], 'Fundamentos', ['Color', 'Tipografía', 'Espaciado', 'Tamaños', 'Radios', 'Anchos de pantalla'], 'Átomos', 'Moléculas', 'Organismos'],
+        order: ['Introducción', ['Bienvenida', 'Normas para charlas'], 'Fundamentos', ['Color', 'Tipografía', 'Espaciado', 'Tamaños', 'Radios', 'Anchos de pantalla'], 'Átomos', 'Moléculas', 'Organismos', 'Plantillas'],
       },
     },
   },

@@ -58,7 +58,8 @@ export function Card({
       </div>
       <div className={styles.window}>
         <div className={styles.body}>
-          <Text variant="body-s-light" wrap="pretty">
+          {/* A div, not a p: the body may hold a list (ArrowList, SimpleList) */}
+          <Text as="div" variant="body-s-light" wrap="pretty">
             {children}
           </Text>
         </div>

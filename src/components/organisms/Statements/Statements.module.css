@@ -23,3 +23,22 @@
   justify-items: center;
   padding-inline: var(--padding-page);
 }
+
+/* Lit at the center, told ones at 14 %, the ones to come hidden (as in the talks) */
+.stop {
+  transition: opacity 0.35s ease;
+}
+
+.stop[data-state='before'] {
+  opacity: 0.14;
+}
+
+.stop[data-state='after'] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stop {
+    transition: none;
+  }
+}

@@ -1,0 +1,16 @@
+/* Count — a figure that counts up from zero. It inherits the text style it sits in;
+   tabular numerals keep the width still while the digits change. */
+
+.count {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.voice {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

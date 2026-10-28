@@ -72,3 +72,12 @@
 .item > * {
   block-size: 100%;
 }
+
+/* Centered in height: each cell keeps its own height (a ring and the panel beside it) */
+.center {
+  align-items: center;
+}
+
+.center > .item > * {
+  block-size: auto;
+}

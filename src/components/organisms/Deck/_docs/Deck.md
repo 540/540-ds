@@ -39,7 +39,9 @@ Fija en la portada. Al navegar (scroll o teclado) se esconde; solo vuelve al pas
 
 ## El índice
 
-Aparece al pasar la portada (60 % de la ventana) y se oculta por debajo de 900 px. Cada raya es un botón con su nombre («3 de 12. El sistema, a vista de pájaro») y la actual lleva `aria-current`. Pulsar una lleva a esa parada.
+Aparece al pasar la portada (60 % de la ventana) y se oculta por debajo de 900 px. Cada raya es un botón con su nombre («Parada 3 de 12») y la actual lleva `aria-current`. Pulsar una lleva a esa parada.
+
+Nunca pinta más de **20 rayas**. Si la charla tiene más paradas, las reparte por igual entre las 20: cada raya es un tramo («Tramo 7 de 20»), se enciende la del tramo en el que está la parada actual y pulsarla lleva a la primera parada de ese tramo.
 
 ## El tema
 

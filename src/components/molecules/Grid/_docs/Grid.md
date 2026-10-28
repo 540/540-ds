@@ -31,6 +31,11 @@ La retícula: **doce columnas en los tres tramos y los dos canales.** El reparto
 
 `compact` baja un punto los textos y el relleno de las tarjetas de dentro: para cinco tarjetas en una fila.
 
+| `align` | Qué hace |
+|---|---|
+| `stretch` (por defecto) | Las celdas igualan altura: tarjetas de una fila |
+| `center` | Cada celda centrada en altura: un dibujo y el panel que lo cuenta (anillo y panel, 7 + 5) |
+
 ## Estados
 
 Ninguno.

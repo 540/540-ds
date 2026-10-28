@@ -6,7 +6,8 @@ import type { SheetProps } from './types';
 
 /**
  * Sheet is a panel that rises from the bottom edge over the stop, with a veil behind.
- * Inside a Step it opens with the step; it hides as soon as its stop leaves the screen.
+ * Inside a Step it opens with the step; it hides as soon as its stop (the step of a timeline,
+ * or the whole section) leaves the center of the window.
  */
 export function Sheet({ open, kicker, title, description, children, className }: SheetProps) {
   const stepOn = useStepOn();
@@ -16,20 +17,20 @@ export function Sheet({ open, kicker, title, description, children, className }:
   const anchor = useRef<HTMLSpanElement>(null);
   const [onScreen, setOnScreen] = useState(true);
 
-  // The sheet only shows while its section holds the center of the window
+  // The sheet only shows while its stop holds the center of the window
   useEffect(() => {
     const check = () => {
-      const section = anchor.current?.closest('section');
-      if (!section) return setOnScreen(true);
-      const r = section.getBoundingClientRect();
+      const stop = anchor.current?.closest('[data-stop]') ?? anchor.current?.closest('section');
+      if (!stop) return setOnScreen(true);
+      const r = stop.getBoundingClientRect();
       const c = window.innerHeight / 2;
       setOnScreen(r.top < c && r.bottom > c);
     };
     check();
-    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('scroll', check, { passive: true, capture: true });
     window.addEventListener('resize', check);
     return () => {
-      window.removeEventListener('scroll', check);
+      window.removeEventListener('scroll', check, { capture: true });
       window.removeEventListener('resize', check);
     };
   }, []);

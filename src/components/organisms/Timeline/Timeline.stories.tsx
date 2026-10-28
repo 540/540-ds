@@ -45,9 +45,9 @@ export const ConAvisoYZoom: Story = {
         kicker: 'Zoom · mes cuatro',
         title: 'Un hito con detalle',
         extra: (
-          <Steps total={1}>
-            <Step from={1}>
-              <Sheet kicker="Zoom · mes cuatro" title="Un hito con detalle" description="Pulsa → con este paso a la vista para abrir la hoja.">
+          <Steps total={2}>
+            <Step from={1} to={2}>
+              <Sheet kicker="Zoom · mes cuatro" title="Un hito con detalle" description="Pulsa → para abrirla y otra vez para cerrarla.">
                 <Text variant="body-m" tone="secondary">
                   El detalle ampliado del hito.
                 </Text>

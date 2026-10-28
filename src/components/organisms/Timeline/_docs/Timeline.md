@@ -28,7 +28,7 @@ Ninguna.
 
 Un paso con `alert` pinta su punto en rojo: es «el problema» de la cronología. El texto sigue en negro y gris; el color solo va en el punto.
 
-El eje se dibuja de arriba abajo y el punto aparece cuando el paso entra en pantalla, con animaciones guiadas por el scroll (`animation-timeline: view()`) donde el navegador lo soporta; nada con `prefers-reduced-motion`. Las charlas además iluminan el mes actual y atenúan los demás con GSAP; eso queda para los efectos.
+El eje se dibuja de arriba abajo y el punto aparece cuando el paso entra en pantalla, con animaciones guiadas por el scroll (`animation-timeline: view()`) donde el navegador lo soporta; nada con `prefers-reduced-motion`. Como las frases de `Statements`, el paso que ocupa el centro de la pantalla está encendido, los ya contados quedan al 14 % y los que vienen, ocultos (fundido de 0,35 s; todo encendido con movimiento reducido).
 
 ## Decisiones de diseño
 

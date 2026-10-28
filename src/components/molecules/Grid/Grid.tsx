@@ -3,8 +3,8 @@ import { GRID_DEFAULTS } from './types';
 import type { GridItemProps, GridProps } from './types';
 
 /** Grid is the twelve-column grid of the system, with the two gutters, and its two five-up layouts. */
-export function Grid({ layout = GRID_DEFAULTS.layout, compact = false, children, className }: GridProps) {
-  const classes = [styles.grid, layout === 'five' ? styles.five : '', layout === 'fiveCentered' ? styles.fiveCentered : '', compact ? styles.compact : '', className ?? '']
+export function Grid({ layout = GRID_DEFAULTS.layout, compact = false, align = GRID_DEFAULTS.align, children, className }: GridProps) {
+  const classes = [styles.grid, layout === 'five' ? styles.five : '', layout === 'fiveCentered' ? styles.fiveCentered : '', compact ? styles.compact : '', align === 'center' ? styles.center : '', className ?? '']
     .filter(Boolean)
     .join(' ');
   return <div className={classes}>{children}</div>;

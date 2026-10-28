@@ -23,6 +23,7 @@ const meta = {
   argTypes: {
     children: { control: false, description: 'Los campos, normalmente Field.', table: { type: { summary: 'ReactNode' } } },
     submitLabel: { control: 'text', description: 'El verbo y el objeto del botón de envío.', table: { type: { summary: 'string' } } },
+    align: { control: 'inline-radio', options: ['end', 'center'], description: 'Dónde va el envío: al final (web) o centrado (charla).', table: { defaultValue: { summary: 'end' } } },
     noValidate: { control: 'boolean', description: 'Apaga los globos del navegador.', table: { defaultValue: { summary: 'true' } } },
     className: { control: false, table: { disable: true } },
   },
