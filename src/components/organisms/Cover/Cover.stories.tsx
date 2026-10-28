@@ -3,7 +3,8 @@ import { Cover } from './Cover';
 import { COVER_DEFAULTS } from './types';
 import doc from './_docs/Cover.md?raw';
 import fachada from '../../../assets/samples/charla-fachada.webp';
-import logoCliente from '../../../assets/samples/logo-cliente.svg';
+import logo540Claro from '../../../assets/samples/logo-540-portada-claro.svg';
+import logo540Oscuro from '../../../assets/samples/logo-540-portada-oscuro.svg';
 
 const meta = {
   title: 'Organismos/Cover',
@@ -15,7 +16,7 @@ const meta = {
     title: ['Primera línea del titular', 'y segunda línea del titular'],
     question: '¿La pregunta que abre la charla, en una o dos líneas?',
     event: 'Nombre del evento · 2026',
-    client: { light: logoCliente, dark: logoCliente, alt: 'Logotipo del cliente' },
+    client: { light: logo540Claro, dark: logo540Oscuro, alt: '540' },
     photo: { src: fachada, alt: 'Descripción de la foto de portada' },
   },
   argTypes: {

@@ -1,4 +1,5 @@
-/* Form — places the fields with 24 px between them and puts the submit at the end of the row. */
+/* Form — places the fields with 24 px between them and puts the submit at the end of the row
+   (or centered, in a talk). */
 
 .form {
   display: grid;
@@ -13,4 +14,8 @@
 .submit {
   display: flex;
   justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
 }

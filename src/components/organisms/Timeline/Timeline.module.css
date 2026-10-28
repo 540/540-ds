@@ -12,22 +12,22 @@
   position: relative;
   display: grid;
   justify-items: center;
-  gap: var(--space-xl);
-  padding-block-start: calc(var(--space-xl) * 3);
+  gap: var(--space-2xl);
+  padding-block-start: calc(var(--space-xl) * 3 + var(--space-l) * 2);
 }
 
 .step:first-child {
   padding-block-start: 0;
 }
 
-/* The axis between steps: a continuous 2 px line */
+/* The axis between steps: a 2 px line with 16 px of air at each end, so it never touches the text */
 .step::before {
   content: '';
   position: absolute;
-  inset-block-start: 0;
+  inset-block-start: var(--space-l);
   inset-inline-start: 50%;
   inline-size: 2px;
-  block-size: calc(var(--space-xl) * 3 - 8px);
+  block-size: calc(var(--space-xl) * 3);
   transform: translateX(-50%);
   transform-origin: 50% 0;
   background: var(--color-border-strong);
@@ -53,6 +53,25 @@
   display: grid;
   gap: var(--space-s);
   justify-items: center;
+}
+
+/* Lit at the center, told ones at 14 %, the ones to come hidden (as in the talks) */
+.step {
+  transition: opacity 0.35s ease;
+}
+
+.step[data-state='before'] {
+  opacity: 0.14;
+}
+
+.step[data-state='after'] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    transition: none;
+  }
 }
 
 @supports (animation-timeline: view()) {

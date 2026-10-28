@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Card } from '../Card';
 import { Grid, GridItem } from './Grid';
-import { GRID_DEFAULTS, GRID_LAYOUTS } from './types';
+import { GRID_ALIGNS, GRID_DEFAULTS, GRID_LAYOUTS } from './types';
 import doc from './_docs/Grid.md?raw';
 
 const card = (n: number) => (
@@ -18,6 +18,7 @@ const meta = {
   args: { ...GRID_DEFAULTS, compact: false, children: null },
   argTypes: {
     layout: { control: 'inline-radio', options: [...GRID_LAYOUTS], description: '`twelve` con spans; `five` cinco iguales; `fiveCentered` tres y dos.', table: { defaultValue: { summary: GRID_DEFAULTS.layout } } },
+    align: { control: 'inline-radio', options: [...GRID_ALIGNS], description: '`stretch` iguala alturas; `center` centra cada celda en altura.', table: { defaultValue: { summary: GRID_DEFAULTS.align } } },
     compact: { control: 'boolean', description: 'Textos y rellenos un punto más pequeños.', table: { defaultValue: { summary: 'false' } } },
     children: { control: false, table: { type: { summary: 'ReactNode' } } },
     className: { control: false, table: { disable: true } },

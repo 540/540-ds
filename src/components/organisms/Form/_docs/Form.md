@@ -17,7 +17,12 @@ El envoltorio de un formulario: **coloca los campos y pone el envío.** Los camp
 
 ## Variantes
 
-Ninguna: no hay dos formas de un formulario. Lo que cambia es cuántos campos lleva y qué dice el verbo del botón.
+| `align` | Dónde va el envío |
+|---|---|
+| `end` (por defecto) | Al final de la fila: la web |
+| `center` | Centrado: la parada de contacto de una charla, donde todo va centrado |
+
+Lo demás que cambia es cuántos campos lleva y qué dice el verbo del botón.
 
 ## Estados
 

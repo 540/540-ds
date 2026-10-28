@@ -2,7 +2,7 @@ La marquesina: **una tira de piezas cortas que se desplaza sin fin entre dos lí
 
 ## Anatomía
 
-Una franja con 24 px de relleno vertical y una línea de 1 px arriba y abajo. Dentro, la tira: las piezas en `body-m` secundario, separadas 24 px, repetidas una vez para que el bucle no se note. Se desplaza la mitad de su ancho en 40 s y vuelve a empezar.
+Una franja de lado a lado de la ventana, con 24 px de relleno vertical y una línea de 1 px arriba y abajo. Dentro, la tira: las piezas en `body-m` secundario, separadas 24 px. Se repiten hasta que una vuelta cubre la ventana entera y esa vuelta se duplica, así que el final nunca se ve. Se desplaza una vuelta cada 40 s (por cada repetición, para que la velocidad no cambie) y vuelve a empezar.
 
 ## Cuándo usarlo
 

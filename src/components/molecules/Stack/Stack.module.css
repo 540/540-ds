@@ -1,0 +1,33 @@
+/* Stack — pieces one under the other, with one of three steps of air between them.
+   It is what keeps a header, a grid and a note apart inside a stop. */
+
+.stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: stretch;
+}
+
+.gap-s {
+  gap: var(--space-l);
+}
+
+.gap-m {
+  gap: var(--space-2xl);
+}
+
+.gap-l {
+  gap: var(--space-3xl);
+}
+
+/* Full width up to the cap: inside another grid, auto margins alone would shrink it to its content */
+.measure-half {
+  inline-size: 100%;
+  max-inline-size: calc((var(--size-container) - var(--grid-gutter)) / 2);
+  margin-inline: auto;
+}
+
+.measure-wide {
+  inline-size: 100%;
+  max-inline-size: calc(var(--size-container) * 0.75);
+  margin-inline: auto;
+}

@@ -22,6 +22,8 @@ Una charla se monta **solo con los componentes del catálogo**, con sus props, y
 
 ## 1. Estructura de una charla
 
+Para empezar una charla se copia la plantilla **Plantillas/Charla completa** (`src/templates/TalkTemplate`), que tiene todas las paradas que sabe hacer el sistema, y se borra lo que no se cuenta.
+
 Una charla es un `Deck` con este orden, y no otro:
 
 1. **`Cover`**: la portada. Una sola.
@@ -53,7 +55,11 @@ Reglas de estructura:
 | Un ciclo | `Cycle` | Un `Flow` que vuelve al principio |
 | Un diagrama | `Schema` dentro de `SchemaFrame` | Una imagen de un diagrama |
 | Una pantalla | `Screenshot` | `Image` con una captura |
-| Cifras | `Metric` en un `Grid` + `MetricNote` | Números grandes en `Text` |
+| Varias piezas en una parada | `Stack` | Un `div` con margen o `gap` |
+| Cifras | `Metric` en un `Grid` + `MetricNote`; `Count` si la cifra sube | Números grandes en `Text` |
+| Cantidades comparadas o un ranking | `Bars` | Una lista de números |
+| Partes de un todo | `Share` | Un gráfico circular |
+| Una evolución en el tiempo | `Schema` con `schema.series` y `schema.accent` | Una imagen de una gráfica |
 | Herramientas o logos | `Tools`, `LogoCarousel`, `Marquee` | Logos sueltos en una rejilla |
 | Algo que se cuenta por partes | `Steps` | Varias paradas casi iguales |
 | Un detalle ampliado | `Sheet` dentro de un `Step` | `Dialog` |
@@ -112,7 +118,7 @@ Cada bloque empieza con una foto. Las normas de esa foto:
 El aire lo ponen las piezas. Quien monta la charla no mide nada.
 
 - **`Slide` pone el margen de la parada** (`--padding-page` a los lados y `--padding-section-block` arriba y abajo) y centra el contenido en un escenario de 1200 px. No se añaden márgenes, ni `div` con `padding`, ni separadores.
-- **Entre piezas de una parada, solo los huecos que dan los componentes** (`Grid`, `SectionHeader`, `Section`). Si dos piezas quedan pegadas, es que falta la pieza que las contiene, no un margen.
+- **Entre piezas de una parada, solo los huecos que dan los componentes** (`Stack`, `Grid`, `SectionHeader`, `Section`). Si dos piezas quedan pegadas, es que falta la pieza que las contiene, no un margen.
 - **Nada sale del escenario de 1200 px** salvo lo que ya es de lado a lado por diseño: la foto de bloque, `CardList`, `Marquee`, `SchemaFrame`.
 - **Los textos llevan su medida** (`measure`): `half` para descripciones y cuerpos, `wide` para frases, `prose` para texto corrido. Un párrafo de más de 70 caracteres por línea no se acepta.
 - **Columnas: cuatro como máximo en proyección**, cinco solo con `Grid` `five` o `fiveCentered`. Dos columnas desiguales solo 7 + 5 u 8 + 4.
@@ -128,7 +134,7 @@ El amarillo de 540 es **de fondo y de trazo**. En una charla aparece en estos si
 | Las manchas del fondo (`Deck` con `blobs`) | Siempre, ya atenuadas al 11 % y al 7 %. No se suben |
 | Las píldoras de un `Schema` (`schema.pill`) | Una o dos píldoras por diagrama |
 | El nodo «preocupación» de un `Cycle` (`marks` con `yellow`) | Un nodo por anillo |
-| Una serie destacada en una gráfica (`schema.accent*`) | Una serie por gráfica |
+| Una serie destacada en una gráfica (`schema.accent*`, o `tone="accent"` en `Bars` y `Share`) | Una serie o una fila por gráfica |
 | El anillo de foco del teclado | Lo pone el sistema |
 
 **Nunca** en texto, en fondos de parada o de tarjeta, en bordes, en iconos, en botones, en subrayados ni en fondos de hoja. **Cuota por charla: fuera de las manchas, el amarillo aparece en tres paradas como máximo.** Si una charla pide más, es que se está usando para decorar, y el amarillo no decora: señala.
@@ -162,6 +168,8 @@ Los efectos son los de las charlas anteriores y **ya están dentro de los compon
 | Los logos que pasan | `LogoCarousel` | Uno por charla |
 | El latido | `Heartbeat` | Uno por charla |
 | La barra que se llena | `ProgressBar` | Con `Steps` o sola |
+| Las cifras que suben (`data-cuenta`) | `Count` | Cuatro por parada como máximo |
+| Las barras que crecen | `Bars`, `Share` | Una gráfica que crece por paso |
 | La barra de arriba que se esconde y el índice lateral | `Deck` | Siempre |
 
 Guardarraíles del movimiento:

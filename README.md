@@ -43,9 +43,11 @@ src/
     manifest.ts            nombres y descripciones para las páginas de Fundamentos
   foundations/       las páginas de Fundamentos de Storybook
   components/
-    atoms/           Text, Button, Logo, Image, ThemeToggle, Bullets, MenuItem, SocialIcon
-    molecules/       SectionHeader, Section, Card, Menu, CaseItem, TeamMember, Footer, NavMobile, Field, Carousel, Dialog
-    organisms/       Deck, Slide, Cover, Closing, Statements, BlockTitle, Story, Quote, Punchline, Timeline, Flow, Tools, Marquee, CardList, Form, LogoCarousel, DeckFooter, Blobs
+    atoms/           Text, Button, Logo, Image, ThemeToggle, Bullets, MenuItem, SocialIcon, Count
+    molecules/       SectionHeader, Section, Card, Menu, CaseItem, TeamMember, Footer, NavMobile, Field, Carousel, Dialog, Grid, Question, Lists, Screenshot, Metric, Stack
+    organisms/       Deck, Slide, Cover, Closing, Statements, BlockTitle, Story, Quote, Punchline, Timeline, Flow, Tools, Marquee, CardList, Form, LogoCarousel, DeckFooter, Blobs, Steps, Cycle, Sheet, ProgressBar, Heartbeat, Spotlight, Schema, Bars, Share
+  templates/         TalkTemplate: la charla completa, con todas las paradas posibles
+  hooks/             useReveal: cuándo una pieza entra en pantalla (contadores y gráficas)
   styles/global.css  reset y estilos base
   assets/            logotipo de 540 y muestras para las historias
 .storybook/          configuración de Storybook (tema con la marca, barra de herramientas, portada de cada página)
