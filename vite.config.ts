@@ -13,7 +13,6 @@ export default defineConfig({
   plugins: [react()],
   test: {
     projects: [{
-      // Server render of every story in plain Node: catches browser access during render
       extends: true,
       test: {
         name: 'ssr',

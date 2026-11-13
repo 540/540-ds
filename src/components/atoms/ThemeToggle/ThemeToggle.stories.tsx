@@ -45,7 +45,6 @@ type Story = StoryObj<typeof meta>;
 
 /* The real thing: the toggle drives the theme of the whole canvas through <html data-theme>. */
 function LiveToggle() {
-  // Guarded so the story also renders without a browser (src/ssr.test.tsx)
   const [dark, setDark] = useState(() => typeof document !== 'undefined' && document.documentElement.dataset.theme === 'dark');
   return (
     <ThemeToggle

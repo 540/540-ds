@@ -3,7 +3,6 @@ import styles from './LogoCarousel.module.css';
 import { LOGO_CAROUSEL_DEFAULTS } from './types';
 import type { LogoCarouselProps } from './types';
 
-/* Same breakpoints as --slots in the CSS, which lays the slots out on its own */
 const WIDE = '(min-width: 1024px)';
 const MEDIUM = '(min-width: 600px)';
 
@@ -15,7 +14,6 @@ function subscribeSlots(onChange: () => void) {
 
 const readSlots = () => (window.matchMedia(WIDE).matches ? 7 : window.matchMedia(MEDIUM).matches ? 5 : 3);
 
-/** The server has no window: it renders the narrowest strip, as the CSS does, and the browser corrects it. */
 const serverSlots = () => 3;
 
 function useSlots() {
