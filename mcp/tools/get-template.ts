@@ -1,4 +1,4 @@
-import { defineTool, error, json, pieceTypeSchema } from './shared.ts';
+import { defineTool, error, json, pieceTypeSchema } from './shared.js';
 
 export const getTemplate = defineTool({
   name: 'get-template',

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { defineTool, findComponent, json, notFound } from './shared.ts';
+import { defineTool, findComponent, json, notFound } from './shared.js';
 
 export const getComponent = defineTool({
   name: 'get-component',

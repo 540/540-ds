@@ -8,7 +8,6 @@
 
     /* Node ESM, run with tsx and bundled for Vercel */
     "module": "nodenext",
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
@@ -21,5 +20,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["scripts", "mcp"]
+  "include": ["scripts", "mcp", "api"]
 }

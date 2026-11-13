@@ -2,9 +2,9 @@ import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { beforeAll, describe, expect, it } from 'vitest';
-import { buildMetadata } from '../scripts/build-mcp-metadata.ts';
-import { createServer } from './server.ts';
-import type { Metadata } from './types.ts';
+import { buildMetadata } from '../scripts/build-mcp-metadata.js';
+import { createServer } from './server.js';
+import type { Metadata } from './types.js';
 
 // A real MCP client talking to the server in memory, over metadata built from the current code.
 let metadata: Metadata;
