@@ -1,36 +1,15 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
 import { JSDOM, VirtualConsole } from 'jsdom';
+import { createHarness, openPieces } from './lib/pieces-harness.mjs';
 
 const dir = path.resolve(import.meta.dirname, '..', 'pieces');
-const manifest = JSON.parse(await readFile(path.join(dir, 'manifest.json'), 'utf8'));
-const load = (file) => import(pathToFileURL(path.join(dir, file)).href);
-const text = (file) => readFile(path.join(dir, file), 'utf8');
+const { manifest, load, text } = await openPieces(dir);
 
 const used = ['Deck', 'Slide', 'Text', 'Steps', 'Count', 'Carousel', 'Statements'];
 const rt = await load(manifest.runtime.server);
 const registry = rt.registryOf(...(await Promise.all(used.map((name) => load(manifest.components[name].server)))));
-const h = rt.createElement;
-const get = (name) => registry.get(name);
-
-let n = 0;
-const id = () => `i${++n}-`;
-const marks = {};
-const mark = (html) => {
-  const key = `m${Object.keys(marks).length}`;
-  marks[key] = html;
-  return h('ds-mark', { 'data-m': key });
-};
-const fill = (html) => html.replace(/<ds-mark data-m="(m\d+)"><\/ds-mark>/g, (_, key) => marks[key]);
-
-const slots = {};
-const slot = (element) => {
-  const key = `s${Object.keys(slots).length}`;
-  slots[key] = fill(rt.renderStatic(element, id()));
-  return { $slot: key };
-};
-const island = (name, props) => rt.renderIsland(registry, { name, props, id: id(), slots });
+const { h, get, mark, slots, slot, island } = createHarness(rt, registry);
 
 const steps = island('Steps', {
   total: 1,

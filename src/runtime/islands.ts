@@ -1,4 +1,4 @@
-import { cloneElement, createElement, isValidElement } from 'react';
+import { cloneElement, createElement, isValidElement, useEffect } from 'react';
 import type { ComponentType, ReactNode } from 'react';
 
 export type Encoded = string | number | boolean | null | Encoded[] | { [key: string]: Encoded };
@@ -10,7 +10,19 @@ export const SLOT_TAG = 'ds-slot';
 
 type SlotProps = { id: string; html: string };
 
+let onSlotMount: (() => void) | undefined;
+
+/** Called whenever a Slot mounts: its HTML may hold islands that are new, unhydrated nodes. */
+export function whenSlotMounts(callback: () => void) {
+  onSlotMount = callback;
+}
+
 export function Slot({ id, html }: SlotProps) {
+  // A Slot rebuilt on the client (a remount, a node created during hydration) writes its HTML again,
+  // so the islands inside are new nodes: ask the runtime for another pass
+  useEffect(() => {
+    onSlotMount?.();
+  }, []);
   return createElement(SLOT_TAG, { 'data-s': id, dangerouslySetInnerHTML: { __html: html } });
 }
 

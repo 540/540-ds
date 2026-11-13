@@ -9,6 +9,13 @@ import type { SheetProps } from './types';
  * Inside a Step it opens with the step; it hides as soon as its stop (the step of a timeline,
  * or the whole section) leaves the center of the window.
  */
+/** The stop the Deck counts for el: its outermost [data-stop], or else its section. */
+function stopOf(el: Element): Element | null {
+  let stop: Element | null = null;
+  for (let cur = el.parentElement?.closest('[data-stop]'); cur; cur = cur.parentElement?.closest('[data-stop]')) stop = cur;
+  return stop ?? el.closest('section');
+}
+
 export function Sheet({ open, kicker, title, description, children, className }: SheetProps) {
   const stepOn = useStepOn();
   const { total, guided } = useSteps();
@@ -20,7 +27,7 @@ export function Sheet({ open, kicker, title, description, children, className }:
   // The sheet only shows while its stop holds the center of the window
   useEffect(() => {
     const check = () => {
-      const stop = anchor.current?.closest('[data-stop]') ?? anchor.current?.closest('section');
+      const stop = anchor.current ? stopOf(anchor.current) : null;
       if (!stop) return setOnScreen(true);
       const r = stop.getBoundingClientRect();
       const c = window.innerHeight / 2;

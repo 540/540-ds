@@ -5,6 +5,7 @@ import path from 'node:path';
 import react from '@vitejs/plugin-react';
 import { bundle } from 'lightningcss';
 import { build } from 'vite';
+import { preactAlias } from './lib/preact-alias.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const out = path.join(root, 'pieces');
@@ -22,13 +23,7 @@ const SHARED = {
 };
 const STEPS_CONTEXT = path.join(root, 'src/components/organisms/Steps/StepsContext.ts');
 
-const COMPAT = path.join(root, 'src/runtime/compat/react.ts');
-const PREACT_ALIAS = [
-  { find: /^react$/, replacement: COMPAT },
-  { find: /^react-dom$/, replacement: COMPAT },
-  { find: /^react-dom\/client$/, replacement: 'preact/compat/client' },
-  { find: /^react\/jsx-(dev-)?runtime$/, replacement: 'preact/compat/jsx-runtime' },
-];
+const PREACT_ALIAS = preactAlias(root);
 
 const FONT = 'dm-sans-latin-opsz-normal.woff2';
 const FONT_DIR = path.join(root, 'node_modules/@fontsource-variable/dm-sans');
