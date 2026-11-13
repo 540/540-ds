@@ -187,3 +187,7 @@ npm pack            # crea 540deg-ds-X.Y.Z.tgz, instalable con npm install ./rut
 1. Este código.
 2. Las charlas anteriores (`base-540.css`, `navegacion-540.js` y su guía de estilos), de donde salen las piezas de presentación.
 3. El archivo de Figma «540 · Design System», de donde se copian las fichas de los componentes. Si Figma y el código discrepan, manda el código.
+
+## Licencia
+
+El código está bajo [Apache License 2.0](LICENSE). La licencia no da derechos sobre el nombre, el logo ni la identidad visual de 540, ni sobre las fotos de muestra: siguen siendo de 540 (ver [NOTICE](NOTICE)). DM Sans va con su propia licencia, SIL OFL 1.1.

@@ -2,7 +2,7 @@
   "name": "@540deg/ds",
   "version": "0.1.0",
   "description": "Sistema de diseño de 540: componentes React, tokens y estilos para montar charlas y webs.",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/540/540-ds.git"
@@ -24,7 +24,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "NOTICE"
   ],
   "publishConfig": {
     "access": "public",
