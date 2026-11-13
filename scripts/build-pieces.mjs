@@ -22,6 +22,14 @@ const SHARED = {
 };
 const STEPS_CONTEXT = path.join(root, 'src/components/organisms/Steps/StepsContext.ts');
 
+const COMPAT = path.join(root, 'src/runtime/compat/react.ts');
+const PREACT_ALIAS = [
+  { find: /^react$/, replacement: COMPAT },
+  { find: /^react-dom$/, replacement: COMPAT },
+  { find: /^react-dom\/client$/, replacement: 'preact/compat/client' },
+  { find: /^react\/jsx-(dev-)?runtime$/, replacement: 'preact/compat/jsx-runtime' },
+];
+
 const FONT = 'dm-sans-latin-opsz-normal.woff2';
 const FONT_DIR = path.join(root, 'node_modules/@fontsource-variable/dm-sans');
 
@@ -44,6 +52,11 @@ const shared = () => ({
   css: { modules: { generateScopedName: scopedName } },
 });
 
+const withPreact = () => {
+  const base = shared();
+  return { ...base, resolve: { alias: PREACT_ALIAS } };
+};
+
 async function findComponents() {
   const list = [];
   for (const group of ['atoms', 'molecules', 'organisms']) {
@@ -60,7 +73,7 @@ async function findComponents() {
 
 async function buildServer(components) {
   const graph = {};
-  const base = shared();
+  const base = withPreact();
   await build({
     ...base,
     plugins: [
@@ -130,13 +143,13 @@ async function buildIsland(component) {
   const file = path.join(out, 'islands', `${component.name}.js`);
   const code = await readFile(file, 'utf8');
   if (/createContext\(/.test(code)) throw new Error(`${component.name} island bundles its own React context; share it through the runtime`);
-  if (/react\.production|__SECRET_INTERNALS|__CLIENT_INTERNALS/.test(code)) throw new Error(`${component.name} island bundles React`);
+  if (/react\.production|__SECRET_INTERNALS|__CLIENT_INTERNALS|\.__H\b|options\.__b/.test(code)) throw new Error(`${component.name} island bundles React or Preact`);
   return `islands/${component.name}.js`;
 }
 
 async function buildRuntime() {
   await build({
-    ...shared(),
+    ...withPreact(),
     build: {
       outDir: path.join(out, 'islands'),
       emptyOutDir: false,
@@ -187,7 +200,7 @@ async function writeManifest(components, graph, islands) {
   const manifest = {
     name: pkg.name,
     version: `${pkg.version}+${commit}`,
-    react: JSON.parse(await readFile(path.join(root, 'node_modules/react/package.json'), 'utf8')).version,
+    preact: JSON.parse(await readFile(path.join(root, 'node_modules/preact/package.json'), 'utf8')).version,
     base: { css: 'css/base.css', fonts: [`fonts/${FONT}`], fontLicense: 'fonts/OFL.txt' },
     runtime: { server: 'server/runtime.js', client: 'islands/runtime.js' },
     components: Object.fromEntries(
