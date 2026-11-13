@@ -188,7 +188,7 @@ import type { DeckProps } from '@540deg/ds';
 2. Sube la etiqueta: `git push origin vX.Y.Z`.
 3. El flujo `.github/workflows/publish.yml` comprueba que la etiqueta coincide con la versión, pasa tipos, lint y SSR, construye la librería y la publica en npm con *provenance*.
 
-Necesita el secreto `NPM_TOKEN` en el repositorio (Settings → Secrets and variables → Actions): un token de npm de tipo *automation* o *granular* con permiso de publicación en el ámbito `@540deg`.
+No usa tokens: publica con *Trusted Publishing* de npm. En npmjs.com, `@540deg/ds` → Settings → Trusted Publisher tiene dado de alta este repositorio y el flujo `publish.yml`. Si se renombra el fichero del flujo o el repositorio, hay que cambiarlo también allí.
 
 Para probar el paquete en local sin publicarlo:
 
