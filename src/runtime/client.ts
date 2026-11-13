@@ -8,12 +8,6 @@ import * as StepsContext from '../components/organisms/Steps/StepsContext';
 import { ISLAND_TAG, SLOT_TAG, revive } from './islands';
 import type { Encoded, Registry } from './islands';
 
-/**
- * The browser runtime: React plus the modules every island must share (one Steps context for
- * the whole page). Islands are IIFE scripts that read these from the global and register their
- * components; once the page has loaded, every <ds-island> hydrates.
- */
-
 type Hydrated = HTMLElement & { __ds540?: true };
 
 const registry: Registry = new Map();
