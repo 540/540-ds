@@ -1,11 +1,16 @@
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { copyFile, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import react from '@vitejs/plugin-react';
 import { bundle } from 'lightningcss';
 import { build } from 'vite';
 import { preactAlias } from './lib/preact-alias.mjs';
+import { readContract, tagName } from './lib/tag-contract.mjs';
+import { PHRASING, SVG, SVG_CONTAINERS } from './render/rules.mjs';
+
+process.env.NODE_ENV = 'production';
 
 const root = path.resolve(import.meta.dirname, '..');
 const out = path.join(root, 'pieces');
@@ -139,7 +144,7 @@ async function buildIsland(component) {
   const code = await readFile(file, 'utf8');
   if (/createContext\(/.test(code)) throw new Error(`${component.name} island bundles its own React context; share it through the runtime`);
   if (/react\.production|__SECRET_INTERNALS|__CLIENT_INTERNALS|\.__H\b|options\.__b/.test(code)) throw new Error(`${component.name} island bundles React or Preact`);
-  return `islands/${component.name}.js`;
+  return { file: `islands/${component.name}.js`, readsSteps: code.includes(SHARED['ds540:steps-context']) };
 }
 
 async function buildRuntime() {
@@ -201,12 +206,31 @@ async function writeManifest(components, graph, islands) {
     components: Object.fromEntries(
       components.map((c) => {
         const file = byEntry[c.name];
-        return [c.name, { group: c.group, server: `server/${file}`, exports: graph[file].exports.filter((e) => /^[A-Z][a-z]/.test(e)), css: [...new Set(cssOf(file))], island: islands[c.name] ?? null }];
+        const island = islands[c.name];
+        return [c.name, { group: c.group, server: `server/${file}`, exports: graph[file].exports.filter((e) => /^[A-Z][a-z]/.test(e)), css: [...new Set(cssOf(file))], island: island?.file ?? null, readsSteps: island?.readsSteps ?? false }];
       }),
     ),
+    tags: await tagsOf(components),
+    phrasing: PHRASING,
+    svg: { containers: SVG_CONTAINERS, elements: SVG.elements, attributes: SVG.attributes, classes: Object.keys((await import(pathToFileURL(path.join(out, 'server', byEntry.Schema)).href)).schema) },
   };
   await writeFile(path.join(out, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
   return manifest;
+}
+
+async function tagsOf(components) {
+  const contract = readContract(root, components);
+  const tags = {};
+  for (const [name, entry] of Object.entries(contract)) {
+    const tag = tagName(name);
+    if (tags[tag]) throw new Error(`${name} and ${tags[tag].export} share the tag <${tag}>`);
+    tags[tag] = { export: name, ...entry };
+  }
+  return Object.fromEntries(Object.entries(tags).sort(([a], [b]) => a.localeCompare(b)));
+}
+
+async function copyRenderer() {
+  await cp(path.join(root, 'scripts/render'), path.join(out, 'render'), { recursive: true, filter: (file) => !/\.(test\.\w+|d\.mts)$/.test(file) });
 }
 
 const components = await findComponents();
@@ -217,4 +241,5 @@ const islandComponents = components.filter((c) => ISLANDS.includes(c.name));
 const islands = Object.fromEntries(await Promise.all(islandComponents.map(async (c) => [c.name, await buildIsland(c)])));
 await buildBase();
 const manifest = await writeManifest(components, graph, islands);
+await copyRenderer();
 console.log(`pieces ${manifest.version}: ${components.length} components, ${Object.keys(islands).length} islands → ${path.relative(root, out)}/`);
