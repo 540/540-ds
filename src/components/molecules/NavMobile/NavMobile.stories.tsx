@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
-import { ThemeToggle } from '../../atoms/ThemeToggle';
 import { NavMobile } from './NavMobile';
 import { NAV_MOBILE_DEFAULTS } from './types';
 import doc from './_docs/NavMobile.md?raw';
+import { LiveThemeToggle } from '../../atoms/ThemeToggle/LiveThemeToggle';
 
 const DESTINOS = [
   { href: '#manifiesto', label: 'Manifiesto' },
@@ -13,19 +12,6 @@ const DESTINOS = [
   { href: '#equipo', label: 'Equipo' },
   { href: '#contacto', label: 'Contacto' },
 ];
-
-function LiveToggle() {
-  const [dark, setDark] = useState(() => document.documentElement.dataset.theme === 'dark');
-  return (
-    <ThemeToggle
-      dark={dark}
-      onToggle={(next) => {
-        setDark(next);
-        document.documentElement.dataset.theme = next ? 'dark' : 'light';
-      }}
-    />
-  );
-}
 
 const meta = {
   title: 'Moléculas/NavMobile',
@@ -49,7 +35,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   tags: ['dev'],
   parameters: { viewport: { defaultViewport: 'mobile' } },
-  render: (args) => <NavMobile {...args} end={<LiveToggle />} />,
+  render: (args) => <NavMobile {...args} end={<LiveThemeToggle />} />,
 };
 
 export const Barra: Story = {
@@ -62,7 +48,7 @@ export const Barra: Story = {
   },
   render: () => (
     <div style={{ width: 375 }}>
-      <NavMobile items={DESTINOS} end={<LiveToggle />} />
+      <NavMobile items={DESTINOS} end={<LiveThemeToggle />} />
     </div>
   ),
 };
