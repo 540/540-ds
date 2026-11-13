@@ -13,6 +13,14 @@ export default defineConfig({
   plugins: [react()],
   test: {
     projects: [{
+      // Server render of every story in plain Node: catches browser access during render
+      extends: true,
+      test: {
+        name: 'ssr',
+        environment: 'node',
+        include: ['src/ssr.test.tsx'],
+      },
+    }, {
       extends: true,
       plugins: [
       // The plugin will run tests for the stories defined in your Storybook config
