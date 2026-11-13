@@ -1,0 +1,23 @@
+{
+  "functions": [
+    {
+      "source": "firebase/functions",
+      "codebase": "mcp",
+      "runtime": "nodejs24",
+      "ignore": [".gitignore", "*.log"],
+      "predeploy": ["npm --prefix \"$PROJECT_DIR\" run build:firebase"]
+    }
+  ],
+  "hosting": {
+    "public": "firebase/public",
+    "cleanUrls": true,
+    "redirects": [{ "source": "/", "destination": "https://ds.540deg.com", "type": 302 }],
+    "rewrites": [{ "source": "/mcp", "function": { "functionId": "mcp", "region": "europe-west1", "pinTag": false } }]
+  },
+  "emulators": {
+    "functions": { "port": 5001 },
+    "hosting": { "port": 5050 },
+    "ui": { "enabled": false },
+    "singleProjectMode": true
+  }
+}

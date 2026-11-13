@@ -3,7 +3,7 @@ import { buildMetadata } from '../scripts/build-mcp-metadata.js';
 import { handleMcpRequest } from './http.js';
 import type { Metadata } from './types.js';
 
-// The HTTP handler the Vercel function uses, driven with Web Requests as a remote client would send them.
+// The HTTP handler the Firebase function uses, driven with Web Requests as a remote client would send them.
 let metadata: Metadata;
 
 beforeAll(() => {
