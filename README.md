@@ -138,9 +138,24 @@ Deja en `pieces/` lo que la skill necesita para montar un HTML autocontenido sin
 | `css/` | `base.css` (tokens, reset y DM Sans) y una hoja por componente. |
 | `islands/` | `runtime.js` (Preact + hidratación) y un script por cada uno de los 14 componentes interactivos. |
 | `fonts/` | DM Sans variable, subconjunto latino, con su licencia SIL OFL. |
-| `manifest.json` | Versión, la de Preact (`preact`; antes `react`), y por componente: su módulo, sus hojas en orden de carga y su isla, si la tiene. |
+| `manifest.json` | Versión, la de Preact (`preact`; antes `react`), y por componente: su módulo, sus hojas en orden de carga su isla, si la tiene, y si lee los pasos de `Steps` (`readsSteps`). También el contrato de etiquetas: `tags`, `phrasing` y `svg`. |
+| `render/` | El render de charlas: convierte un documento con etiquetas `<rev-…>` en un `.html` autocontenido. Corre con `node`, sin instalar nada ni red. |
 
 Cómo funciona una isla (el contrato está en `src/runtime/islands.ts`): el componente se pinta en el servidor dentro de `<ds-island>` con sus props en JSON; en el navegador, `runtime.js` lo hidrata. El contenido estático que recibe como hijo va en `<ds-slot>` y Preact no lo toca, así que las islas que hay dentro se hidratan solas; si un slot se vuelve a montar en el cliente, el runtime hidrata las islas nuevas que trae. Lo que lee el contexto de `Steps` (`Step`, `Count`, `Bars`, `Sheet`, `Schema`, `Share`) entra en el árbol de la isla de `Steps` en vez de ir como slot. `Dialog` no es isla: se abre y se cierra con `open` y `onClose`, y una función no viaja en el JSON de las props; quien lo use desde una isla lo lleva dentro de su script. `check:pieces` monta una charla con Deck, Steps, Count, Carousel y Statements y comprueba en jsdom que todo hidrata sin errores.
+
+### Render de charlas
+
+```bash
+npm run render -- charla.rev.html            # escribe charla.html
+node pieces/render/cli.mjs charla.rev.html   # lo mismo, con las piezas ya construidas
+npm run test:render
+```
+
+El contrato de etiquetas, acordado con la pista B (el MCP), está en `scripts/render/CONTRATO.md`. El HTML sale con solo el CSS de los componentes usados, DM Sans y las imágenes incrustadas, y JavaScript solo si hay alguna isla. Si una etiqueta, un atributo o un valor no existe, falla y los lista todos.
+
+### Envío al toolkit
+
+`.github/workflows/toolkit.yml` construye las piezas en cada push a `main` (o a mano), pasa `test:render` y `check:pieces`, y abre o actualiza un PR en `540/540-claude-toolkit` (rama `540-ds/update`) que copia `pieces/` en `plugins/design/540-ds/`. La versión va en `manifest.json` y en el título del PR. Necesita el secreto `TOOLKIT_TOKEN` en este repo: un token *fine-grained* con permiso de lectura y escritura en *Contents* y *Pull requests* de `540-claude-toolkit`.
 
 `TalkTemplate` no entra en las piezas: es una charla de ejemplo con fotos de muestra, no un componente que se rellene. La carpeta no se guarda en Git.
 

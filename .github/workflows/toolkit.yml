@@ -1,0 +1,54 @@
+# Builds the component pieces and the talk renderer, and opens (or updates) a PR in
+# 540/540-claude-toolkit that puts them in plugins/design/540-ds/.
+# Requires the TOOLKIT_TOKEN secret: a fine-grained token with Contents and Pull requests
+# read/write on 540/540-claude-toolkit.
+name: Ship pieces to the toolkit
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toolkit
+  cancel-in-progress: true
+
+jobs:
+  ship:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsc -p tsconfig.app.json --noEmit
+      - run: npm run test:render
+      - run: npm run check:pieces
+      - id: version
+        run: echo "version=$(node -p "require('./pieces/manifest.json').version")" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: 540/540-claude-toolkit
+          token: ${{ secrets.TOOLKIT_TOKEN }}
+          path: toolkit
+      - run: |
+          mkdir -p toolkit/plugins/design/540-ds
+          rsync -a --delete --exclude demo.html --exclude samples pieces/ toolkit/plugins/design/540-ds/
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          path: toolkit
+          token: ${{ secrets.TOOLKIT_TOKEN }}
+          branch: 540-ds/update
+          commit-message: 'feat(design): 540-ds ${{ steps.version.outputs.version }}'
+          title: 'feat(design): 540-ds ${{ steps.version.outputs.version }}'
+          body: |
+            Piezas y render de 540-ds `${{ steps.version.outputs.version }}`, de 540/540-ds@${{ github.sha }}.
+
+            Se genera solo en cada push a `main` de 540-ds; si este PR sigue abierto, el siguiente push lo actualiza.
+          add-paths: plugins/design/540-ds
