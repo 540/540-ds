@@ -30,6 +30,8 @@ Otros comandos útiles:
 | `npx vitest run --project=storybook` | Pasa las pruebas de todas las historias (render y accesibilidad) |
 | `npx tsc -p tsconfig.app.json --noEmit` | Comprueba los tipos de TypeScript |
 | `npm run build:lib` | Construye la librería npm en `dist/` (ver «Usarlo en un proyecto React») |
+| `npm run mcp:inspect` | Abre el MCP del sistema en MCP Inspector (ver [`mcp/README.md`](mcp/README.md)) |
+| `npm run test:mcp` | Pasa las pruebas del MCP |
 
 ## Cómo está organizado
 
