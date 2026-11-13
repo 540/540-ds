@@ -34,6 +34,10 @@ Dentro de una `Timeline` se cierra en cuanto su paso deja el centro; en cualquie
 
 El recorrido es el alto de la hoja: a la velocidad de un botón se leería como un salto, y aquí lo que se quiere es que el detalle «venga» a la pantalla.
 
+### Su paso no se anima
+
+Un Step entra subiendo 12 px y fundiéndose; el que lleva una Sheet no, porque la hoja ya trae su entrada y su salida. Si el paso se moviera, la hoja y el velo seguirían al paso en vez de a la ventana mientras dura la animación, y se verían a media pantalla.
+
 ### La escala baja a web
 
 En proyección el cuerpo va a 20 px; dentro de la hoja vuelve a 16 para que un diagrama con sus notas quepa entero.

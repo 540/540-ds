@@ -6,6 +6,7 @@ import { defineConfig } from 'vite';
 import path from 'node:path';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
+import { preactAlias } from './scripts/lib/preact-alias.mjs';
 const dirname = import.meta.dirname;
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
@@ -19,6 +20,22 @@ export default defineConfig({
         environment: 'node',
         include: ['src/ssr.test.tsx'],
         setupFiles: ['src/ssr.setup.ts'],
+      },
+    }, {
+      extends: true,
+      // The islands ship on Preact: same stories, with react resolved to preact/compat
+      resolve: {
+        alias: [
+          ...preactAlias(dirname),
+          { find: /^lucide-react$/, replacement: path.join(dirname, 'node_modules/lucide-react/dist/esm/lucide-react.mjs') },
+        ],
+      },
+      test: {
+        name: 'islands',
+        environment: 'node',
+        include: ['src/islands.test.tsx'],
+        setupFiles: ['src/ssr.setup.ts'],
+        server: { deps: { inline: [/storybook/, /lucide-react/] } },
       },
     }, {
       extends: true,

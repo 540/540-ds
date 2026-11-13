@@ -1,10 +1,12 @@
 import * as React from 'react';
 import * as jsxRuntime from 'react/jsx-runtime';
 import * as ReactDOM from 'react-dom';
-import { hydrateRoot } from 'react-dom/client';
 import * as ReactDOMClient from 'react-dom/client';
+import { hydrate } from 'preact';
+import type { VNode } from 'preact';
 import * as StepsContext from '../components/organisms/Steps/StepsContext';
-import { ISLAND_TAG, SLOT_TAG, registryOf, revive } from './islands';
+import { IdPrefix, whileHydrating } from './compat/react';
+import { ISLAND_TAG, SLOT_TAG, registryOf, revive, whenSlotMounts } from './islands';
 import type { Encoded, Registry } from './islands';
 
 type Hydrated = HTMLElement & { __ds540?: true };
@@ -28,6 +30,8 @@ function scheduleHydrate() {
   });
 }
 
+whenSlotMounts(scheduleHydrate);
+
 function slotHtml(id: string): string {
   const slot = document.querySelector(`${SLOT_TAG}[data-s="${CSS.escape(id)}"]`);
   // A slot the server did not render (a conditional prop) has no HTML; the client does not render it either
@@ -47,14 +51,8 @@ function hydrateIslands() {
     el.__ds540 = true;
     try {
       const props = revive(JSON.parse(el.dataset.p ?? '{}') as Encoded, registry, slotHtml) as Record<string, unknown>;
-      hydrateRoot(el, React.createElement(type, props), {
-        identifierPrefix: el.dataset.id ?? '',
-        onRecoverableError: (error) => {
-          console.error(`540-ds: island "${name}" did not match its HTML`, error);
-          // React rendered it again from scratch, replacing the slots' DOM: the islands inside are new nodes
-          scheduleHydrate();
-        },
-      });
+      const vnode = React.createElement(IdPrefix.Provider as never, { value: el.dataset.id ?? '' }, React.createElement(type, props));
+      whileHydrating(() => hydrate(vnode as unknown as VNode, el));
     } catch (error) {
       console.error(`540-ds: island "${name}" failed to hydrate`, error);
     }
