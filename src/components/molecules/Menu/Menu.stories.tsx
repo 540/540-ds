@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
-import { ThemeToggle } from '../../atoms/ThemeToggle';
 import { Menu } from './Menu';
 import { MENU_DEFAULTS } from './types';
 import doc from './_docs/Menu.md?raw';
+import { LiveThemeToggle } from '../../atoms/ThemeToggle/LiveThemeToggle';
 
 const DESTINOS = [
   { href: '#manifiesto', label: 'Manifiesto' },
@@ -13,19 +12,6 @@ const DESTINOS = [
   { href: '#equipo', label: 'Equipo' },
   { href: '#contacto', label: 'Contacto' },
 ];
-
-function LiveToggle() {
-  const [dark, setDark] = useState(() => typeof document !== 'undefined' && document.documentElement.dataset.theme === 'dark');
-  return (
-    <ThemeToggle
-      dark={dark}
-      onToggle={(next) => {
-        setDark(next);
-        document.documentElement.dataset.theme = next ? 'dark' : 'light';
-      }}
-    />
-  );
-}
 
 const meta = {
   title: 'Moléculas/Menu',
@@ -46,7 +32,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = { tags: ['dev'], render: (args) => <Menu {...args} end={<LiveToggle />} /> };
+export const Playground: Story = { tags: ['dev'], render: (args) => <Menu {...args} end={<LiveThemeToggle />} /> };
 
 export const Barra: Story = {
   parameters: {
@@ -56,7 +42,7 @@ export const Barra: Story = {
       },
     },
   },
-  render: () => <Menu items={DESTINOS} end={<LiveToggle />} />,
+  render: () => <Menu items={DESTINOS} end={<LiveThemeToggle />} />,
 };
 
 export const SinConmutador: Story = {
