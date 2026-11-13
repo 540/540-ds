@@ -25,3 +25,6 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Per-component pieces (npm run build:pieces)
+pieces

@@ -1,6 +1,26 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
 
+const WRAPPERS = new Set(['DS-SLOT', 'DS-ISLAND']);
+
+function slidesOf(parent: Element): HTMLElement[] {
+  return Array.from(parent.children).flatMap((el) => (WRAPPERS.has(el.tagName) ? slidesOf(el) : el.tagName === 'SECTION' ? [el as HTMLElement] : []));
+}
+
+/** The element after el, looking through the ds-slot/ds-island wrappers as slidesOf does. */
+function nextThroughWrappers(el: Element): Element | null {
+  let cur: Element = el;
+  while (!cur.nextElementSibling && cur.parentElement && WRAPPERS.has(cur.parentElement.tagName)) cur = cur.parentElement;
+  let next = cur.nextElementSibling;
+  while (next && WRAPPERS.has(next.tagName)) next = next.firstElementChild ?? next.nextElementSibling;
+  return next;
+}
+
+function photoAfter(el: Element): HTMLElement | null {
+  const next = nextThroughWrappers(el) as HTMLElement | null;
+  return next && next.hasAttribute('data-deck-photo') ? next : null;
+}
+
 /**
  * The journey of a talk, ported from the talks' navegacion-540.js (without GSAP):
  * - stops are the Slides inside <main>, split by any [data-stop] descendants, plus the footer;
@@ -15,7 +35,7 @@ export function useDeckNavigation(mainRef: RefObject<HTMLElement | null>, footer
   const collect = useCallback(() => {
     const main = mainRef.current;
     if (!main) return;
-    let list: HTMLElement[] = Array.from(main.children).filter((el) => el.tagName === 'SECTION') as HTMLElement[];
+    let list: HTMLElement[] = slidesOf(main);
     // A section with [data-stop] descendants is replaced by them (one stop per sentence, per month…)
     list = list.flatMap((section) => {
       const inner = Array.from(section.querySelectorAll<HTMLElement>('[data-stop]'));
@@ -41,11 +61,7 @@ export function useDeckNavigation(mainRef: RefObject<HTMLElement | null>, footer
     window.scrollTo({ top, behavior: reduced() ? 'auto' : 'smooth' });
   }, []);
 
-  const photoOf = (el: HTMLElement) => {
-    if (el.tagName !== 'SECTION') return null;
-    const next = el.nextElementSibling as HTMLElement | null;
-    return next && next.hasAttribute('data-deck-photo') ? next : null;
-  };
+  const photoOf = (el: HTMLElement) => (el.tagName === 'SECTION' ? photoAfter(el) : null);
 
   const goTo = useCallback(
     (i: number) => {

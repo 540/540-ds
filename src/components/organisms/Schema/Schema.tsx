@@ -1,6 +1,6 @@
 import { useId } from 'react';
 import { Text } from '../../atoms/Text';
-import { useSteps } from '../Steps';
+import { useSteps } from '../Steps/StepsContext';
 import styles from './Schema.module.css';
 import type { SchemaFrameProps, SchemaLayerProps, SchemaProps } from './types';
 
