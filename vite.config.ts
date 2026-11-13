@@ -23,6 +23,15 @@ export default defineConfig({
       },
     }, {
       extends: true,
+      test: {
+        name: 'render',
+        environment: 'node',
+        include: ['src/render.test.ts'],
+        globalSetup: ['src/render.setup.ts'],
+        testTimeout: 30000,
+      },
+    }, {
+      extends: true,
       // The islands ship on Preact: same stories, with react resolved to preact/compat
       resolve: {
         alias: [
