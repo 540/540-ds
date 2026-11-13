@@ -1,0 +1,13 @@
+540 Design System
+Copyright 2026 540 Degrees
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The license covers the source code only. It grants no rights over the 540
+name, logo or visual identity, nor over the sample photographs, which remain
+the property of 540 Degrees (Apache License 2.0, section 6). This includes
+src/assets/logo-540.svg, src/assets/samples/logo-540-*.svg and
+src/assets/samples/charla-*.webp, and their copies in the built package.
+
+The bundled DM Sans font is licensed under the SIL Open Font License 1.1
+(see dist/fonts/OFL.txt).

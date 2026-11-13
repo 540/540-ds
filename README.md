@@ -29,6 +29,7 @@ Otros comandos útiles:
 | `npm run build-storybook` | Genera la versión estática para compartir (carpeta `storybook-static`) |
 | `npx vitest run --project=storybook` | Pasa las pruebas de todas las historias (render y accesibilidad) |
 | `npx tsc -p tsconfig.app.json --noEmit` | Comprueba los tipos de TypeScript |
+| `npm run build:lib` | Construye la librería npm en `dist/` (ver «Usarlo en un proyecto React») |
 
 ## Cómo está organizado
 
@@ -159,8 +160,49 @@ El contrato de etiquetas, acordado con la pista B (el MCP), está en `scripts/re
 
 `TalkTemplate` no entra en las piezas: es una charla de ejemplo con fotos de muestra, no un componente que se rellene. La carpeta no se guarda en Git.
 
+## Usarlo en un proyecto React (paquete npm)
+
+La librería se publica en npm como `@540deg/ds`. Trae todos los componentes del catálogo y `TalkTemplate`, con sus tipos de TypeScript. Necesita React 19 en el proyecto que la usa.
+
+```bash
+npm install @540deg/ds
+```
+
+Importa la hoja de estilos **una vez**, en la entrada de la app (`main.tsx` o el layout raíz), y los componentes donde los uses:
+
+```tsx
+import '@540deg/ds/styles.css';
+import { Deck, Slide, Text } from '@540deg/ds';
+import type { DeckProps } from '@540deg/ds';
+```
+
+- **Una sola hoja**: `styles.css` lleva los tokens, el reset y los estilos base (fondo, color y letra en `html` y `body`), DM Sans (la fuente va dentro del paquete, no hace falta Google Fonts) y los estilos de todos los componentes. Los componentes no importan CSS por su cuenta, así que funcionan con cualquier bundler y en el servidor.
+- **Solo lo que usas**: cada componente es un módulo aparte y el paquete está marcado sin efectos secundarios salvo el CSS, así que el bundler descarta lo que no importas. `TalkTemplate` lleva sus fotos de muestra dentro y solo pesan si lo importas.
+- **Tipos**: cada componente exporta sus `Props` (`DeckProps`, `ButtonProps`…) y sus listas de valores (`BUTTON_VARIANTS`…). Se resuelven con `"moduleResolution": "bundler"` en el `tsconfig`, que es lo que traen Vite y Next.
+- **Tema**: `Deck` pinta el tema oscuro o claro en su propio contenedor; fuera de un `Deck`, el tema claro es el de `:root` y el oscuro se activa con `data-theme="dark"` en un antepasado.
+- **Normas**: las charlas hechas con el paquete siguen las mismas normas (`src/docs/normas-charlas.md`): solo componentes del catálogo y sus props, sin CSS propio.
+
+### Publicar una versión
+
+1. Sube la versión en `package.json` (`npm version patch`, `minor` o `major`, que crea también la etiqueta `vX.Y.Z`).
+2. Sube la etiqueta: `git push origin vX.Y.Z`.
+3. El flujo `.github/workflows/publish.yml` comprueba que la etiqueta coincide con la versión, pasa tipos, lint y SSR, construye la librería y la publica en npm con *provenance*.
+
+Necesita el secreto `NPM_TOKEN` en el repositorio (Settings → Secrets and variables → Actions): un token de npm de tipo *automation* o *granular* con permiso de publicación en el ámbito `@540deg`.
+
+Para probar el paquete en local sin publicarlo:
+
+```bash
+npm run build:lib   # deja la librería en dist/
+npm pack            # crea 540deg-ds-X.Y.Z.tgz, instalable con npm install ./ruta/al.tgz
+```
+
 ## Fuentes de verdad
 
 1. Este código.
 2. Las charlas anteriores (`base-540.css`, `navegacion-540.js` y su guía de estilos), de donde salen las piezas de presentación.
 3. El archivo de Figma «540 · Design System», de donde se copian las fichas de los componentes. Si Figma y el código discrepan, manda el código.
+
+## Licencia
+
+El código está bajo [Apache License 2.0](LICENSE). La licencia no da derechos sobre el nombre, el logo ni la identidad visual de 540, ni sobre las fotos de muestra: siguen siendo de 540 (ver [NOTICE](NOTICE)). DM Sans va con su propia licencia, SIL OFL 1.1.
