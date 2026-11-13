@@ -45,6 +45,7 @@ export type TextProps = {
   /** Monospaced, a bit smaller: a command, a file name. */
   mono?: boolean;
   className?: string;
+  /** The text. Inside, <strong> goes bold and <code> monospaced, in the same ink. */
   children: ReactNode;
 } & Omit<ComponentPropsWithoutRef<'p'>, 'children' | 'className'>;
 

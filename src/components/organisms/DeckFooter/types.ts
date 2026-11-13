@@ -10,7 +10,9 @@ export type DeckFooterProps = {
   thanks?: ReactNode;
   /** The signature. */
   copyright: ReactNode;
+  /** Where the logo links to: the cover. */
   homeHref?: string;
+  /** Accessible name of the logo link. */
   homeLabel?: string;
   className?: string;
 };

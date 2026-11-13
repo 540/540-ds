@@ -1,4 +1,5 @@
 export type ClientLogo = {
+  /** Path or URL of the logo file. */
   src: string;
   /** The name of the client. */
   name: string;

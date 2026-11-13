@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 export type StoryProps = {
+  /** The stop's anchor. */
   id: string;
   /** The title: title-m for a story, title-s for an objection. */
   title: ReactNode;

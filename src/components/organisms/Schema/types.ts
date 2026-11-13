@@ -3,8 +3,9 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 export type SchemaProps = {
   /** The drawing coordinates ("0 0 2560 820"). */
   viewBox: string;
-  /** The accessible title and description: what the drawing says, in words. */
+  /** The accessible title: what the drawing is, in words. */
   title: string;
+  /** The accessible description: what the drawing says, in words. */
   description?: string;
   /** Data schemas: every text one step bigger. */
   data?: boolean;
@@ -20,6 +21,7 @@ export type SchemaLayerProps = {
   step?: number;
   /** What this layer says, for the live region. */
   label?: string;
+  /** The shapes of the layer. */
   children: ReactNode;
   className?: string;
 };
@@ -27,6 +29,7 @@ export type SchemaLayerProps = {
 export type SchemaFrameProps = {
   /** The caption under the drawing, at half the grid. */
   caption?: ReactNode;
+  /** The Schema to frame: it takes the full window width, with sideways scroll if it does not fit. */
   children: ReactNode;
   className?: string;
 };

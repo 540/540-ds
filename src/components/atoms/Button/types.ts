@@ -24,6 +24,7 @@ type AsButton = CommonProps & {
   href?: undefined;
   /** The action is not possible right now. Never combined with `href`. */
   disabled?: boolean;
+  /** The native button type. `submit` only inside a Form; elsewhere leave the default `button`. */
   type?: 'button' | 'submit' | 'reset';
 } & Omit<ComponentPropsWithoutRef<'button'>, 'children' | 'className' | 'type' | 'disabled'>;
 
