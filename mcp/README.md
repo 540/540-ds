@@ -148,6 +148,9 @@ PROJECT_ID=rev-ds-cd11b
 PROJECT_NUMBER=474159358681
 SA=github-deploy@$PROJECT_ID.iam.gserviceaccount.com
 
+# Las APIs con las que GitHub se identifica ante Google
+gcloud services enable iam.googleapis.com iamcredentials.googleapis.com sts.googleapis.com --project $PROJECT_ID
+
 # La cuenta de servicio que usará GitHub, con los permisos para desplegar Functions y Hosting
 gcloud iam service-accounts create github-deploy --project $PROJECT_ID \
   --display-name "GitHub Actions: despliegue del MCP de 540-ds"
