@@ -28,3 +28,6 @@ storybook-static
 
 # Per-component pieces (npm run build:pieces)
 pieces
+
+# npm pack output
+*.tgz
