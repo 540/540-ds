@@ -55,7 +55,10 @@
     "mcp:stdio": "tsx mcp/stdio.ts",
     "mcp:inspect": "npx -y @modelcontextprotocol/inspector tsx mcp/stdio.ts",
     "mcp:serve": "tsx mcp/serve.ts",
-    "mcp:inspect:http": "npx -y @modelcontextprotocol/inspector --transport http --server-url http://localhost:3000/mcp"
+    "mcp:inspect:http": "npx -y @modelcontextprotocol/inspector --transport http --server-url http://localhost:3000/mcp",
+    "build:firebase": "npm run build-mcp-metadata -- --strict && tsx scripts/build-mcp-firebase.ts",
+    "mcp:emulate": "npm run build:firebase && npx -y firebase-tools@15.36.0 emulators:start --only functions,hosting --project demo-540-ds",
+    "mcp:deploy": "npx -y firebase-tools@15.36.0 deploy --only functions:mcp,hosting"
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -79,6 +82,8 @@
     "@vitejs/plugin-react": "^6.1.2",
     "@vitest/browser-playwright": "latest",
     "@vitest/coverage-v8": "latest",
+    "esbuild": "^0.28.2",
+    "firebase-functions": "^7.4.0",
     "jsdom": "^29.1.1",
     "oxlint": "^1.88.0",
     "playwright": "latest",

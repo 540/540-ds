@@ -1,6 +1,6 @@
 /**
  * The MCP over Streamable HTTP, as a Web-standard handler: Request in, Response out.
- * Shared by the Vercel function (api/mcp.ts) and the local server (mcp/serve.ts).
+ * Shared by the Firebase function (mcp/firebase.ts) and the local server (mcp/serve.ts).
  *
  * Stateless: every POST gets its own server and transport, answered as plain JSON.
  * There are no sessions to keep, so GET (the server-to-client stream) and DELETE answer 405.

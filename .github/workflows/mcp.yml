@@ -1,4 +1,4 @@
-# Checks the MCP server on every pull request and push to main.
+# The MCP server: checks on every pull request and push to main, and deploys to Firebase from main.
 # Separate from pages.yml so an MCP failure never blocks the Storybook deploy, nor the other way round.
 # The metadata is built from src/, so any change to a component can affect the MCP: no path filter.
 name: MCP
@@ -14,7 +14,8 @@ permissions:
 
 concurrency:
   group: mcp-${{ github.ref }}
-  cancel-in-progress: true
+  # A newer push cancels a PR check, never a deploy half-way.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   check:
@@ -26,9 +27,36 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - name: Types (scripts, mcp, api)
+      - name: Types (scripts, mcp)
         run: npx tsc -p tsconfig.mcp.json --noEmit
-      - name: Metadata, failing on any undocumented component
-        run: npm run build-mcp-metadata -- --strict
+      - name: Metadata and the packed Firebase function, failing on any undocumented component
+        run: npm run build:firebase
       - name: Tests (tools and HTTP handler)
         run: npm run test:mcp
+
+  # Deploys the function and Hosting to the Firebase project in .firebaserc. Google access goes through
+  # Workload Identity Federation: no key is stored in GitHub. Skipped until the repo variables exist
+  # (GCP_WORKLOAD_IDENTITY_PROVIDER, GCP_SERVICE_ACCOUNT); see mcp/README.md.
+  deploy:
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.GCP_WORKLOAD_IDENTITY_PROVIDER != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    environment:
+      name: mcp-production
+      url: https://rev-ds-cd11b.web.app/mcp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+      - name: Deploy (builds the function first, see predeploy in firebase.json)
+        run: npx -y firebase-tools@15.36.0 deploy --only functions:mcp,hosting --non-interactive --force
