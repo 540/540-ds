@@ -1,6 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import type { RefObject } from 'react';
 import { useStepOn } from '../components/organisms/Steps';
+
+const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
+
+function subscribeReducedMotion(onChange: () => void) {
+  const query = window.matchMedia?.(REDUCED_MOTION);
+  query?.addEventListener?.('change', onChange);
+  return () => query?.removeEventListener?.('change', onChange);
+}
+
+const readReducedMotion = () => window.matchMedia?.(REDUCED_MOTION).matches ?? false;
+
+const serverReducedMotion = () => false;
 
 /**
  * Whether a piece should show its final state: it is on screen (a third of it, at least) and its
@@ -10,7 +22,7 @@ import { useStepOn } from '../components/organisms/Steps';
 export function useReveal(ref: RefObject<Element | null>): boolean {
   const stepOn = useStepOn();
   const [seen, setSeen] = useState(false);
-  const [reduced] = useState(() => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
+  const reduced = useSyncExternalStore(subscribeReducedMotion, readReducedMotion, serverReducedMotion);
 
   useEffect(() => {
     const el = ref.current;
