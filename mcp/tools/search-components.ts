@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { defineTool, json, summary } from './shared.ts';
+import { defineTool, json, summary } from './shared.js';
 
 /** Accents off and lowercase, so "cita" finds "Cita" and "parada" finds "parada". */
 const fold = (s: string) =>

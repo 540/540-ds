@@ -1,6 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { tools } from './tools/index.ts';
-import type { Metadata } from './types.ts';
+import { tools } from './tools/index.js';
+import type { Metadata } from './types.js';
 
 /** What every client reads on connecting: how to use this server well. */
 const INSTRUCTIONS = `The 540 design system: the React components, composition rules, templates and tokens 540 uses to build its pieces.

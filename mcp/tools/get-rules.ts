@@ -1,4 +1,4 @@
-import { defineTool, error, pieceTypeSchema, text } from './shared.ts';
+import { defineTool, error, pieceTypeSchema, text } from './shared.js';
 
 export const getRules = defineTool({
   name: 'get-rules',

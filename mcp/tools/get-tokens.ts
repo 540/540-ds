@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { defineTool, json } from './shared.ts';
+import { defineTool, json } from './shared.js';
 
 export const getTokens = defineTool({
   name: 'get-tokens',

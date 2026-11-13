@@ -8,8 +8,8 @@
  * Never write to stdout here: it is the protocol channel. Logs go to stderr.
  */
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { buildMetadata } from '../scripts/build-mcp-metadata.ts';
-import { createServer } from './server.ts';
+import { buildMetadata } from '../scripts/build-mcp-metadata.js';
+import { createServer } from './server.js';
 
 const metadata = buildMetadata();
 await createServer(metadata).connect(new StdioServerTransport());

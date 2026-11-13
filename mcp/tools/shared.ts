@@ -1,6 +1,6 @@
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
-import type { ComponentMeta, Metadata } from '../types.ts';
+import type { ComponentMeta, Metadata } from '../types.js';
 
 /**
  * One MCP tool: its contract (name, description, input) and a pure handler over the metadata.

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { defineTool, error, json, pieceTypeSchema } from './shared.ts';
+import { defineTool, error, json, pieceTypeSchema } from './shared.js';
 
 const fold = (s: string) =>
   s

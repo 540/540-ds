@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { defineTool, json, summary } from './shared.ts';
+import { defineTool, json, summary } from './shared.js';
 
 export const listComponents = defineTool({
   name: 'list-components',

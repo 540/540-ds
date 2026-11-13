@@ -53,7 +53,9 @@
     "build-mcp-metadata": "tsx scripts/build-mcp-metadata.ts",
     "test:mcp": "vitest run --project=mcp",
     "mcp:stdio": "tsx mcp/stdio.ts",
-    "mcp:inspect": "npx -y @modelcontextprotocol/inspector tsx mcp/stdio.ts"
+    "mcp:inspect": "npx -y @modelcontextprotocol/inspector tsx mcp/stdio.ts",
+    "mcp:serve": "tsx mcp/serve.ts",
+    "mcp:inspect:http": "npx -y @modelcontextprotocol/inspector --transport http --server-url http://localhost:3000/mcp"
   },
   "peerDependencies": {
     "react": "^19.0.0",
