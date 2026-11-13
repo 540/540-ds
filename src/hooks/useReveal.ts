@@ -1,6 +1,6 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import type { RefObject } from 'react';
-import { useStepOn } from '../components/organisms/Steps';
+import { useStepOn } from '../components/organisms/Steps/StepsContext';
 
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
 

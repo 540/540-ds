@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { cloneElement, createElement, isValidElement } from 'react';
 import type { ComponentType, ReactNode } from 'react';
 
 export type Encoded = string | number | boolean | null | Encoded[] | { [key: string]: Encoded };
@@ -40,5 +40,18 @@ export function revive(value: Encoded, registry: Registry, slotHtml: (id: string
 }
 
 function withKey(node: ReactNode, key: number): ReactNode {
-  return node && typeof node === 'object' && 'type' in node ? { ...node, key: String(key) } : node;
+  return isValidElement(node) ? cloneElement(node, { key: String(key) }) : node;
+}
+
+function isComponent(value: unknown): value is ComponentType<Record<string, unknown>> {
+  return typeof value === 'function' || (typeof value === 'object' && value !== null && '$$typeof' in value);
+}
+
+/** Collects the components (exports whose name starts with a capital) of the given modules. */
+export function registryOf(...modules: Record<string, unknown>[]): Registry {
+  const registry: Registry = new Map();
+  for (const mod of modules) {
+    for (const [key, value] of Object.entries(mod)) if (/^[A-Z]/.test(key) && isComponent(value)) registry.set(key, value);
+  }
+  return registry;
 }

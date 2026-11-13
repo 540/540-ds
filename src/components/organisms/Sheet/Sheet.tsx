@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Text } from '../../atoms/Text';
-import { useStepOn, useSteps } from '../Steps';
+import { useStepOn, useSteps } from '../Steps/StepsContext';
 import styles from './Sheet.module.css';
 import type { SheetProps } from './types';
 
