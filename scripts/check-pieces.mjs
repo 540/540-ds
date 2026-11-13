@@ -1,8 +1,3 @@
-// Checks the built pieces end to end, with no source and no node_modules React:
-// renders a page in Node from pieces/server, then loads it in jsdom with pieces/islands and
-// checks that every island hydrates without errors.
-// Usage: npm run check:pieces (after build:pieces)
-
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -22,7 +17,6 @@ const get = (name) => registry.get(name);
 let n = 0;
 const id = () => `i${++n}-`;
 const marks = {};
-/** A static subtree with islands inside: render it, then put each island in its mark. */
 const mark = (html) => {
   const key = `m${Object.keys(marks).length}`;
   marks[key] = html;
@@ -58,7 +52,6 @@ const slides = slot(
     mark(statements),
   ),
 );
-// The Deck's children are its slides directly: unwrap the helper div
 slots[slides.$slot] = slots[slides.$slot].replace(/^<div>|<\/div>$/g, '');
 
 const deck = island('Deck', { items: [{ href: '#pasos', label: 'Pasos' }, { href: '#casos', label: 'Casos' }], footer: { tagline: 'Fin.', copyright: '© 2026 540' }, storageKey: '', children: slides });
@@ -69,7 +62,6 @@ const scripts = [manifest.runtime.client, ...used.map((name) => manifest.compone
 const js = await Promise.all(scripts.map(text));
 const page = `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>540-ds pieces demo</title><style>${css}</style></head><body>${deck}${js.map((code) => `<script>${code}</script>`).join('')}</body></html>`;
 
-// The same page with the font inlined: one self-contained file to open in a browser
 const fonts = await Promise.all(manifest.base.fonts.map(async (file) => [path.basename(file), (await readFile(path.join(dir, file))).toString('base64')]));
 let demo = page;
 for (const [name, b64] of fonts) demo = demo.replaceAll(`url('../fonts/${name}')`, `url(data:font/woff2;base64,${b64})`);
@@ -94,7 +86,6 @@ const dom = new JSDOM(page, {
         return [];
       }
     }
-    // Everything is on screen: Steps lights step 0 and counters may count
     class SeenObserver extends NoopObserver {
       constructor(callback) {
         super();
@@ -128,11 +119,9 @@ for (const el of islands) {
 if (islands.length !== 4) problems.push(`expected 4 islands, found ${islands.length}`);
 if (!doc.querySelector('[data-deck] nav, [data-deck] [role="navigation"], [data-deck] ol, [data-deck] ul')) problems.push('Deck rendered no navigation');
 const marksShown = doc.querySelectorAll('[data-deck] [aria-label="Recorrido de la charla"] button').length;
-const expected = 3 + 2 + 1; // three slides, two sentences (data-stop), the footer
+const expected = 3 + 2 + 1;
 if (marksShown !== expected) problems.push(`Deck side index shows ${marksShown} stops, expected ${expected}: it must see slides through <ds-slot> and <ds-island>`);
 
-// Count is its own island script, yet it must read the Steps context of the Steps island:
-// step 1 is off until the arrow, so the counter waits at zero, then counts up to 1.234 €
 const counter = () => Array.from(doc.querySelectorAll('[data-steps] span[aria-hidden="true"]')).map((el) => el.textContent).find((t) => t.includes('€'));
 const before = counter();
 doc.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));

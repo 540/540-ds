@@ -1,11 +1,3 @@
-// Builds the per-component pieces the 540 skill renders talks, reports and posts with:
-//   server/   one ESM module per component, React bundled in, to pre-render in Node
-//   css/      base.css (tokens, reset, DM Sans) and one stylesheet per component
-//   islands/  runtime.js (React + hydration) and one IIFE per interactive component
-//   fonts/    DM Sans (SIL OFL)
-//   manifest.json  what each component needs, in load order
-// Usage: npm run build:pieces
-
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { copyFile, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
@@ -19,10 +11,8 @@ const out = path.join(root, 'pieces');
 const pkg = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const commit = execSync('git rev-parse --short HEAD', { cwd: root }).toString().trim();
 
-/** The interactive components: the only ones that ship JavaScript. */
 const ISLANDS = ['Deck', 'Carousel', 'Count', 'Marquee', 'Steps', 'Timeline', 'Bars', 'Spotlight', 'Statements', 'Sheet', 'Dialog', 'Share', 'NavMobile', 'LogoCarousel'];
 
-/** Modules every island must share with the runtime instead of bundling a copy. */
 const SHARED = {
   react: '__ds540.React',
   'react/jsx-runtime': '__ds540.jsxRuntime',
@@ -35,7 +25,6 @@ const STEPS_CONTEXT = path.join(root, 'src/components/organisms/Steps/StepsConte
 const FONT = 'dm-sans-latin-opsz-normal.woff2';
 const FONT_DIR = path.join(root, 'node_modules/@fontsource-variable/dm-sans');
 
-/** Same class names in every build: the server HTML and the islands must agree. */
 function scopedName(local, filename) {
   const file = path.relative(root, filename.split('?')[0]);
   const name = path.basename(file).replace(/\.module\.css$/, '');
@@ -68,7 +57,6 @@ async function findComponents() {
   return list;
 }
 
-/** Server pieces, plus the CSS of each component taken from the same build. */
 async function buildServer(components) {
   const graph = {};
   await build({
@@ -107,7 +95,6 @@ async function buildServer(components) {
   return graph;
 }
 
-/** One IIFE per island; React and the Steps context come from the runtime. */
 async function buildIsland(component) {
   const entry = path.join(root, 'node_modules/.tmp/pieces', `${component.name}.island.ts`);
   await mkdir(path.dirname(entry), { recursive: true });
@@ -167,7 +154,6 @@ async function buildBase() {
   await writeFile(path.join(out, 'css', 'base.css'), `${font}\n${code}\n${islands}`);
 }
 
-/** Moves each component's CSS to css/<Component>.css and lists, in order, what it needs. */
 async function writeManifest(components, graph, islands) {
   const byEntry = Object.fromEntries(Object.entries(graph).filter(([, c]) => c.entry).map(([file, c]) => [c.entry, file]));
   const cssName = {};

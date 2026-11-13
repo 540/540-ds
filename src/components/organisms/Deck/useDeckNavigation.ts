@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { RefObject } from 'react';
 
-/** Pre-rendered pages wrap slides in <ds-slot> and <ds-island> (display: contents): look through them. */
 const WRAPPERS = new Set(['DS-SLOT', 'DS-ISLAND']);
 
 function slidesOf(parent: Element): HTMLElement[] {
