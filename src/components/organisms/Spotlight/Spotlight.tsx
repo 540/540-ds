@@ -4,7 +4,8 @@ import type { SpotlightProps } from './types';
 
 /**
  * Spotlight lights the piece that holds the center of the window and dims the others to 14 %,
- * like the sentences of the journey and the months of a timeline.
+ * like the sentences of the journey and the months of a timeline. Each one is a stop of the Deck
+ * (data-stop), so the arrow stops on every piece of a pile instead of paging over them.
  */
 export function Spotlight({ children, className }: SpotlightProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,7 +30,7 @@ export function Spotlight({ children, className }: SpotlightProps) {
   }, []);
 
   return (
-    <div ref={ref} className={[styles.spotlight, className ?? ''].filter(Boolean).join(' ')} data-on={on ? '' : undefined}>
+    <div ref={ref} className={[styles.spotlight, className ?? ''].filter(Boolean).join(' ')} data-stop="" data-on={on ? '' : undefined}>
       {children}
     </div>
   );

@@ -3,11 +3,12 @@ import type { RefObject } from 'react';
 
 const WRAPPERS = new Set(['DS-SLOT', 'DS-ISLAND']);
 
+/** The Slides under parent, at any depth: a wrapper (a div with a label, an island) does not hide them. Other sections are not stops. */
 function slidesOf(parent: Element): HTMLElement[] {
-  return Array.from(parent.children).flatMap((el) => (WRAPPERS.has(el.tagName) ? slidesOf(el) : el.tagName === 'SECTION' ? [el as HTMLElement] : []));
+  return Array.from(parent.querySelectorAll<HTMLElement>('[data-slide]'));
 }
 
-/** The element after el, looking through the ds-slot/ds-island wrappers as slidesOf does. */
+/** The element after el, looking through the ds-slot/ds-island wrappers (not other wrappers: a photo goes next to its title). */
 function nextThroughWrappers(el: Element): Element | null {
   let cur: Element = el;
   while (!cur.nextElementSibling && cur.parentElement && WRAPPERS.has(cur.parentElement.tagName)) cur = cur.parentElement;
@@ -23,7 +24,7 @@ function photoAfter(el: Element): HTMLElement | null {
 
 /**
  * The journey of a talk, ported from the talks' navegacion-540.js (without GSAP):
- * - stops are the Slides inside <main>, split by any [data-stop] descendants, plus the footer;
+ * - stops are the Slides inside <main> (at any depth), split by their outermost [data-stop] descendants, plus the footer;
  * - the keyboard moves between stops (and pages inside a stop taller than the window);
  * - the current stop is the one holding the center of the window.
  */
@@ -36,9 +37,10 @@ export function useDeckNavigation(mainRef: RefObject<HTMLElement | null>, footer
     const main = mainRef.current;
     if (!main) return;
     let list: HTMLElement[] = slidesOf(main);
-    // A section with [data-stop] descendants is replaced by them (one stop per sentence, per month…)
+    // A section with [data-stop] descendants is replaced by them (one stop per sentence, per month…).
+    // Only the outermost count: a Spotlight inside a timeline step is the same stop as its step.
     list = list.flatMap((section) => {
-      const inner = Array.from(section.querySelectorAll<HTMLElement>('[data-stop]'));
+      const inner = Array.from(section.querySelectorAll<HTMLElement>(':scope [data-stop]:not([data-stop] [data-stop])'));
       return inner.length ? inner : [section];
     });
     if (footerRef.current) list.push(footerRef.current);

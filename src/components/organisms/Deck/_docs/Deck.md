@@ -19,7 +19,7 @@ El marco de una charla: **las manchas detrás, la barra que se esconde al navega
 
 ## Las paradas
 
-Son los `Slide` directos dentro de `main`. Si una Slide tiene descendientes con `data-stop` (las tres frases de tesis, los meses de una cronología), esos pasan a ser las paradas y la Slide deja de serlo. La foto que sigue a un título de bloque (`data-deck-photo`) no es parada: va en el mismo golpe que su título. El pie es siempre la última.
+Son los `Slide` dentro de `main`, a cualquier profundidad: un envoltorio (un `div` con una etiqueta, una isla) no los esconde. Si una Slide tiene descendientes con `data-stop` (las tres frases de tesis, los meses de una cronología, las frases de una pila de `Spotlight`), esos pasan a ser las paradas y la Slide deja de serlo. Si un `data-stop` va dentro de otro, cuenta solo el de fuera: una `Spotlight` en un paso de `Timeline` es la misma parada que su paso. La foto que sigue a un título de bloque (`data-deck-photo`) no es parada: va en el mismo golpe que su título. El pie es siempre la última.
 
 ## Cómo se recorre
 

@@ -182,7 +182,7 @@ Guardarraíles del movimiento:
 
 ## 9. Navegación y paradas
 
-- Las paradas las cuenta el `Deck` por los `data-stop` que ponen `Slide`, `Statements` y `Timeline`. No se añade `data-stop` a mano ni se quita.
+- Las paradas las cuenta el `Deck` por los `data-stop` que ponen `Slide`, `Statements`, `Timeline` y `Spotlight`. No se añade `data-stop` a mano ni se quita.
 - Las teclas (flechas, espacio, inicio, fin) las gestiona el `Deck`; `Steps` las coge antes mientras está a la vista. No se añaden atajos.
 - La foto de un `BlockTitle` no es parada: va con su título.
 - `homeHref` del `Deck` apunta a la portada. El logo de la barra siempre vuelve al principio.
