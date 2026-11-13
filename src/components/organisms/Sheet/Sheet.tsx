@@ -41,7 +41,7 @@ export function Sheet({ open, kicker, title, description, children, className }:
     <>
       <span ref={anchor} hidden />
       <div className={styles.veil} data-open={isOpen ? '' : undefined} aria-hidden="true" />
-      <div className={[styles.sheet, className ?? ''].filter(Boolean).join(' ')} data-open={isOpen ? '' : undefined} data-scale="web" aria-hidden={isOpen ? undefined : true}>
+      <div className={[styles.sheet, className ?? ''].filter(Boolean).join(' ')} data-open={isOpen ? '' : undefined} data-scale="web" data-sheet="" aria-hidden={isOpen ? undefined : true}>
         <div className={styles.panel}>
           <div className={styles.header}>
             {kicker ? (
