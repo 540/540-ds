@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 export type FlowStep = {
+  /** The name of the step. Two or three words. */
   label: ReactNode;
   /** The highlighted step: filled with the inverse background. */
   highlighted?: boolean;

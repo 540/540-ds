@@ -8,7 +8,12 @@ export type DialogProps = {
   /** The title: the heading that is seen and the name of the dialog. */
   title: ReactNode;
   /** Optional portrait, full bleed at the top, cropped to 1:1. */
-  media?: { src: string; alt: string };
+  media?: {
+    /** Path or URL of the portrait. */
+    src: string;
+    /** What the portrait shows, in words. */
+    alt: string;
+  };
   /** Optional actions row at the bottom. */
   footer?: ReactNode;
   /** The text. The only thing that scrolls if it does not fit. */

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 export type ClosingProps = {
+  /** The stop's anchor. */
   id?: string;
   /** The closing sentence, in statement, three quarters wide. May contain <strong>. */
   sentence: ReactNode;

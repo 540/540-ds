@@ -11,6 +11,7 @@ export type MetricProps = {
 };
 
 export type MetricNoteProps = {
+  /** The note: where the numbers come from, which period. One line. */
   children: ReactNode;
   className?: string;
 };
