@@ -1,5 +1,6 @@
 # Publishes the component library to npm when a version tag (v0.1.0, v1.2.3…) is pushed.
-# Requires the NPM_TOKEN repository secret: an npm automation (or granular) token with publish rights on the scope.
+# Authenticates with npm Trusted Publishing (OIDC): no token. The trusted publisher is set on npmjs.com
+# (@540deg/ds → Settings → Trusted Publisher: 540/540-ds, publish.yml). Needs npm >= 11.5.1.
 name: Publish to npm
 
 on:
@@ -35,6 +36,4 @@ jobs:
       - run: npx tsc -p tsconfig.app.json --noEmit
       - run: npm run lint
       - run: npm run test:ssr
-      - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --access public
