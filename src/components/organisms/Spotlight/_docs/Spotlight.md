@@ -4,6 +4,8 @@ El foco: **se enciende la pieza que ocupa el centro de la pantalla y el resto qu
 
 Un envoltorio que mide dónde está su contenido respecto al centro de la ventana y pone `data-on` cuando lo ocupa (o está a menos del 30 % de la altura). La opacidad pasa de 0,14 a 1 en 0,35 s.
 
+Cada Spotlight es una parada del `Deck` (`data-stop`): la flecha se detiene en cada pieza de la pila en vez de pasar páginas por encima de ellas. Dentro de un paso de `Timeline` no suma parada: cuenta la del paso.
+
 ## Cuándo usarlo
 
 - Varias piezas apiladas que se leen una a una al bajar: frases, meses, personas.
