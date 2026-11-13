@@ -3,13 +3,15 @@ import { tools } from './tools/index.ts';
 import type { Metadata } from './types.ts';
 
 /** What every client reads on connecting: how to use this server well. */
-const INSTRUCTIONS = `The 540 design system: the React components, rules and tokens 540 uses to build its pieces (talks today; reports, dashboards and social posts later).
+const INSTRUCTIONS = `The 540 design system: the React components, composition rules, templates and tokens 540 uses to build its pieces.
 
 How to build a piece:
 1. Call get-rules for the piece type first and follow it as hard rules.
-2. Use only catalog components and their props (list-components, search-components, get-component). Never custom CSS, inline styles, className, hand-written colors or sizes, or extra libraries.
-3. Read get-component-docs before using a component for the first time: it says when to use it and when not.
-4. If something the user asks for has no component, say so and propose the closest one; do not build it by hand.
+2. Call get-template for the structure and the stops it can build, and get-patterns to choose the piece for each part of the content.
+3. Copy the chosen stops with get-template-stops and change only the copy and the images.
+4. Use only catalog components and their props (get-component, search-components). Never custom CSS, inline styles, className, hand-written colors or sizes, or extra libraries.
+5. Read get-component-docs before using a component for the first time: it says when to use it and when not.
+6. If something the user asks for has no component, say so and propose the closest one; do not build it by hand.
 
 Docs and rules are in Spanish; write the piece in the user's language.`;
 

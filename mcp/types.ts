@@ -82,6 +82,48 @@ export interface Token extends TokenValue {
   projection?: TokenValue;
 }
 
+/** One stop of a template: a direct child of its Deck, ready to copy. */
+export interface StopDef {
+  /** The stop's anchor, e.g. `cifras`. */
+  id: string;
+  /** The numbered block it belongs to; null for the cover and the closing. */
+  block: { ordinal: string; title: string } | null;
+  /** Root component, e.g. `Slide`, `Quote`, `BlockTitle`. */
+  component: string;
+  /** Catalog components used anywhere in the stop, helpers included. */
+  components: string[];
+  title: string | null;
+  /** JSX source of the stop. */
+  code: string;
+  /** Source of the template's local constants and functions the stop uses. */
+  dependencies: string;
+  /** Sample images it uses: identifier → file. Replace them with the piece's own. */
+  sampleAssets: Record<string, string>;
+}
+
+/** A row of the rules' patterns table: what to tell → which piece → what never to do. */
+export interface PatternDef {
+  need: string;
+  piece: string;
+  never: string;
+  components: string[];
+  /** Template stops that show it. */
+  stops: string[];
+}
+
+export interface TemplateMeta {
+  pieceType: string;
+  /** Template component, e.g. `TalkTemplate`. */
+  component: string;
+  path: string;
+  /** _docs/<Template>.md, in Spanish. */
+  docs: string;
+  /** The root (Deck) with its props, and the constants it uses. */
+  shell: { code: string; dependencies: string };
+  stops: StopDef[];
+  patterns: PatternDef[];
+}
+
 export interface Metadata {
   version: string;
   storybookUrl: string;
@@ -89,4 +131,6 @@ export interface Metadata {
   tokens: Record<TokenCategory, Token[]>;
   /** Composition rules per piece type, e.g. `talk`. */
   rules: Record<string, { source: string; content: string }>;
+  /** Template per piece type, split into stops. */
+  templates: Record<string, TemplateMeta>;
 }

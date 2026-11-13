@@ -47,6 +47,22 @@ describe('metadata', () => {
     expect(stories.some((s) => s.exportName === 'Playground')).toBe(false);
   });
 
+  it('splits the talk template into stops: a cover, numbered blocks with photo, a closing', () => {
+    const { stops } = metadata.templates.talk;
+    expect(stops[0].component).toBe('Cover');
+    expect(stops.at(-1)?.component).toBe('Closing');
+    const blocks = stops.filter((s) => s.component === 'BlockTitle');
+    expect(blocks.map((b) => b.block?.ordinal)).toEqual(['01', '02', '03', '04', '05']);
+    expect(new Set(stops.map((s) => s.id)).size).toBe(stops.length);
+    for (const s of stops) expect(s.code.split('\n').at(-1), s.id).toMatch(/^\S/); // dedented: the closing line starts at column 0
+  });
+
+  it('links every talk pattern to at least one stop', () => {
+    const { patterns } = metadata.templates.talk;
+    expect(patterns.length).toBeGreaterThan(15);
+    for (const p of patterns) expect(p.stops.length, p.need).toBeGreaterThan(0);
+  });
+
   it('exposes only semantic tokens', () => {
     const tokens = Object.values(metadata.tokens).flat();
     expect(tokens.length).toBeGreaterThan(100);
@@ -58,7 +74,18 @@ describe('tools', () => {
   it('lists the tools, all read-only', async () => {
     const { tools } = await client.listTools();
     expect(tools.map((t) => t.name).sort()).toEqual(
-      ['get-component', 'get-component-docs', 'get-component-stories', 'get-rules', 'get-tokens', 'list-components', 'search-components'].sort(),
+      [
+        'get-component',
+        'get-component-docs',
+        'get-component-stories',
+        'get-patterns',
+        'get-rules',
+        'get-template',
+        'get-template-stops',
+        'get-tokens',
+        'list-components',
+        'search-components',
+      ].sort(),
     );
     for (const t of tools) expect(t.annotations?.readOnlyHint, t.name).toBe(true);
   });
@@ -118,10 +145,41 @@ describe('tools', () => {
     expect(text.tokens[0]).toMatchObject({ name: '--color-text-primary', dark: { resolved: '#ffffff' } });
   });
 
-  it('get-rules returns the talk rules and refuses types without rules', async () => {
+  it('get-template gives the shell and the index of stops, without their code', async () => {
+    const talk = (await call('get-template', { pieceType: 'talk' })).json();
+    expect(talk.shell.code).toMatch(/^<Deck /);
+    expect(talk.stops.find((s: { id: string }) => s.id === 'cifras')).toMatchObject({ block: '04 · Datos: cifras, barras y líneas', component: 'Slide' });
+    expect(talk.stops[0].code).toBeUndefined();
+  });
+
+  it('get-template-stops returns code with its helpers and sample assets, and reports unknown ids', async () => {
+    const result = (await call('get-template-stops', { pieceType: 'talk', stops: ['ciclo', 'portada', 'nope'] })).json();
+    const [ciclo, portada] = result.stops;
+    expect(ciclo.code).toMatch(/^<Slide id="ciclo">/);
+    expect(ciclo.dependencies).toContain('function CycleWithPanel');
+    expect(ciclo.dependencies).toContain('const PHASES');
+    expect(Object.values(portada.sampleAssets)).toContain('src/assets/samples/charla-fachada.webp');
+    expect(result.missing).toEqual(['nope']);
+    expect((await call('get-template-stops', { pieceType: 'talk', stops: ['nope'] })).isError).toBe(true);
+  });
+
+  it('get-patterns filters by need and points to stops', async () => {
+    const result = (await call('get-patterns', { pieceType: 'talk', need: 'cita' })).json();
+    expect(result.patterns).toHaveLength(1);
+    expect(result.patterns[0]).toMatchObject({ piece: '`Quote`', stops: ['cita'] });
+  });
+
+  it('get-rules returns the talk rules, also without pieceType', async () => {
     expect((await call('get-rules', { pieceType: 'talk' })).body).toContain('Normas para montar una charla');
-    const report = await call('get-rules', { pieceType: 'report' });
-    expect(report.isError).toBe(true);
-    expect(report.body).toContain('talk');
+    expect((await call('get-rules')).body).toContain('Normas para montar una charla');
+  });
+
+  it('serves talks only: any other piece type is refused', async () => {
+    for (const tool of ['get-rules', 'get-template', 'get-patterns']) {
+      const result = await call(tool, { pieceType: 'report' });
+      expect(result.isError, tool).toBe(true);
+    }
+    const { tools } = await client.listTools();
+    for (const t of tools) expect(JSON.stringify(t), t.name).not.toMatch(/report|dashboard|social/i);
   });
 });
