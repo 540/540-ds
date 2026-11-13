@@ -50,7 +50,10 @@
     "build-storybook": "storybook build",
     "build:lib": "node scripts/build-lib.mjs",
     "prepack": "npm run build:lib",
-    "build-mcp-metadata": "tsx scripts/build-mcp-metadata.ts"
+    "build-mcp-metadata": "tsx scripts/build-mcp-metadata.ts",
+    "test:mcp": "vitest run --project=mcp",
+    "mcp:stdio": "tsx mcp/stdio.ts",
+    "mcp:inspect": "npx -y @modelcontextprotocol/inspector tsx mcp/stdio.ts"
   },
   "peerDependencies": {
     "react": "^19.0.0",
