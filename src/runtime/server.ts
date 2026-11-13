@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import type { ReactElement } from 'react';
-import { renderToString } from 'preact-render-to-string';
+import { renderToString as renderPreact } from 'preact-render-to-string';
 import type { VNode } from 'preact';
 import { IdPrefix } from './compat/react';
 import { ISLAND_TAG, revive } from './islands';
@@ -18,7 +18,7 @@ type IslandOptions = {
 };
 
 function render(element: ReactElement, id: string): string {
-  return renderToString(createElement(IdPrefix.Provider as never, { value: id }, element) as unknown as VNode);
+  return renderPreact(createElement(IdPrefix.Provider as never, { value: id }, element) as unknown as VNode);
 }
 
 export function renderIsland(registry: Registry, { name, props, id, slots = {} }: IslandOptions): string {
@@ -35,6 +35,15 @@ export function renderIsland(registry: Registry, { name, props, id, slots = {} }
 export function renderStatic(element: ReactElement, id: string): string {
   return render(element, id);
 }
+
+type RenderOptions = { identifierPrefix?: string };
+
+/** Kept from the React runtime, so talk builds that call them keep working. */
+export function renderToString(element: ReactElement, options: RenderOptions = {}): string {
+  return render(element, options.identifierPrefix ?? '');
+}
+
+export const renderToStaticMarkup = renderToString;
 
 function escapeAttr(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');

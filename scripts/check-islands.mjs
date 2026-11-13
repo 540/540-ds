@@ -2,19 +2,17 @@ import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
+import { createHarness, openPieces } from './lib/pieces-harness.mjs';
 
 const dir = path.resolve(process.argv[2] ?? path.join(import.meta.dirname, '..', 'pieces'));
-const manifest = JSON.parse(await readFile(path.join(dir, 'manifest.json'), 'utf8'));
-const load = (file) => import(pathToFileURL(path.join(dir, file)).href);
-const text = (file) => readFile(path.join(dir, file), 'utf8');
+const { manifest, load, text } = await openPieces(dir);
 
 const ISLANDS = Object.entries(manifest.components).filter(([, c]) => c.island).map(([name]) => name);
 const used = [...new Set([...ISLANDS, 'Slide', 'Text', 'SectionHeader', 'Card', 'CaseItem', 'Metric', 'Grid', 'Stack'])];
 const modules = Object.fromEntries(await Promise.all(used.map(async (name) => [name, await load(manifest.components[name].server)])));
 const rt = await load(manifest.runtime.server);
 const registry = rt.registryOf(...Object.values(modules));
-const h = rt.createElement;
-const get = (name) => registry.get(name);
+const { h, get, mark, slots, slot, island: render } = createHarness(rt, registry);
 const S = modules.Schema.schema;
 
 // The stories' sample photos and logos, next to the page so it stays offline
@@ -22,22 +20,7 @@ const samples = path.join(import.meta.dirname, '..', 'src', 'assets', 'samples')
 await mkdir(path.join(dir, 'samples', 'logos'), { recursive: true });
 const sample = async (file) => (await copyFile(path.join(samples, file), path.join(dir, 'samples', file)), `samples/${file}`);
 
-let n = 0;
-const id = () => `i${++n}-`;
-const marks = {};
-const mark = (html) => {
-  const key = `m${Object.keys(marks).length}`;
-  marks[key] = html;
-  return h('ds-mark', { 'data-m': key });
-};
-const fill = (html) => html.replace(/<ds-mark data-m="(m\d+)"><\/ds-mark>/g, (_, key) => marks[key]);
-const slots = {};
-const slot = (element) => {
-  const key = `s${Object.keys(slots).length}`;
-  slots[key] = fill(rt.renderStatic(element, id()));
-  return { $slot: key };
-};
-const island = (name, props) => mark(rt.renderIsland(registry, { name, props, id: id(), slots }));
+const island = (name, props) => mark(render(name, props));
 const el = (name, p) => ({ $el: name, p });
 const t = (children, props = {}) => h(get('Text'), props, children);
 const header = (props) => h(get('SectionHeader'), { align: 'center', ...props });
@@ -250,21 +233,16 @@ const body = slot(
   ),
 );
 slots[body.$slot] = slots[body.$slot].replace(/^<div>|<\/div>$/g, '');
-const deck = rt.renderIsland(registry, {
-  name: 'Deck',
-  props: {
-    items: [
-      { href: '#pasos', label: 'Pasos' },
-      { href: '#barras', label: 'Datos' },
-      { href: '#esquema', label: 'Esquema' },
-      { href: '#hoja', label: 'Hoja' },
-    ],
-    footer: { tagline: 'Una línea que resume de qué iba la charla.', copyright: '© 2026 540' },
-    storageKey: '',
-    children: body,
-  },
-  id: id(),
-  slots,
+const deck = render('Deck', {
+  items: [
+    { href: '#pasos', label: 'Pasos' },
+    { href: '#barras', label: 'Datos' },
+    { href: '#esquema', label: 'Esquema' },
+    { href: '#hoja', label: 'Hoja' },
+  ],
+  footer: { tagline: 'Una línea que resume de qué iba la charla.', copyright: '© 2026 540' },
+  storageKey: '',
+  children: body,
 });
 
 const cssFiles = [manifest.base.css, ...new Set(used.flatMap((name) => manifest.components[name].css))];

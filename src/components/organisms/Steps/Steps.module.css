@@ -19,8 +19,9 @@
 
 /* A Sheet brings its own entrance and exit. Its Step must not move or fade: a transform on an
    ancestor makes position: fixed follow the Step instead of the window, and the sheet and its
-   veil would show stuck to the Step while it animates. */
-.steps[data-guided] .step:has(> [data-sheet]) {
+   veil would show stuck to the Step while it animates. Any depth: a Stack, a slot or an island
+   between them still leaves the Sheet inside the Step's transform. */
+.steps[data-guided] .step:has([data-sheet]) {
   opacity: 1;
   transform: none;
   transition: none;

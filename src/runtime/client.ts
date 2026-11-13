@@ -6,7 +6,7 @@ import { hydrate } from 'preact';
 import type { VNode } from 'preact';
 import * as StepsContext from '../components/organisms/Steps/StepsContext';
 import { IdPrefix, whileHydrating } from './compat/react';
-import { ISLAND_TAG, SLOT_TAG, registryOf, revive } from './islands';
+import { ISLAND_TAG, SLOT_TAG, registryOf, revive, whenSlotMounts } from './islands';
 import type { Encoded, Registry } from './islands';
 
 type Hydrated = HTMLElement & { __ds540?: true };
@@ -29,6 +29,8 @@ function scheduleHydrate() {
     hydrateIslands();
   });
 }
+
+whenSlotMounts(scheduleHydrate);
 
 function slotHtml(id: string): string {
   const slot = document.querySelector(`${SLOT_TAG}[data-s="${CSS.escape(id)}"]`);

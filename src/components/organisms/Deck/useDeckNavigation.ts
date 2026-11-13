@@ -3,12 +3,12 @@ import type { RefObject } from 'react';
 
 const WRAPPERS = new Set(['DS-SLOT', 'DS-ISLAND']);
 
-/** The Slides under parent, at any depth: a wrapper (a div with a label, an island) does not hide them. */
+/** The Slides under parent, at any depth: a wrapper (a div with a label, an island) does not hide them. Other sections are not stops. */
 function slidesOf(parent: Element): HTMLElement[] {
-  return Array.from(parent.children).flatMap((el) => (el.tagName === 'SECTION' ? [el as HTMLElement] : slidesOf(el)));
+  return Array.from(parent.querySelectorAll<HTMLElement>('[data-slide]'));
 }
 
-/** The element after el, looking through the ds-slot/ds-island wrappers as slidesOf does. */
+/** The element after el, looking through the ds-slot/ds-island wrappers (not other wrappers: a photo goes next to its title). */
 function nextThroughWrappers(el: Element): Element | null {
   let cur: Element = el;
   while (!cur.nextElementSibling && cur.parentElement && WRAPPERS.has(cur.parentElement.tagName)) cur = cur.parentElement;
@@ -40,7 +40,7 @@ export function useDeckNavigation(mainRef: RefObject<HTMLElement | null>, footer
     // A section with [data-stop] descendants is replaced by them (one stop per sentence, per month…).
     // Only the outermost count: a Spotlight inside a timeline step is the same stop as its step.
     list = list.flatMap((section) => {
-      const inner = Array.from(section.querySelectorAll<HTMLElement>('[data-stop]')).filter((el) => !section.contains(el.parentElement?.closest('[data-stop]') ?? null));
+      const inner = Array.from(section.querySelectorAll<HTMLElement>(':scope [data-stop]:not([data-stop] [data-stop])'));
       return inner.length ? inner : [section];
     });
     if (footerRef.current) list.push(footerRef.current);
