@@ -17,7 +17,7 @@
  */
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import ts from 'typescript';
 import type { ComponentLevel, ComponentMeta, Metadata, PropDef, StoryDef, Token, TokenCategory } from '../mcp/types.ts';
 
@@ -368,6 +368,7 @@ function buildComponents(): Record<string, ComponentMeta> {
       level,
       path: rel(dir),
       storybookTitle: title,
+      docsUrl: title ? `${STORYBOOK_URL}/?path=/docs/${sanitize(title)}--docs` : null,
       description,
       props,
       parts,
@@ -481,15 +482,14 @@ function reportGaps(components: Record<string, ComponentMeta>): string[] {
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
-function main() {
+/** The whole metadata, built in memory. Used by main() and by the MCP tests. */
+export function buildMetadata(): Metadata {
   const pkg = JSON.parse(read(path.join(root, 'package.json')));
   const primitives = parsePrimitives();
-  const components = buildComponents();
-
-  const metadata: Metadata = {
+  return {
     version: pkg.version,
     storybookUrl: STORYBOOK_URL,
-    components,
+    components: buildComponents(),
     tokens: {
       color: parseTokens('color', primitives),
       measure: parseTokens('measure', primitives),
@@ -497,16 +497,19 @@ function main() {
     },
     rules: buildRules(),
   };
+}
 
+function main() {
+  const metadata = buildMetadata();
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(metadata, null, 2)}\n`);
 
-  const count = Object.keys(components).length;
+  const count = Object.keys(metadata.components).length;
   const tokenCount = Object.values(metadata.tokens).reduce((n, t) => n + t.length, 0);
   const kb = Math.round(fs.statSync(outputPath).size / 1024);
   console.log(`✓ ${rel(outputPath)}: ${count} components, ${tokenCount} tokens, ${Object.keys(metadata.rules).length} rule sets (${kb} KB)`);
 
-  const gaps = reportGaps(components);
+  const gaps = reportGaps(metadata.components);
   if (gaps.length) {
     console.log(`\n${gaps.length} gaps for the MCP:`);
     for (const g of gaps) console.log(`  - ${g}`);
@@ -514,4 +517,5 @@ function main() {
   }
 }
 
-main();
+// Run only as a script, not when the tests import buildMetadata().
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();

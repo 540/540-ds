@@ -44,6 +44,8 @@ export interface ComponentMeta {
   /** Folder in the repo, e.g. `src/components/atoms/Button`. */
   path: string;
   storybookTitle: string | null;
+  /** The component's Docs page in the published Storybook. */
+  docsUrl: string | null;
   /** JSDoc of the component. */
   description: string | null;
   props: PropDef[];
