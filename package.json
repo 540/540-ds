@@ -49,7 +49,16 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:lib": "node scripts/build-lib.mjs",
-    "prepack": "npm run build:lib"
+    "prepack": "npm run build:lib",
+    "build-mcp-metadata": "tsx scripts/build-mcp-metadata.ts",
+    "test:mcp": "vitest run --project=mcp",
+    "mcp:stdio": "tsx mcp/stdio.ts",
+    "mcp:inspect": "npx -y @modelcontextprotocol/inspector tsx mcp/stdio.ts",
+    "mcp:serve": "tsx mcp/serve.ts",
+    "mcp:inspect:http": "npx -y @modelcontextprotocol/inspector --transport http --server-url http://localhost:3000/mcp",
+    "build:firebase": "npm run build-mcp-metadata -- --strict && tsx scripts/build-mcp-firebase.ts",
+    "mcp:emulate": "npm run build:firebase && npx -y firebase-tools@15.36.0 emulators:start --only functions,hosting --project demo-540-ds",
+    "mcp:deploy": "npx -y firebase-tools@15.36.0 deploy --only functions:mcp,hosting"
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -60,6 +69,7 @@
   },
   "devDependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@storybook/addon-a11y": "^10.6.3",
     "@storybook/addon-docs": "^10.6.3",
     "@storybook/addon-mcp": "^10.6.3",
@@ -72,6 +82,8 @@
     "@vitejs/plugin-react": "^6.1.2",
     "@vitest/browser-playwright": "latest",
     "@vitest/coverage-v8": "latest",
+    "esbuild": "^0.28.2",
+    "firebase-functions": "^7.4.0",
     "jsdom": "^29.1.1",
     "oxlint": "^1.88.0",
     "playwright": "latest",
@@ -81,8 +93,10 @@
     "react-dom": "^19.3.1",
     "remark-gfm": "^4.0.1",
     "storybook": "^10.6.3",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "vite": "^8.3.4",
-    "vitest": "latest"
+    "vitest": "latest",
+    "zod": "^4.6.7"
   }
 }

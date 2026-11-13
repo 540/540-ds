@@ -4,11 +4,6 @@ import { useStepOn, useSteps } from '../Steps/StepsContext';
 import styles from './Sheet.module.css';
 import type { SheetProps } from './types';
 
-/**
- * Sheet is a panel that rises from the bottom edge over the stop, with a veil behind.
- * Inside a Step it opens with the step; it hides as soon as its stop (the step of a timeline,
- * or the whole section) leaves the center of the window.
- */
 /** The stop the Deck counts for el: its outermost [data-stop], or else its section. */
 function stopOf(el: Element): Element | null {
   let stop: Element | null = null;
@@ -16,6 +11,11 @@ function stopOf(el: Element): Element | null {
   return stop ?? el.closest('section');
 }
 
+/**
+ * Sheet is a panel that rises from the bottom edge over the stop, with a veil behind.
+ * Inside a Step it opens with the step; it hides as soon as its stop (the step of a timeline,
+ * or the whole section) leaves the center of the window.
+ */
 export function Sheet({ open, kicker, title, description, children, className }: SheetProps) {
   const stepOn = useStepOn();
   const { total, guided } = useSteps();
