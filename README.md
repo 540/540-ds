@@ -186,9 +186,29 @@ import type { DeckProps } from '@540deg/ds';
 
 ### Publicar una versión
 
-1. Sube la versión en `package.json` (`npm version patch`, `minor` o `major`, que crea también la etiqueta `vX.Y.Z`).
-2. Sube la etiqueta: `git push origin vX.Y.Z`.
-3. El flujo `.github/workflows/publish.yml` comprueba que la etiqueta coincide con la versión, pasa tipos, lint y SSR, construye la librería y la publica en npm con *provenance*.
+`main` solo acepta cambios por PR, así que la versión se sube en una rama y la etiqueta se crea después, sobre `main`:
+
+1. Desde `main` al día, abre una rama y sube la versión sin crear etiqueta (`patch`, `minor` o `major`):
+
+   ```bash
+   git checkout main && git pull
+   git checkout -b release/vX.Y.Z
+   npm version patch --no-git-tag-version
+   git commit -am "Release X.Y.Z"
+   git push -u origin release/vX.Y.Z
+   ```
+
+2. Abre el PR contra `main` y mergéalo.
+3. Crea la etiqueta sobre `main` y súbela:
+
+   ```bash
+   git checkout main && git pull
+   git tag vX.Y.Z && git push origin vX.Y.Z
+   ```
+
+4. El flujo `.github/workflows/publish.yml` comprueba que la etiqueta coincide con la versión de `package.json`, pasa tipos, lint y SSR, construye la librería y la publica en npm con *provenance*. Míralo en Actions → "Publish to npm" y comprueba con `npm view @540deg/ds version`.
+
+Una versión publicada no se puede volver a publicar ni reutilizar su número: si algo sale mal, se arregla y se sube la siguiente.
 
 No usa tokens: publica con *Trusted Publishing* de npm. En npmjs.com, `@540deg/ds` → Settings → Trusted Publisher tiene dado de alta este repositorio y el flujo `publish.yml`. Si se renombra el fichero del flujo o el repositorio, hay que cambiarlo también allí.
 
