@@ -14,12 +14,14 @@
  *       docs         _docs/<Name>.md
  *   - tokens: the semantic CSS files in src/tokens (never the --540-* primitives)
  *   - rules:  src/docs/normas-*.md, one per piece type
+ *   - templates: src/templates/<Name>/<Name>.tsx split into its stops (the direct children of its Deck),
+ *       and the patterns table ("Para contar… | Pieza | Nunca") of the piece type's rules
  */
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import ts from 'typescript';
-import type { ComponentLevel, ComponentMeta, Metadata, PropDef, StoryDef, Token, TokenCategory } from '../mcp/types.ts';
+import type { ComponentLevel, ComponentMeta, Metadata, PatternDef, PropDef, StopDef, StoryDef, TemplateMeta, Token, TokenCategory } from '../mcp/types.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'src');
@@ -37,6 +39,17 @@ const LEVEL_DIRS: Array<{ level: ComponentLevel; dir: string }> = [
 const RULE_FILES: Record<string, string> = {
   'normas-charlas.md': 'talk',
 };
+
+/** Piece type → its template folder in src/templates. */
+const TEMPLATE_DIRS: Record<string, string> = {
+  talk: 'TalkTemplate',
+};
+
+/** Containers that hold almost every stop: they say nothing about which pattern a stop shows. */
+const LAYOUT_COMPONENTS = new Set(['Slide', 'Grid', 'GridItem', 'Stack', 'Text', 'SectionHeader', 'Step']);
+
+/** At most this many example stops per pattern, the simplest first. */
+const STOPS_PER_PATTERN = 3;
 
 const read = (file: string) => fs.readFileSync(file, 'utf-8');
 const rel = (file: string) => path.relative(root, file).split(path.sep).join('/');
@@ -462,6 +475,206 @@ function buildRules(): Metadata['rules'] {
   return rules;
 }
 
+// ── Templates and patterns ───────────────────────────────────────────────────
+
+const jsxTagName = (node: ts.JsxElement | ts.JsxSelfClosingElement) =>
+  (ts.isJsxElement(node) ? node.openingElement.tagName : node.tagName).getText();
+
+const jsxAttributes = (node: ts.JsxElement | ts.JsxSelfClosingElement) =>
+  (ts.isJsxElement(node) ? node.openingElement.attributes : node.attributes).properties;
+
+/** Readable text of an expression: a string, an array of strings (lines) or JSX (its text, tags dropped). */
+function plainText(expr: ts.Expression): string | null {
+  expr = unwrap(expr);
+  if (ts.isStringLiteral(expr) || ts.isNoSubstitutionTemplateLiteral(expr)) return expr.text;
+  if (ts.isArrayLiteralExpression(expr)) {
+    const parts = expr.elements.map((e) => plainText(e));
+    return parts.every((p) => p !== null) ? parts.join(' ') : null;
+  }
+  if (ts.isJsxElement(expr) || ts.isJsxFragment(expr)) {
+    const texts: string[] = [];
+    forEachDescendant(expr, (n) => {
+      if (ts.isJsxText(n)) texts.push(n.text);
+    });
+    return texts.join('').replace(/\s+/g, ' ').trim() || null;
+  }
+  return null;
+}
+
+/** A JSX attribute as plain text: `title="…"`, `title={['line', 'line']}`, `sentence={<>…</>}`. */
+function attrText(node: ts.JsxElement | ts.JsxSelfClosingElement, name: string): string | null {
+  for (const attr of jsxAttributes(node)) {
+    if (!ts.isJsxAttribute(attr) || attr.name.getText() !== name || !attr.initializer) continue;
+    if (ts.isStringLiteral(attr.initializer)) return attr.initializer.text;
+    if (ts.isJsxExpression(attr.initializer) && attr.initializer.expression) return plainText(attr.initializer.expression);
+  }
+  return null;
+}
+
+/** A node's source without the indentation of the line it starts on, so it can be pasted anywhere. */
+function dedentedText(node: ts.Node, sf: ts.SourceFile): string {
+  const { character } = sf.getLineAndCharacterOfPosition(node.getStart(sf));
+  const pad = new RegExp(`^ {0,${character}}`);
+  return node
+    .getText(sf)
+    .split('\n')
+    .map((line, i) => (i === 0 ? line : line.replace(pad, '')))
+    .join('\n');
+}
+
+function forEachDescendant(node: ts.Node, visit: (n: ts.Node) => void) {
+  ts.forEachChild(node, (child) => {
+    visit(child);
+    forEachDescendant(child, visit);
+  });
+}
+
+/**
+ * Splits a template into its stops: each direct child of the root Deck. For each stop it keeps
+ * the source, the catalog components it uses (also inside local helpers like ContextCards), the
+ * local constants and functions it needs, and the sample images it points to.
+ */
+function buildTemplate(pieceType: string, dirName: string, components: Record<string, ComponentMeta>, rules: Metadata['rules']): TemplateMeta | null {
+  const dir = path.join(src, 'templates', dirName);
+  const file = path.join(dir, `${dirName}.tsx`);
+  if (!fs.existsSync(file)) return null;
+  const sf = ts.createSourceFile(file, read(file), ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+
+  // Top-level declarations (local helpers and data) and default imports of sample assets.
+  const locals = new Map<string, ts.Statement>();
+  const assets = new Map<string, string>();
+  for (const stmt of sf.statements) {
+    if (ts.isFunctionDeclaration(stmt) && stmt.name) locals.set(stmt.name.text, stmt);
+    if (ts.isVariableStatement(stmt)) {
+      for (const d of stmt.declarationList.declarations) if (ts.isIdentifier(d.name)) locals.set(d.name.text, stmt);
+    }
+    if (ts.isImportDeclaration(stmt) && stmt.importClause?.name && ts.isStringLiteral(stmt.moduleSpecifier) && stmt.moduleSpecifier.text.includes('/assets/')) {
+      assets.set(stmt.importClause.name.text, rel(path.resolve(dir, stmt.moduleSpecifier.text)));
+    }
+  }
+  const catalog = new Set(Object.values(components).flatMap((c) => [c.name, ...c.parts.map((p) => p.name)]));
+
+  /** Components, local declarations and assets a node needs, following local helpers transitively. */
+  function dependencies(node: ts.Node) {
+    const used = new Set<string>();
+    const needed = new Set<ts.Statement>();
+    const sampleAssets = new Set<string>();
+    const queue: ts.Node[] = [node];
+    while (queue.length) {
+      forEachDescendant(queue.pop()!, (n) => {
+        if ((ts.isJsxOpeningElement(n) || ts.isJsxSelfClosingElement(n)) && catalog.has(n.tagName.getText())) used.add(n.tagName.getText());
+        if (!ts.isIdentifier(n)) return;
+        if (assets.has(n.text)) sampleAssets.add(n.text);
+        const decl = locals.get(n.text);
+        if (decl && !needed.has(decl) && !(ts.isFunctionDeclaration(decl) && decl.name?.text === dirName)) {
+          needed.add(decl);
+          queue.push(decl);
+        }
+      });
+    }
+    const code = sf.statements.filter((s) => needed.has(s)).map((s) => s.getText(sf)).join('\n\n');
+    return { components: [...used], code, assets: Object.fromEntries([...sampleAssets].map((a) => [a, assets.get(a)!])) };
+  }
+
+  // The root Deck inside the template function.
+  let deck: ts.JsxElement | undefined;
+  forEachDescendant(sf, (n) => {
+    if (!deck && ts.isJsxElement(n) && n.openingElement.tagName.getText() === 'Deck') deck = n;
+  });
+  if (!deck) {
+    console.warn(`  ! no <Deck> in ${rel(file)}`);
+    return null;
+  }
+
+  const stops: StopDef[] = [];
+  let block: StopDef['block'] = null;
+  for (const child of deck.children) {
+    if (!ts.isJsxElement(child) && !ts.isJsxSelfClosingElement(child)) continue;
+    const component = jsxTagName(child);
+    if (component === 'BlockTitle') block = { ordinal: attrText(child, 'ordinal') ?? '', title: attrText(child, 'title') ?? '' };
+    if (component === 'Closing') block = null;
+
+    const ownDefault = components[component.toLowerCase()]?.props.find((p) => p.name === 'id')?.default;
+    const id = attrText(child, 'id') ?? (typeof ownDefault === 'string' ? ownDefault : component.toLowerCase());
+
+    // Title: the root's own title or sentence(s), else the first SectionHeader inside.
+    let title = attrText(child, 'title') ?? attrText(child, 'sentence') ?? attrText(child, 'sentences');
+    if (!title) {
+      forEachDescendant(child, (n) => {
+        if (!title && (ts.isJsxSelfClosingElement(n) || ts.isJsxElement(n)) && jsxTagName(n) === 'SectionHeader') title = attrText(n, 'title');
+      });
+    }
+
+    const deps = dependencies(child);
+    if (catalog.has(component) && !deps.components.includes(component)) deps.components.unshift(component);
+    stops.push({
+      id,
+      block: component === 'Cover' || component === 'Closing' ? null : block,
+      component,
+      components: deps.components,
+      title,
+      code: dedentedText(child, sf),
+      dependencies: deps.code,
+      sampleAssets: deps.assets,
+    });
+  }
+
+  const shellDeps = dependencies(deck.openingElement);
+  const docsFile = path.join(dir, '_docs', `${dirName}.md`);
+  return {
+    pieceType,
+    component: dirName,
+    path: rel(dir),
+    docs: fs.existsSync(docsFile) ? read(docsFile) : '',
+    shell: { code: `${deck.openingElement.getText(sf)}\n  {/* stops */}\n</Deck>`, dependencies: shellDeps.code },
+    stops,
+    patterns: parsePatterns(rules[pieceType]?.content ?? '', stops),
+  };
+}
+
+/**
+ * The "Para contar… | Pieza | Nunca" table of a rules file: need → piece → what never to do,
+ * plus up to three template stops that show it, the simplest first. A stop matches when it uses
+ * one of the specific components the piece names (all of them if it names only layout ones) and, if the piece quotes
+ * code such as `Grid layout="five"` or `schema.series`, when its source contains that code.
+ */
+function parsePatterns(rulesContent: string, stops: StopDef[]): PatternDef[] {
+  const lines = rulesContent.split('\n');
+  const start = lines.findIndex((l) => /^\|\s*Para contar/.test(l));
+  if (start < 0) return [];
+  const patterns: PatternDef[] = [];
+  for (const line of lines.slice(start + 2)) {
+    if (!line.startsWith('|')) break;
+    const [need, piece, never] = line
+      .split('|')
+      .slice(1, -1)
+      .map((c) => c.trim());
+    const quoted = [...piece.matchAll(/`([^`]+)`/g)].map((m) => m[1]);
+    const named = [...new Set(quoted.map((q) => q.match(/^[A-Z]\w*/)?.[0]).filter((n): n is string => Boolean(n)))];
+    const snippets = quoted.filter((q) => /[=.]/.test(q)).map((q) => q.replace(/^[A-Z]\w*\s+/, ''));
+    // Any of the specific components; if the piece names only layout ones, all of them.
+    const specific = named.filter((c) => !LAYOUT_COMPONENTS.has(c));
+    const usesPiece = (s: StopDef) =>
+      specific.length ? specific.some((k) => s.components.includes(k)) : named.every((k) => s.components.includes(k));
+
+    const matching = stops
+      .filter(usesPiece)
+      .filter((s) => !snippets.length || snippets.some((snip) => `${s.code}\n${s.dependencies}`.includes(snip)))
+      .sort((a, b) => a.components.length - b.components.length);
+    patterns.push({ need, piece, never, components: named, stops: matching.slice(0, STOPS_PER_PATTERN).map((s) => s.id) });
+  }
+  return patterns;
+}
+
+function buildTemplates(components: Record<string, ComponentMeta>, rules: Metadata['rules']): Metadata['templates'] {
+  const templates: Metadata['templates'] = {};
+  for (const [pieceType, dirName] of Object.entries(TEMPLATE_DIRS)) {
+    const template = buildTemplate(pieceType, dirName, components, rules);
+    if (template) templates[pieceType] = template;
+  }
+  return templates;
+}
+
 // ── Gaps report (task 15) ────────────────────────────────────────────────────
 
 function reportGaps(components: Record<string, ComponentMeta>): string[] {
@@ -486,16 +699,19 @@ function reportGaps(components: Record<string, ComponentMeta>): string[] {
 export function buildMetadata(): Metadata {
   const pkg = JSON.parse(read(path.join(root, 'package.json')));
   const primitives = parsePrimitives();
+  const components = buildComponents();
+  const rules = buildRules();
   return {
     version: pkg.version,
     storybookUrl: STORYBOOK_URL,
-    components: buildComponents(),
+    components,
     tokens: {
       color: parseTokens('color', primitives),
       measure: parseTokens('measure', primitives),
       typography: parseTokens('typography', primitives),
     },
-    rules: buildRules(),
+    rules,
+    templates: buildTemplates(components, rules),
   };
 }
 
@@ -507,7 +723,11 @@ function main() {
   const count = Object.keys(metadata.components).length;
   const tokenCount = Object.values(metadata.tokens).reduce((n, t) => n + t.length, 0);
   const kb = Math.round(fs.statSync(outputPath).size / 1024);
-  console.log(`✓ ${rel(outputPath)}: ${count} components, ${tokenCount} tokens, ${Object.keys(metadata.rules).length} rule sets (${kb} KB)`);
+  const stopCount = Object.values(metadata.templates).reduce((n, t) => n + t.stops.length, 0);
+  console.log(
+    `✓ ${rel(outputPath)}: ${count} components, ${tokenCount} tokens, ${Object.keys(metadata.rules).length} rule sets, ` +
+      `${Object.keys(metadata.templates).length} templates with ${stopCount} stops (${kb} KB)`,
+  );
 
   const gaps = reportGaps(metadata.components);
   if (gaps.length) {
