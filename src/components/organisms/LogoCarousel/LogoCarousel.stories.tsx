@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, waitFor } from 'storybook/test';
 import { LogoCarousel } from './LogoCarousel';
 import { LOGO_CAROUSEL_DEFAULTS } from './types';
 import doc from './_docs/LogoCarousel.md?raw';
@@ -36,3 +37,33 @@ export const Playground: Story = { tags: ['dev'] };
 export const Tira: Story = {
   parameters: { docs: { description: { story: 'Nueve logotipos en siete huecos: el del centro a plena tinta y un 8 % más grande. Avanza solo; pasa el ratón para pararlo. Cambia el **Tema** y el **Viewport** (5 huecos en tablet, 3 en móvil).' } } },
 };
+
+const centerHolds = (slots: number): Story['play'] => async ({ canvasElement, step }) => {
+  const carousel = canvasElement.querySelector<HTMLElement>('[aria-roledescription]')!;
+  const highlighted = () => [...carousel.querySelectorAll<HTMLElement>('[data-pos]')].filter((s) => getComputedStyle(s.firstElementChild!).scale === '1.08');
+
+  const expectCentered = async () => {
+    await waitFor(() => {
+      const [center, ...rest] = highlighted();
+      expect(rest).toHaveLength(0);
+      expect(center.dataset.pos).toBe(String(Math.floor(slots / 2)));
+      const box = carousel.getBoundingClientRect();
+      const slot = center.getBoundingClientRect();
+      expect(Math.abs(slot.left + slot.width / 2 - (box.left + box.width / 2))).toBeLessThan(1);
+    });
+  };
+
+  await step(`${slots} huecos`, () => expect(getComputedStyle(carousel).getPropertyValue('--slots').trim()).toBe(String(slots)));
+  await step('el del medio, resaltado', expectCentered);
+  await step('tras un paso, sigue el del medio', async () => {
+    const first = carousel.querySelector('[data-pos="0"]');
+    await waitFor(() => expect(carousel.querySelector('[data-pos="0"]')).not.toBe(first), { timeout: 3000 });
+    await expectCentered();
+  });
+};
+
+const testOnly = { tags: ['!autodocs'], args: { interval: 800 } } satisfies Story;
+
+export const CentroEnMovil: Story = { ...testOnly, globals: { viewport: { value: 'mobile' } }, play: centerHolds(3) };
+export const CentroEnTablet: Story = { ...testOnly, globals: { viewport: { value: 'tablet' } }, play: centerHolds(5) };
+export const CentroEnEscritorio: Story = { ...testOnly, globals: { viewport: { value: 'desktop' } }, play: centerHolds(7) };
