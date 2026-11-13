@@ -29,7 +29,7 @@ export type SchemaLayerProps = {
 export type SchemaFrameProps = {
   /** The caption under the drawing, at half the grid. */
   caption?: ReactNode;
-  /** The Schema. */
+  /** The Schema to frame: it takes the full window width, with sideways scroll if it does not fit. */
   children: ReactNode;
   className?: string;
 };
