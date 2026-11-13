@@ -113,7 +113,7 @@ const doc = dom.window.document;
 const problems = [...errors];
 const islands = Array.from(doc.querySelectorAll('ds-island'));
 for (const el of islands) {
-  const hydrated = Object.keys(el).some((k) => k.startsWith('__reactContainer'));
+  const hydrated = '__k' in el;
   if (!hydrated) problems.push(`island ${el.dataset.c} did not hydrate`);
 }
 if (islands.length !== 4) problems.push(`expected 4 islands, found ${islands.length}`);
