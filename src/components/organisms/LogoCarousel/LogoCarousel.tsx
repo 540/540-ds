@@ -1,17 +1,25 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import styles from './LogoCarousel.module.css';
 import { LOGO_CAROUSEL_DEFAULTS } from './types';
 import type { LogoCarouselProps } from './types';
 
+/* Same breakpoints as --slots in the CSS, which lays the slots out on its own */
+const WIDE = '(min-width: 1024px)';
+const MEDIUM = '(min-width: 600px)';
+
+function subscribeSlots(onChange: () => void) {
+  const queries = [window.matchMedia(WIDE), window.matchMedia(MEDIUM)];
+  queries.forEach((q) => q.addEventListener('change', onChange));
+  return () => queries.forEach((q) => q.removeEventListener('change', onChange));
+}
+
+const readSlots = () => (window.matchMedia(WIDE).matches ? 7 : window.matchMedia(MEDIUM).matches ? 5 : 3);
+
+/** The server has no window: it renders the narrowest strip, as the CSS does, and the browser corrects it. */
+const serverSlots = () => 3;
+
 function useSlots() {
-  const read = () => (window.matchMedia('(min-width: 1024px)').matches ? 7 : window.matchMedia('(min-width: 600px)').matches ? 5 : 3);
-  const [slots, setSlots] = useState(read);
-  useEffect(() => {
-    const onResize = () => setSlots(read());
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-  return slots;
+  return useSyncExternalStore(subscribeSlots, readSlots, serverSlots);
 }
 
 /**

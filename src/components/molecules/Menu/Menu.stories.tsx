@@ -15,7 +15,8 @@ const DESTINOS = [
 ];
 
 function LiveToggle() {
-  const [dark, setDark] = useState(() => document.documentElement.dataset.theme === 'dark');
+  // Guarded so the story also renders without a browser (src/ssr.test.tsx)
+  const [dark, setDark] = useState(() => typeof document !== 'undefined' && document.documentElement.dataset.theme === 'dark');
   return (
     <ThemeToggle
       dark={dark}
