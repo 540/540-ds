@@ -24,7 +24,14 @@ export type BarsProps = {
   /** Accessible name of the chart ("Suscriptores por país"). */
   label: string;
   /** Optional column headings, in micro: the label, the figure and the detail. */
-  header?: { label: ReactNode; value?: ReactNode; detail?: ReactNode };
+  header?: {
+    /** Heading of the label column. */
+    label: ReactNode;
+    /** Heading of the figure column. */
+    value?: ReactNode;
+    /** Heading of the detail column. */
+    detail?: ReactNode;
+  };
   /** The value of a full bar. By default, the biggest row. */
   max?: number;
   /** Text after every figure when there is no display (" %"). */

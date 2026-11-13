@@ -20,7 +20,12 @@ export type CardProps = {
   /** A small line above the title ("Cliente", "Lo que medimos"), in secondary. */
   kicker?: ReactNode;
   /** A round 160 px portrait above the header. */
-  portrait?: { src: string; alt: string };
+  portrait?: {
+    /** Path or URL of the portrait. */
+    src: string;
+    /** What the portrait shows, in words. */
+    alt: string;
+  };
   /** The title (an h3 by default). */
   title: ReactNode;
   /** Heading level of the title. */

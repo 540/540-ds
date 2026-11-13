@@ -14,9 +14,11 @@ export type TimelineStep = {
 };
 
 export type TimelineProps = {
+  /** The stop's anchor. */
   id: string;
   /** The header above the axis. */
   title: ReactNode;
+  /** One sentence under the header. */
   description?: ReactNode;
   /** The steps, in order. Each one is a stop of the journey. */
   steps: TimelineStep[];

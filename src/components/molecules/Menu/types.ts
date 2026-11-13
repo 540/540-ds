@@ -1,7 +1,9 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export type MenuDestination = {
+  /** The anchor or URL of the section ("#cierre"). */
   href: string;
+  /** The name of the section, written normally. */
   label: string;
   /** The section being viewed. One per menu. */
   current?: boolean;

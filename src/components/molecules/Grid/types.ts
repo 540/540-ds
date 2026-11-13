@@ -13,6 +13,7 @@ export type GridProps = {
   compact?: boolean;
   /** stretch: cells as tall as the row (cards). center: each cell centered in height (a drawing and its panel). */
   align?: GridAlign;
+  /** The cells: GridItems with their span in twelve; the five pieces directly in five and fiveCentered. */
   children: ReactNode;
   className?: string;
 };
@@ -20,6 +21,7 @@ export type GridProps = {
 export type GridItemProps = {
   /** Columns of twelve from 1024 px. From 600 px spans up to 6 take half; below, everything takes the row. */
   span?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  /** The content of the cell. */
   children: ReactNode;
   className?: string;
 };

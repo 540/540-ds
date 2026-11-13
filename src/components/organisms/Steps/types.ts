@@ -17,6 +17,7 @@ export type StepProps = {
   to?: number;
   /** Take no room at all while hidden (for stacked versions of a block). */
   collapse?: boolean;
+  /** What appears at this step. */
   children: ReactNode;
   className?: string;
 };

@@ -4,7 +4,9 @@ import type { MenuDestination } from '../Menu';
 export type NavMobileProps = {
   /** The same destinations as Menu: the same objects, built once. */
   items: MenuDestination[];
+  /** Where the logo links to. */
   homeHref?: string;
+  /** Accessible name of the logo link. */
   homeLabel?: string;
   /** Accessible name of the navigation. */
   label?: string;

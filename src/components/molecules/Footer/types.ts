@@ -1,9 +1,28 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import type { SocialNetwork } from '../../atoms/SocialIcon';
 
-export type FooterLink = { label: ReactNode; href: string };
-export type FooterGroup = { title: string; items: FooterLink[] };
-export type FooterNetwork = { network: SocialNetwork; href: string; label: string };
+export type FooterLink = {
+  /** The visible text of the link. */
+  label: ReactNode;
+  /** Where it goes. */
+  href: string;
+};
+
+export type FooterGroup = {
+  /** The column heading. */
+  title: string;
+  /** The links of the column, in order. */
+  items: FooterLink[];
+};
+
+export type FooterNetwork = {
+  /** Which network: sets the icon. */
+  network: SocialNetwork;
+  /** The profile URL. */
+  href: string;
+  /** The network's name, read on the link ("LinkedIn"). */
+  label: string;
+};
 
 export type FooterProps = {
   /** One line about the brand. Optional. */
@@ -20,6 +39,7 @@ export type FooterProps = {
   legal?: FooterLink[];
   /** Where the logo links to. */
   homeHref?: string;
+  /** Accessible name of the logo link. */
   homeLabel?: string;
   className?: string;
 } & Omit<ComponentPropsWithoutRef<'footer'>, 'className' | 'children'>;
