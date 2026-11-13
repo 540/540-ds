@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { Text } from '../Text';
 import { Logo } from '../Logo';
@@ -7,6 +6,7 @@ import { ThemeToggle } from './ThemeToggle';
 import styles from './ThemeToggle.module.css';
 import { THEME_TOGGLE_DEFAULTS } from './types';
 import doc from './_docs/ThemeToggle.md?raw';
+import { LiveThemeToggle } from './LiveThemeToggle';
 
 const Caption = ({ children }: { children: ReactNode }) => (
   <Text variant="micro" tone="secondary" as="span">
@@ -43,24 +43,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/* The real thing: the toggle drives the theme of the whole canvas through <html data-theme>. */
-function LiveToggle() {
-  const [dark, setDark] = useState(() => typeof document !== 'undefined' && document.documentElement.dataset.theme === 'dark');
-  return (
-    <ThemeToggle
-      dark={dark}
-      onToggle={(next) => {
-        setDark(next);
-        document.documentElement.dataset.theme = next ? 'dark' : 'light';
-      }}
-    />
-  );
-}
-
 export const Playground: Story = {
   tags: ['dev'],
   parameters: { layout: 'centered' },
-  render: () => <LiveToggle />,
+  render: () => <LiveThemeToggle />,
 };
 
 export const LosDosTemas: Story = {
@@ -123,7 +109,7 @@ export const EnLaBarra: Story = {
   render: () => (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBlock: 'var(--space-xl)' }}>
       <Logo size="xs" />
-      <LiveToggle />
+      <LiveThemeToggle />
     </div>
   ),
 };

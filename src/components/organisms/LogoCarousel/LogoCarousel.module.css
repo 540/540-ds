@@ -21,6 +21,7 @@
 .track {
   display: flex;
   align-items: center;
+  transform: translateX(calc(-100% / var(--slots) * var(--offset, 0)));
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -50,9 +51,33 @@
     filter 0.6s ease;
 }
 
-.center .logo {
+.slot[data-pos='1'] .logo {
   filter: var(--filter-logo-client-center);
   scale: 1.08;
+}
+
+@media (min-width: 600px) {
+  .slot[data-pos='1'] .logo {
+    filter: var(--filter-logo-client);
+    scale: 1;
+  }
+
+  .slot[data-pos='2'] .logo {
+    filter: var(--filter-logo-client-center);
+    scale: 1.08;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slot[data-pos='2'] .logo {
+    filter: var(--filter-logo-client);
+    scale: 1;
+  }
+
+  .slot[data-pos='3'] .logo {
+    filter: var(--filter-logo-client-center);
+    scale: 1.08;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
