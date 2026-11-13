@@ -1,10 +1,10 @@
 import { createElement } from 'react';
-import type { ComponentType, ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { ISLAND_TAG, revive } from './islands';
 import type { Encoded, Registry } from './islands';
 
-export { ISLAND_TAG, SLOT_TAG, Slot, revive } from './islands';
+export { ISLAND_TAG, SLOT_TAG, Slot, registryOf, revive } from './islands';
 export type { Encoded, Registry } from './islands';
 export { createElement, renderToStaticMarkup, renderToString };
 
@@ -29,16 +29,6 @@ export function renderIsland(registry: Registry, { name, props, id, slots = {} }
 
 export function renderStatic(element: ReactElement, id: string): string {
   return renderToStaticMarkup(element, { identifierPrefix: id });
-}
-
-export function registryOf(...modules: Record<string, unknown>[]): Registry {
-  const registry: Registry = new Map();
-  for (const mod of modules) {
-    for (const [key, value] of Object.entries(mod)) {
-      if (/^[A-Z]/.test(key) && typeof value === 'function') registry.set(key, value as ComponentType<Record<string, unknown>>);
-    }
-  }
-  return registry;
 }
 
 function escapeAttr(value: string): string {

@@ -11,7 +11,7 @@ const out = path.join(root, 'pieces');
 const pkg = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const commit = execSync('git rev-parse --short HEAD', { cwd: root }).toString().trim();
 
-const ISLANDS = ['Deck', 'Carousel', 'Count', 'Marquee', 'Steps', 'Timeline', 'Bars', 'Spotlight', 'Statements', 'Sheet', 'Dialog', 'Share', 'NavMobile', 'LogoCarousel'];
+const ISLANDS = ['Deck', 'Carousel', 'Count', 'Marquee', 'Steps', 'Timeline', 'Bars', 'Spotlight', 'Statements', 'Sheet', 'Schema', 'Share', 'NavMobile', 'LogoCarousel'];
 
 const SHARED = {
   react: '__ds540.React',
@@ -32,7 +32,8 @@ function scopedName(local, filename) {
   return `${name}_${local}_${hash}`;
 }
 
-const shared = {
+// A function, not an object: island builds run at the same time and each needs its own plugin instances
+const shared = () => ({
   configFile: false,
   root,
   mode: 'production',
@@ -41,7 +42,7 @@ const shared = {
   define: { 'process.env.NODE_ENV': '"production"' },
   plugins: [react()],
   css: { modules: { generateScopedName: scopedName } },
-};
+});
 
 async function findComponents() {
   const list = [];
@@ -59,10 +60,11 @@ async function findComponents() {
 
 async function buildServer(components) {
   const graph = {};
+  const base = shared();
   await build({
-    ...shared,
+    ...base,
     plugins: [
-      ...shared.plugins,
+      ...base.plugins,
       {
         name: 'pieces-graph',
         generateBundle(_options, bundle) {
@@ -99,10 +101,11 @@ async function buildIsland(component) {
   const entry = path.join(root, 'node_modules/.tmp/pieces', `${component.name}.island.ts`);
   await mkdir(path.dirname(entry), { recursive: true });
   await writeFile(entry, `import * as m from ${JSON.stringify(component.entry)};\n(globalThis as any).__ds540.register(m);\n`);
+  const base = shared();
   await build({
-    ...shared,
+    ...base,
     plugins: [
-      ...shared.plugins,
+      ...base.plugins,
       {
         name: 'pieces-island',
         enforce: 'pre',
@@ -133,7 +136,7 @@ async function buildIsland(component) {
 
 async function buildRuntime() {
   await build({
-    ...shared,
+    ...shared(),
     build: {
       outDir: path.join(out, 'islands'),
       emptyOutDir: false,
@@ -156,11 +159,18 @@ async function buildBase() {
 
 async function writeManifest(components, graph, islands) {
   const byEntry = Object.fromEntries(Object.entries(graph).filter(([, c]) => c.entry).map(([file, c]) => [c.entry, file]));
+  // One name per asset (the first chunk that lists it wins), and never two assets on one name
   const cssName = {};
-  for (const [file, chunk] of Object.entries(graph)) {
+  const taken = new Set();
+  const entriesFirst = Object.entries(graph).sort(([a, x], [b, y]) => Number(!x.entry) - Number(!y.entry) || a.localeCompare(b));
+  for (const [file, chunk] of entriesFirst) {
     chunk.css.forEach((asset, i) => {
-      const base = chunk.entry ?? path.basename(file, '.js').replace(/-[\w-]{8}$/, '');
-      cssName[asset] = `css/${base}${chunk.css.length > 1 ? `-${i}` : ''}.css`;
+      if (cssName[asset]) return;
+      const base = `${chunk.entry ?? path.basename(file, '.js').replace(/-[\w-]{8}$/, '')}${chunk.css.length > 1 ? `-${i}` : ''}`;
+      let target = `css/${base}.css`;
+      for (let n = 2; taken.has(target); n++) target = `css/${base}-${n}.css`;
+      taken.add(target);
+      cssName[asset] = target;
     });
   }
   for (const [asset, target] of Object.entries(cssName)) await copyFile(path.join(out, 'server', asset), path.join(out, target));
@@ -195,8 +205,8 @@ const components = await findComponents();
 await rm(out, { recursive: true, force: true });
 const graph = await buildServer(components);
 await buildRuntime();
-const islands = {};
-for (const c of components.filter((c) => ISLANDS.includes(c.name))) islands[c.name] = await buildIsland(c);
+const islandComponents = components.filter((c) => ISLANDS.includes(c.name));
+const islands = Object.fromEntries(await Promise.all(islandComponents.map(async (c) => [c.name, await buildIsland(c)])));
 await buildBase();
 const manifest = await writeManifest(components, graph, islands);
 console.log(`pieces ${manifest.version}: ${components.length} components, ${Object.keys(islands).length} islands → ${path.relative(root, out)}/`);
