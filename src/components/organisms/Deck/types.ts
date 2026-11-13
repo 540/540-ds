@@ -22,7 +22,9 @@ export type DeckProps = {
   indexLabel?: string;
   /** Paint the background blobs. */
   blobs?: boolean;
+  /** Where the logo links to: the cover. */
   homeHref?: string;
+  /** Accessible name of the logo link. */
   homeLabel?: string;
   className?: string;
 };

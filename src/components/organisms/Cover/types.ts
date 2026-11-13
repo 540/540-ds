@@ -12,9 +12,21 @@ export type CoverProps = {
   /** The event card ("Open space 2026"). */
   event?: ReactNode;
   /** A client logo, with a light and a dark file. */
-  client?: { light: string; dark: string; alt: string };
+  client?: {
+    /** The logo file shown on the light theme. */
+    light: string;
+    /** The logo file shown on the dark theme. */
+    dark: string;
+    /** The client's name. */
+    alt: string;
+  };
   /** The full-bleed photo under everything, 2:1. */
-  photo?: { src: string; alt: string };
+  photo?: {
+    /** Path or URL of the photo. */
+    src: string;
+    /** What the photo shows, in words. */
+    alt: string;
+  };
   className?: string;
 };
 
