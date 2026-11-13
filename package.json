@@ -1,6 +1,6 @@
 {
   "name": "@540deg/ds",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sistema de diseño de 540: componentes React, tokens y estilos para montar charlas y webs.",
   "license": "Apache-2.0",
   "repository": {
