@@ -46,6 +46,20 @@
   --color-border-strong-inverse: var(--540-neutral-white);
   --color-border-focus: var(--540-neutral-950);
 
+  /* Categories (Schema boxes only) */
+  --color-category-1: var(--540-category-blue);
+  --color-category-1-bg: var(--540-category-blue-subtle);
+  --color-category-2: var(--540-category-orange);
+  --color-category-2-bg: var(--540-category-orange-subtle);
+  --color-category-3: var(--540-category-green);
+  --color-category-3-bg: var(--540-category-green-subtle);
+  --color-category-4: var(--540-category-violet);
+  --color-category-4-bg: var(--540-category-violet-subtle);
+  --color-category-5: var(--540-category-pink);
+  --color-category-5-bg: var(--540-category-pink-subtle);
+  --color-category-6: var(--540-category-ochre);
+  --color-category-6-bg: var(--540-category-ochre-subtle);
+
   /* Gradients and filters */
   --gradient-halo: var(--540-gradient-gray-paper);
   --gradient-image-veil: var(--540-gradient-image-veil);
@@ -93,6 +107,20 @@
   --color-border-default-inverse: var(--540-neutral-100);
   --color-border-strong-inverse: var(--540-neutral-950);
   --color-border-focus: var(--540-neutral-white);
+
+  /* Categories (Schema boxes only) */
+  --color-category-1: var(--540-category-blue-soft);
+  --color-category-1-bg: var(--540-category-blue-subtle);
+  --color-category-2: var(--540-category-orange-soft);
+  --color-category-2-bg: var(--540-category-orange-subtle);
+  --color-category-3: var(--540-category-green-soft);
+  --color-category-3-bg: var(--540-category-green-subtle);
+  --color-category-4: var(--540-category-violet-soft);
+  --color-category-4-bg: var(--540-category-violet-subtle);
+  --color-category-5: var(--540-category-pink-soft);
+  --color-category-5-bg: var(--540-category-pink-subtle);
+  --color-category-6: var(--540-category-ochre-soft);
+  --color-category-6-bg: var(--540-category-ochre-subtle);
 
   /* Gradients and filters */
   --gradient-halo: var(--540-gradient-gray);

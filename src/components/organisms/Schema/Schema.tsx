@@ -5,7 +5,7 @@ import styles from './Schema.module.css';
 import type { SchemaFrameProps, SchemaLayerProps, SchemaProps } from './types';
 
 /**
- * The drawing vocabulary of the talks, as class names: shapes (node, highlighted, note, pill),
+ * The drawing vocabulary of the talks, as class names: shapes (node, highlighted, note, pill, cat1–cat6),
  * lines (line, lineStrong, lineDashed, arrowhead), chart series and the six text sizes.
  */
 export const schema = {
@@ -19,6 +19,12 @@ export const schema = {
   icon: styles.icon,
   iconBox: styles.iconBox,
   iconFill: styles.iconFill,
+  cat1: styles.cat1,
+  cat2: styles.cat2,
+  cat3: styles.cat3,
+  cat4: styles.cat4,
+  cat5: styles.cat5,
+  cat6: styles.cat6,
   line: styles.line,
   lineStrong: styles.lineStrong,
   lineDashed: styles.lineDashed,
