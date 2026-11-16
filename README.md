@@ -156,9 +156,19 @@ npm run test:render
 
 El contrato de etiquetas, acordado con la pista B (el MCP), está en `scripts/render/CONTRATO.md`. El HTML sale con solo el CSS de los componentes usados, DM Sans y las imágenes incrustadas, y JavaScript solo si hay alguna isla. Si una etiqueta, un atributo o un valor no existe, falla y los lista todos.
 
-### Envío al toolkit
+### El render en npm
 
-`.github/workflows/toolkit.yml` construye las piezas en cada push a `main` (o a mano), pasa `test:render` y `check:pieces`, y abre o actualiza un PR en `540/540-claude-toolkit` (rama `540-ds/update`) que copia `pieces/` en `plugins/design/540-ds/`. La versión va en `manifest.json` y en el título del PR. Necesita el secreto `TOOLKIT_TOKEN` en este repo: un token *fine-grained* con permiso de lectura y escritura en *Contents* y *Pull requests* de `540-claude-toolkit`.
+Las piezas y el render viajan en el paquete `@540deg/ds` (carpeta `pieces/`, sin `demo.html` ni `samples/`), con el ejecutable `540-ds-render`. `prepack` construye la librería y las piezas, y `publish.yml` pasa `test:render` y `check:pieces` antes de publicar. La skill 540-ds del toolkit lo usa con una versión fija, sin copiar nada en el plugin:
+
+```bash
+npx -y --package=@540deg/ds@X.Y.Z 540-ds-render charla.rev.html             # escribe charla.html
+npx -y --package=@540deg/ds@X.Y.Z 540-ds-render charla.rev.html --lang en   # charla en inglés
+npx -y --package=@540deg/ds@X.Y.Z 540-ds-render --contract                  # el contrato de etiquetas
+npx -y --package=@540deg/ds@X.Y.Z 540-ds-render --tags GridItem rev-metric  # props de esas etiquetas (sin nombres: todas)
+npx -y --package=@540deg/ds@X.Y.Z 540-ds-render --version                   # versión del sistema
+```
+
+La primera vez necesita conexión para bajar el paquete; después npm lo guarda en caché y funciona sin red. Para que la skill use una versión nueva, se publica aquí y se cambia el número en la skill.
 
 `TalkTemplate` no entra en las piezas: es una charla de ejemplo con fotos de muestra, no un componente que se rellene. La carpeta no se guarda en Git.
 
@@ -206,7 +216,7 @@ import type { DeckProps } from '@540deg/ds';
    git tag vX.Y.Z && git push origin vX.Y.Z
    ```
 
-4. El flujo `.github/workflows/publish.yml` comprueba que la etiqueta coincide con la versión de `package.json`, pasa tipos, lint y SSR, construye la librería y la publica en npm con *provenance*. Míralo en Actions → "Publish to npm" y comprueba con `npm view @540deg/ds version`.
+4. El flujo `.github/workflows/publish.yml` comprueba que la etiqueta coincide con la versión de `package.json`, pasa tipos, lint, SSR, el render y las piezas, construye la librería y las piezas y las publica en npm con *provenance*. Míralo en Actions → "Publish to npm" y comprueba con `npm view @540deg/ds version`.
 
 Una versión publicada no se puede volver a publicar ni reutilizar su número: si algo sale mal, se arregla y se sube la siguiente.
 
