@@ -11,7 +11,7 @@
     "sha": null,
     "body": "A value in this function may be null where it is used\nscripts/render/parse.mjs:94"
   },
-  "state": "running",
+  "state": "acted",
   "reason": null,
   "instructions": {
     "agent": "Fix the defects named, through the fix driver (`predictable fix`): a fix ends only when the analysis verifies it, and a verified fix is proposed as a pull request.",
@@ -21,10 +21,38 @@
   "openPullRequests": null,
   "notices": [],
   "messages": [],
-  "actions": [],
+  "actions": [
+    {
+      "kind": "pull-request",
+      "number": 20,
+      "url": "https://github.com/540/540-ds/pull/20",
+      "title": "Predictable Code fix: FIN-0055"
+    }
+  ],
   "title": null,
-  "summary": null,
-  "runUrl": null,
+  "summary": "a complete sync no longer reports it, and the analysis's findings in total went from 27 to 25",
+  "runUrl": "https://github.com/540/540-ds/actions/runs/43870840153",
   "startedAt": "2026-11-16T12:54:44.699Z",
-  "updatedAt": "2026-11-16T12:54:44.699Z"
+  "updatedAt": "2026-11-16T12:57:24.593Z",
+  "spend": {
+    "costUsd": 0.1638148,
+    "models": [
+      {
+        "model": "claude-opus-5-5",
+        "inputTokens": 20,
+        "outputTokens": 2646,
+        "cacheReadTokens": 216149,
+        "cacheWriteTokens": 13517,
+        "costUsd": 0.1638148
+      }
+    ],
+    "sessions": 1,
+    "stoppedAtBudget": false
+  },
+  "compute": {
+    "minutes": 3,
+    "jobs": 1,
+    "selfHosted": false,
+    "estimatedUsd": 0.018000000000000002
+  }
 }
