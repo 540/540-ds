@@ -1,5 +1,5 @@
 # Builds the component pieces and the talk renderer, and opens (or updates) a PR in
-# 540/540-claude-toolkit that puts them in plugins/design/540-ds/.
+# 540/540-claude-toolkit that puts them in plugins/essentials/540-ds/.
 # Requires the TOOLKIT_TOKEN secret: a fine-grained token with Contents and Pull requests
 # read/write on 540/540-claude-toolkit.
 name: Ship pieces to the toolkit
@@ -38,17 +38,17 @@ jobs:
           token: ${{ secrets.TOOLKIT_TOKEN }}
           path: toolkit
       - run: |
-          mkdir -p toolkit/plugins/design/540-ds
-          rsync -a --delete --exclude demo.html --exclude samples pieces/ toolkit/plugins/design/540-ds/
+          mkdir -p toolkit/plugins/essentials/540-ds
+          rsync -a --delete --exclude demo.html --exclude samples pieces/ toolkit/plugins/essentials/540-ds/
       - uses: peter-evans/create-pull-request@v7
         with:
           path: toolkit
           token: ${{ secrets.TOOLKIT_TOKEN }}
           branch: 540-ds/update
-          commit-message: 'feat(design): 540-ds ${{ steps.version.outputs.version }}'
-          title: 'feat(design): 540-ds ${{ steps.version.outputs.version }}'
+          commit-message: 'feat(essentials): 540-ds ${{ steps.version.outputs.version }}'
+          title: 'feat(essentials): 540-ds ${{ steps.version.outputs.version }}'
           body: |
             Piezas y render de 540-ds `${{ steps.version.outputs.version }}`, de 540/540-ds@${{ github.sha }}.
 
             Se genera solo en cada push a `main` de 540-ds; si este PR sigue abierto, el siguiente push lo actualiza.
-          add-paths: plugins/design/540-ds
+          add-paths: plugins/essentials/540-ds
