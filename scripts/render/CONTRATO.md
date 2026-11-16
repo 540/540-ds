@@ -2,7 +2,7 @@
 
 > **Acordado** con la pista B (el MCP) el 13 de noviembre de 2026. El MCP lee los props de este mismo contrato (`manifest.json` → `tags`), así que el render y el MCP usan siempre las mismas etiquetas.
 
-Una charla se escribe como un fragmento HTML con etiquetas `<rev-…>`. `render/cli.mjs` lo convierte en un único `.html` autocontenido que funciona sin conexión. El contrato no se escribe a mano: `build:pieces` lo saca de los nombres de los componentes y de sus tipos `Props`, y lo deja en `manifest.json` (`tags`, `phrasing`, `svg`). Si un componente cambia, el contrato cambia con él.
+Una charla se escribe como un fragmento HTML con etiquetas `<rev-…>`. `540-ds-render` (el ejecutable del paquete `@540deg/ds`) lo convierte en un único `.html` autocontenido que funciona sin conexión. El contrato no se escribe a mano: `build:pieces` lo saca de los nombres de los componentes y de sus tipos `Props`, y lo deja en `manifest.json` (`tags`, `phrasing`, `svg`). Si un componente cambia, el contrato cambia con él.
 
 ## Nombres
 
@@ -57,8 +57,12 @@ Cada export de componente con mayúscula es una etiqueta (hoy 62). `className`, 
 ```
 
 ```bash
-node render/cli.mjs charla.rev.html            # escribe charla.html
-node render/cli.mjs charla.rev.html -o salida.html --lang en
+npx -y --package=@540deg/ds@X.Y.Z 540-ds-render charla.rev.html                               # escribe charla.html
+npx -y --package=@540deg/ds@X.Y.Z 540-ds-render charla.rev.html -o salida.html --lang en
+npx -y --package=@540deg/ds@X.Y.Z 540-ds-render --tags GridItem rev-metric                    # props de esas etiquetas
 ```
+
+`X.Y.Z` es la versión que fija quien lo llama (la skill 540-ds del toolkit). Dentro de este repo, con las piezas
+construidas, vale también `node pieces/render/cli.mjs`.
 
 Sale con código 1 si el documento tiene errores y 2 si la llamada está mal.
