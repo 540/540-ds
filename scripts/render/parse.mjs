@@ -91,7 +91,8 @@ export function tidy(nodes) {
   for (const node of nodes) {
     if (node.type === 'text') {
       const value = node.value.replace(/[ \t\r\n\f]+/g, ' ');
-      if (value === ' ' && (!out.length || out.at(-1).type === 'element')) {
+      const last = out.length ? out[out.length - 1] : null;
+      if (value === ' ' && (last === null || last.type === 'element')) {
         out.push({ type: 'space', value });
         continue;
       }
@@ -100,7 +101,8 @@ export function tidy(nodes) {
   }
   const kept = out.filter((node, i) => node.type !== 'space' || (isInline(out[i - 1]) && isInline(out[i + 1])));
   if (kept[0]?.type === 'text') kept[0] = { ...kept[0], value: kept[0].value.trimStart() };
-  if (kept.at(-1)?.type === 'text') kept[kept.length - 1] = { ...kept.at(-1), value: kept.at(-1).value.trimEnd() };
+  const tail = kept.length ? kept[kept.length - 1] : null;
+  if (tail !== null && tail.type === 'text') kept[kept.length - 1] = { ...tail, value: tail.value.trimEnd() };
   return kept.filter((node) => node.type !== 'text' || node.value !== '').map((node) => (node.type === 'space' ? { type: 'text', value: ' ' } : node));
 }
 
