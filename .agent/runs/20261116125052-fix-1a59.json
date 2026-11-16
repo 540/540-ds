@@ -1,0 +1,30 @@
+{
+  "id": "20261116125052-fix-1a59",
+  "event": {
+    "kind": "fix",
+    "number": null,
+    "title": "Fix Code.scripts.«build-mcp-metadata».buildTemplate|il3.null-dereference: A val…",
+    "author": "gorkma",
+    "url": "https://github.com/540/540-ds",
+    "ref": "main",
+    "defaultBranch": "main",
+    "sha": null,
+    "body": "A value in this function may be null where it is used\nscripts/build-mcp-metadata.ts:576"
+  },
+  "state": "running",
+  "reason": null,
+  "instructions": {
+    "agent": "Fix the defects named, through the fix driver (`predictable fix`): a fix ends only when the analysis verifies it, and a verified fix is proposed as a pull request.",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-16T12:50:52.154Z",
+  "updatedAt": "2026-11-16T12:50:52.154Z"
+}
