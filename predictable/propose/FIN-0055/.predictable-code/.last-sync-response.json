@@ -1,0 +1,24 @@
+{"runId": "33741-270268",
+ "response":
+ {"mechanical":
+  {"specsChecked": 223,
+   "requirementsViolated": 21,
+   "requirementsVerified": 34,
+   "requirementsInferred": 102,
+   "requirementCensus":
+   {"witnessUnexercised": 0,
+    "witnessHeld": 0,
+    "violated": 21,
+    "verified": 34,
+    "untested": 0,
+    "tested": 0,
+    "statedFailure": 57,
+    "requirements": 55,
+    "observed": 0,
+    "notDecided": 0,
+    "modules": 223,
+    "documented": 55,
+    "agentVerified": 0},
+   "functionsWithIssues": 16,
+   "findingsTotal": 32}},
+ "inputsDigest": "18436615058315941589:prove="}

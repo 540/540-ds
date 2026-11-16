@@ -1,0 +1,134 @@
+{"version": 1,
+ "rows":
+ [{"key":
+   "mcp/tools/get-component-docs.ts|get-component-docs.getComponentDocs|il1.null-dereference",
+   "id": "ANL-0001"},
+  {"key":
+   "mcp/tools/get-component-docs.ts|getComponentDocs.handler|il1.null-dereference",
+   "id": "ANL-0002"},
+  {"key":
+   "mcp/tools/get-component-stories.ts|get-component-stories.getComponentStories|il1.null-dereference",
+   "id": "ANL-0003"},
+  {"key":
+   "mcp/tools/get-component-stories.ts|getComponentStories.handler|il1.null-dereference",
+   "id": "ANL-0004"},
+  {"key":
+   "mcp/tools/get-component.ts|get-component.getComponent|il1.null-dereference",
+   "id": "ANL-0005"},
+  {"key":
+   "mcp/tools/get-component.ts|getComponent.handler|il1.null-dereference",
+   "id": "ANL-0006"},
+  {"key":
+   "mcp/tools/get-template-stops.ts|get-template-stops.getTemplateStops|il1.null-dereference",
+   "id": "ANL-0007"},
+  {"key":
+   "mcp/tools/get-template-stops.ts|getTemplateStops.handler|il1.null-dereference",
+   "id": "ANL-0008"},
+  {"key": "mcp/tools/get-template-stops.ts|handler.stops|il1.null-dereference",
+   "id": "ANL-0009"},
+  {"key": "mcp/tools/shared.ts|shared.findComponent|il1.null-dereference",
+   "id": "ANL-0010"},
+  {"key": "mcp/tools/shared.ts|shared.summary|il1.null-dereference",
+   "id": "ANL-0011"},
+  {"key": "scripts/build-pieces.mjs|plugins.resolveId|il1.null-dereference",
+   "id": "ANL-0012"},
+  {"key":
+   "scripts/check-islands.mjs|check-islands.__moduleInit__|il2.null-dereference",
+   "id": "ANL-0013"},
+  {"key": "scripts/check-islands.mjs|check-islands.__moduleInit__|il5.bounds",
+   "id": "ANL-0014"},
+  {"key": "scripts/check-islands.mjs|check-islands.__moduleInit__|il9.bounds",
+   "id": "ANL-0015"},
+  {"key":
+   "scripts/check-islands.mjs|check-islands.__moduleInit__|il1.null-dereference",
+   "id": "ANL-0016"},
+  {"key":
+   "scripts/lib/tag-contract.mjs|tag-contract.readContract|il1.domain-guard",
+   "id": "ANL-0017"},
+  {"key": "scripts/render/index.mjs|index.renderTalk|il1.domain-guard",
+   "id": "ANL-0018"},
+  {"key": "scripts/render/index.mjs|index.renderTalk|il2.domain-guard",
+   "id": "ANL-0019"},
+  {"key": "scripts/render/index.mjs|index.renderTalk|il4.domain-guard",
+   "id": "ANL-0020"},
+  {"key": "scripts/render/parse.mjs|decode.lambda_8_55|il1.domain-guard",
+   "id": "ANL-0021"},
+  {"key": "scripts/render/parse.mjs|parse.parse|il3.null-dereference",
+   "id": "ANL-0022"},
+  {"key": "scripts/render/parse.mjs|parse.parse|il4.null-dereference",
+   "id": "ANL-0023"},
+  {"key": "scripts/render/parse.mjs|parse.parse|il11.domain-guard",
+   "id": "ANL-0024"},
+  {"key": "scripts/render/parse.mjs|parse.parse|il12.null-dereference",
+   "id": "ANL-0025"},
+  {"key": "scripts/render/parse.mjs|parse.parse|il13.null-dereference",
+   "id": "ANL-0026"},
+  {"key": "scripts/render/parse.mjs|parse.parse|il14.null-dereference",
+   "id": "ANL-0027"},
+  {"key": "scripts/render/parse.mjs|parse.tidy|il1.null-dereference",
+   "id": "ANL-0028"},
+  {"key":
+   "src/components/atoms/Button/Button.tsx|Button.Button|il1.null-dereference",
+   "id": "ANL-0029"},
+  {"key":
+   "src/components/molecules/Carousel/Carousel.tsx|Carousel.Carousel|il1.null-dereference",
+   "id": "ANL-0030"},
+  {"key":
+   "src/components/molecules/Carousel/Carousel.tsx|Carousel.Carousel|il3.null-dereference",
+   "id": "ANL-0031"},
+  {"key":
+   "src/components/molecules/Dialog/Dialog.tsx|Dialog.Dialog|il1.null-dereference",
+   "id": "ANL-0032"},
+  {"key":
+   "src/components/molecules/Field/Field.tsx|Field.Field|il1.null-dereference",
+   "id": "ANL-0033"},
+  {"key":
+   "src/components/molecules/NavMobile/NavMobile.tsx|NavMobile.NavMobile|il1.null-dereference",
+   "id": "ANL-0034"},
+  {"key":
+   "src/components/organisms/Deck/Deck.tsx|Deck.Deck|il1.null-dereference",
+   "id": "ANL-0035"},
+  {"key":
+   "src/components/organisms/Deck/useDeckNavigation.ts|useDeckNavigation.useDeckNavigation|il1.null-dereference",
+   "id": "ANL-0036"},
+  {"key":
+   "src/components/organisms/Deck/useDeckNavigation.ts|useDeckNavigation.useDeckNavigation|il4.null-dereference",
+   "id": "ANL-0037"},
+  {"key":
+   "src/components/organisms/LogoCarousel/LogoCarousel.tsx|LogoCarousel.LogoCarousel|il1.null-dereference",
+   "id": "ANL-0038"},
+  {"key":
+   "src/components/organisms/Marquee/Marquee.tsx|Marquee.Marquee|il1.null-dereference",
+   "id": "ANL-0039"},
+  {"key":
+   "src/components/organisms/Marquee/Marquee.tsx|Marquee.Marquee|il2.null-dereference",
+   "id": "ANL-0040"},
+  {"key":
+   "src/components/organisms/Sheet/Sheet.tsx|Sheet.Sheet|il1.null-dereference",
+   "id": "ANL-0041"},
+  {"key":
+   "src/components/organisms/Spotlight/Spotlight.tsx|Spotlight.Spotlight|il1.null-dereference",
+   "id": "ANL-0042"},
+  {"key":
+   "src/components/organisms/Steps/Steps.tsx|Steps.Step|il1.null-dereference",
+   "id": "ANL-0043"},
+  {"key":
+   "src/components/organisms/Steps/Steps.tsx|Steps.Steps|il1.null-dereference",
+   "id": "ANL-0044"},
+  {"key":
+   "src/components/organisms/Steps/Steps.tsx|Steps.Steps|il2.null-dereference",
+   "id": "ANL-0045"},
+  {"key":
+   "src/hooks/useCenterState.ts|useCenterState.useCenterState|il1.null-dereference",
+   "id": "ANL-0046"},
+  {"key": "src/main.tsx|main.__moduleInit__|il1.null-dereference",
+   "id": "ANL-0047"},
+  {"key": "src/runtime/client.ts|client.slotHtml|il1.null-dereference",
+   "id": "ANL-0048"},
+  {"key": "src/runtime/islands.ts|islands.revive|il1.domain-guard",
+   "id": "ANL-0049"},
+  {"key": "src/runtime/server.ts|server.renderIsland|il1.domain-guard",
+   "id": "ANL-0050"},
+  {"key": "src/runtime/server.ts|server.renderToString|il1.null-dereference",
+   "id": "ANL-0051"}],
+ "next": 52}

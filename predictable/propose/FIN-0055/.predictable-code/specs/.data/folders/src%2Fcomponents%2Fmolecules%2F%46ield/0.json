@@ -1,0 +1,1 @@
+{"defects":0,"dir":"src/components/molecules/Field","others":1,"page":0,"pageSize":50,"rows":[{"defects":0,"findings":[{"claim":"undecided","key":"Code.src.components.molecules.Field.Field.Field|il1.null-dereference"}],"kind":"file","name":"Field.tsx","others":1,"path":"src/components/molecules/Field/Field.tsx"}],"total":1}
