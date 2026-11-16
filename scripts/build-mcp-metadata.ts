@@ -529,6 +529,17 @@ function forEachDescendant(node: ts.Node, visit: (n: ts.Node) => void) {
   });
 }
 
+/** The first `<Deck>` element in document order under `node`, or `undefined` if there is none. */
+function findDeck(node: ts.Node): ts.JsxElement | undefined {
+  let found: ts.JsxElement | undefined;
+  ts.forEachChild(node, (child) => {
+    if (found !== undefined) return;
+    if (ts.isJsxElement(child) && child.openingElement.tagName.getText() === 'Deck') found = child;
+    else found = findDeck(child);
+  });
+  return found;
+}
+
 /**
  * Splits a template into its stops: each direct child of the root Deck. For each stop it keeps
  * the source, the catalog components it uses (also inside local helpers like ContextCards), the
@@ -573,15 +584,17 @@ function buildTemplate(pieceType: string, dirName: string, components: Record<st
       });
     }
     const code = sf.statements.filter((s) => needed.has(s)).map((s) => s.getText(sf)).join('\n\n');
-    return { components: [...used], code, assets: Object.fromEntries([...sampleAssets].map((a) => [a, assets.get(a)!])) };
+    const assetPaths: Record<string, string> = {};
+    for (const a of sampleAssets) {
+      const assetPath = assets.get(a);
+      if (assetPath !== undefined) assetPaths[a] = assetPath;
+    }
+    return { components: [...used], code, assets: assetPaths };
   }
 
   // The root Deck inside the template function.
-  let deck: ts.JsxElement | undefined;
-  forEachDescendant(sf, (n) => {
-    if (!deck && ts.isJsxElement(n) && n.openingElement.tagName.getText() === 'Deck') deck = n;
-  });
-  if (!deck) {
+  const deck = findDeck(sf);
+  if (deck === undefined) {
     console.warn(`  ! no <Deck> in ${rel(file)}`);
     return null;
   }
