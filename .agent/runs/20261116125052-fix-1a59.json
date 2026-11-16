@@ -11,7 +11,7 @@
     "sha": null,
     "body": "A value in this function may be null where it is used\nscripts/build-mcp-metadata.ts:576"
   },
-  "state": "running",
+  "state": "acted",
   "reason": null,
   "instructions": {
     "agent": "Fix the defects named, through the fix driver (`predictable fix`): a fix ends only when the analysis verifies it, and a verified fix is proposed as a pull request.",
@@ -21,10 +21,38 @@
   "openPullRequests": null,
   "notices": [],
   "messages": [],
-  "actions": [],
+  "actions": [
+    {
+      "kind": "pull-request",
+      "number": 19,
+      "url": "https://github.com/540/540-ds/pull/19",
+      "title": "Predictable Code fix: Code.scripts.«build-mcp-metadata».buildTemplate|il3.null-dereference"
+    }
+  ],
   "title": null,
-  "summary": null,
-  "runUrl": null,
+  "summary": "a complete sync no longer reports it, and the analysis's findings in total went from 27 to 23",
+  "runUrl": "https://github.com/540/540-ds/actions/runs/43870265580",
   "startedAt": "2026-11-16T12:50:52.154Z",
-  "updatedAt": "2026-11-16T12:50:52.154Z"
+  "updatedAt": "2026-11-16T12:53:00.567Z",
+  "spend": {
+    "costUsd": 0.13877420000000001,
+    "models": [
+      {
+        "model": "claude-opus-5-5",
+        "inputTokens": 14,
+        "outputTokens": 2178,
+        "cacheReadTokens": 143641,
+        "cacheWriteTokens": 13286,
+        "costUsd": 0.13877420000000001
+      }
+    ],
+    "sessions": 1,
+    "stoppedAtBudget": false
+  },
+  "compute": {
+    "minutes": 2,
+    "jobs": 1,
+    "selfHosted": false,
+    "estimatedUsd": 0.012
+  }
 }
