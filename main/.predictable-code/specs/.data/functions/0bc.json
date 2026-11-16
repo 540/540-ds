@@ -1,0 +1,1 @@
+[{"calleePage":[],"callees":0,"callerPage":[{"callees":13,"callers":1,"danglingCalls":0,"fqn":"Code.scripts.«build-mcp-metadata».buildComponents","isEntryPoint":false,"module":"","reachable":true}],"callers":1,"danglingCalls":0,"fqn":"Code.scripts.«build-mcp-metadata».toConstantCase","isEntryPoint":false,"isolated":false,"module":"","reachable":true}]

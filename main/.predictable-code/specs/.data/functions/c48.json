@@ -1,0 +1,1 @@
+[{"calleePage":[],"callees":0,"callerPage":[{"callees":2,"callers":1,"danglingCalls":0,"fqn":"Code.src.runtime.client.hydrateIslands","isEntryPoint":false,"module":"src.runtime.client","reachable":true}],"callers":1,"danglingCalls":0,"fqn":"Code.src.runtime.compat.react.whileHydrating","isEntryPoint":false,"isolated":false,"module":"src.runtime.compat.react","reachable":true}]
