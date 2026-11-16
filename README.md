@@ -158,7 +158,7 @@ El contrato de etiquetas, acordado con la pista B (el MCP), está en `scripts/re
 
 ### Envío al toolkit
 
-`.github/workflows/toolkit.yml` construye las piezas en cada push a `main` (o a mano), pasa `test:render` y `check:pieces`, y abre o actualiza un PR en `540/540-claude-toolkit` (rama `540-ds/update`) que copia `pieces/` en `plugins/design/540-ds/`. La versión va en `manifest.json` y en el título del PR. Necesita el secreto `TOOLKIT_TOKEN` en este repo: un token *fine-grained* con permiso de lectura y escritura en *Contents* y *Pull requests* de `540-claude-toolkit`.
+`.github/workflows/toolkit.yml` construye las piezas en cada push a `main` (o a mano), pasa `test:render` y `check:pieces`, y abre o actualiza un PR en `540/540-claude-toolkit` (rama `540-ds/update`) que copia `pieces/` en `plugins/essentials/540-ds/`. La versión va en `manifest.json` y en el título del PR. Necesita el secreto `TOOLKIT_TOKEN` en este repo: un token *fine-grained* con permiso de lectura y escritura en *Contents* y *Pull requests* de `540-claude-toolkit`.
 
 `TalkTemplate` no entra en las piezas: es una charla de ejemplo con fotos de muestra, no un componente que se rellene. La carpeta no se guarda en Git.
 
