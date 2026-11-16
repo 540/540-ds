@@ -1,0 +1,24 @@
+{"runId": "22906-145187",
+ "response":
+ {"mechanical":
+  {"specsChecked": 223,
+   "requirementsViolated": 22,
+   "requirementsVerified": 34,
+   "requirementsInferred": 103,
+   "requirementCensus":
+   {"witnessUnexercised": 0,
+    "witnessHeld": 0,
+    "violated": 22,
+    "verified": 34,
+    "untested": 0,
+    "tested": 0,
+    "statedFailure": 57,
+    "requirements": 56,
+    "observed": 0,
+    "notDecided": 0,
+    "modules": 223,
+    "documented": 55,
+    "agentVerified": 0},
+   "functionsWithIssues": 16,
+   "findingsTotal": 30}},
+ "inputsDigest": "11121696036758578638:prove="}

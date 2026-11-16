@@ -1,0 +1,1 @@
+[{"calleePage":[],"callees":0,"callerPage":[{"callees":3,"callers":0,"danglingCalls":0,"fqn":"Code.src.runtime.server.renderIsland","isEntryPoint":true,"module":"src.runtime.server","reachable":true}],"callers":1,"danglingCalls":0,"fqn":"Code.src.runtime.server.escapeAttr","isEntryPoint":false,"isolated":false,"module":"src.runtime.server","reachable":true}]
