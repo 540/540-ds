@@ -36,4 +36,7 @@ jobs:
       - run: npx tsc -p tsconfig.app.json --noEmit
       - run: npm run lint
       - run: npm run test:ssr
+      # The talk renderer ships in the package (pieces/ + the 540-ds-render bin); prepack rebuilds both.
+      - run: npm run test:render
+      - run: npm run check:pieces
       - run: npm publish --access public

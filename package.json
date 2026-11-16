@@ -23,8 +23,14 @@
     "./styles.css": "./dist/styles.css",
     "./package.json": "./package.json"
   },
+  "bin": {
+    "540-ds-render": "./pieces/render/cli.mjs"
+  },
   "files": [
     "dist",
+    "pieces",
+    "!pieces/demo.html",
+    "!pieces/samples",
     "NOTICE"
   ],
   "publishConfig": {
@@ -49,7 +55,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:lib": "node scripts/build-lib.mjs",
-    "prepack": "npm run build:lib",
+    "prepack": "npm run build:lib && npm run build:pieces",
     "build-mcp-metadata": "tsx scripts/build-mcp-metadata.ts",
     "test:mcp": "vitest run --project=mcp",
     "mcp:stdio": "tsx mcp/stdio.ts",
