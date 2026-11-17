@@ -222,5 +222,26 @@
   "runUrl": "https://github.com/540/540-ds/actions/runs/44056836700",
   "reportMistakes": true,
   "startedAt": "2026-11-17T09:34:39.321Z",
-  "updatedAt": "2026-11-17T09:39:54.972Z"
+  "updatedAt": "2026-11-17T09:39:54.972Z",
+  "spend": {
+    "costUsd": 0.6440512,
+    "models": [
+      {
+        "model": "claude-opus-5-5",
+        "inputTokens": 50,
+        "outputTokens": 11192,
+        "cacheReadTokens": 1014631,
+        "cacheWriteTokens": 43417,
+        "costUsd": 0.6440512
+      }
+    ],
+    "sessions": 1,
+    "stoppedAtBudget": false
+  },
+  "compute": {
+    "minutes": 6,
+    "jobs": 1,
+    "selfHosted": false,
+    "estimatedUsd": 0.036000000000000004
+  }
 }
