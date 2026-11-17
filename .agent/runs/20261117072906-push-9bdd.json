@@ -40,15 +40,12 @@
       ]
     }
   ],
-  "notices": [],
-  "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
-  "reportMistakes": true,
-  "startedAt": "2026-11-17T07:29:07.250Z",
-  "updatedAt": "2026-11-17T07:30:25.300Z",
+  "notices": [
+    {
+      "at": "2026-11-17T07:30:24.633Z",
+      "text": "MIME lookup in render asImage unchecked; autofixing it (parse.mjs one already in #23)"
+    }
+  ],
   "steps": [
     {
       "at": "2026-11-17T07:30:08.970Z",
@@ -60,8 +57,8 @@
       "at": "2026-11-17T07:30:12.103Z",
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; sed -n 280,320p scripts/render/index.m…",
-      "tool": "toolu_01VD12ZMwW43npGrfa3CzmJs",
-      "failed": true
+      "failed": true,
+      "tool": "toolu_01VD12ZMwW43npGrfa3CzmJs"
     },
     {
       "at": "2026-11-17T07:30:15.230Z",
@@ -81,5 +78,13 @@
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01HTqWgCwbXjVj7uW7VAq5nn"
     }
-  ]
+  ],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "reportMistakes": true,
+  "startedAt": "2026-11-17T07:29:07.250Z",
+  "updatedAt": "2026-11-17T07:30:27.332Z"
 }
