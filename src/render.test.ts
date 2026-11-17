@@ -196,6 +196,12 @@ describe('renderTalk', () => {
     expect(message).not.toContain('needs "rows"');
   });
 
+  it('rejects an entity it does not know, also one named like an Object property', async () => {
+    for (const entity of ['&bogus;', '&constructor;', '&toString;']) {
+      expect(await problems(`<rev-slide id="e"><rev-text>a ${entity} b</rev-text></rev-slide>`)).toContain(`unknown entity ${entity}`);
+    }
+  });
+
   it('rejects what would not work offline', async () => {
     expect(await problems(`<rev-image src="https://example.com/a.webp" alt="a"></rev-image>`)).toContain('remote image');
     expect(await problems(`<rev-image src="no-such-photo.webp" alt="a"></rev-image>`)).toContain('image not found');
