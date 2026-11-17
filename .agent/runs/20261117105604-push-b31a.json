@@ -62,15 +62,12 @@
       ]
     }
   ],
-  "notices": [],
-  "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
-  "reportMistakes": true,
-  "startedAt": "2026-11-17T10:56:06.509Z",
-  "updatedAt": "2026-11-17T10:57:13.146Z",
+  "notices": [
+    {
+      "at": "2026-11-17T10:57:12.487Z",
+      "text": "Merge #28 dedupes Deck stops; adding docs + a story test for it"
+    }
+  ],
   "steps": [
     {
       "at": "2026-11-17T10:56:56.631Z",
@@ -114,5 +111,13 @@
       "detail": "cd …/work/540-ds/540-ds; '…/predictable-runtime-installed/bin/p…",
       "tool": "toolu_01J1ZEG7AG9u1nv6HN3ukpJt"
     }
-  ]
+  ],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "reportMistakes": true,
+  "startedAt": "2026-11-17T10:56:06.509Z",
+  "updatedAt": "2026-11-17T10:57:15.322Z"
 }
