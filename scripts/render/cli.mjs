@@ -5,7 +5,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { TagError, renderTalk } from './index.mjs';
 
-const usage = `usage: 540-ds-render <talk.rev.html> [-o talk.html] [--lang es] [--pieces <folder with manifest.json>]
+const usage = `usage: 540-ds-render <talk.rev.html> [-o talk.html] [--lang es (default: data-lang of the runtime block, or es)] [--pieces <folder with manifest.json>]
        540-ds-render --contract           print the <rev-…> tag contract (CONTRATO.md)
        540-ds-render --tags [tag…]        print the props of every tag, or of the ones named (rev-grid-item, grid-item or GridItem)
        540-ds-render --version            print the design system version`;
@@ -16,7 +16,7 @@ try {
     allowPositionals: true,
     options: {
       out: { type: 'string', short: 'o' },
-      lang: { type: 'string', default: 'es' },
+      lang: { type: 'string' },
       pieces: { type: 'string' },
       contract: { type: 'boolean' },
       tags: { type: 'boolean' },
