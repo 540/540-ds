@@ -1,4 +1,5 @@
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { JSDOM, VirtualConsole } from 'jsdom';
 import { describe, expect, it } from 'vitest';
@@ -205,6 +206,12 @@ describe('renderTalk', () => {
   it('rejects what would not work offline', async () => {
     expect(await problems(`<rev-image src="https://example.com/a.webp" alt="a"></rev-image>`)).toContain('remote image');
     expect(await problems(`<rev-image src="no-such-photo.webp" alt="a"></rev-image>`)).toContain('image not found');
+  });
+
+  it('rejects an image whose file name is only an extension', async () => {
+    const dir = mkdtempSync(path.join(os.tmpdir(), 'render-'));
+    writeFileSync(path.join(dir, '.webp'), 'x');
+    expect(await problems(`<rev-image src="${dir}/.webp" alt="a"></rev-image>`)).toContain('unsupported image type');
   });
 
   it('rejects drawing outside the Schema vocabulary', async () => {
