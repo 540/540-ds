@@ -1,5 +1,6 @@
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
+import { PIECE_TYPE_IDS, PIECE_TYPES } from '../piece-types.js';
 import type { ComponentMeta, Metadata } from '../types.js';
 
 /**
@@ -16,10 +17,11 @@ export interface ToolDef<Shape extends z.ZodRawShape = z.ZodRawShape> {
   handler: (input: z.infer<z.ZodObject<Shape>>, metadata: Metadata) => CallToolResult;
 }
 
-/** Piece types the MCP serves: each one needs its rules (RULE_FILES) and template (TEMPLATE_DIRS) in the metadata build. */
-export const PIECE_TYPES = ['talk'] as const;
-
-export const pieceTypeSchema = z.enum(PIECE_TYPES).default('talk').describe('The piece type: "talk" is a presentation.');
+/** The `pieceType` input of the template tools, from mcp/piece-types.ts: a new piece type shows up here and in list-templates. */
+export const pieceTypeSchema = z
+  .enum(PIECE_TYPE_IDS)
+  .default('talk')
+  .describe(`The piece type (${PIECE_TYPE_IDS.map((id) => `"${id}": ${PIECE_TYPES[id].name}`).join(', ')}). Call list-templates for what each one is.`);
 
 export const defineTool = <Shape extends z.ZodRawShape>(tool: ToolDef<Shape>) => tool;
 
