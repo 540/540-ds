@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/foundations/RadiusSamples.tsx
 
 ### Description
+<!-- predictable:module-summary=Documents the Radius samples module, a component that renders sample radius visuals, with no recorded requirements yet. -->
 **Areas:** Foundations Docs
 
 `RadiusSamples.tsx` — Radius samples. No requirements recorded yet.

@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/foundations/SemanticColors.tsx
 
 ### Description
+<!-- predictable:module-summary=Semantic colors module defines a single declaration, SemanticColors, that establishes a centralized set of named color values mapped to their meaning or usage context for consistent theming across the UI. -->
 **Areas:** Design Tokens
 
 `SemanticColors.tsx` — Semantic colors. No requirements recorded yet.

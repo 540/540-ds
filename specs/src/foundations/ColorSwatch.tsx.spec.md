@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/foundations/ColorSwatch.tsx
 
 ### Description
+<!-- predictable:module-summary=Renders a single color swatch UI element for displaying a color value. -->
 **Areas:** Atoms
 
 `ColorSwatch.tsx` — Color swatch. No requirements recorded yet.

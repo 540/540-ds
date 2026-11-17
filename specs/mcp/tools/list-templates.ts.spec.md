@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** mcp/tools/list-templates.ts
 
 ### Description
+<!-- predictable:module-summary=Documented the List-templates module as a thin listing operation with no recorded requirements yet. -->
 **Areas:** MCP Tools
 
 `list-templates.ts` — List-templates. No requirements recorded yet.
