@@ -1,1 +1,64 @@
-{"version": 1, "pageState": "missing", "page": null, "areas": []}
+{"version": 1,
+ "pageState": "read",
+ "page": "specs/_areas.md",
+ "areas":
+ [{"parent": null,
+   "name": "Design Tokens",
+   "description":
+   "The foundational values for color, type, spacing, and breakpoints that every component is built from."},
+  {"parent": null,
+   "name": "Components",
+   "description":
+   "The React component library organized by complexity, from basic building blocks up to full page sections."},
+  {"parent": "Components",
+   "name": "Atoms",
+   "description":
+   "The smallest building blocks such as buttons, text, images, and icons."},
+  {"parent": "Components",
+   "name": "Molecules",
+   "description":
+   "Small groups of atoms combined into reusable pieces like cards, fields, menus, and footers."},
+  {"parent": "Components",
+   "name": "Organisms",
+   "description":
+   "Larger composed sections such as decks, slides, forms, and timelines built from molecules and atoms."},
+  {"parent": null,
+   "name": "Templates",
+   "description":
+   "Full page layouts, such as the talk template, that arrange organisms into a finished screen."},
+  {"parent": null,
+   "name": "Foundations Docs",
+   "description":
+   "Storybook documentation pages that showcase color, type, radius, and measurement foundations."},
+  {"parent": null,
+   "name": "Runtime",
+   "description":
+   "The client and server runtime that hydrates islands, renders on the server, and bridges to Preact/React."},
+  {"parent": "Runtime",
+   "name": "App Shell",
+   "description":
+   "The root application entry and setup files that wire the design system together for rendering."},
+  {"parent": null,
+   "name": "Hooks",
+   "description":
+   "Shared interactive behaviors like reveal animations and centered-state tracking used across components."},
+  {"parent": null,
+   "name": "MCP Server",
+   "description":
+   "The MCP server that lets an AI agent consult the 540 design system while assembling a piece."},
+  {"parent": "MCP Server",
+   "name": "MCP Tools",
+   "description":
+   "The individual queries an agent can call, such as fetching a component, its docs, stories, patterns, rules, or the template and its stops."},
+  {"parent": "MCP Server",
+   "name": "MCP Transports",
+   "description":
+   "The ways the MCP server can be run and reached, over stdio, HTTP, or as a Firebase function."},
+  {"parent": null,
+   "name": "Build Scripts",
+   "description":
+   "The scripts that build the component library, the MCP metadata, and the Firebase deployment bundle."},
+  {"parent": "Build Scripts",
+   "name": "Piece Checks",
+   "description":
+   "Scripts that render and validate assembled pieces, checking islands and DOM output against the tag contract rules."}]}
