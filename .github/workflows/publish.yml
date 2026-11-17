@@ -39,4 +39,14 @@ jobs:
       # The talk renderer ships in the package (pieces/ + the 540-ds-render bin); prepack rebuilds both.
       - run: npm run test:render
       - run: npm run check:pieces
-      - run: npm publish --access public
+      # The browser runtime (pieces/runtime/) must paint exactly what the renderer writes
+      - run: npx playwright install --with-deps chromium
+      - run: npm run check:runtime
+      # A prerelease (0.2.0-rc.0) goes to the "next" dist-tag, so "latest" keeps pointing to the last stable version
+      - name: Publish
+        run: |
+          version=$(node -p "require('./package.json').version")
+          case "$version" in
+            *-*) npm publish --access public --tag next ;;
+            *) npm publish --access public ;;
+          esac

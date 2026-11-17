@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { JSDOM, VirtualConsole } from 'jsdom';
 import { describe, expect, it } from 'vitest';
@@ -214,5 +214,45 @@ describe('renderTalk', () => {
     const exports = Object.values(manifest.components as Record<string, { exports: string[] }>).flatMap((c) => c.exports).sort();
     expect(tags).toEqual(exports);
     expect(manifest.tags['rev-grid-item']).toMatchObject({ export: 'GridItem', component: 'Grid', props: { span: { required: false } } });
+  });
+});
+
+describe('renderTalk with a talk written for the browser runtime', () => {
+  const runtimePage = (tags: string, attrs = '') => `<!doctype html>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@540deg/ds@X.Y.Z/pieces/runtime/runtime.js"></script>
+<script type="text/rev"${attrs}>
+${tags}
+</script>
+`;
+
+  it('renders the same page as the plain tag document', async () => {
+    const plain = await render(STATIC_TALK);
+    const wrapped = await render(runtimePage(STATIC_TALK));
+    expect(wrapped.html).toBe(plain.html);
+  });
+
+  it('takes the language from data-lang unless the caller sets one', async () => {
+    expect((await render(runtimePage(STATIC_TALK, ' data-lang="en"'))).html).toContain('<html lang="en">');
+    expect((await renderTalk(runtimePage(STATIC_TALK, ' data-lang="en"'), { pieces, baseDir, lang: 'fr' })).html).toContain('<html lang="fr">');
+  });
+
+  it('points errors to the line and column of the file', async () => {
+    const message = await problems(runtimePage('<rev-slide id="a">\n  <rev-metirc value="1"></rev-metirc>\n</rev-slide>'));
+    expect(message).toContain('test 5:3: unknown tag <rev-metirc>');
+  });
+
+  it('rejects content outside the runtime block', async () => {
+    expect(await problems(`${runtimePage('<rev-text>Hola</rev-text>')}<p>Suelto</p>`)).toMatch(/the whole talk goes inside it/);
+    expect(await problems(`${runtimePage('<rev-text>Hola</rev-text>')}${runtimePage('<rev-text>Otra</rev-text>')}`)).toMatch(/only one <script type="text\/rev">/);
+  });
+
+  it('ships the browser runtime with a module for the manifest and for every stylesheet', () => {
+    const runtime = path.join(pieces, 'runtime');
+    const manifest = JSON.parse(readFileSync(path.join(pieces, 'manifest.json'), 'utf8'));
+    expect(existsSync(path.join(runtime, 'runtime.js'))).toBe(true);
+    expect(readFileSync(path.join(runtime, 'manifest.js'), 'utf8')).toContain(`"version":"${manifest.version}"`);
+    const files = new Set([manifest.base.css, ...Object.values(manifest.components as Record<string, { css: string[] }>).flatMap((c) => c.css)]);
+    for (const file of files) expect(existsSync(path.join(runtime, file.replace(/\.css$/, '.js'))), file).toBe(true);
+    expect(readFileSync(path.join(runtime, 'css/base.js'), 'utf8')).toContain('url(data:font/woff2;base64,');
   });
 });

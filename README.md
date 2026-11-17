@@ -142,7 +142,8 @@ Deja en `pieces/` lo que la skill necesita para montar un HTML autocontenido sin
 | `islands/` | `runtime.js` (Preact + hidratación) y un script por cada uno de los 14 componentes interactivos. |
 | `fonts/` | DM Sans variable, subconjunto latino, con su licencia SIL OFL. |
 | `manifest.json` | Versión, la de Preact (`preact`; antes `react`), y por componente: su módulo, sus hojas en orden de carga su isla, si la tiene, y si lee los pasos de `Steps` (`readsSteps`). También el contrato de etiquetas: `tags`, `phrasing` y `svg`. |
-| `render/` | El render de charlas: convierte un documento con etiquetas `<rev-…>` en un `.html` autocontenido. Corre con `node`, sin instalar nada ni red. |
+| `render/` | El render de charlas: convierte un documento con etiquetas `<rev-…>` en un `.html` autocontenido. Corre con `node`, sin instalar nada ni red. `core.mjs` es la parte que no usa Node (validar y pintar), compartida con el runtime. |
+| `runtime/` | El runtime del navegador: `runtime.js` pinta en la página una charla escrita con etiquetas, con las mismas comprobaciones y el mismo HTML que el render. El manifiesto y cada hoja de estilo (con DM Sans dentro) van como módulos JS, porque un artifact de claude.ai solo carga scripts de un CDN. |
 
 Cómo funciona una isla (el contrato está en `src/runtime/islands.ts`): el componente se pinta en el servidor dentro de `<ds-island>` con sus props en JSON; en el navegador, `runtime.js` lo hidrata. El contenido estático que recibe como hijo va en `<ds-slot>` y Preact no lo toca, así que las islas que hay dentro se hidratan solas; si un slot se vuelve a montar en el cliente, el runtime hidrata las islas nuevas que trae. Lo que lee el contexto de `Steps` (`Step`, `Count`, `Bars`, `Sheet`, `Schema`, `Share`) entra en el árbol de la isla de `Steps` en vez de ir como slot. `Dialog` no es isla: se abre y se cierra con `open` y `onClose`, y una función no viaja en el JSON de las props; quien lo use desde una isla lo lleva dentro de su script. `check:pieces` monta una charla con Deck, Steps, Count, Carousel y Statements y comprueba en jsdom que todo hidrata sin errores.
 
@@ -169,6 +170,14 @@ npx -y --package=@540deg/ds@X.Y.Z 540-ds-render --version                   # ve
 ```
 
 La primera vez necesita conexión para bajar el paquete; después npm lo guarda en caché y funciona sin red. Para que la skill use una versión nueva, se publica aquí y se cambia el número en la skill.
+
+### El runtime del navegador
+
+Para claude.ai o donde no hay Node: la charla va dentro de un `<script type="text/rev">` y la pinta el navegador al abrirla, cargando desde jsDelivr solo los componentes que usa. Si tiene errores, no pinta nada y enseña un panel con la lista, con línea y sugerencia, y un botón para copiarla. El formato está en `scripts/render/CONTRATO.md`; el render de Node acepta el mismo fichero.
+
+```bash
+npm run check:runtime   # abre charlas en Chromium y compara el runtime con el render, byte a byte
+```
 
 `TalkTemplate` no entra en las piezas: es una charla de ejemplo con fotos de muestra, no un componente que se rellene. La carpeta no se guarda en Git.
 
@@ -219,6 +228,8 @@ import type { DeckProps } from '@540deg/ds';
 4. El flujo `.github/workflows/publish.yml` comprueba que la etiqueta coincide con la versión de `package.json`, pasa tipos, lint, SSR, el render y las piezas, construye la librería y las piezas y las publica en npm con *provenance*. Míralo en Actions → "Publish to npm" y comprueba con `npm view @540deg/ds version`.
 
 Una versión publicada no se puede volver a publicar ni reutilizar su número: si algo sale mal, se arregla y se sube la siguiente.
+
+Una versión de prueba (`0.2.0-rc.0`, con guion) se publica igual, pero con la etiqueta de npm `next`: `latest`, que es lo que instala `npm install @540deg/ds`, sigue en la última estable. jsDelivr la sirve por su número exacto.
 
 No usa tokens: publica con *Trusted Publishing* de npm. En npmjs.com, `@540deg/ds` → Settings → Trusted Publisher tiene dado de alta este repositorio y el flujo `publish.yml`. Si se renombra el fichero del flujo o el repositorio, hay que cambiarlo también allí.
 
