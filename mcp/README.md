@@ -30,7 +30,8 @@ servidor MCP (mcp/server.ts + una tool por fichero en mcp/tools/)
 
 | Tool | Para qué la usa el agente |
 |---|---|
-| `get-rules` | Las normas del tipo de pieza. Lo primero, antes de montar nada |
+| `list-templates` | Las plantillas que hay (hoy, la charla): su `pieceType`, para qué sirve cada una, con qué palabras se pide, qué tools tienen datos y si es estable. Lo primero, antes de montar nada |
+| `get-rules` | Las normas del tipo de pieza. Lo primero en cuanto se usa una plantilla |
 | `get-template` | El esqueleto (el `Deck` con barra y pie) y el índice de paradas de la plantilla, por bloques |
 | `get-patterns` | Qué pieza cuenta cada cosa (una cita, cifras, una cronología…), qué no se hace nunca y qué paradas lo muestran |
 | `get-template-stops` | El código de las paradas elegidas, con sus auxiliares y las fotos de muestra que hay que cambiar |
@@ -41,7 +42,7 @@ servidor MCP (mcp/server.ts + una tool por fichero en mcp/tools/)
 | `get-component-stories` | Sus variantes con el enlace a Storybook y, si se pide, el código |
 | `get-tokens` | Los tokens semánticos con sus valores en claro, oscuro, escritorio y proyección |
 
-Al conectarse, el agente recibe además unas instrucciones con el orden de trabajo: normas → plantilla y patrones → copiar paradas → solo componentes del catálogo.
+Al conectarse, el agente recibe además unas instrucciones con el orden de trabajo: `list-templates` → (solo si el usuario pide ese tipo de pieza) normas → plantilla y patrones → copiar paradas → solo componentes del catálogo. Si no pide ninguna plantilla, compone con el catálogo.
 
 ## Probarlo en local
 
@@ -112,7 +113,7 @@ Cuando haya normas y plantilla de otro tipo (un informe, un post…):
 
 1. Las normas en `src/docs/normas-<tipo>.md`, con la tabla de patrones con esta misma cabecera: `| Para contar… | Pieza | Nunca |`. De esa tabla salen los patrones.
 2. La plantilla en `src/templates/<Nombre>/`, con sus paradas como hijos directos de la raíz.
-3. Regístralas en `scripts/build-mcp-metadata.ts` (`RULE_FILES` y `TEMPLATE_DIRS`) y añade el tipo a `PIECE_TYPES` en `mcp/tools/shared.ts`.
+3. Regístralas en `mcp/piece-types.ts`: el `pieceType`, el nombre, una o dos frases sobre qué pieza produce y cuándo usarla, las palabras con las que se pide (`triggers`), el estado (`stable` o `draft`), el fichero de normas y la carpeta de la plantilla. Es la única fuente: de ahí salen `list-templates`, el enum de `pieceType` de las demás tools y lo que lee `build-mcp-metadata`. Con `--strict`, el build falla si falta su norma, su plantilla o su tabla de patrones.
 
 ## Desplegar en Firebase
 
@@ -216,6 +217,7 @@ scripts/build-mcp-metadata.ts   genera mcp/metadata.json desde src/
 scripts/build-mcp-firebase.ts   empaqueta la función en firebase/functions/
 mcp/
   types.ts                      forma de la metadata
+  piece-types.ts                los tipos de pieza (plantillas): la única fuente de list-templates y del enum de pieceType
   server.ts                     el servidor MCP y sus instrucciones
   tools/                        una tool por fichero; index.ts las registra
   http.ts                       el manejador HTTP (local y Firebase)

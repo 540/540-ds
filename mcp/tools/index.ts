@@ -11,10 +11,12 @@ import { getTemplate } from './get-template.js';
 import { getTemplateStops } from './get-template-stops.js';
 import { getTokens } from './get-tokens.js';
 import { listComponents } from './list-components.js';
+import { listTemplates } from './list-templates.js';
 import { searchComponents } from './search-components.js';
 import type { ToolDef } from './shared.js';
 
 export const tools: ToolDef<any>[] = [
+  listTemplates,
   getRules,
   getTemplate,
   getPatterns,

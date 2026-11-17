@@ -21,6 +21,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import ts from 'typescript';
+import { PIECE_TYPES } from '../mcp/piece-types.js';
 import type { ComponentLevel, ComponentMeta, Metadata, PatternDef, PropDef, StopDef, StoryDef, TemplateMeta, Token, TokenCategory } from '../mcp/types.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -35,15 +36,8 @@ const LEVEL_DIRS: Array<{ level: ComponentLevel; dir: string }> = [
   { level: 'template', dir: path.join(src, 'templates') },
 ];
 
-/** Rules file → piece type it governs. */
-const RULE_FILES: Record<string, string> = {
-  'normas-charlas.md': 'talk',
-};
-
-/** Piece type → its template folder in src/templates. */
-const TEMPLATE_DIRS: Record<string, string> = {
-  talk: 'TalkTemplate',
-};
+/** Piece type → its rules file and template folder, from mcp/piece-types.ts. */
+const PIECE_TYPE_SOURCES = Object.entries(PIECE_TYPES).map(([pieceType, def]) => ({ pieceType, rulesFile: def.rulesFile, templateDir: def.templateDir }));
 
 /** Containers that hold almost every stop: they say nothing about which pattern a stop shows. */
 const LAYOUT_COMPONENTS = new Set(['Slide', 'Grid', 'GridItem', 'Stack', 'Text', 'SectionHeader', 'Step']);
@@ -468,8 +462,8 @@ function parseTokens(category: TokenCategory, primitives: Map<string, string>): 
 
 function buildRules(): Metadata['rules'] {
   const rules: Metadata['rules'] = {};
-  for (const [file, pieceType] of Object.entries(RULE_FILES)) {
-    const full = path.join(src, 'docs', file);
+  for (const { pieceType, rulesFile } of PIECE_TYPE_SOURCES) {
+    const full = path.join(src, 'docs', rulesFile);
     if (fs.existsSync(full)) rules[pieceType] = { source: rel(full), content: read(full) };
   }
   return rules;
@@ -668,8 +662,8 @@ function parsePatterns(rulesContent: string, stops: StopDef[]): PatternDef[] {
 
 function buildTemplates(components: Record<string, ComponentMeta>, rules: Metadata['rules']): Metadata['templates'] {
   const templates: Metadata['templates'] = {};
-  for (const [pieceType, dirName] of Object.entries(TEMPLATE_DIRS)) {
-    const template = buildTemplate(pieceType, dirName, components, rules);
+  for (const { pieceType, templateDir } of PIECE_TYPE_SOURCES) {
+    const template = buildTemplate(pieceType, templateDir, components, rules);
     if (template) templates[pieceType] = template;
   }
   return templates;
@@ -677,8 +671,13 @@ function buildTemplates(components: Record<string, ComponentMeta>, rules: Metada
 
 // ── Gaps report (task 15) ────────────────────────────────────────────────────
 
-function reportGaps(components: Record<string, ComponentMeta>): string[] {
+function reportGaps({ components, rules, templates }: Metadata): string[] {
   const gaps: string[] = [];
+  for (const { pieceType, rulesFile, templateDir } of PIECE_TYPE_SOURCES) {
+    if (!rules[pieceType]) gaps.push(`${pieceType}: no rules at src/docs/${rulesFile}`);
+    if (!templates[pieceType]) gaps.push(`${pieceType}: no template at src/templates/${templateDir}`);
+    else if (!templates[pieceType].patterns.length) gaps.push(`${pieceType}: no patterns table in its rules`);
+  }
   for (const c of Object.values(components)) {
     // A folder that only groups parts (Lists → ArrowList, ProblemList…) has no main component to describe.
     if (!c.description && !(c.parts.length && !c.props.length)) gaps.push(`${c.name}: no JSDoc description on the component`);
@@ -729,7 +728,7 @@ function main() {
       `${Object.keys(metadata.templates).length} templates with ${stopCount} stops (${kb} KB)`,
   );
 
-  const gaps = reportGaps(metadata.components);
+  const gaps = reportGaps(metadata);
   if (gaps.length) {
     console.log(`\n${gaps.length} gaps for the MCP:`);
     for (const g of gaps) console.log(`  - ${g}`);
