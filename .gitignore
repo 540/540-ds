@@ -39,3 +39,6 @@ mcp/metadata.json
 firebase/functions/
 .firebase/
 firebase-debug.log
+
+# Local tries of the design system (.claude/skills/prueba-540-ds)
+pruebas/
