@@ -1,1 +1,1 @@
-{"branch":"main"}
+{"branch":"main","defectsDigest":"18ec24624f79adac","defectsFixed":0,"defectsFound":1,"fixed":[],"found":[{"defectClass":"null-dereference","file":"scripts/check-runtime.mjs","key":"Code.scripts.«check-runtime».__moduleInit__|il1.null-dereference"}],"previousDigest":"b8abbf2dcddb0454","truncated":false}

@@ -146,5 +146,8 @@
   {"key": "scripts/render/core.mjs|core.prepareTalk|il3.domain-guard",
    "id": "ANL-0058"},
   {"key": "scripts/render/core.mjs|core.renderBody|il1.domain-guard",
-   "id": "ANL-0059"}],
- "next": 60}
+   "id": "ANL-0059"},
+  {"key":
+   "scripts/check-runtime.mjs|check-runtime.__moduleInit__|il1.null-dereference",
+   "id": "ANL-0060"}],
+ "next": 61}
