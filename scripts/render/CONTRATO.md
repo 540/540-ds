@@ -62,6 +62,28 @@ npx -y --package=@540deg/ds@X.Y.Z 540-ds-render charla.rev.html -o salida.html -
 npx -y --package=@540deg/ds@X.Y.Z 540-ds-render --tags GridItem rev-metric                    # props de esas etiquetas
 ```
 
+## La misma charla en el navegador (runtime)
+
+Donde no hay Node (un artifact de claude.ai, por ejemplo), la charla la pinta el navegador al abrirla. Las etiquetas son las mismas; van dentro de un bloque `<script type="text/rev">`, junto al script del runtime con la versión fijada:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@540deg/ds@X.Y.Z/pieces/runtime/runtime.js"></script>
+<script type="text/rev" data-lang="es">
+<title>Una charla</title>
+<rev-deck items='[{"href":"#bloque-1","label":"Bloque"}]'>
+  <rev-cover title='["Una charla","de prueba"]' photo='{"src":"data:image/webp;base64,…","alt":"Portada"}'></rev-cover>
+  …
+</rev-deck>
+</script>
+```
+
+- Fuera del bloque solo va el script del runtime (y, si acaso, el esqueleto de la página: `doctype`, `html`, `head`, `body`, `meta`). Un bloque por página.
+- **Fotos**: no hay carpeta junto a la charla, así que van incrustadas como `data:image/…;base64,…`. Una ruta es error; una URL remota, también, como en el render.
+- `data-lang` da el idioma de la página (por defecto `es`).
+- El runtime valida igual que el render (comparten `render/core.mjs`). Con errores no pinta nada: enseña un panel con todos, con línea y sugerencia, y un botón para copiarlos. Las líneas cuentan desde la etiqueta `<script type="text/rev">`. Los avisos salen en el mismo panel, pero la charla se pinta.
+- Carga de jsDelivr solo el JS y el CSS de los componentes que usa la charla, y nada más. Sin JavaScript no hay charla: para enviar o archivar, se usa el render.
+- El render acepta este mismo fichero y escribe la misma página que el runtime (`npm run check:runtime` lo comprueba en Chromium). Las líneas de sus errores cuentan desde el principio del fichero.
+
 `X.Y.Z` es la versión que fija quien lo llama (la skill 540-ds del toolkit). Dentro de este repo, con las piezas
 construidas, vale también `node pieces/render/cli.mjs`.
 
