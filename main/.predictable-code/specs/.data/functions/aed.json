@@ -1,1 +1,0 @@
-[{"calleePage":[],"callees":0,"callerPage":[{"callees":5,"callers":1,"danglingCalls":0,"fqn":"Code.scripts.render.index.fromAttr","isEntryPoint":false,"module":"scripts.render.index","reachable":true}],"callers":1,"danglingCalls":0,"fqn":"Code.scripts.render.index.asNumber","isEntryPoint":false,"isolated":false,"module":"scripts.render.index","reachable":true}]

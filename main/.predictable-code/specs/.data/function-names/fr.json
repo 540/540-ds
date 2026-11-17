@@ -1,1 +1,1 @@
-[{"fqn":"Code.scripts.render.index.fromAttr","label":"index.fromAttr","module":"scripts.render.index"},{"fqn":"Code.scripts.render.index.fromJson","label":"index.fromJson","module":"scripts.render.index"}]
+[{"fqn":"Code.scripts.render.core.fromAttr","label":"core.fromAttr","module":"scripts.render.core"},{"fqn":"Code.scripts.render.core.fromJson","label":"core.fromJson","module":"scripts.render.core"}]
