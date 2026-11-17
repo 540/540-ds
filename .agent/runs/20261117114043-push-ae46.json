@@ -73,7 +73,12 @@
       ]
     }
   ],
-  "notices": [],
+  "notices": [
+    {
+      "at": "2026-11-17T11:44:38.097Z",
+      "text": "Release 0.2.0 is a version bump only; specs in line, no new defects — nothing to do"
+    }
+  ],
   "steps": [
     {
       "at": "2026-11-17T11:42:01.763Z",
@@ -104,8 +109,8 @@
       "at": "2026-11-17T11:44:12.976Z",
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; head -c 1500 tmp/sync.json; echo; pyth…",
-      "tool": "toolu_01MhRDxaSnnN5RuNt1Doh8W2",
-      "failed": true
+      "failed": true,
+      "tool": "toolu_01MhRDxaSnnN5RuNt1Doh8W2"
     },
     {
       "at": "2026-11-17T11:44:16.092Z",
@@ -117,8 +122,8 @@
       "at": "2026-11-17T11:44:22.341Z",
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; python3 -c \"",
-      "tool": "toolu_01GnpUkYETYDEgNRM1FCkJD7",
-      "failed": true
+      "failed": true,
+      "tool": "toolu_01GnpUkYETYDEgNRM1FCkJD7"
     },
     {
       "at": "2026-11-17T11:44:25.456Z",
@@ -131,6 +136,18 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; grep -rn \"0\\.1\\.[0-9]\" --exclude-dir=n…",
       "tool": "toolu_01JaDZzkcZjN9JwKonHMJF9E"
+    },
+    {
+      "at": "2026-11-17T11:44:31.862Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; '…/predictable-runtime-installed/bin/p…",
+      "tool": "toolu_01CZ1jU1Mavp9SojhpPQbeAZ"
+    },
+    {
+      "at": "2026-11-17T11:44:38.097Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01HiAryyEtVKKVn7Gh8Qphbh"
     }
   ],
   "messages": [],
@@ -140,5 +157,5 @@
   "runUrl": null,
   "reportMistakes": true,
   "startedAt": "2026-11-17T11:40:45.894Z",
-  "updatedAt": "2026-11-17T11:44:29.496Z"
+  "updatedAt": "2026-11-17T11:44:38.697Z"
 }
