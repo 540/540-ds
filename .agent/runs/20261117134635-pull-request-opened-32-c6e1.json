@@ -1,0 +1,30 @@
+{
+  "id": "20261117134635-pull-request-opened-32-c6e1",
+  "event": {
+    "kind": "pull-request-opened",
+    "number": 32,
+    "title": "Skill prueba-540-ds: probar el sistema de diseño de la rama en local",
+    "author": "CoSmOsHeaven",
+    "url": "https://github.com/540/540-ds/pull/32",
+    "ref": "feat/skill-prueba-540-ds",
+    "sha": "afd625267dd03eb7d212f4c9336f7389e5b0a156",
+    "body": "Skill de proyecto para que diseño pruebe los cambios de una rama sin publicar nada y sin tocar producción: comprueba si un agente que monta una pieza hace caso a lo que hay en la rama (componentes, fichas, normas, plantillas, guía e instrucciones del MCP).\n\n## Cómo se usa\n\nEn Claude Code, dentro del repo y en la rama que se quiere probar:\n\n```\n/prueba-540-ds una charla de 3 bloques sobre IA en logística\n```\n\nAbre la pieza en el navegador y resume un informe: dónde el sistema no ayudó, qué rechazó el render y qué tools del MCP consultó.\n\n## Qué hace\n\n1. Genera las piezas (`build:pieces`) y la metadata del MCP con `--strict` desde la carpeta. Si la rama no se construye o falta una ficha, para y lo explica.\n2. Lanza una sesión de Claude aparte (`claude -p`):\n   - **Solo con el MCP local** (`--strict-mcp-config`): ni el conector de producción ni ningún otro.\n   - **Sin skills** (`--disable-slash-commands`): no salta la skill 540-ds del toolkit, que pintaría con el paquete de npm.\n   - **Fuera del repo:** no lee el `CLAUDE.md` del repo y solo sabe lo que le dice el MCP, instrucciones incluidas.\n   - **Sin ver la conversación:** si respeta un cambio, es porque el sistema lo explica.\n3. Esa sesión monta la pieza, la pinta con el render de la rama (`pieces/render/cli.mjs`) hasta que sale limpia y escribe `informe.md` para diseño.\n4. Lo deja todo en `pruebas/<fecha>-<pedido>/`, ignorado por git: la pieza, el `.rev.html`, las muestras, el informe y el log de la sesión.\n\nNo hace commit, push, publicación ni despliegue.\n\n## Qué no prueba\n\nLa conversación de la skill 540-ds con la persona (preguntar, aprobar la estructura, elegir formato) y los caminos de distribución: npm, el runtime de jsDelivr para claude.ai y el MCP en Firebase. Si un cambio contradice lo que dice la skill del toolkit (por ejemplo, cómo se usan las paradas de la plantilla), la prueba saldrá bien y hay que revisar también la skill.\n\n## Comprobado\n\n- Con `--strict-mcp-config` la sesión solo ve `540-ds-local`. Sin el flag ve también el conector de producción y los demás de claude.ai.\n- Con `--disable-slash-commands` la sesión tiene 0 skills. Sin el flag ve `essentials:540-ds`.\n- Prueba de punta a punta con «una página corta que presente tres cifras de un proyecto de logística» (Sonnet): 0,9 minutos y 0,18 $. El render salió limpio a la primera. El informe encontró problemas reales, que he comprobado:\n  - La ficha de Section habla del organismo «Diapo» (se llama `Slide`) y de «las siete secciones de la página».\n  - La ficha de Metric cita clases CSS de las charlas antiguas (`.dato-delta`, `.nota-telemetria`).\n  - No hay normas para piezas que no sean charlas.\n\n## Requisitos\n\nNode y el CLI `claude` en la máquina. La primera vez instala dependencias (`npm ci`).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-17T13:46:35.239Z",
+  "updatedAt": "2026-11-17T13:46:35.239Z"
+}
