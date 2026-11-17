@@ -5,6 +5,7 @@ export type RenderOptions = {
   pieces: string;
   /** Where relative image paths are read from. */
   baseDir?: string;
+  /** Page language; by default the data-lang of a runtime block, or "es". */
   lang?: string;
   /** Name used in error messages. */
   origin?: string;
