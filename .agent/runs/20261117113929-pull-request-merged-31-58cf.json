@@ -1,0 +1,30 @@
+{
+  "id": "20261117113929-pull-request-merged-31-58cf",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 31,
+    "title": "Release 0.2.0",
+    "author": "Ignarts",
+    "url": "https://github.com/540/540-ds/pull/31",
+    "ref": "main",
+    "sha": "d7b781930f35479edb9646bc02500f3c87ee0d0a",
+    "body": "Versión 0.2.0: el runtime del navegador para charlas en claude.ai (#25) y el arreglo de las paradas duplicadas de Deck (#28). Probado en un artifact de claude.ai con la 0.2.0-rc.1.",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-17T11:39:29.893Z",
+  "updatedAt": "2026-11-17T11:39:29.893Z"
+}
