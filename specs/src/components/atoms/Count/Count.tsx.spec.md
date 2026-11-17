@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/atoms/Count/Count.tsx
 
 ### Description
+<!-- predictable:module-summary=The Count module defines a single Count component with no recorded requirements. -->
 **Areas:** Atoms
 
 `Count.tsx` — Count. No requirements recorded yet.

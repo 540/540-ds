@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/Menu/Menu.tsx
 
 ### Description
+<!-- predictable:module-summary=The Menu module defines the application's Menu UI component, with no further implementation or requirement details recorded yet. -->
 **Areas:** Molecules
 
 `Menu.tsx` — Menu. No requirements recorded yet.

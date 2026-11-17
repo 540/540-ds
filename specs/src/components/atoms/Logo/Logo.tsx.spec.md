@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/atoms/Logo/Logo.tsx
 
 ### Description
+<!-- predictable:module-summary=Logo is a UI component module rendering the application's brand logo graphic. -->
 **Areas:** Atoms
 
 `Logo.tsx` — Logo. No requirements recorded yet.

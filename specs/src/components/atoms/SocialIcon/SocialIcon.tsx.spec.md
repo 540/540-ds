@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/atoms/SocialIcon/SocialIcon.tsx
 
 ### Description
+<!-- predictable:module-summary=A simple presentational component that renders a clickable social media icon linking out to an external profile or page. -->
 **Areas:** Atoms
 
 `SocialIcon.tsx` — Social icon. No requirements recorded yet.

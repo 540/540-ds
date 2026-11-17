@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/Section/Section.tsx
 
 ### Description
+<!-- predictable:module-summary=The Section module defines a single Section component with no recorded requirements, so only a minimal description is possible. -->
 **Areas:** Molecules
 
 `Section.tsx` — Section. No requirements recorded yet.

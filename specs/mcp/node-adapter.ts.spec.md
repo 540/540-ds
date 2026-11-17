@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** mcp/node-adapter.ts
 
 ### Description
+<!-- predictable:module-summary=Documented the Node-adapter module as a platform-specific adapter with no further detail available. -->
 **Areas:** MCP Transports
 
 `node-adapter.ts` — Node-adapter. No requirements recorded yet.
