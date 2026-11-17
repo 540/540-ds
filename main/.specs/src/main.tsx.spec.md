@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/main.tsx
 
 ### Description
-`main.tsx` — Main. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. REFUTED: “`main.__moduleInit__` requires that the value of `getElementById`(`document`, "root") is not null.” 1 requirement: 1 violated.
+`main.tsx` — Main. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. REFUTED: “`main.__moduleInit__` only works when the value of `getElementById`(`document`, "root") is not null.” 1 requirement: 1 violated.
 
 ### Notation
 
@@ -21,7 +21,7 @@ Tags: `[implemented, violated]` — the analysis found a case where the conditio
 #### main.__moduleInit__ <!-- predictable:group -->
 
 ##### ANL-0047 [implemented, violated]
-`main.__moduleInit__` requires that the value of `getElementById`(`document`, "root") is not null.
+`main.__moduleInit__` only works when the value of `getElementById`(`document`, "root") is not null.
 
 <!-- predictable:analysis -->
 

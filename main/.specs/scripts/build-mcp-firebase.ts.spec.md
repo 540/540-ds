@@ -6,12 +6,12 @@ predictable: spec
 - **Name:** scripts/build-mcp-firebase.ts
 
 ### Description
-`build-mcp-firebase.ts` — Build-mcp-firebase. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. Observed: “`JSON.parse(…)` is used as an object without checking that the parsed text was one.” 1 requirement: 1 violated.
+`build-mcp-firebase.ts` — Build-mcp-firebase. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. Observed: “`JSON.parse(…)` is assumed to be an object.” 1 requirement: 1 violated.
 
 ### Declarations
 
 `build-mcp-firebase` — Declares 1 function:
-- `installedVersion`(`pkg`) — internal; `JSON.parse(…)` is used as an object without checking that the parsed text was one
+- `installedVersion`(`pkg`) — internal; `JSON.parse(…)` is assumed to be an object
 
 ### Notation
 
@@ -29,7 +29,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 #### build-mcp-firebase.installedVersion <!-- predictable:group -->
 
 ##### BEH-0002 [implemented, violated]
-`JSON.parse(…)` is used as an object without checking that the parsed text was one. `JSON.parse(…)` is what a parser answered for text from outside the program, which nothing shows a caller cannot choose, and a parser answers whatever the text holds — an object, a list, a number or `null`. Nothing after the parse in this function checks that it is an object before it is used as one, in one place, named beside this one (the first on each path), so text of `null` — and, depending on the use, a number or a list — ends the request in an error there instead of being refused as malformed, and no handler takes the failure. Safe to rely on when the parse result's shape is checked before it is used as an object, or the failure is handled.
+`JSON.parse(…)` is assumed to be an object. The parsed text could be `null`, a list or a number. The request then fails instead of being rejected. Safe to rely on when the parse result's shape is checked before it is used as an object, or the failure is handled.
 
 <!-- predictable:behaviour -->
 

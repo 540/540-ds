@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/NavMobile/NavMobile.tsx
 
 ### Description
-`NavMobile.tsx` — Nav mobile. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`NavMobile.NavMobile` requires that `panel` is not null.” 1 requirement: 1 verified.
+`NavMobile.tsx` — Nav mobile. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`NavMobile.NavMobile` only works when `panel` is not null.” 1 requirement: 1 verified.
 
 ### Declarations
 
@@ -29,7 +29,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### NavMobile.NavMobile <!-- predictable:group -->
 
 ##### ANL-0034 [implemented, verified]
-`NavMobile.NavMobile` requires that `panel` is not null.
+`NavMobile.NavMobile` only works when `panel` is not null.
 
 <!-- predictable:analysis -->
 

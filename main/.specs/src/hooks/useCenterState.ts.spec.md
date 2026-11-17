@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/hooks/useCenterState.ts
 
 ### Description
-`useCenterState.ts` — Use center state. Called from `Statements.Sentence` and `Timeline.Step`, and possibly from places the call graph cannot see. `CenterState` is `'before' | 'on' | 'after'`. Checks: “`useCenterState.useCenterState` requires that `el` is not null.” 1 requirement: 1 verified.
+`useCenterState.ts` — Use center state. Called from `Statements.Sentence` and `Timeline.Step`, and possibly from places the call graph cannot see. `CenterState` is `'before' | 'on' | 'after'`. Checks: “`useCenterState.useCenterState` only works when `el` is not null.” 1 requirement: 1 verified.
 
 ### Declarations
 
@@ -29,7 +29,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### useCenterState.useCenterState <!-- predictable:group -->
 
 ##### ANL-0046 [implemented, verified]
-`useCenterState.useCenterState` requires that `el` is not null.
+`useCenterState.useCenterState` only works when `el` is not null.
 
 <!-- predictable:analysis -->
 

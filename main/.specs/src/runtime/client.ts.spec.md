@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/runtime/client.ts
 
 ### Description
-`client.ts` — Client. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `islands` and `react`. `Hydrated` is `HTMLElement & { __ds540?: true }`. Checks: “`client.slotHtml` requires that `slot` is not null.” 1 requirement: 1 verified.
+`client.ts` — Client. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `islands` and `react`. `Hydrated` is `HTMLElement & { __ds540?: true }`. Checks: “`client.slotHtml` only works when `slot` is not null.” 1 requirement: 1 verified.
 
 ### Declarations
 
@@ -34,7 +34,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 #### client.slotHtml <!-- predictable:group -->
 
 ##### ANL-0048 [implemented, verified]
-`client.slotHtml` requires that `slot` is not null.
+`client.slotHtml` only works when `slot` is not null.
 
 <!-- predictable:analysis -->
 

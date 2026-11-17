@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** mcp/tools/get-template-stops.ts
 
 ### Description
-`get-template-stops.ts` — Get-template-stops. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `shared`. Checks: “`getTemplateStops.handler` requires that `s` is not null.” and 1 more. 3 requirements: 3 verified.
+`get-template-stops.ts` — Get-template-stops. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `shared`. Checks: “`getTemplateStops.handler` only works when `s` is not null.” and 1 more. 3 requirements: 3 verified.
 
 ### Types
 
@@ -42,7 +42,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### getTemplateStops.handler <!-- predictable:group -->
 
 ##### ANL-0008 [implemented, verified]
-`getTemplateStops.handler` requires that `s` is not null.
+`getTemplateStops.handler` only works when `s` is not null.
 
 <!-- predictable:analysis -->
 
@@ -55,7 +55,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### handler.stops <!-- predictable:group -->
 
 ##### ANL-0009 [implemented, verified]
-`handler.stops` requires that `s` is not null.
+`handler.stops` only works when `s` is not null.
 
 <!-- predictable:analysis -->
 

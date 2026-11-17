@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** mcp/tools/get-component-docs.ts
 
 ### Description
-`get-component-docs.ts` — Get-component-docs. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `shared`. Checks: “`getComponentDocs.handler` requires that `match` is not null.” 2 requirements: 2 verified.
+`get-component-docs.ts` — Get-component-docs. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `shared`. Checks: “`getComponentDocs.handler` only works when `match` is not null.” 2 requirements: 2 verified.
 
 ### Types
 
@@ -40,7 +40,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### getComponentDocs.handler <!-- predictable:group -->
 
 ##### ANL-0002 [implemented, verified]
-`getComponentDocs.handler` requires that `match` is not null.
+`getComponentDocs.handler` only works when `match` is not null.
 
 <!-- predictable:analysis -->
 

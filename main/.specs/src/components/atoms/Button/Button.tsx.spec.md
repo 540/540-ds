@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/atoms/Button/Button.tsx
 
 ### Description
-`Button.tsx` — Button. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. REFUTED: “`Button.Button` requires that `rest` is not null.” 1 requirement: 1 violated.
+`Button.tsx` — Button. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. REFUTED: “`Button.Button` only works when `rest` is not null.” 1 requirement: 1 violated.
 
 ### Declarations
 
@@ -27,7 +27,7 @@ Tags: `[implemented, violated]` — the analysis found a case where the conditio
 #### Button.Button <!-- predictable:group -->
 
 ##### ANL-0029 [implemented, violated]
-`Button.Button` requires that `rest` is not null.
+`Button.Button` only works when `rest` is not null.
 
 <!-- predictable:analysis -->
 

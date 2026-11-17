@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** mcp/tools/get-component.ts
 
 ### Description
-`get-component.ts` — Get-component. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `shared`. Checks: “`getComponent.handler` requires that `match` is not null.” 2 requirements: 2 verified.
+`get-component.ts` — Get-component. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `shared`. Checks: “`getComponent.handler` only works when `match` is not null.” 2 requirements: 2 verified.
 
 ### Types
 
@@ -42,7 +42,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### getComponent.handler <!-- predictable:group -->
 
 ##### ANL-0006 [implemented, verified]
-`getComponent.handler` requires that `match` is not null.
+`getComponent.handler` only works when `match` is not null.
 
 <!-- predictable:analysis -->
 

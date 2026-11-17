@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** mcp/tools/shared.ts
 
 ### Description
-`shared.ts` — Shared. Called from at least 10 other places in the project. `ToolDef` carries `name`, `title`, `description`, `inputSchema` and `handler`; `ComponentMatch` carries `component` and `part`. Checks: “`shared.findComponent` requires that `part` is not null.” and 1 more. 2 requirements: 2 verified.
+`shared.ts` — Shared. Called from at least 11 other places in the project. `ToolDef` carries `name`, `title`, `description`, `inputSchema` and `handler`; `ComponentMatch` carries `component` and `part`. Checks: “`shared.findComponent` only works when `part` is not null.” and 1 more. 2 requirements: 2 verified.
 
 ### Declarations
 
@@ -40,7 +40,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 #### shared.findComponent <!-- predictable:group -->
 
 ##### ANL-0010 [implemented, verified]
-`shared.findComponent` requires that `part` is not null.
+`shared.findComponent` only works when `part` is not null.
 
 <!-- predictable:analysis -->
 
@@ -48,14 +48,14 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 
 <!-- predictable:vc=il1.null-dereference -->
 
-- **Code locations:** [mcp/tools/shared.ts:46-56](../../../mcp/tools/shared.ts#L46-L56)
+- **Code locations:** [mcp/tools/shared.ts:48-58](../../../mcp/tools/shared.ts#L48-L58)
 
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-014/ANL-0010.md -->
 
 #### shared.summary <!-- predictable:group -->
 
 ##### ANL-0011 [implemented, verified]
-`shared.summary` requires that `description` is not null.
+`shared.summary` only works when `description` is not null.
 
 <!-- predictable:analysis -->
 
@@ -63,6 +63,6 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 
 <!-- predictable:vc=il1.null-dereference -->
 
-- **Code locations:** [mcp/tools/shared.ts:67](../../../mcp/tools/shared.ts#L67)
+- **Code locations:** [mcp/tools/shared.ts:69](../../../mcp/tools/shared.ts#L69)
 
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-014/ANL-0011.md -->

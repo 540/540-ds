@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Sheet/Sheet.tsx
 
 ### Description
-`Sheet.tsx` — Sheet. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. At run time it reaches `StepsContext`. Checks: “`Sheet.Sheet` requires that `stop` is not null.” 1 requirement: 1 verified.
+`Sheet.tsx` — Sheet. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. At run time it reaches `StepsContext`. Checks: “`Sheet.Sheet` only works when `stop` is not null.” 1 requirement: 1 verified.
 
 ### Declarations
 
@@ -32,7 +32,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 #### Sheet.Sheet <!-- predictable:group -->
 
 ##### ANL-0041 [implemented, verified]
-`Sheet.Sheet` requires that `stop` is not null.
+`Sheet.Sheet` only works when `stop` is not null.
 
 <!-- predictable:analysis -->
 

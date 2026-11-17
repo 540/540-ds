@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Steps/Steps.tsx
 
 ### Description
-`Steps.tsx` — Steps. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. At run time it reaches `StepsContext`. Checks: “`Steps.Step` requires that `to` is not null.” and 2 more. 3 requirements: 3 verified.
+`Steps.tsx` — Steps. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. At run time it reaches `StepsContext`. Checks: “`Steps.Step` only works when `to` is not null.” and 2 more. 3 requirements: 3 verified.
 
 ### Declarations
 
@@ -33,7 +33,7 @@ On the cards: `no requirement inferred` — no requirement on this page is about
 #### Steps.Step <!-- predictable:group -->
 
 ##### ANL-0043 [implemented, verified]
-`Steps.Step` requires that `to` is not null.
+`Steps.Step` only works when `to` is not null.
 
 <!-- predictable:analysis -->
 
@@ -48,7 +48,7 @@ On the cards: `no requirement inferred` — no requirement on this page is about
 #### Steps.Steps <!-- predictable:group -->
 
 ##### ANL-0044 [implemented, verified]
-`Steps.Steps` requires that `el` is not null.
+`Steps.Steps` only works when `el` is not null.
 
 <!-- predictable:analysis -->
 
@@ -61,7 +61,7 @@ On the cards: `no requirement inferred` — no requirement on this page is about
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-027/ANL-0044.md -->
 
 ##### ANL-0045 [implemented, verified]
-`Steps.Steps` requires that `t` is not null.
+`Steps.Steps` only works when `t` is not null.
 
 <!-- predictable:analysis -->
 

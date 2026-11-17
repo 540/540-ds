@@ -13,7 +13,7 @@ predictable: spec
 `tag-contract.mjs` — Declares 5 functions:
 - `tagName`(`exportName`) — no requirement inferred
 - `attrName`(`prop`) — no requirement inferred
-- `readContract`(`root`, `components`) — can fail with the error "No module for"; can fail with the error `Error`; an unrecognised value is answered as "json"
+- `readContract`(`root`, `components`) — can fail with the error "No module for"; can fail with the error `Error`; unknown values become "json"
 - `byValue`(`a`, `b`) — internal, no requirement inferred
 - `mergeTypes`(`a`, `b`) — internal, no requirement inferred
 
@@ -63,7 +63,7 @@ Calling `readContract` can fail with the error `Error`.
 #### tag-contract.readContract <!-- predictable:group -->
 
 ##### BEH-0006 [implemented, violated]
-An unrecognised value is answered as "json". Each test here answers a category, and a value no test recognises falls through to "json" — the same answer one of the tests gives. An unrecognised value is therefore reported as that category, and nothing tells it apart from one that really is. Safe to rely on when every value that reaches here really is that category.
+Unknown values become "json". A value no test recognises falls through to "json", which one of the tests also answers. An unknown value is reported as that real category. Safe to rely on when every value that reaches here really is that category.
 
 <!-- predictable:behaviour -->
 

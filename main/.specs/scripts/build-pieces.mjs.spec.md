@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** scripts/build-pieces.mjs
 
 ### Description
-`build-pieces.mjs` — Build-pieces. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `«tag-contract»`. `writeManifest` builds `cssOf`, and no requirement here is about what runs inside it. `buildIsland` has 2 failure conditions and 1 of them is stated here — the rest are in the findings in Predictable Code (the Control Center, or your editor). Checks: “`plugins.resolveId` requires that `resolved` is not null.” 2 requirements: 1 violated, 1 verified. 6 stated failures.
+`build-pieces.mjs` — Build-pieces. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `«tag-contract»`. `writeManifest` builds `cssOf`, and no requirement here is about what runs inside it. `buildIsland` has 2 failure conditions and 1 of them is stated here — the rest are in the findings in Predictable Code (the Control Center, or your editor). Checks: “`plugins.resolveId` only works when `resolved` is not null.” 2 requirements: 1 violated, 1 verified. 6 stated failures.
 
 ### Declarations
 
@@ -19,7 +19,7 @@ predictable: spec
 - `buildIsland`(`component`), `tagsOf`(`components`) — internal; can fail with the error `Error`
 - `buildRuntime`() — internal, no requirement inferred
 - `buildBase`() — internal, no requirement inferred
-- `writeManifest`(`components`, `graph`, `islands`) — internal; can be rejected with the error "Error" — it delegates to `tagsOf`, which enforces that precondition; `JSON.parse(…)` is used as an object without checking that the parsed text was one
+- `writeManifest`(`components`, `graph`, `islands`) — internal; can be rejected with the error "Error" — it delegates to `tagsOf`, which enforces that precondition; `JSON.parse(…)` is assumed to be an object
 - `copyRenderer`() — internal, no requirement inferred
 
 A `[verified]` requirement is one the operation checks itself.
@@ -99,7 +99,7 @@ Calling `writeManifest` can be rejected with the error "Error" — it delegates 
 #### plugins.resolveId <!-- predictable:group -->
 
 ##### ANL-0012 [implemented, verified]
-`plugins.resolveId` requires that `resolved` is not null.
+`plugins.resolveId` only works when `resolved` is not null.
 
 <!-- predictable:analysis -->
 
@@ -112,7 +112,7 @@ Calling `writeManifest` can be rejected with the error "Error" — it delegates 
 #### build-pieces.writeManifest <!-- predictable:group -->
 
 ##### BEH-0005 [implemented, violated]
-`JSON.parse(…)` is used as an object without checking that the parsed text was one. `JSON.parse(…)` is what a parser answered for text from outside the program, which nothing shows a caller cannot choose, and a parser answers whatever the text holds — an object, a list, a number or `null`. Nothing after the parse in this function checks that it is an object before it is used as one, in one place, named beside this one (the first on each path), so text of `null` — and, depending on the use, a number or a list — ends the request in an error there instead of being refused as malformed, and no handler takes the failure. Safe to rely on when the parse result's shape is checked before it is used as an object, or the failure is handled.
+`JSON.parse(…)` is assumed to be an object. The parsed text could be `null`, a list or a number. The request then fails instead of being rejected. Safe to rely on when the parse result's shape is checked before it is used as an object, or the failure is handled.
 
 <!-- predictable:behaviour -->
 

@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Deck/Deck.tsx
 
 ### Description
-`Deck.tsx` — Deck. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. At run time it reaches `useDeckNavigation`. `Deck` builds `toggleTheme`, `Deck` builds `markOf` and `Deck` builds `firstStopOf`, and no requirement here is about what runs inside them. Checks: “`Deck.Deck` requires that `bar` is not null.” 1 requirement: 1 verified.
+`Deck.tsx` — Deck. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. At run time it reaches `useDeckNavigation`. `Deck` builds `toggleTheme`, `Deck` builds `markOf` and `Deck` builds `firstStopOf`, and no requirement here is about what runs inside them. Checks: “`Deck.Deck` only works when `bar` is not null.” 1 requirement: 1 verified.
 
 ### Declarations
 
@@ -32,7 +32,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 #### Deck.Deck <!-- predictable:group -->
 
 ##### ANL-0035 [implemented, verified]
-`Deck.Deck` requires that `bar` is not null.
+`Deck.Deck` only works when `bar` is not null.
 
 <!-- predictable:analysis -->
 

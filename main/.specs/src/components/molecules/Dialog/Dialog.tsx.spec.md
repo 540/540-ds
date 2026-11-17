@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/Dialog/Dialog.tsx
 
 ### Description
-`Dialog.tsx` — Dialog. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`Dialog.Dialog` requires that `dialog` is not null.” 1 requirement: 1 verified.
+`Dialog.tsx` — Dialog. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`Dialog.Dialog` only works when `dialog` is not null.” 1 requirement: 1 verified.
 
 ### Declarations
 
@@ -29,7 +29,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### Dialog.Dialog <!-- predictable:group -->
 
 ##### ANL-0032 [implemented, verified]
-`Dialog.Dialog` requires that `dialog` is not null.
+`Dialog.Dialog` only works when `dialog` is not null.
 
 <!-- predictable:analysis -->
 

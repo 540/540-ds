@@ -13,14 +13,14 @@ predictable: spec
 `index.mjs` — Declares 18 functions:
 - `camel`(`name`) — internal, no requirement inferred
 - `kebab`(`name`) — internal, no requirement inferred
-- `renderTalk`(`source`, `_pattern`) — requires `pieces` is present and is not falsy [verified]; can fail with the error `Error`; can be rejected with the error "540-ds renderer: an island was left unplaced" — it delegates to `renderPage`, which enforces that precondition; can be rejected with the error "the page would need files from outside:" — it delegates to `checkOffline`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `fromAttr`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asImage`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asNumber`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `markup`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `fromJson`, which enforces that precondition; can fail with the error `TagError` — one of 2 ways `renderTalk` can raise this error, each with its own row; throws `TagError` when `pieces` is present and is not falsy and the `length` of `errors` is present and is not falsy [verified]; `manifest` is used as an object without checking that the parsed text was one
+- `renderTalk`(`source`, `_pattern`) — requires `pieces` is present and is not falsy [verified]; can fail with the error `Error`; can be rejected with the error "540-ds renderer: an island was left unplaced" — it delegates to `renderPage`, which enforces that precondition; can be rejected with the error "the page would need files from outside:" — it delegates to `checkOffline`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `fromAttr`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asImage`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asNumber`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `markup`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `fromJson`, which enforces that precondition; can fail with the error `TagError` — one of 2 ways `renderTalk` can raise this error, each with its own row; throws `TagError` when `pieces` is present and is not falsy and the `length` of `errors` is present and is not falsy [verified]; `manifest` is assumed to be an object
 - `resolveNodes`(`nodes`, `ctx`, `env`), `resolveElement`(`node`, `ctx`, `env`), `resolveComponent`(`node`, `ctx`, `env`) — internal; can be rejected with the error "Error" — it delegates to `fromAttr`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asImage`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asNumber`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `markup`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `fromJson`, which enforces that precondition
 - `fromAttr`(`raw`, `type`, `label`, `at`, `env`) — internal; can fail with the error `Error` when `raw` is null; can be rejected with the error "Error" — it delegates to `asImage`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asNumber`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `markup`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `fromJson`, which enforces that precondition
 - `fromJson`(`value`, `type`, `label`, `at`, `env`) — internal; can fail with the error `Error`; can be rejected with the error "Error" — it delegates to `asImage`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `markup`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `fromAttr`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asNumber`, which enforces that precondition — one of 15 conditions under which `fromJson` fails, and 5 of them are stated here
 - `markup`(`text`, `label`, `at`, `env`) — internal; can fail with the error `Error`; can be rejected with the error "Error" — it delegates to `fromAttr`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asImage`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `asNumber`, which enforces that precondition; can be rejected with the error "Error" — it delegates to `fromJson`, which enforces that precondition
 - `asNumber`(`raw`, `label`) — internal; can fail with the error `Error`
-- `asImage`(`value`, `label`, `env`) — internal; can fail with the error `Error`; `MIME` is asked about a key that was not checked against its own entries
-- `describe`(`type`) — internal; `describe` recurses along `array`, and nothing proves that chain ends
+- `asImage`(`value`, `label`, `env`) — internal; can fail with the error `Error`; lookup in `MIME` can hit a built-in property
+- `describe`(`type`) — internal; `describe` can recurse forever along `array`
 - `closest`(`name`, `names`) — internal, no requirement inferred
 - `distance`(`a`, `b`) — internal, no requirement inferred
 - `renderPage`(`nodes`, `_pattern`) — internal; can fail with the error "540-ds renderer: an island was left unplaced"
@@ -549,7 +549,7 @@ Calling `resolveNodes` can be rejected with the error "Error" — it delegates t
 
 <!-- predictable:throws=renderTalk needs the pieces folder -->
 
-<!-- predictable:canonical=`index.renderTalk` requires that `pieces` is present and is not empty, zero or false. -->
+<!-- predictable:canonical=`index.renderTalk` only works when `pieces` is present and is not empty, zero or false. -->
 
 - **Code locations:** [scripts/render/index.mjs:18-56](../../../scripts/render/index.mjs#L18-L56)
 
@@ -581,7 +581,7 @@ Calling `renderTalk` can fail with the error `TagError` — one of 2 ways `rende
 
 <!-- predictable:throws=TagError -->
 
-<!-- predictable:canonical=`index.renderTalk` requires that it is not the case that (`pieces` is present and is not empty, zero or false and the `length` of `errors` is present and is not empty, zero or false). -->
+<!-- predictable:canonical=`index.renderTalk` only works when it is not the case that (`pieces` is present and is not empty, zero or false and the `length` of `errors` is present and is not empty, zero or false). -->
 
 - **Code locations:** [scripts/render/index.mjs:18-56](../../../scripts/render/index.mjs#L18-L56)
 
@@ -592,7 +592,7 @@ Calling `renderTalk` can fail with the error `TagError` — one of 2 ways `rende
 #### index.renderTalk <!-- predictable:group -->
 
 ##### BEH-0007 [implemented, violated]
-`manifest` is used as an object without checking that the parsed text was one. `manifest` is what a parser answered for text from outside the program, which nothing shows a caller cannot choose, and a parser answers whatever the text holds — an object, a list, a number or `null`. Nothing after the parse in this function checks that it is an object before it is used as one, in one place, named beside this one (the first on each path), so text of `null` — and, depending on the use, a number or a list — ends the request in an error there instead of being refused as malformed, and no handler takes the failure. Safe to rely on when the parse result's shape is checked before it is used as an object, or the failure is handled.
+`manifest` is assumed to be an object. The parsed text could be `null`, a list or a number. The request then fails instead of being rejected. Safe to rely on when the parse result's shape is checked before it is used as an object, or the failure is handled.
 
 <!-- predictable:behaviour -->
 
@@ -607,7 +607,7 @@ Calling `renderTalk` can fail with the error `TagError` — one of 2 ways `rende
 #### index.asImage <!-- predictable:group -->
 
 ##### BEH-0008 [implemented, violated]
-`MIME` is asked about a key that was not checked against its own entries. `MIME` is a table of fixed entries, and this asks it about a key the code did not choose. Indexing answers "what does this name resolve to", which on an ordinary object includes everything the language put there before the author's own keys — so a key like `constructor` comes back with a value, and it is neither absent nor falsy. Testing the RESULT cannot separate the two cases; only asking whether the key is one of the table's OWN can. Use a presence test, or a map that holds only what was put in it. Safe to rely on when the key is confirmed to be one of `MIME`'s own entries.
+Lookup in `MIME` can hit a built-in property. A key such as `constructor` returns a value that `MIME` never held, and it is neither absent nor falsy. Safe to rely on when the key is confirmed to be one of `MIME`'s own entries.
 
 <!-- predictable:behaviour -->
 
@@ -622,7 +622,7 @@ Calling `renderTalk` can fail with the error `TagError` — one of 2 ways `rende
 #### index.describe <!-- predictable:group -->
 
 ##### BEH-0009 [implemented, violated]
-`describe` recurses along `array`, and nothing proves that chain ends. `describe` calls itself on `array` of what it was given, and returns only where the chain along `array` ends. Nothing in the program proves it does: `array` is set to objects the program did not just make, or by something outside its view, so an object pointing back at itself or one of its own makes the base case unreachable and the stack overflows. Safe to rely on when some path returns without calling the function again, and every recursive call moves its arguments toward it.
+`describe` can recurse forever along `array`. `describe` returns only where the chain along `array` ends. An object pointing back at itself or an earlier one means it never ends, and the stack overflows. Safe to rely on when some path returns without calling the function again, and every recursive call moves its arguments toward it.
 
 <!-- predictable:behaviour -->
 

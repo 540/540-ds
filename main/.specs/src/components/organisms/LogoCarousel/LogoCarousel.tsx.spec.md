@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/LogoCarousel/LogoCarousel.tsx
 
 ### Description
-`LogoCarousel.tsx` — Logo carousel. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`LogoCarousel.LogoCarousel` requires that `track` is not null.” 1 requirement: 1 verified.
+`LogoCarousel.tsx` — Logo carousel. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`LogoCarousel.LogoCarousel` only works when `track` is not null.” 1 requirement: 1 verified.
 
 ### Declarations
 
@@ -29,7 +29,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### LogoCarousel.LogoCarousel <!-- predictable:group -->
 
 ##### ANL-0038 [implemented, verified]
-`LogoCarousel.LogoCarousel` requires that `track` is not null.
+`LogoCarousel.LogoCarousel` only works when `track` is not null.
 
 <!-- predictable:analysis -->
 

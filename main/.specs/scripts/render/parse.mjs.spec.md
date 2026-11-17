@@ -6,14 +6,14 @@ predictable: spec
 - **Name:** scripts/render/parse.mjs
 
 ### Description
-`parse.mjs` — Parse. Called from `index.markup`, `index.renderTalk` and `index.resolveNodes`, and possibly from places the call graph cannot see. `parse` builds `where` and `parse` builds `top`, and no requirement here is about what runs inside them. `parse` has 16 failure conditions and 8 of them are stated here and `tidy` has 2 failure conditions and 1 of them is stated here — the rest are in the findings in Predictable Code (the Control Center, or your editor). REFUTED: “`parse.tidy` requires that the value of `at`(`out`, -1) is not null.” 7 requirements: 7 violated. 2 stated failures.
+`parse.mjs` — Parse. Called from `index.markup`, `index.renderTalk` and `index.resolveNodes`, and possibly from places the call graph cannot see. `parse` builds `where` and `parse` builds `top`, and no requirement here is about what runs inside them. `parse` has 16 failure conditions and 8 of them are stated here and `tidy` has 2 failure conditions and 1 of them is stated here — the rest are in the findings in Predictable Code (the Control Center, or your editor). REFUTED: “`parse.tidy` only works when the value of `at`(`out`, -1) is not null.” 7 requirements: 7 violated. 2 stated failures.
 
 2 findings reachable from current code (1 distinct problems — each counted where it happens and again at the caller that reaches it) produced no requirement — on `tidy`: a value is used as present without a check.
 
 ### Declarations
 
 `parse.mjs` — Declares 4 functions:
-- `decode`(`text`, `where`) — `ENTITIES` is asked about a key that was not checked against its own entries
+- `decode`(`text`, `where`) — Lookup in `ENTITIES` can hit a built-in property
 - `parse`(`source`, `origin`) — can fail with the error `TagError` — one of 16 conditions under which `parse` fails, and 8 of them are stated here
 - `tidy`(`nodes`) — requires the value of `at`(`out`, -1) is not null [violated] — one of 2 conditions under which `tidy` fails, and the only one stated here
 - `isInline`(`node`) — internal, no requirement inferred
@@ -141,7 +141,7 @@ i < source.length || stack.length <= 1
 #### parse.tidy <!-- predictable:group -->
 
 ##### ANL-0028 [implemented, violated]
-`parse.tidy` requires that the value of `at`(`out`, -1) is not null.
+`parse.tidy` only works when the value of `at`(`out`, -1) is not null.
 
 <!-- predictable:analysis -->
 
@@ -158,7 +158,7 @@ i < source.length || stack.length <= 1
 #### parse.decode <!-- predictable:group -->
 
 ##### BEH-0010 [implemented, violated]
-`ENTITIES` is asked about a key that was not checked against its own entries. `ENTITIES` is a table of fixed entries, and this asks it about a key the code did not choose. Indexing answers "what does this name resolve to", which on an ordinary object includes everything the language put there before the author's own keys — so a key like `constructor` comes back with a value, and it is neither absent nor falsy. Testing the RESULT cannot separate the two cases; only asking whether the key is one of the table's OWN can. Use a presence test, or a map that holds only what was put in it. Safe to rely on when the key is confirmed to be one of `ENTITIES`'s own entries.
+Lookup in `ENTITIES` can hit a built-in property. A key such as `constructor` returns a value that `ENTITIES` never held, and it is neither absent nor falsy. Safe to rely on when the key is confirmed to be one of `ENTITIES`'s own entries.
 
 <!-- predictable:behaviour -->
 

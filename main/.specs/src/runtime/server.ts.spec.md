@@ -75,7 +75,7 @@ Calling `lambda_27_19` can fail with the error "540-ds: slot "".
 
 <!-- predictable:throws=Error -->
 
-<!-- predictable:canonical=`server.renderIsland` requires that `type` is not null. -->
+<!-- predictable:canonical=`server.renderIsland` only works when `type` is not null. -->
 
 - **Code locations:** [src/runtime/server.ts:24-33](../../../src/runtime/server.ts#L24-L33)
 
@@ -84,7 +84,7 @@ Calling `lambda_27_19` can fail with the error "540-ds: slot "".
 #### server.renderToString <!-- predictable:group -->
 
 ##### ANL-0051 [implemented, verified]
-`server.renderToString` requires that `options` is not null.
+`server.renderToString` only works when `options` is not null.
 
 <!-- predictable:analysis -->
 

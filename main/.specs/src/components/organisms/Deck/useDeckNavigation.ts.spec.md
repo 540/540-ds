@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Deck/useDeckNavigation.ts
 
 ### Description
-`useDeckNavigation.ts` — Use deck navigation. Called from `Deck.Deck`, and possibly from places the call graph cannot see. `useDeckNavigation` builds `reduced`, `useDeckNavigation` builds `photoOf`, `useDeckNavigation` builds `box` and `useDeckNavigation` builds `nameOf`, and no requirement here is about what runs inside them. Checks: “`useDeckNavigation.useDeckNavigation` requires that `el` is not null.” and 1 more. 2 requirements: 2 verified.
+`useDeckNavigation.ts` — Use deck navigation. Called from `Deck.Deck`, and possibly from places the call graph cannot see. `useDeckNavigation` builds `reduced`, `useDeckNavigation` builds `photoOf`, `useDeckNavigation` builds `box` and `useDeckNavigation` builds `nameOf`, and no requirement here is about what runs inside them. Checks: “`useDeckNavigation.useDeckNavigation` only works when `el` is not null.” and 1 more. 2 requirements: 2 verified.
 
 ### Declarations
 
@@ -34,7 +34,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 #### useDeckNavigation.useDeckNavigation <!-- predictable:group -->
 
 ##### ANL-0036 [implemented, verified]
-`useDeckNavigation.useDeckNavigation` requires that `el` is not null.
+`useDeckNavigation.useDeckNavigation` only works when `el` is not null.
 
 <!-- predictable:analysis -->
 
@@ -49,7 +49,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-022/ANL-0036.md -->
 
 ##### ANL-0037 [implemented, verified]
-`useDeckNavigation.useDeckNavigation` requires that `t` is not null.
+`useDeckNavigation.useDeckNavigation` only works when `t` is not null.
 
 <!-- predictable:analysis -->
 

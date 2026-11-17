@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Marquee/Marquee.tsx
 
 ### Description
-`Marquee.tsx` — Marquee. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. `Marquee` builds `pieces` and `Marquee` builds `roundOf`, and no requirement here is about what runs inside them. Checks: “`Marquee.Marquee` requires that `r` is not null.” and 1 more. 2 requirements: 2 verified.
+`Marquee.tsx` — Marquee. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. `Marquee` builds `pieces` and `Marquee` builds `roundOf`, and no requirement here is about what runs inside them. Checks: “`Marquee.Marquee` only works when `r` is not null.” and 1 more. 2 requirements: 2 verified.
 
 ### Declarations
 
@@ -29,7 +29,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### Marquee.Marquee <!-- predictable:group -->
 
 ##### ANL-0039 [implemented, verified]
-`Marquee.Marquee` requires that `r` is not null.
+`Marquee.Marquee` only works when `r` is not null.
 
 <!-- predictable:analysis -->
 
@@ -42,7 +42,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-024/ANL-0039.md -->
 
 ##### ANL-0040 [implemented, verified]
-`Marquee.Marquee` requires that `f` is not null.
+`Marquee.Marquee` only works when `f` is not null.
 
 <!-- predictable:analysis -->
 

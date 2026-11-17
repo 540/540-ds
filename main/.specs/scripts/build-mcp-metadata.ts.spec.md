@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** scripts/build-mcp-metadata.ts
 
 ### Description
-`build-mcp-metadata.ts` — Build-mcp-metadata. Called from `serve.ts (top level)` and `stdio.ts (top level)`, and possibly from places the call graph cannot see. `main` is where the program ends. `buildTemplate` builds `dependencies`, and no requirement here is about what runs inside it. Observed: “The walk along `expression` has nothing to stop it going round in a circle.” 2 requirements: 2 violated.
+`build-mcp-metadata.ts` — Build-mcp-metadata. Called from `serve.ts (top level)` and `stdio.ts (top level)`, and possibly from places the call graph cannot see. `main` is where the program ends. `buildTemplate` builds `dependencies`, and no requirement here is about what runs inside it. Observed: “Loop along `expression` can run forever.” 2 requirements: 2 violated.
 
 1 finding reachable from current code produced no requirement — on `buildTemplate`: a value is used as present without a check.
 
@@ -19,7 +19,7 @@ predictable: spec
 - `createProgram`(`files`) — internal, no requirement inferred
 - `docComment`(`symbol`, `checker`) — internal, no requirement inferred
 - `resolveAlias`(`symbol`, `checker`) — internal, no requirement inferred
-- `unwrap`(`expr`) (internal) — “`X as const`, `X satisfies T`, `(X)` → X.” — internal; the walk along `expression` has nothing to stop it going round in a circle
+- `unwrap`(`expr`) (internal) — “`X as const`, `X satisfies T`, `(X)` → X.” — internal; loop along `expression` can run forever
 - `propertyName`(`name`) — internal, no requirement inferred
 - `literalValue`(`expr`) (internal) — “A literal as plain JSON when possible, else its source text.” — internal, no requirement inferred
 - `toConstantCase`(`name`) — internal, no requirement inferred
@@ -48,8 +48,8 @@ predictable: spec
 - `buildTemplate`(`pieceType`, `dirName`, `components`, `rules`) (internal) — “Splits a template into its stops: each direct child of the root Deck.” — internal, no requirement inferred
 - `parsePatterns`(`rulesContent`, `stops`) (internal) — “The "Para contar… | Pieza | Nunca" table of a rules file: need → piece → what never to do, plus up to three template stops that show it, the simplest first.” — internal, no requirement inferred
 - `buildTemplates`(`components`, `rules`) — internal, no requirement inferred
-- `reportGaps`(`components`) — internal, no requirement inferred
-- `buildMetadata`() — “The whole metadata, built in memory.” — `pkg` is used as an object without checking that the parsed text was one
+- `reportGaps`(`_pattern`) — internal, no requirement inferred
+- `buildMetadata`() — “The whole metadata, built in memory.” — `pkg` is assumed to be an object
 - `main`() — internal, no requirement inferred
 
 ### Notation
@@ -68,7 +68,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 #### build-mcp-metadata.unwrap <!-- predictable:group -->
 
 ##### BEH-0003 [implemented, violated]
-The walk along `expression` has nothing to stop it going round in a circle. This loop moves `expr` one step along `expression` at a time, and its only way out is the condition — reaching the end of the chain. The analysis cannot place `expression` on one declaration, so nothing proves the chain it makes ever ends. On such data the chain has no end: the condition never becomes false, nothing in the loop leaves it, and the thread running it spins at full CPU for as long as the process lives. Nothing here counts the steps or remembers the objects already visited. Safe to rely on when the walk counts its steps against a bound, or remembers the objects it has passed, so an object reached twice ends it.
+Loop along `expression` can run forever. If `expression` leads back to an object already visited, the loop never exits. The thread running it spins for as long as the process lives. Safe to rely on when the walk counts its steps against a bound, or remembers the objects it has passed, so an object reached twice ends it.
 
 <!-- predictable:behaviour -->
 
@@ -76,14 +76,14 @@ The walk along `expression` has nothing to stop it going round in a circle. This
 
 <!-- predictable:vc=site.walk-along-unproven-link.expression.61f30006 -->
 
-- **Code locations:** [scripts/build-mcp-metadata.ts:78](../../scripts/build-mcp-metadata.ts#L78)
+- **Code locations:** [scripts/build-mcp-metadata.ts:72](../../scripts/build-mcp-metadata.ts#L72)
 
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-008/BEH-0003.md -->
 
 #### build-mcp-metadata.buildMetadata <!-- predictable:group -->
 
 ##### BEH-0004 [implemented, violated]
-`pkg` is used as an object without checking that the parsed text was one. `pkg` is what a parser answered for text from outside the program, which nothing shows a caller cannot choose, and a parser answers whatever the text holds — an object, a list, a number or `null`. Nothing after the parse in this function checks that it is an object before it is used as one, in one place, named beside this one (the first on each path), so text of `null` — and, depending on the use, a number or a list — ends the request in an error there instead of being refused as malformed, and no handler takes the failure. Safe to rely on when the parse result's shape is checked before it is used as an object, or the failure is handled.
+`pkg` is assumed to be an object. The parsed text could be `null`, a list or a number. The request then fails instead of being rejected. Safe to rely on when the parse result's shape is checked before it is used as an object, or the failure is handled.
 
 <!-- predictable:behaviour -->
 
@@ -91,6 +91,6 @@ The walk along `expression` has nothing to stop it going round in a circle. This
 
 <!-- predictable:vc=site.payload-shape-assumed.pkg.5ed2813a -->
 
-- **Code locations:** [scripts/build-mcp-metadata.ts:700](../../scripts/build-mcp-metadata.ts#L700)
+- **Code locations:** [scripts/build-mcp-metadata.ts:699](../../scripts/build-mcp-metadata.ts#L699)
 
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-008/BEH-0004.md -->

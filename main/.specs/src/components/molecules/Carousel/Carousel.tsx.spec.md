@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/Carousel/Carousel.tsx
 
 ### Description
-`Carousel.tsx` — Carousel. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`Carousel.Carousel` requires that `track` is not null.” and 1 more. 2 requirements: 2 verified.
+`Carousel.tsx` — Carousel. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`Carousel.Carousel` only works when `track` is not null.” and 1 more. 2 requirements: 2 verified.
 
 ### Declarations
 
@@ -29,7 +29,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### Carousel.Carousel <!-- predictable:group -->
 
 ##### ANL-0030 [implemented, verified]
-`Carousel.Carousel` requires that `track` is not null.
+`Carousel.Carousel` only works when `track` is not null.
 
 <!-- predictable:analysis -->
 
@@ -44,7 +44,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-017/ANL-0030.md -->
 
 ##### ANL-0031 [implemented, verified]
-`Carousel.Carousel` requires that `slot` is not null.
+`Carousel.Carousel` only works when `slot` is not null.
 
 <!-- predictable:analysis -->
 

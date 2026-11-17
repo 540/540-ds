@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Spotlight/Spotlight.tsx
 
 ### Description
-`Spotlight.tsx` — Spotlight. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`Spotlight.Spotlight` requires that `el` is not null.” 1 requirement: 1 verified.
+`Spotlight.tsx` — Spotlight. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At least one of its operations is exported. Checks: “`Spotlight.Spotlight` only works when `el` is not null.” 1 requirement: 1 verified.
 
 ### Declarations
 
@@ -29,7 +29,7 @@ Tags: `[implemented, verified]` — the operation checks this and refuses when i
 #### Spotlight.Spotlight <!-- predictable:group -->
 
 ##### ANL-0042 [implemented, verified]
-`Spotlight.Spotlight` requires that `el` is not null.
+`Spotlight.Spotlight` only works when `el` is not null.
 
 <!-- predictable:analysis -->
 
