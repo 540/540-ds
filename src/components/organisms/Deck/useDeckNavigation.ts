@@ -43,6 +43,8 @@ export function useDeckNavigation(mainRef: RefObject<HTMLElement | null>, footer
       const inner = Array.from(section.querySelectorAll<HTMLElement>(':scope [data-stop]:not([data-stop] [data-stop])'));
       return inner.length ? inner : [section];
     });
+    // A Slide inside another (Statements in a raised Slide) gives its stops twice; each counts once
+    list = [...new Set(list)];
     if (footerRef.current) list.push(footerRef.current);
     setStops(list);
   }, [mainRef, footerRef]);

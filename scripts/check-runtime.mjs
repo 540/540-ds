@@ -127,6 +127,22 @@ for (const name of ['deck', 'static']) {
   console.log(`${name}: ${a.islands.length} islands, ${(a.body.length / 1024).toFixed(0)} KB of body`);
 }
 
+// The arrow keys walk the deck forward to the end (the Statements sit inside a raised Slide, as the rules ask)
+{
+  const { tab } = await open((t) => t.goto(`${origin}/talk/deck`));
+  await tab.emulateMedia({ reducedMotion: 'reduce' });
+  const ys = [await tab.evaluate(() => scrollY)];
+  for (let i = 0; i < 12; i++) {
+    await tab.keyboard.press('ArrowDown');
+    await tab.waitForTimeout(100);
+    ys.push(await tab.evaluate(() => Math.round(scrollY)));
+  }
+  const max = await tab.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+  check(ys.every((y, i) => i === 0 || y >= ys[i - 1]), `deck: the arrow keys go back: ${ys.join(' → ')}`);
+  check(ys.at(-1) >= max - 1, `deck: the arrow keys do not reach the end (${ys.at(-1)} of ${max})`);
+  console.log(`deck: arrows ${ys.join(' → ')}`);
+}
+
 const broken = await open((tab) => tab.goto(`${origin}/talk/broken`));
 const panel = await broken.tab.evaluate(() => [...(document.querySelector('ds-problems')?.shadowRoot?.querySelectorAll('li') ?? [])].map((li) => li.textContent));
 check(panel.length === 4, `broken: expected 4 problems in the panel, got ${panel.length}: ${panel.join(' | ')}`);
