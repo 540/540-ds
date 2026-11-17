@@ -1,0 +1,30 @@
+{
+  "id": "20261117105439-pull-request-merged-28-ed8b",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 28,
+    "title": "Deck: count each stop once when a Slide holds another",
+    "author": "Ignarts",
+    "url": "https://github.com/540/540-ds/pull/28",
+    "ref": "main",
+    "sha": "8b286040ed006c17a644a2a28ad499dadfd21016",
+    "body": "Con `Statements` dentro de una `Slide` con `tone=\"raised\"` (como piden las normas: un remate en una Slide raised), Deck recogía las frases dos veces: la de fuera y la Slide propia de Statements daban los mismos `data-stop`. Las paradas quedaban `01, 02, 01, 02` y la flecha ↓ rebotaba entre las dos frases.\n\n- `useDeckNavigation`: cada parada cuenta una vez.\n- `check:runtime` recorre la charla de prueba con ↓ y falla si el scroll retrocede o no llega al final (sin el arreglo: `2833 → 2990 → 2833 → 2990…`).\n- Versión `0.2.0-rc.1`, para probarlo en un artifact de claude.ai antes de la 0.2.0.\n\ntsc, lint, test:ssr (534), test:islands (168), test:render (13) y check:runtime pasan.",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-17T10:54:39.324Z",
+  "updatedAt": "2026-11-17T10:54:39.324Z"
+}
