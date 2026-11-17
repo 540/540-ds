@@ -124,13 +124,23 @@ export interface TemplateMeta {
   patterns: PatternDef[];
 }
 
+/** A Markdown file of src/docs served as is: its path in the repo and its text, without the leading comment. */
+export interface DocFile {
+  source: string;
+  content: string;
+}
+
 export interface Metadata {
   version: string;
   storybookUrl: string;
+  /** What every client reads on connecting, from src/docs/instrucciones-mcp.md. */
+  instructions: DocFile;
+  /** 540's design criteria, from src/docs/diseno.md: served by get-design-guide. */
+  designGuide: DocFile;
   components: Record<string, ComponentMeta>;
   tokens: Record<TokenCategory, Token[]>;
   /** Composition rules per piece type, e.g. `talk`. */
-  rules: Record<string, { source: string; content: string }>;
+  rules: Record<string, DocFile>;
   /** Template per piece type, split into stops. */
   templates: Record<string, TemplateMeta>;
 }
