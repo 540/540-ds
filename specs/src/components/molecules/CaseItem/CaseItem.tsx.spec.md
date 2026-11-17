@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/CaseItem/CaseItem.tsx
 
 ### Description
+<!-- predictable:module-summary=Documents the CaseItem module, a UI component with no recorded requirements yet. -->
 **Areas:** Molecules
 
 `CaseItem.tsx` — Case item. No requirements recorded yet.

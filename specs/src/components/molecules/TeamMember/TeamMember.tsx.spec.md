@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/TeamMember/TeamMember.tsx
 
 ### Description
+<!-- predictable:module-summary=Documents the Team member module, which defines the TeamMember component with no recorded requirements. -->
 **Areas:** Molecules
 
 `TeamMember.tsx` — Team member. No requirements recorded yet.

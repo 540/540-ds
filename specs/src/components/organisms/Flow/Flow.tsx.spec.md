@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Flow/Flow.tsx
 
 ### Description
+<!-- predictable:module-summary=Flow module contains a single Flow component with no recorded requirements yet, so its specific purpose cannot be confidently determined beyond its name. -->
 **Areas:** Organisms
 
 `Flow.tsx` — Flow. No requirements recorded yet.

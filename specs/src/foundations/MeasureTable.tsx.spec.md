@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/foundations/MeasureTable.tsx
 
 ### Description
+<!-- predictable:module-summary=Documents the MeasureTable module, a UI component responsible for rendering a measure table. -->
 **Areas:** Foundations Docs
 
 `MeasureTable.tsx` — Measure table. No requirements recorded yet.

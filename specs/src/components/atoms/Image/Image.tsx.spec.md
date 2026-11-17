@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/atoms/Image/Image.tsx
 
 ### Description
+<!-- predictable:module-summary=Image is a UI component responsible for rendering image content within the application. -->
 **Areas:** Atoms
 
 `Image.tsx` — Image. No requirements recorded yet.

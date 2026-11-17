@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/hooks/useReveal.ts
 
 ### Description
+<!-- predictable:module-summary=Documents the useReveal module, a hook providing reveal-on-scroll/visibility behavior. -->
 **Areas:** Hooks
 
 `useReveal.ts` — Use reveal. No requirements recorded yet.
