@@ -1,0 +1,30 @@
+{
+  "id": "20261117071606-pull-request-opened-21-6991",
+  "event": {
+    "kind": "pull-request-opened",
+    "number": 21,
+    "title": "MCP: list-templates",
+    "author": "CoSmOsHeaven",
+    "url": "https://github.com/540/540-ds/pull/21",
+    "ref": "feat/mcp-list-templates",
+    "sha": "efce85ee71611ecbc1a5ba89bd5bdcc765d2d9d2",
+    "body": "## Qué cambia\n\n- **Nueva tool `list-templates`**, sin parámetros. Para cada plantilla devuelve:\n  - `pieceType`\n  - `name` y `description`, en castellano\n  - `triggers`: las palabras con las que se pide\n  - `tools`: las tools con datos para ese tipo, sacadas de la metadata\n  - `status` (`stable` / `draft`)\n\n  Devuelve también la `version` del sistema. Hoy solo hay `talk` (Charla).\n- **Una sola fuente: `mcp/piece-types.ts`.** De ahí salen el enum de `pieceType` de `get-rules`, `get-template`, `get-patterns` y `get-template-stops`, `list-templates` y los ficheros que lee `build-mcp-metadata` (se van `RULE_FILES` y `TEMPLATE_DIRS`). Una plantilla nueva aparece sola en todas partes.\n- **`--strict` falla** si un tipo registrado no tiene normas, plantilla o tabla de patrones.\n- **Instrucciones del servidor:** el paso 1 es `list-templates`. Una plantilla se usa solo si el usuario pide ese tipo de pieza; si no, el agente compone con el catálogo.\n- README del MCP actualizado: tabla de tools y «Añadir un tipo de pieza».\n- Aparte, en otro commit: favicon de 540 en la 404 de Hosting.\n\n## Sobre `version: \"0.0.0\"`\n\nNo es un fallo del código: la versión ya sale de `package.json`. En los runs de `MCP` en `main`, el job `deploy` sale *skipped* porque faltan las variables `GCP_WORKLOAD_IDENTITY_PROVIDER` y `GCP_SERVICE_ACCOUNT`. Por eso producción sigue con un despliegue manual antiguo. Para arreglarlo, `npm run mcp:deploy` una vez, o configurar el despliegue automático como explica `mcp/README.md`.\n\n## Cómo se ha comprobado\n\n- `npx tsc -p tsconfig.mcp.json --noEmit`\n- `npm run build-mcp-metadata -- --strict`\n- `npm run test:mcp`: 28 tests, con los nuevos: el enum y `list-templates` dan los mismos tipos, el contenido de la charla y el primer paso de las instrucciones\n- `npm run build:firebase`",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-17T07:16:06.513Z",
+  "updatedAt": "2026-11-17T07:16:06.513Z"
+}
