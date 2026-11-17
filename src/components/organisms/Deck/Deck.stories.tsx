@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, waitFor } from 'storybook/test';
 import { Text } from '../../atoms/Text';
 import { Card } from '../../molecules/Card';
 import { SectionHeader } from '../../molecules/SectionHeader';
 import { Slide } from '../Slide';
+import { Statements } from '../Statements';
 import { Deck } from './Deck';
 import { DECK_DEFAULTS, DECK_THEMES } from './types';
 import doc from './_docs/Deck.md?raw';
@@ -138,4 +140,26 @@ export const EnClaro: Story = {
   name: 'En claro',
   parameters: { docs: { description: { story: 'La misma charla con el tema claro de inicio. El conmutador de la barra la cambia; en una charla real se recuerda en `localStorage`.' } } },
   render: () => <DemoDeck defaultTheme="light" />,
+};
+
+/** Statements inside a raised Slide: its sentences are stops of both Slides, and each must count once. */
+export const SlideDentroDeOtra: Story = {
+  name: 'Una Slide dentro de otra',
+  tags: ['!autodocs', '!dev'],
+  render: () => (
+    <Deck items={ITEMS} footer={FOOTER} storageKey="">
+      <Slide id="portada">
+        <Text as="h1" variant="statement" wrap="balance" measure="wide" align="center">
+          Título de la charla
+        </Text>
+      </Slide>
+      <Slide id="tesis" tone="raised">
+        <Statements sentences={['La primera tesis.', 'La segunda tesis.']} />
+      </Slide>
+    </Deck>
+  ),
+  // Stops: the cover, the two sentences (once each, not once per Slide) and the footer
+  play: async ({ canvasElement }) => {
+    await waitFor(() => expect(canvasElement.querySelectorAll('[aria-label$=" de 4"]')).toHaveLength(4));
+  },
 };

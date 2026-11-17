@@ -9,7 +9,7 @@ predictable: spec
 <!-- predictable:module-summary=useDeckNavigation is a hook that manages keyboard and positional navigation state for a deck, tracking which slide is active and exposing helpers to locate photos and slide boxes within it. -->
 **Areas:** Organisms
 
-`useDeckNavigation.ts` — Use deck navigation. Checks: “`useDeckNavigation.useDeckNavigation` only works when `el` is not null.” and 1 more. 2 requirements: 2 verified.
+useDeckNavigation is the hook that drives a talk's journey. Its stops are the Slides inside main, at any depth; a Slide with data-stop descendants is replaced by its outermost ones (a data-stop inside another counts once, as the outer one). When a Slide sits inside another Slide (Statements in a raised Slide), the stops it gives through both Slides count once each, in document order, so a deck with a cover and two Statements sentences inside a raised Slide has exactly four stops: the cover, the two sentences and the footer, which is always the last stop. The keyboard moves between stops (paging inside a stop taller than the window) and the current stop is the one holding the centre of the window.
 
 ### Declarations
 
@@ -47,7 +47,7 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 
 <!-- predictable:sibling-vcs=il2.null-dereference il3.null-dereference -->
 
-- **Code locations:** [src/components/organisms/Deck/useDeckNavigation.ts:31-216](../../../../../src/components/organisms/Deck/useDeckNavigation.ts#L31-L216)
+- **Code locations:** [src/components/organisms/Deck/useDeckNavigation.ts:31-218](../../../../../src/components/organisms/Deck/useDeckNavigation.ts#L31-L218)
 
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-022/ANL-0036.md -->
 
@@ -60,6 +60,6 @@ On the cards: `internal` — nothing outside this file can reach the operation (
 
 <!-- predictable:vc=il4.null-dereference -->
 
-- **Code locations:** [src/components/organisms/Deck/useDeckNavigation.ts:31-216](../../../../../src/components/organisms/Deck/useDeckNavigation.ts#L31-L216)
+- **Code locations:** [src/components/organisms/Deck/useDeckNavigation.ts:31-218](../../../../../src/components/organisms/Deck/useDeckNavigation.ts#L31-L218)
 
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-022/ANL-0037.md -->
