@@ -3,6 +3,7 @@ import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { buildMetadata } from '../scripts/build-mcp-metadata.js';
+import { PIECE_TYPES } from './piece-types.js';
 import { createServer } from './server.js';
 import type { Metadata } from './types.js';
 
@@ -84,14 +85,43 @@ describe('tools', () => {
         'get-template-stops',
         'get-tokens',
         'list-components',
+        'list-templates',
         'search-components',
       ].sort(),
     );
     for (const t of tools) expect(t.annotations?.readOnlyHint, t.name).toBe(true);
   });
 
-  it('gives the client the usage instructions', () => {
-    expect(client.getInstructions()).toContain('get-rules');
+  it('gives the client the usage instructions, starting with list-templates', () => {
+    const instructions = client.getInstructions() ?? '';
+    expect(instructions).toContain('get-rules');
+    expect(instructions).toMatch(/^1\. Call list-templates first/m);
+  });
+
+  it('list-templates lists every piece type with what it is, its triggers and the tools that have data', async () => {
+    const result = (await call('list-templates')).json();
+    expect(result.version).toBe(metadata.version);
+    expect(result.templates.map((t: { pieceType: string }) => t.pieceType)).toEqual(Object.keys(PIECE_TYPES));
+    const talk = result.templates.find((t: { pieceType: string }) => t.pieceType === 'talk');
+    expect(talk).toMatchObject({ name: 'Charla', status: 'stable' });
+    expect(talk.description).toMatch(/charla/i);
+    expect(talk.triggers).toEqual(expect.arrayContaining(['charla', 'presentación', 'slides', 'deck']));
+    expect(talk.tools).toEqual(['get-rules', 'get-template', 'get-patterns', 'get-template-stops']);
+  });
+
+  it('takes the pieceType enum of the template tools from the same source as list-templates', async () => {
+    const { tools } = await client.listTools();
+    for (const name of ['get-rules', 'get-template', 'get-patterns', 'get-template-stops']) {
+      const schema = tools.find((t) => t.name === name)?.inputSchema.properties?.pieceType as { enum?: string[] } | undefined;
+      expect(schema?.enum, name).toEqual(Object.keys(PIECE_TYPES));
+    }
+  });
+
+  it('builds the rules and the template of every piece type', () => {
+    for (const pieceType of Object.keys(PIECE_TYPES)) {
+      expect(metadata.rules[pieceType], pieceType).toBeDefined();
+      expect(metadata.templates[pieceType]?.stops.length, pieceType).toBeGreaterThan(0);
+    }
   });
 
   it('list-components filters by level', async () => {
