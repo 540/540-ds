@@ -4,6 +4,7 @@ import { copyFile, cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/p
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import react from '@vitejs/plugin-react';
+import { build as esbuild } from 'esbuild';
 import { bundle } from 'lightningcss';
 import { build } from 'vite';
 import { preactAlias } from './lib/preact-alias.mjs';
@@ -233,6 +234,32 @@ async function copyRenderer() {
   await cp(path.join(root, 'scripts/render'), path.join(out, 'render'), { recursive: true, filter: (file) => !/\.(test\.\w+|d\.mts)$/.test(file) });
 }
 
+// The browser runtime (runtime/runtime.js) loads everything as JS modules: an artifact page may load scripts
+// from a CDN but not stylesheets or JSON, so the manifest and every stylesheet (fonts inlined) become a module.
+async function buildTalkRuntime(manifest) {
+  const dir = path.join(out, 'runtime');
+  await esbuild({
+    entryPoints: [path.join(root, 'scripts/runtime/runtime.mjs')],
+    outfile: path.join(dir, 'runtime.js'),
+    bundle: true,
+    format: 'esm',
+    platform: 'browser',
+    target: 'es2022',
+    minify: true,
+    legalComments: 'none',
+    logLevel: 'warning',
+  });
+  const asModule = (value) => `export default ${JSON.stringify(value)};\n`;
+  await writeFile(path.join(dir, 'manifest.js'), asModule(manifest));
+  const fonts = await Promise.all(manifest.base.fonts.map(async (font) => [path.basename(font), (await readFile(path.join(out, font))).toString('base64')]));
+  await mkdir(path.join(dir, 'css'), { recursive: true });
+  for (const file of await readdir(path.join(out, 'css'))) {
+    let css = await readFile(path.join(out, 'css', file), 'utf8');
+    for (const [name, b64] of fonts) css = css.replaceAll(`url('../fonts/${name}')`, `url(data:font/woff2;base64,${b64})`);
+    await writeFile(path.join(dir, 'css', file.replace(/\.css$/, '.js')), asModule(css));
+  }
+}
+
 const components = await findComponents();
 await rm(out, { recursive: true, force: true });
 const graph = await buildServer(components);
@@ -242,4 +269,5 @@ const islands = Object.fromEntries(await Promise.all(islandComponents.map(async 
 await buildBase();
 const manifest = await writeManifest(components, graph, islands);
 await copyRenderer();
+await buildTalkRuntime(manifest);
 console.log(`pieces ${manifest.version}: ${components.length} components, ${Object.keys(islands).length} islands → ${path.relative(root, out)}/`);
