@@ -9,7 +9,7 @@ predictable: spec
 <!-- predictable:module-summary=The Core module implements the shared rendering engine that parses talk definitions and walks component trees to build server-rendered output, island hydration metadata, and element/node encodings consumed by both the server renderer and the client runtime boot process. -->
 **Areas:** Runtime
 
-`core.mjs` — Core. Checks: “`extractTalk` throws `TagError` when the `length` of `blocks` is present and is not falsy and the `length` of `blocks` is greater than 1.” and 3 more. 5 requirements: 1 violated, 4 verified. 40 stated failures.
+The Core module implements the shared rendering engine that parses talk definitions and walks component trees to build server-rendered output, island hydration metadata, and element/node encodings consumed by both the server renderer and the client runtime boot process. extractTalk takes a talk written for the browser runtime, with its tags inside one <script type="text/rev"> block: it returns the tags with everything before the block blanked out, so lines and columns still point to the file, and the block's data-lang as the language; a source with no such block is returned as it is, with no language. More than one such block is rejected with a TagError. Any content outside the block other than comments, the page shell (doctype, html, head, body, meta) and scripts loaded with src is rejected with a TagError whose line and column point to the first character of that content in the original file, even when comments or shell tags sit before or around it.
 
 ### Declarations
 

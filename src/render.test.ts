@@ -246,6 +246,11 @@ ${tags}
     expect(await problems(`${runtimePage('<rev-text>Hola</rev-text>')}${runtimePage('<rev-text>Otra</rev-text>')}`)).toMatch(/only one <script type="text\/rev">/);
   });
 
+  it('points content outside the runtime block to its line, even with comments or page shell around it', async () => {
+    expect(await problems(`${runtimePage('<rev-text>Hola</rev-text>')}<!-- nota -->\n<p>Suelto <!-- x --> aquí</p>`)).toContain('test 7:1: with a <script type="text/rev">');
+    expect(await problems(`<html>\n<body>Antes\n</body>\n${runtimePage('<rev-text>Hola</rev-text>')}`)).toContain('test 2:7: with a <script type="text/rev">');
+  });
+
   it('ships the browser runtime with a module for the manifest and for every stylesheet', () => {
     const runtime = path.join(pieces, 'runtime');
     const manifest = JSON.parse(readFileSync(path.join(pieces, 'manifest.json'), 'utf8'));

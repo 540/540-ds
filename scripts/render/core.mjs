@@ -22,16 +22,22 @@ export function extractTalk(source, origin = 'document') {
   if (!blocks.length) return { source, lang: null };
   if (blocks.length > 1) throw new TagError(`${origin} has 1 problem:\n- only one <script type="${RUNTIME_TYPE}"> per page`);
   const [block] = blocks;
-  const outside = (source.slice(0, block.index) + source.slice(block.index + block[0].length)).replace(COMMENT, '').replace(SHELL, '').replace(SCRIPT, (whole, attrs) => (/\ssrc\s*=/.test(attrs) ? '' : whole));
-  if (outside.trim()) {
-    const at = lineOf(source, source.indexOf(outside.trim().slice(0, 20)));
+  // Blanked rather than removed, so a position in `outside` is the same position in `source`
+  const outside = (source.slice(0, block.index) + blank(block[0]) + source.slice(block.index + block[0].length))
+    .replace(COMMENT, blank)
+    .replace(SHELL, blank)
+    .replace(SCRIPT, (whole, attrs) => (/\ssrc\s*=/.test(attrs) ? blank(whole) : whole));
+  const stray = outside.search(/\S/);
+  if (stray >= 0) {
+    const at = lineOf(source, stray);
     throw new TagError(`${origin} has 1 problem:\n- ${origin} ${at}: with a <script type="${RUNTIME_TYPE}">, the whole talk goes inside it; outside only the runtime <script src="…"> and the page shell`);
   }
   const start = block.index + block[0].indexOf('>') + 1;
   const lang = /\sdata-lang\s*=\s*["']([^"']+)["']/i.exec(block[1])?.[1] ?? null;
-  return { source: source.slice(0, start).replace(/[^\n]/g, ' ') + block[2], lang };
+  return { source: blank(source.slice(0, start)) + block[2], lang };
 }
 
+const blank = (text) => text.replace(/[^\n]/g, ' ');
 const typeAttr = (attrs) => /\stype\s*=\s*["']?([^"'\s>]+)/i.exec(` ${attrs}`)?.[1].toLowerCase() ?? null;
 const lineOf = (source, pos) => {
   const before = source.slice(0, Math.max(0, pos)).split('\n');
