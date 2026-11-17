@@ -44,6 +44,10 @@
     {
       "at": "2026-11-17T07:30:24.633Z",
       "text": "MIME lookup in render asImage unchecked; autofixing it (parse.mjs one already in #23)"
+    },
+    {
+      "at": "2026-11-17T07:32:27.278Z",
+      "text": "Proposed MIME fix stacked on #23; ENTITIES fix already in #23"
     }
   ],
   "steps": [
@@ -131,6 +135,18 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01XXXgSHbfnJVo9jRgsFpUSA"
+    },
+    {
+      "at": "2026-11-17T07:32:20.623Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01W1pRG5Jqn7ZnVJEHjVSbRZ"
+    },
+    {
+      "at": "2026-11-17T07:32:27.278Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01FCKCrFvTBGUUBCZSCnz7VW"
     }
   ],
   "messages": [],
@@ -140,5 +156,5 @@
   "runUrl": null,
   "reportMistakes": true,
   "startedAt": "2026-11-17T07:29:07.250Z",
-  "updatedAt": "2026-11-17T07:32:08.810Z"
+  "updatedAt": "2026-11-17T07:32:27.922Z"
 }
