@@ -1,0 +1,30 @@
+{
+  "id": "20261117092730-pull-request-opened-25-5535",
+  "event": {
+    "kind": "pull-request-opened",
+    "number": 25,
+    "title": "Runtime de charlas para claude.ai (0.2.0-rc.0)",
+    "author": "Ignarts",
+    "url": "https://github.com/540/540-ds/pull/25",
+    "ref": "feat/talk-runtime",
+    "sha": "fe355dac9ed3cacacf12b31984bef30584843544",
+    "body": "Añade una tercera salida para las charlas: **HTML con runtime**, para claude.ai o donde no hay Node.\n\n## Qué hace\n\nLa charla se escribe con las mismas etiquetas `<rev-…>`, dentro de un bloque `<script type=\"text/rev\">`, junto al script del runtime con la versión fijada:\n\n```html\n<script type=\"module\" src=\"https://cdn.jsdelivr.net/npm/@540deg/ds@0.2.0-rc.0/pieces/runtime/runtime.js\"></script>\n<script type=\"text/rev\" data-lang=\"es\">\n<title>…</title>\n<rev-deck>…</rev-deck>\n</script>\n```\n\nAl abrir la página, el runtime valida la charla y la pinta, cargando de jsDelivr solo el JS y el CSS de los componentes que usa. Si hay errores no pinta nada: enseña un panel con todos, con línea y sugerencia, y un botón para copiarlos.\n\n## Cómo\n\n- `scripts/render/core.mjs`: la parte del render que no usa Node (validar y pintar). La usan el render y el runtime, así que aceptan y rechazan exactamente lo mismo. `index.mjs` se queda con la lectura de ficheros.\n- `scripts/runtime/`: el runtime y el panel. `build:pieces` los deja en `pieces/runtime/`, con el manifiesto y cada hoja de estilo (DM Sans incrustada) como módulos JS, porque un artifact de claude.ai solo carga scripts de un CDN.\n- Fotos: en base64 dentro del HTML. Una ruta es error con la indicación de incrustarla; las URL remotas siguen prohibidas.\n- El render acepta el mismo fichero del runtime y escribe la misma página.\n- `npm run check:runtime`: abre charlas en Chromium y comprueba que el DOM del runtime es idéntico al del render, que las islas hidratan, que carga DM Sans y que una charla con errores enseña el panel. Va también en `publish.yml`.\n- `publish.yml`: una versión con guion (`0.2.0-rc.0`) se publica con la etiqueta `next`, así `latest` sigue en 0.1.2.\n\n## Versión\n\n`0.2.0-rc.0`, para probar el runtime en un artifact de claude.ai antes de sacar la 0.2.0. Al mergear, se crea la etiqueta `v0.2.0-rc.0` sobre `main`.\n\n## Comprobado\n\n`tsc`, lint, `test:ssr`, `test:render` (13, 5 nuevos), `test:islands` y `check:runtime`.\n\nOjo: #24 toca `asImage` en `scripts/render/index.mjs`; con este PR esa función pasa a `readImage` en el mismo fichero. El conflicto es de una línea.",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-17T09:27:30.733Z",
+  "updatedAt": "2026-11-17T09:27:30.733Z"
+}
