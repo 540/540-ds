@@ -1,0 +1,1 @@
+{"defects":1,"dir":"src/foundations","others":0,"page":0,"pageSize":50,"rows":[{"defects":1,"findings":[{"claim":"defect","key":"src.foundations.useTokenValue.useResolvedValue|site.platform-type-dereferenced.Document-body.0fbc38fe"}],"kind":"file","name":"useTokenValue.ts","others":0,"path":"src/foundations/useTokenValue.ts"}],"total":1}

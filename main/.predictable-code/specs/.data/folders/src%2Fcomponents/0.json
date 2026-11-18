@@ -1,1 +1,1 @@
-{"defects":0,"dir":"src/components","others":2,"page":0,"pageSize":50,"rows":[{"defects":0,"kind":"folder","name":"atoms","others":1,"path":"src/components/atoms"},{"defects":0,"kind":"folder","name":"molecules","others":1,"path":"src/components/molecules"}],"total":2}
+{"defects":1,"dir":"src/components","others":2,"page":0,"pageSize":50,"rows":[{"defects":0,"kind":"folder","name":"atoms","others":1,"path":"src/components/atoms"},{"defects":1,"kind":"folder","name":"molecules","others":1,"path":"src/components/molecules"}],"total":2}

@@ -20,7 +20,7 @@ Tags: `[implemented, violated]` — the analysis found a case where the conditio
 
 #### main.__moduleInit__ <!-- predictable:group -->
 
-##### ANL-0047 [implemented, violated]
+##### ANL-0050 [implemented, violated]
 `main.__moduleInit__` only works when the value of `getElementById`(`document`, "root") is not null.
 
 <!-- predictable:analysis -->
@@ -31,4 +31,4 @@ Tags: `[implemented, violated]` — the analysis found a case where the conditio
 
 - **Code locations:** [src/main.tsx:6-10](../../src/main.tsx#L6-L10)
 
-<!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-029/ANL-0047.md -->
+<!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-029/ANL-0050.md -->
