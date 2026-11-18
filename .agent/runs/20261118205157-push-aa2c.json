@@ -73,22 +73,19 @@
       ]
     }
   ],
-  "notices": [],
-  "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
-  "reportMistakes": true,
-  "startedAt": "2026-11-18T20:51:59.962Z",
-  "updatedAt": "2026-11-18T20:54:06.748Z",
+  "notices": [
+    {
+      "at": "2026-11-18T20:54:22.064Z",
+      "text": "Fixing dropped boot() promise in the talk runtime"
+    }
+  ],
   "steps": [
     {
       "at": "2026-11-18T20:52:52.039Z",
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; date -u; (…/predictable-plugin/bin/pre…",
-      "tool": "toolu_01CMKUNUECEZ2iAbcq1QqDAi",
-      "failed": true
+      "failed": true,
+      "tool": "toolu_01CMKUNUECEZ2iAbcq1QqDAi"
     },
     {
       "at": "2026-11-18T20:52:55.232Z",
@@ -113,6 +110,38 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; python3 -c \"",
       "tool": "toolu_01GJdvqJubWUBVeSUrCFEugq"
+    },
+    {
+      "at": "2026-11-18T20:54:09.352Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; python3 -c \"",
+      "tool": "toolu_01LyqzuYCLt8tvRiVTRmrHcH"
+    },
+    {
+      "at": "2026-11-18T20:54:12.520Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; sed -n 340,380p scripts/render/core.mj…",
+      "tool": "toolu_01PkBKPQ5ocD3T1BZx6YN4Gj"
+    },
+    {
+      "at": "2026-11-18T20:54:15.712Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01WXNhgMd2ebZc26H752AZkC"
+    },
+    {
+      "at": "2026-11-18T20:54:22.064Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01FczdGEusTm29ojeKeM7tiN"
     }
-  ]
+  ],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "reportMistakes": true,
+  "startedAt": "2026-11-18T20:51:59.962Z",
+  "updatedAt": "2026-11-18T20:54:22.706Z"
 }
