@@ -5,6 +5,7 @@
 import { getComponent } from './get-component.js';
 import { getComponentDocs } from './get-component-docs.js';
 import { getComponentStories } from './get-component-stories.js';
+import { getDesignGuide } from './get-design-guide.js';
 import { getPatterns } from './get-patterns.js';
 import { getRules } from './get-rules.js';
 import { getTemplate } from './get-template.js';
@@ -16,6 +17,7 @@ import { searchComponents } from './search-components.js';
 import type { ToolDef } from './shared.js';
 
 export const tools: ToolDef<any>[] = [
+  getDesignGuide,
   listTemplates,
   getRules,
   getTemplate,

@@ -13,6 +13,8 @@
  *       stories      exported stories of <Name>.stories.tsx, without the ones tagged 'dev' (Playground)
  *       docs         _docs/<Name>.md
  *   - tokens: the semantic CSS files in src/tokens (never the --540-* primitives)
+ *   - instructions: src/docs/instrucciones-mcp.md, what every client reads on connecting
+ *   - design guide: src/docs/diseno.md, served by get-design-guide
  *   - rules:  src/docs/normas-*.md, one per piece type
  *   - templates: src/templates/<Name>/<Name>.tsx split into its stops (the direct children of its Deck),
  *       and the patterns table ("Para contar… | Pieza | Nunca") of the piece type's rules
@@ -22,7 +24,7 @@ import * as path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import ts from 'typescript';
 import { PIECE_TYPES } from '../mcp/piece-types.js';
-import type { ComponentLevel, ComponentMeta, Metadata, PatternDef, PropDef, StopDef, StoryDef, TemplateMeta, Token, TokenCategory } from '../mcp/types.js';
+import type { ComponentLevel, ComponentMeta, DocFile, Metadata, PatternDef, PropDef, StopDef, StoryDef, TemplateMeta, Token, TokenCategory } from '../mcp/types.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'src');
@@ -458,6 +460,22 @@ function parseTokens(category: TokenCategory, primitives: Map<string, string>): 
   return [...tokens.values()];
 }
 
+// ── Docs: MCP instructions and design guide ──────────────────────────────────
+
+const INSTRUCTIONS_FILE = 'instrucciones-mcp.md';
+const DESIGN_GUIDE_FILE = 'diseno.md';
+
+/**
+ * A Markdown file of src/docs that design edits and the MCP serves as is. A leading HTML comment is a note
+ * for whoever edits the file, not for the agent, so it is left out. A missing file gives empty content
+ * (reported as a gap).
+ */
+function readDoc(fileName: string): DocFile {
+  const full = path.join(src, 'docs', fileName);
+  const content = fs.existsSync(full) ? read(full).replace(/^\s*<!--[\s\S]*?-->/, '').trim() : '';
+  return { source: rel(full), content };
+}
+
 // ── Rules ────────────────────────────────────────────────────────────────────
 
 function buildRules(): Metadata['rules'] {
@@ -671,8 +689,10 @@ function buildTemplates(components: Record<string, ComponentMeta>, rules: Metada
 
 // ── Gaps report (task 15) ────────────────────────────────────────────────────
 
-function reportGaps({ components, rules, templates }: Metadata): string[] {
+function reportGaps({ instructions, designGuide, components, rules, templates }: Metadata): string[] {
   const gaps: string[] = [];
+  if (!instructions.content) gaps.push(`no MCP instructions at ${instructions.source}`);
+  if (!designGuide.content) gaps.push(`no design guide at ${designGuide.source}`);
   for (const { pieceType, rulesFile, templateDir } of PIECE_TYPE_SOURCES) {
     if (!rules[pieceType]) gaps.push(`${pieceType}: no rules at src/docs/${rulesFile}`);
     if (!templates[pieceType]) gaps.push(`${pieceType}: no template at src/templates/${templateDir}`);
@@ -703,6 +723,8 @@ export function buildMetadata(): Metadata {
   return {
     version: pkg.version,
     storybookUrl: STORYBOOK_URL,
+    instructions: readDoc(INSTRUCTIONS_FILE),
+    designGuide: readDoc(DESIGN_GUIDE_FILE),
     components,
     tokens: {
       color: parseTokens('color', primitives),

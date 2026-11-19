@@ -79,6 +79,7 @@ describe('tools', () => {
         'get-component',
         'get-component-docs',
         'get-component-stories',
+        'get-design-guide',
         'get-patterns',
         'get-rules',
         'get-template',
@@ -92,10 +93,29 @@ describe('tools', () => {
     for (const t of tools) expect(t.annotations?.readOnlyHint, t.name).toBe(true);
   });
 
-  it('gives the client the usage instructions, starting with list-templates', () => {
+  it('gives the client the usage instructions from src/docs, without the note for editors, starting with the design guide', () => {
     const instructions = client.getInstructions() ?? '';
+    expect(metadata.instructions.source).toBe('src/docs/instrucciones-mcp.md');
+    expect(instructions).toBe(metadata.instructions.content);
+    expect(instructions).not.toContain('<!--');
+    expect(instructions).toMatch(/^1\. Call get-design-guide first/m);
+    expect(instructions).toMatch(/^2\. Call list-templates/m);
     expect(instructions).toContain('get-rules');
-    expect(instructions).toMatch(/^1\. Call list-templates first/m);
+  });
+
+  it('every tool the instructions name exists', async () => {
+    const { tools } = await client.listTools();
+    const names = new Set(tools.map((t) => t.name));
+    const named = (client.getInstructions() ?? '').match(/\b(?:get|list|search)-[a-z-]+/g) ?? [];
+    for (const name of named) expect(names, name).toContain(name);
+  });
+
+  it('get-design-guide returns src/docs/diseno.md without the note for editors', async () => {
+    const result = await call('get-design-guide');
+    expect(result.isError).toBe(false);
+    expect(result.body).toContain('Source: src/docs/diseno.md');
+    expect(result.body).toContain('# Guía de diseño de 540');
+    expect(result.body).not.toContain('<!--');
   });
 
   it('list-templates lists every piece type with what it is, its triggers and the tools that have data', async () => {
