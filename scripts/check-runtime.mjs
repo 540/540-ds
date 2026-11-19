@@ -75,7 +75,8 @@ const server = createServer(async (req, res) => {
     if (!url.pathname.startsWith('/pieces/')) throw new Error('not found');
     const file = path.join(pieces, decodeURIComponent(url.pathname.slice(8)));
     if (!file.startsWith(pieces)) throw new Error('outside');
-    res.writeHead(200, { 'content-type': TYPES[path.extname(file)] ?? 'application/octet-stream', 'access-control-allow-origin': '*' }).end(await readFile(file));
+    const ext = path.extname(file);
+    res.writeHead(200, { 'content-type': Object.hasOwn(TYPES, ext) ? TYPES[ext] : 'application/octet-stream', 'access-control-allow-origin': '*' }).end(await readFile(file));
   } catch {
     res.writeHead(404).end();
   }
