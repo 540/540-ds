@@ -11,7 +11,7 @@
     "sha": "425924a668877cb1ff2433dc353f68cb31b7a32e",
     "body": "The analysis of main at 425924a668877cb1ff2433dc353f68cb31b7a32e reports 30 defects. 4 of them a program can fix: run `predictable autofix --list` first. Fix them, proposing each verified fix as a pull request."
   },
-  "state": "running",
+  "state": "acted",
   "reason": null,
   "instructions": {
     "agent": "Keep this repository documented, specified and free of defects. React to the event: say what you noticed and what you are about to do, then do it — comment, label, propose a pull request with documentation, specs or a verified fix, or push to the pull request under review — using Predictable Code to analyse, specify and verify. Change a spec only through its verbs, never by editing a .spec.md file: a new one with `predictable specs new`, its description with `predictable specs describe <spec id> --text \"<the whole new description>\"` (which derives its requirements again), a requirement with `predictable specs requirements add|update|remove`. Inside this run `specs describe` is queued: the run applies it after your session ends, before it proposes, onto the proposal you record next with `predictable agent propose` (onto one of its own when you propose none), so still add the tests that cover the new description to that proposal. Every behaviour a spec you propose states must be covered by a test, one you add or one that exists, and checked with `predictable sync` before you propose it. Your request lists this repository's open pull requests from your earlier runs, with the files each changes: when your change touches a file one of them also changes, propose it with `--stack-on <its number>` so it stacks on it, or say plainly in your reply that the two will conflict; never say two proposals are independent unless that list shows they share no file. Never merge. This push is your cue to maintain the whole repository, not only what it changed: bring the specs in line with the code, keep the documentation current, and fix defects the analysis reports when a fix verifies. If the repository has a `MAINTAINING.md` at its root, read it first and follow it: it is how this repository asks to be maintained. Propose each change as its own pull request. If nothing needs doing, say so.",
@@ -276,14 +276,48 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; D=$(cat tmp/repro_dir); P='…/predictab…",
       "tool": "toolu_01VUnDwSypoKX9cxRJwNhft3"
+    },
+    {
+      "at": "2026-11-19T09:45:58.215Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; D=$(cat tmp/repro_dir); P='…/predictab…",
+      "tool": "toolu_013wN7hYBk8QNcTWw21QpMyw"
+    },
+    {
+      "at": "2026-11-19T09:46:07.497Z",
+      "verb": "Ran",
+      "detail": "date -u; cat > tmp/tmp.XXxCsiba/reply.json <<'E'",
+      "tool": "toolu_01Q4VmHKCWQ9kr6f56CNGoyc"
     }
   ],
   "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
+  "actions": [
+    {
+      "kind": "pull-request",
+      "number": 37,
+      "url": "https://github.com/540/540-ds/pull/37",
+      "title": "check-runtime: look up content types by own key only"
+    },
+    {
+      "kind": "pull-request",
+      "number": 38,
+      "url": "https://github.com/540/540-ds/pull/38",
+      "title": "mcp serve: answer 500 when a request fails instead of crashing"
+    },
+    {
+      "kind": "engine-report",
+      "reportKind": "false-positive",
+      "title": "sequence-reused reported for a Set iterated several times",
+      "language": "javascript",
+      "files": 3,
+      "number": 2921,
+      "url": "https://github.com/predictable-machines/predictable-code/issues/2921"
+    }
+  ],
+  "title": "Fixed check-runtime lookup and MCP serve crash",
+  "summary": "Proposed fix-check-runtime-types (TYPES own-key lookup, verified gone) and fix-mcp-serve-rejection (500 instead of unhandled rejection in mcp/serve.ts, verified gone); other 3 autofixable defects already in #23/#24/#34; reported sequence-reused-on-Set false positive to Predictable.",
+  "runUrl": "https://github.com/540/540-ds/actions/runs/44498842221",
   "reportMistakes": true,
   "startedAt": "2026-11-19T09:42:09.215Z",
-  "updatedAt": "2026-11-19T09:45:56.071Z"
+  "updatedAt": "2026-11-19T09:46:25.013Z"
 }
