@@ -1,0 +1,30 @@
+{
+  "id": "20261119093606-pull-request-merged-29-6bc5",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 29,
+    "title": "MCP: instrucciones y guía de diseño en src/docs, editables por diseño",
+    "author": "CoSmOsHeaven",
+    "url": "https://github.com/540/540-ds/pull/29",
+    "ref": "main",
+    "sha": "a965e9e724f1f3d45ec37050c50ff9d768086193",
+    "body": "Paso 1 del plan para mejorar la skill 540-ds: que diseño pueda cambiar lo que lee el agente sin tocar código.\n\n## Qué cambia\n\n- **`src/docs/instrucciones-mcp.md`** (nuevo): las instrucciones que recibe el agente al conectarse ya no están en una constante de `mcp/server.ts`. Las lee `build-mcp-metadata` igual que las normas y `server.ts` las coge de la metadata.\n- **`src/docs/diseno.md`** (nuevo): un borrador de la guía de diseño de 540. Tiene tres apartados con contenido (qué se cuenta, jerarquía y ritmo) y tres marcados como «Pendiente».\n- **Tool `get-design-guide`**: devuelve `diseno.md` completo. Las instrucciones tienen un paso 1 nuevo que pide llamarla antes de diseñar; los demás pasos bajan uno y su texto no cambia.\n- **Comentario inicial `<!-- … -->`** en los dos ficheros: es una nota para quien los edita y el build lo quita, así que el agente no lo ve.\n- **Build:** si falta alguno de los dos ficheros, `build-mcp-metadata -- --strict` falla.\n\n## Por qué en dos sitios\n\nAlgunos clientes recortan o resumen las instrucciones largas del MCP. En las instrucciones va el proceso y a qué tool ir; el criterio de diseño completo va en la tool.\n\n## Para revisar\n\nEl contenido de `diseno.md` es un primer borrador sacado del análisis, y el apartado «Ritmo» adelanta reglas del paso 2. Conviene que diseño lo revise y lo haga suyo.\n\n## Comprobado\n\n- Pasan `npx tsc -p tsconfig.mcp.json --noEmit`, `npm run build-mcp-metadata -- --strict`, `npm run test:mcp` (30 tests, 2 nuevos) y `npm run build:firebase`.\n- Sin `diseno.md`, el build marca el hueco.\n- Falta comprobarlo desplegado: tras fusionar, cambiar una frase de `diseno.md` y comprobar que llega a una sesión nueva.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-19T09:36:06.373Z",
+  "updatedAt": "2026-11-19T09:36:06.373Z"
+}
