@@ -97,6 +97,45 @@
       "text": "3 of 4 autofixable defects already in open PRs; fixing check-runtime TYPES lookup"
     }
   ],
+  "steps": [
+    {
+      "at": "2026-11-19T09:42:58.362Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; date -u; P='…/predictable-runtime-inst…",
+      "failed": true,
+      "tool": "toolu_01QBpMQ2ubTk8ro4QrtP1GEe"
+    },
+    {
+      "at": "2026-11-19T09:43:01.464Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_014nomiFc8GHphKEH21y48D9"
+    },
+    {
+      "at": "2026-11-19T09:43:10.742Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01LUCmLUg4ULTMpFsb3Tqqgv"
+    },
+    {
+      "at": "2026-11-19T09:43:10.742Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01XcP2UzGeLC1yX4ZnSMT2BZ"
+    },
+    {
+      "at": "2026-11-19T09:43:13.858Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01XFgs4CK5k7nQHrA6HVxkf2"
+    },
+    {
+      "at": "2026-11-19T09:43:38.649Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01L6uNr95ka8hZEGTugY8x4d"
+    }
+  ],
   "messages": [],
   "actions": [],
   "title": null,
@@ -104,20 +143,5 @@
   "runUrl": null,
   "reportMistakes": true,
   "startedAt": "2026-11-19T09:42:09.215Z",
-  "updatedAt": "2026-11-19T09:43:05.350Z",
-  "steps": [
-    {
-      "at": "2026-11-19T09:42:58.362Z",
-      "verb": "Ran",
-      "detail": "cd …/work/540-ds/540-ds; date -u; P='…/predictable-runtime-inst…",
-      "tool": "toolu_01QBpMQ2ubTk8ro4QrtP1GEe",
-      "failed": true
-    },
-    {
-      "at": "2026-11-19T09:43:01.464Z",
-      "verb": "Ran",
-      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
-      "tool": "toolu_014nomiFc8GHphKEH21y48D9"
-    }
-  ]
+  "updatedAt": "2026-11-19T09:43:39.617Z"
 }
