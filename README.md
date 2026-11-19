@@ -113,6 +113,22 @@ Ejemplo:
 
 El componente se creará con la misma estructura que los demás (componente, estilos, tipos, historias y ficha), con su página Docs en Storybook y pasando las pruebas de accesibilidad.
 
+## Cómo probar los cambios de una rama con un agente
+
+Para ver si un agente entiende y respeta lo que has cambiado (una norma, un componente, una ficha) antes de publicarlo, abre Claude Code en la carpeta del proyecto y usa la skill del repo:
+
+> /prueba-540-ds una charla de 3 bloques sobre IA en logística
+
+Genera el paquete (`npm run build:pieces`) y la metadata del MCP (`npm run build-mcp-metadata -- --strict`) desde la rama, levanta el MCP en local y pide a una sesión de Claude aparte, que solo ve ese MCP (ni el conector de producción, ni ninguna skill, ni el `CLAUDE.md`), que monte la pieza y la pinte con el render recién generado. No publica, no despliega ni hace commit.
+
+Deja el resultado en `pruebas/<fecha>-<pedido>/`, fuera de Git: `pieza.rev.html`, `pieza.html`, `informe.md` (dónde el sistema no ayudó y qué rechazó el render) y `sesion.jsonl` con la sesión entera. Necesita Node y el CLI `claude`. Se puede lanzar también a mano:
+
+```bash
+node .claude/skills/prueba-540-ds/scripts/probar.mjs --pedido "una charla de 3 bloques sobre X" [--modelo sonnet]
+```
+
+Sale con 0 si ha montado la pieza, 2 si falta `--pedido`, 3 si la rama no se construye y 4 si la sesión no terminó la pieza. Las instrucciones completas están en `.claude/skills/prueba-540-ds/SKILL.md`.
+
 ## Cómo compartir el catálogo con el equipo
 
 ```bash
