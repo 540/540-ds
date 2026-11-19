@@ -91,7 +91,12 @@
       ]
     }
   ],
-  "notices": [],
+  "notices": [
+    {
+      "at": "2026-11-19T09:43:04.557Z",
+      "text": "3 of 4 autofixable defects already in open PRs; fixing check-runtime TYPES lookup"
+    }
+  ],
   "messages": [],
   "actions": [],
   "title": null,
@@ -99,5 +104,20 @@
   "runUrl": null,
   "reportMistakes": true,
   "startedAt": "2026-11-19T09:42:09.215Z",
-  "updatedAt": "2026-11-19T09:42:09.215Z"
+  "updatedAt": "2026-11-19T09:43:05.350Z",
+  "steps": [
+    {
+      "at": "2026-11-19T09:42:58.362Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; date -u; P='…/predictable-runtime-inst…",
+      "tool": "toolu_01QBpMQ2ubTk8ro4QrtP1GEe",
+      "failed": true
+    },
+    {
+      "at": "2026-11-19T09:43:01.464Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_014nomiFc8GHphKEH21y48D9"
+    }
+  ]
 }
