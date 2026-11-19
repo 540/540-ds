@@ -95,6 +95,10 @@
     {
       "at": "2026-11-19T09:43:04.557Z",
       "text": "3 of 4 autofixable defects already in open PRs; fixing check-runtime TYPES lookup"
+    },
+    {
+      "at": "2026-11-19T09:44:40.974Z",
+      "text": "Fixing unhandled rejection in mcp/serve.ts request handler"
     }
   ],
   "steps": [
@@ -188,6 +192,24 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_019Fbt4FPNRUZVLa3YLNh41x"
+    },
+    {
+      "at": "2026-11-19T09:44:40.974Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_013KrSmv5i5jvAmjwsFytoUk"
+    },
+    {
+      "at": "2026-11-19T09:44:44.072Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01CHpJV3ePvmU8KUJ8HaiPS8"
+    },
+    {
+      "at": "2026-11-19T09:44:47.155Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01K5BR727TKE8JMKQByFP2Ro"
     }
   ],
   "messages": [],
@@ -197,5 +219,5 @@
   "runUrl": null,
   "reportMistakes": true,
   "startedAt": "2026-11-19T09:42:09.215Z",
-  "updatedAt": "2026-11-19T09:44:47.835Z"
+  "updatedAt": "2026-11-19T09:44:49.766Z"
 }
