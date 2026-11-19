@@ -21,7 +21,7 @@ servidor MCP (mcp/server.ts + una tool por fichero en mcp/tools/)
         └── Firebase .................. mcp/firebase.ts      → https://rev-ds-cd11b.web.app/mcp
 ```
 
-- **La metadata sale del código, no se escribe a mano.** El script `scripts/build-mcp-metadata.ts` lee cada componente: su JSDoc, sus props de `types.ts` (con los valores de `*_DEFAULTS`), sus stories (sin las `Playground`) y su ficha de `_docs/`. También lee los tokens semánticos del CSS, las normas de `src/docs/normas-charlas.md` y la plantilla `TalkTemplate`, partida en paradas. Si diseño cambia una ficha o la plantilla, el MCP cambia en el siguiente despliegue.
+- **La metadata sale del código, no se escribe a mano.** El script `scripts/build-mcp-metadata.ts` lee cada componente: su JSDoc, sus props de `types.ts` (con los valores de `*_DEFAULTS`), sus stories (sin las `Playground`) y su ficha de `_docs/`. También lee los tokens semánticos del CSS, las normas de `src/docs/normas-charlas.md`, la plantilla `TalkTemplate`, partida en paradas, las instrucciones de `src/docs/instrucciones-mcp.md` y la guía de diseño de `src/docs/diseno.md`. Si diseño cambia una ficha o la plantilla, el MCP cambia en el siguiente despliegue.
 - **El agente nunca ve `className`, `style` ni los atributos HTML heredados**: las normas prohíben montar una pieza con clases o estilos propios.
 - **El servidor no guarda sesión**: cada petición se responde sola, con JSON. Por eso cabe en una Cloud Function sin base de datos.
 - `metadata.json` no se guarda en Git: se genera en cada build.
@@ -30,6 +30,7 @@ servidor MCP (mcp/server.ts + una tool por fichero en mcp/tools/)
 
 | Tool | Para qué la usa el agente |
 |---|---|
+| `get-design-guide` | La guía de diseño de 540 (`src/docs/diseno.md`): el criterio para elegir entre lo permitido, en cualquier pieza, con plantilla o sin ella. Lo primero de todo |
 | `list-templates` | Las plantillas que hay (hoy, la charla): su `pieceType`, para qué sirve cada una, con qué palabras se pide, qué tools tienen datos y si es estable. Lo primero, antes de montar nada |
 | `get-rules` | Las normas del tipo de pieza. Lo primero en cuanto se usa una plantilla |
 | `get-template` | El esqueleto (el `Deck` con barra y pie) y el índice de paradas de la plantilla, por bloques |
@@ -42,7 +43,16 @@ servidor MCP (mcp/server.ts + una tool por fichero en mcp/tools/)
 | `get-component-stories` | Sus variantes con el enlace a Storybook y, si se pide, el código |
 | `get-tokens` | Los tokens semánticos con sus valores en claro, oscuro, escritorio y proyección |
 
-Al conectarse, el agente recibe además unas instrucciones con el orden de trabajo: `list-templates` → (solo si el usuario pide ese tipo de pieza) normas → plantilla y patrones → copiar paradas → solo componentes del catálogo. Si no pide ninguna plantilla, compone con el catálogo.
+Al conectarse, el agente recibe además unas instrucciones con el orden de trabajo: `get-design-guide` → `list-templates` → (solo si el usuario pide ese tipo de pieza) normas → plantilla y patrones → copiar paradas → solo componentes del catálogo. Si no pide ninguna plantilla, compone con el catálogo.
+
+## Lo que edita diseño sin tocar código
+
+Dos ficheros de `src/docs/` llegan al agente tal cual en el siguiente despliegue del MCP:
+
+- **`instrucciones-mcp.md`**: lo que recibe cualquier agente al conectarse. Va en inglés y tiene que ser corto, porque algunos clientes recortan las instrucciones largas: el proceso y a qué tool ir, nada más.
+- **`diseno.md`**: la guía de diseño, en castellano. El agente la recibe completa con `get-design-guide`. Aquí va el criterio; lo prohibido va en las normas de cada tipo de pieza.
+
+Un comentario HTML (`<!-- … -->`) al principio de cualquiera de los dos es una nota para quien lo edita: el agente no lo ve. Si falta alguno de los dos, `build-mcp-metadata -- --strict` falla.
 
 ## Probarlo en local
 
