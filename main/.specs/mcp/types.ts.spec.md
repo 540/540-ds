@@ -6,4 +6,4 @@ predictable: spec
 - **Name:** mcp/types.ts
 
 ### Description
-`types.ts` — Types. `PropDef` carries `name`, `type`, `required`, `default` and `description`; `StoryDef` carries `exportName`, `name`, `id`, `url`, `description` and `code`; and 8 more shapes. `ComponentLevel` is `'atom' | 'molecule' | 'organism' | 'template'` and `TokenCategory` is `'color' | 'measure' | 'typography'`. No requirements recorded yet.
+`types.ts` — Types. `PropDef` carries `name`, `type`, `required`, `default` and `description`; `StoryDef` carries `exportName`, `name`, `id`, `url`, `description` and `code`; and 9 more shapes. `ComponentLevel` is `'atom' | 'molecule' | 'organism' | 'template'` and `TokenCategory` is `'color' | 'measure' | 'typography'`. No requirements recorded yet.

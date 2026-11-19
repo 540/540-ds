@@ -1,5 +1,8 @@
 {"withoutAreas": [],
  "version": 1,
- "undescribed": [],
- "newlyUndescribed": [],
- "lastSyncUndescribed": []}
+ "undescribed":
+ [{"specId": "SPEC-230",
+   "name": "mcp/tools/get-design-guide.ts",
+   "key": "specs/mcp/tools/get-design-guide.ts.spec.md"}],
+ "newlyUndescribed": ["specs/mcp/tools/get-design-guide.ts.spec.md"],
+ "lastSyncUndescribed": ["specs/mcp/tools/get-design-guide.ts.spec.md"]}

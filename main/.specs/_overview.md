@@ -10,7 +10,7 @@ predictable: overview
 > “Un servidor [MCP](https://modelcontextprotocol.io) que deja a un agente (Claude en Desktop, en claude.ai o en Claude Code) **consultar el sistema de diseño de 540 mientras monta una pieza**: las normas, la plantilla y sus paradas, los patrones, los componentes con sus props, las fichas y los tokens.”
 > — [`mcp/README.md`](../mcp/README.md)
 
-7 of 22 modules carry an inferred requirement, 8 requirements: 2 violated, 6 verified. Not every row below repeats its requirement as a count, so the tallies there add up to fewer than this.
+7 of 23 modules carry an inferred requirement, 8 requirements: 2 violated, 6 verified. Not every row below repeats its requirement as a count, so the tallies there add up to fewer than this.
 
 - `get-component-docs.ts` — Provides `getComponentDocs.handler`. 1 requirement: 1 verified.
 - `get-component-stories.ts` — Provides `getComponentStories.handler`. 1 requirement: 1 verified.
