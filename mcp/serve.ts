@@ -7,7 +7,7 @@
  *
  * To test the deployed setup itself (Hosting rewrite + function), use npm run mcp:emulate.
  */
-import { createServer as createHttpServer } from 'node:http';
+import { createServer as createHttpServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { buildMetadata } from '../scripts/build-mcp-metadata.js';
 import { handleMcpRequest } from './http.js';
 import { sendWebResponse, toWebRequest } from './node-adapter.js';
@@ -16,13 +16,22 @@ const port = Number(process.env.PORT ?? 3000);
 const origin = `http://localhost:${port}`;
 const metadata = buildMetadata();
 
-createHttpServer(async (req, res) => {
+async function handle(req: IncomingMessage, res: ServerResponse) {
   const { pathname } = new URL(req.url ?? '/', origin);
   if (pathname !== '/mcp') {
     res.writeHead(404).end('Not found. The MCP is at /mcp.');
     return;
   }
   await sendWebResponse(res, await handleMcpRequest(toWebRequest(req, origin), metadata));
+}
+
+// A request that fails answers 500 instead of leaving its rejection unhandled, which would stop the server
+createHttpServer((req, res) => {
+  handle(req, res).catch((error: unknown) => {
+    console.error(error);
+    if (!res.headersSent) res.writeHead(500);
+    res.end();
+  });
 }).listen(port, () => {
   console.log(`540-ds MCP on ${origin}/mcp (${Object.keys(metadata.components).length} components)`);
 });
