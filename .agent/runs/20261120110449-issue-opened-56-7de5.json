@@ -1,0 +1,30 @@
+{
+  "id": "20261120110449-issue-opened-56-7de5",
+  "event": {
+    "kind": "issue-opened",
+    "number": 56,
+    "title": "Oleada 3: cerrar componentes (API, tokens, casos y fichas)",
+    "author": "CoSmOsHeaven",
+    "url": "https://github.com/540/540-ds/issues/56",
+    "ref": "main",
+    "sha": null,
+    "body": "Oleada 3 del plan de cierre de la [auditoría de componentes](https://claude.ai/artifact/FtYMWN5a7mAuGKKWx1ZUqb): dejar cada componente al 100 %. Después de la oleada 2 (#44) ya no hay nada roto; aquí se quitan los valores a mano, se completa la API, se cubren los casos que faltan y se alinean fichas y código.\n\n## Orden\n1. **Barrido de API** (`ref`, `...rest` y defaults): una sola PR, sin otras PR de componentes abiertas. Bloqueado por la oleada 2.\n2. **Cerrar componentes**, 6 issues por familia, en paralelo. Bloqueadas por el barrido, #42 (tokens) y #43 (utilidades).\n3. **Fichas que no cuadran** con el código: en cualquier momento.\n4. **ProgressBar/Cycle con Steps y TalkTemplate solo con catálogo**: después de las familias que añaden `tone` y tocan Cycle.\n\n## Decisiones pendientes (no son tareas técnicas)\n- **Textos fijos en español** («de», «Anterior», «Cerrar», «Tramo», «Abrir menú»…): ¿se hacen configurables por props y con qué valor por defecto?\n- **Nivel atómico**: Blobs y Heartbeat parecen átomos; Form y CardList, moléculas.\n- **Radio del Dialog**: la norma dice que lo único redondo son los botones.\n- **Stories que enseñan a romper las normas** (Cycle con 3 marcas, CardList con `tabIndex` en una tarjeta…): las revisa diseño. Las que cambian por un cambio de tipos (Cover sin foto) van en su issue.\n\n## Fuera de alcance\nTabla de props en las fichas: el MCP ya saca las props de `types.ts`.\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Issue opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-20T11:04:49.215Z",
+  "updatedAt": "2026-11-20T11:04:49.215Z"
+}
