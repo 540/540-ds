@@ -1,1 +1,1 @@
-[{"calleePage":[{"callees":7,"callers":3,"danglingCalls":0,"fqn":"Code.scripts.«build-mcp-metadata».buildMetadata","isEntryPoint":false,"module":"","reachable":true}],"callees":1,"callerPage":[],"callers":0,"danglingCalls":0,"fqn":"Code.mcp.serve.metadata","isEntryPoint":true,"isolated":false,"module":"mcp.serve","reachable":true}]
+[{"calleePage":[],"callees":0,"callerPage":[],"callers":0,"danglingCalls":0,"fqn":"Code.mcp.serve.metadata","isEntryPoint":false,"isolated":true,"module":"mcp.serve","reachable":true}]

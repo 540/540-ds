@@ -1,1 +1,0 @@
-[{"calleePage":[{"callees":0,"callers":1,"danglingCalls":0,"fqn":"Code.scripts.«build-mcp-firebase».installedVersion","isEntryPoint":false,"module":"","reachable":true}],"callees":1,"callerPage":[],"callers":0,"danglingCalls":0,"fqn":"Code.scripts.«build-mcp-firebase».pkg","isEntryPoint":true,"isolated":false,"module":"","reachable":true}]
