@@ -1,0 +1,30 @@
+{
+  "id": "20261120073424-issue-opened-52-1008",
+  "event": {
+    "kind": "issue-opened",
+    "number": 52,
+    "title": "Oleada 1: cimientos (red de pruebas, tokens y utilidades)",
+    "author": "CoSmOsHeaven",
+    "url": "https://github.com/540/540-ds/issues/52",
+    "ref": "main",
+    "sha": null,
+    "body": "Oleada 1 del plan de cierre de la [auditoría de componentes](https://claude.ai/artifact/FtYMWN5a7mAuGKKWx1ZUqb): los cimientos que necesitan los arreglos de componentes.\n\n- La red de pruebas, para que lo arreglado no vuelva a romperse: CI en PR con a11y que falla de verdad, y prohibir primitivos `--540-*`.\n- Las piezas compartidas con las que se arregla: tokens que faltan y utilidades comunes.\n\nLas cuatro son independientes y se pueden hacer en paralelo. Única dependencia: #41 se mergea después de #40, porque su comprobación corre en el CI de PR.\n\nLa oleada 2 (#44) está bloqueada por #40.\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Issue opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-20T07:34:24.622Z",
+  "updatedAt": "2026-11-20T07:34:24.622Z"
+}
