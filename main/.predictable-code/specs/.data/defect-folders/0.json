@@ -1,1 +1,1 @@
-{"page":0,"pageSize":100,"rows":[{"defects":11,"folder":"scripts/render"},{"defects":3,"folder":"scripts/runtime"},{"defects":1,"folder":"mcp"},{"defects":1,"folder":"src"},{"defects":1,"folder":"src/components/molecules/NavMobile"},{"defects":1,"folder":"src/foundations"}],"total":6}
+{"page":0,"pageSize":100,"rows":[{"defects":9,"folder":"scripts/render"},{"defects":2,"folder":"scripts/runtime"},{"defects":1,"folder":"mcp"},{"defects":1,"folder":"src"},{"defects":1,"folder":"src/components/molecules/NavMobile"},{"defects":1,"folder":"src/foundations"}],"total":6}

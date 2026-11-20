@@ -10,7 +10,7 @@
  "docPaths": ["src/docs", "."],
  "docExtensions": ["md"],
  "defaultSpecsDir": null,
- "codePaths": ["."],
+ "codePaths": ["mcp", "scripts/render", "scripts/runtime", "src"],
  "aiProvider":
  {"model": "claude-sonnet-5",
   "fastModel": "claude-haiku-4-5",

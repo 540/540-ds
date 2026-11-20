@@ -1,1 +1,1 @@
-{"defects":14,"dir":"scripts","others":6,"page":0,"pageSize":50,"rows":[{"defects":11,"kind":"folder","name":"render","others":5,"path":"scripts/render"},{"defects":3,"kind":"folder","name":"runtime","others":1,"path":"scripts/runtime"}],"total":2}
+{"defects":11,"dir":"scripts","others":6,"page":0,"pageSize":50,"rows":[{"defects":9,"kind":"folder","name":"render","others":5,"path":"scripts/render"},{"defects":2,"kind":"folder","name":"runtime","others":1,"path":"scripts/runtime"}],"total":2}
