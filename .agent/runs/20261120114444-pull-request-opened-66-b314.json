@@ -1,0 +1,30 @@
+{
+  "id": "20261120114444-pull-request-opened-66-b314",
+  "event": {
+    "kind": "pull-request-opened",
+    "number": 66,
+    "title": "docs(specs): remove the specs of the build and check scripts",
+    "author": "gorkma",
+    "url": "https://github.com/540/540-ds/pull/66",
+    "ref": "docs/remove-build-check-script-specs",
+    "sha": "f096a3ad058757db532a82bf119f811c8526f8e4",
+    "body": "The code folders are now `mcp`, `scripts/render`, `scripts/runtime` and `src` only (`code-paths.chosen.json`). Predictable no longer analyses the build and check scripts in `scripts/` or the helpers in `scripts/lib`, so their specs are leftovers that nothing verifies.\n\n## Changes\n\n- Delete 9 specs:\n  - `specs/scripts/build-mcp-firebase.ts.spec.md`\n  - `specs/scripts/build-mcp-metadata.ts.spec.md`\n  - `specs/scripts/build-pieces.mjs.spec.md`\n  - `specs/scripts/check-islands.mjs.spec.md`\n  - `specs/scripts/check-pieces.mjs.spec.md`\n  - `specs/scripts/check-runtime.mjs.spec.md`\n  - `specs/scripts/lib/pieces-harness.mjs.spec.md`\n  - `specs/scripts/lib/preact-alias.mjs.spec.md`\n  - `specs/scripts/lib/tag-contract.mjs.spec.md`\n- In `specs/_areas.md`, delete the \"Piece Checks\" area. No spec uses it now.\n\nThe \"Build Scripts\" area stays: `specs/mcp/tools/list-components.ts.spec.md` still uses it.\n\nThree of the deleted specs had inferred requirements (build-pieces 6, check-runtime 2, tag-contract 1). They are deleted on purpose.\n\nNo file outside `specs/` refers to the deleted specs. No file under `scripts/`, no test, and no spec under `specs/src`, `specs/mcp`, `specs/scripts/render` or `specs/scripts/runtime` changes.",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-20T11:44:44.810Z",
+  "updatedAt": "2026-11-20T11:44:44.810Z"
+}
