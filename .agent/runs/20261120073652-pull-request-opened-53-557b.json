@@ -1,0 +1,30 @@
+{
+  "id": "20261120073652-pull-request-opened-53-557b",
+  "event": {
+    "kind": "pull-request-opened",
+    "number": 53,
+    "title": "CI en PR con tests de Storybook y a11y que fallan de verdad",
+    "author": "CoSmOsHeaven",
+    "url": "https://github.com/540/540-ds/pull/53",
+    "ref": "ci/40-pr-checks-a11y",
+    "sha": "2fa5b90da288666353b3ae742f6524dd87f5c8e7",
+    "body": "Closes #40\n\n## Qué hace\n- **`.github/workflows/pr.yml`** (nuevo): en cada PR y push a `main` pasa tipos de los componentes (`tsconfig.app.json`), lint, `test:ssr` y el proyecto `storybook` de vitest con Chromium (render, interacción y a11y). Complementa a `mcp.yml`, que solo comprueba el MCP.\n- **`a11y.test: 'error'`** global en `.storybook/preview.tsx`: una violación de accesibilidad hace fallar el test.\n- **16 stories toleradas** con `parameters: { a11y: { test: 'todo' } }` y un `// TODO a11y: <regla>`. La excepción va en cada story, no en el `meta`, para que una story nueva no quede tolerada sin querer. La lista solo puede encoger.\n- **README**: explica el CI de PR y la lista de toleradas (`grep -rn \"TODO a11y\" src`).\n\n## Stories toleradas (para la oleada 2)\n| Componente | Stories | Regla |\n|---|---|---|\n| Card | Destacada entre atenuadas | `color-contrast`: tarjetas atenuadas al 25 % |\n| Bars | Por pasos | `color-contrast`: filas atenuadas |\n| Schema | Playground, Entero, Por capas | `scrollable-region-focusable`: el marco hace scroll pero no recibe el foco |\n| Spotlight | Playground, Una pila de frases | `color-contrast`: frases apagadas al 14 % |\n| Statements | Playground, Tres tesis, Manifiesto | `color-contrast`: frases aún no alcanzadas (`data-state=\"before\"`) |\n| Timeline | Playground, Con aviso y zoom, Cuatro pasos | `color-contrast`: pasos aún no alcanzados (`data-state=\"before\"`) |\n| TalkTemplate | Playground, En oscuro, En claro | `color-contrast` (Card, Spotlight) y `scrollable-region-focusable` (marco de Schema, `stage` de Slide) |\n\nAl arreglar Card, Spotlight, Schema o Slide hay que revisar también la excepción de TalkTemplate.\n\n## Verificación local\n- `tsc` OK, lint OK (3 warnings previos), `test:ssr` 534/534.\n- Storybook 178/178 en dos ejecuciones seguidas.\n- Quitando la excepción de `Card › Destacada entre atenuadas`, el test falla (exit 1).\n- `build-mcp-metadata --strict` y `test:mcp` 30/30.\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-20T07:36:52.627Z",
+  "updatedAt": "2026-11-20T07:36:52.627Z"
+}
