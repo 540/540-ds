@@ -35,8 +35,11 @@
 # The stamp below is how the Control Center knows whether this repository is running a
 # current copy. It is compared as a NUMBER, never as a diff, so your own edits to this
 # file — a bigger `runner:`, a different `heap_mb` — are yours and are left alone.
-# predictable-workflow-version: 93
+# predictable-workflow-version: 94
 name: Predictable Code
+# EACH RUN NAMES ITS TARGET (v94, #2917), so the Control Center finds the run a dispatch started
+# among several started together — a crew's agents dispatch side by side (`RUN_TITLE_PREFIX`).
+run-name: ${{ format('Predictable Code · {0} · {1}', inputs.command || 'sync', inputs.target || '-') }}
 
 on:
   workflow_dispatch:
@@ -233,8 +236,14 @@ permissions:
 # hazard, and so is a fix beside a sync — the fix's own edits leave a sync running as it
 # settles, which is why the desktop product refuses the same pair. The group deliberately
 # does NOT include the command, or a fix and a sync would be allowed to overlap.
+#
+# AGENT SESSIONS RUN SIDE BY SIDE (v94, #2917): a repository's agents are a crew that works at the
+# same time, each on a runner of its own that proposes on a branch of its own (its record is the
+# plane's to write); one shared slot made them wait in line, and GitHub cancels an older WAITING run when a
+# newer one queues, so a third agent cancelled the one queued before it. The `agent` verb's group is
+# its own run's target; every other verb keeps the branch's one slot.
 concurrency:
-  group: predictable-${{ github.ref }}
+  group: ${{ inputs.command == 'agent' && format('predictable-agent-{0}', inputs.target) || format('predictable-{0}', github.ref) }}
   cancel-in-progress: false
 
 jobs:
@@ -2083,7 +2092,7 @@ jobs:
               -H "Authorization: Bearer ${PC_OIDC}" \
               -H 'content-type: text/plain' \
               --data-binary "@${RUNNER_TEMP}/pc-batch.ndjson" \
-              "${CONTROL_PLANE}/api/cloud/progress?stream=${_stream}${PC_STEER_ACK:+&steered=${PC_STEER_ACK}}"; then
+              "${CONTROL_PLANE}/api/cloud/progress?stream=${_stream}${PC_TARGET:+&target=${PC_TARGET}}${PC_STEER_ACK:+&steered=${PC_STEER_ACK}}"; then
               if jq -e '.following == true' "${RUNNER_TEMP}/pc-push-answer.json" > /dev/null 2>&1; then
                 PUSH_SENT=$total
                 PUSH_FOLLOWED=1
@@ -2103,6 +2112,14 @@ jobs:
                     PC_STEER_ACK="${PC_STEER_ACK:+${PC_STEER_ACK},}${PC_STEER_ID}"
                   done < "${RUNNER_TEMP}/pc-steer-new.ndjson"
                   rm -f "${RUNNER_TEMP}/pc-steer-new.ndjson"
+                  # THE OTHER AGENTS WORKING NOW (v94, #2917): appended to the steer file when they
+                  # changed, where `predictable agent run` keeps them for `predictable agent peers`.
+                  PC_PEERS_NOW=$(jq -c 'select(.peers | type == "array") | {peers}' \
+                    "${RUNNER_TEMP}/pc-push-answer.json" 2>/dev/null || :)
+                  if [ -n "$PC_PEERS_NOW" ] && [ "$PC_PEERS_NOW" != "${PC_PEERS_LAST:-}" ]; then
+                    printf '%s\n' "$PC_PEERS_NOW" >> "$PC_STEER_FILE"
+                    PC_PEERS_LAST="$PC_PEERS_NOW"
+                  fi
                 fi
               elif jq -e '.following == false' "${RUNNER_TEMP}/pc-push-answer.json" > /dev/null 2>&1; then
                 PUSH_REFUSED=1
@@ -4089,12 +4106,16 @@ jobs:
               '($agent[0]) as $a |
                ([$a.refused[]?] + ($notes | split("\n") | map(select(. != "")))) as $left |
                {run: $run, result: {
-                 outcome: (if $a.outcome == "acted" and ($a.comments | length) == 0 and ($a.labels | length) == 0 and (($a.issues // []) | length) == 0 and (($a.engineReports // []) | length) == 0 and ($opened | length) == 0 and ($pushed | length) == 0 then "nothing" else $a.outcome end),
+                 outcome: (if $a.outcome == "acted" and ($a.comments | length) == 0 and ($a.labels | length) == 0 and (($a.issues // []) | length) == 0 and (($a.engineReports // []) | length) == 0 and ($opened | length) == 0 and ($pushed | length) == 0 and ($a.avatarSvg == null) and (($a.crew // []) | length) == 0 then "nothing" else $a.outcome end),
                  title: ($a.title // null),
                  summary: ($a.summary // ""),
                  reason: (if ($left | length) > 0 then ((if $a.reason then $a.reason + "; " else "" end) + "left out: " + ($left | join("; "))) else $a.reason end),
                  comments: $a.comments, labels: $a.labels, issues: ($a.issues // []),
                  engineReports: ($a.engineReports // []),
+                 # THE CREW SESSIONS (v94, #2917): a drawing an agent made of itself, and a crew
+                 # suggested for the repository, each held by the driver and again by the plane.
+                 avatarSvg: ($a.avatarSvg // null),
+                 crew: ($a.crew // []),
                  timedOut: ($a.timedOut // false),
                  pullRequests: $opened, pushes: $pushed}}' \
               > "${RUNNER_TEMP}/pc-agent-report.json"
