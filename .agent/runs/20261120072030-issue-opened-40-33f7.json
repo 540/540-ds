@@ -1,0 +1,30 @@
+{
+  "id": "20261120072030-issue-opened-40-33f7",
+  "event": {
+    "kind": "issue-opened",
+    "number": 40,
+    "title": "CI en PR con tests de Storybook y accesibilidad que fallan de verdad",
+    "author": "CoSmOsHeaven",
+    "url": "https://github.com/540/540-ds/issues/40",
+    "ref": "main",
+    "sha": null,
+    "body": "Parte de la oleada 1 (cimientos) del plan de cierre de la [auditoría de componentes](https://claude.ai/artifact/FtYMWN5a7mAuGKKWx1ZUqb), apartado «Pruebas que no protegen».\n\n## Problema\n- `.storybook/preview.tsx:29` tiene `a11y: { test: 'todo' }`: las violaciones de accesibilidad se ven en el panel, pero nunca hacen fallar un test.\n- No hay CI en las PR. `publish.yml` solo corre con tags `v*` (tsc, lint, test:ssr, test:render…) y `pages.yml` con push a `main` (tsc y build de Storybook). El proyecto `storybook` de vitest (interacción + a11y) no corre en ningún workflow.\n\n## Propuesta\n1. Workflow nuevo que corra en cada PR: `npx tsc -p tsconfig.app.json --noEmit`, `npm run lint`, `npm run test:ssr` y `npx vitest run --project=storybook` (con Playwright/Chromium).\n2. Poner `a11y.test: 'error'` global.\n3. Las stories que hoy fallan llevan `parameters: { a11y: { test: 'todo' } }` en su fichero, con un comentario `// TODO a11y: <regla que falla>`. Esa es la lista de tolerados: cada arreglo de componente quita su excepción y la lista solo puede encoger.\n\n## Criterios de aceptación\n- [ ] Una PR que introduce una violación de a11y en una story sin excepción falla el CI.\n- [ ] El CI de PR está en verde sobre `main` al mergear.\n- [ ] La lista de stories toleradas está documentada (en esta issue o en un comentario) para repartirla en la oleada 2.\n\n## Fuera de alcance\nArreglar las violaciones (oleada 2) y escribir play functions nuevas.\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Issue opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-20T07:20:30.811Z",
+  "updatedAt": "2026-11-20T07:20:30.811Z"
+}
