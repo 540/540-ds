@@ -66,9 +66,7 @@ export default defineConfig({
         browser: {
           enabled: true,
           headless: true,
-          // Pinned: Chromium on the Linux CI runner reports prefers-reduced-motion: reduce, which stops
-          // the motion the play functions check (e.g. LogoCarousel never steps). Same result on any machine.
-          provider: playwright({ contextOptions: { reducedMotion: 'no-preference' } }),
+          provider: playwright({}),
           instances: [{
             browser: 'chromium'
           }]
