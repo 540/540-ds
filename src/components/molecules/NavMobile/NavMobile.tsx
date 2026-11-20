@@ -33,11 +33,12 @@ export function NavMobile({
 
   // The page behind does not scroll while the panel is open.
   useEffect(() => {
-    if (!open) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const body = document.body;
+    if (!open || !body) return;
+    const previous = body.style.overflow;
+    body.style.overflow = 'hidden';
     return () => {
-      document.body.style.overflow = previous;
+      body.style.overflow = previous;
     };
   }, [open]);
 
