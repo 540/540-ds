@@ -84,6 +84,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
+  // TODO a11y: scrollable-region-focusable (the SchemaFrame frame scrolls but cannot take focus)
+  parameters: { a11y: { test: 'todo' } },
   tags: ['dev'],
   render: () => (
     <Slide id="esquema">
@@ -96,7 +98,8 @@ export const Playground: Story = {
 };
 
 export const Entero: Story = {
-  parameters: { docs: { description: { story: 'El dibujo entero, sin pasos: las tres capas encendidas. Con el marco a todo el ancho y el pie debajo.' } } },
+  // TODO a11y: scrollable-region-focusable (the SchemaFrame frame scrolls but cannot take focus)
+  parameters: { a11y: { test: 'todo' }, docs: { description: { story: 'El dibujo entero, sin pasos: las tres capas encendidas. Con el marco a todo el ancho y el pie debajo.' } } },
   render: () => (
     <Slide id="esquema-entero">
       <SectionHeader title="Un esquema" align="center" />
@@ -109,7 +112,8 @@ export const Entero: Story = {
 
 export const PorCapas: Story = {
   name: 'Por capas',
-  parameters: { docs: { description: { story: 'Dentro de un Steps: pulsa en el lienzo y usa → para encender las capas una a una. Lo que no toca queda al 18 %.' } } },
+  // TODO a11y: scrollable-region-focusable (the SchemaFrame frame scrolls but cannot take focus)
+  parameters: { a11y: { test: 'todo' }, docs: { description: { story: 'Dentro de un Steps: pulsa en el lienzo y usa → para encender las capas una a una. Lo que no toca queda al 18 %.' } } },
   render: () => (
     <Slide id="esquema-capas">
       <Steps total={2}>

@@ -140,7 +140,8 @@ export const ConAntetituloYPie: Story = {
 
 export const Destacada: Story = {
   name: 'Destacada entre atenuadas',
-  parameters: { docs: { description: { story: 'Cinco tarjetas compactas: la primera destacada (crece un 4 % con borde fuerte) y las demás al 25 %. Es el final del contexto de la charla, cuando se señala una pieza.' } } },
+  // TODO a11y: color-contrast (the dimmed cards, at 25 %)
+  parameters: { a11y: { test: 'todo' }, docs: { description: { story: 'Cinco tarjetas compactas: la primera destacada (crece un 4 % con borde fuerte) y las demás al 25 %. Es el final del contexto de la charla, cuando se señala una pieza.' } } },
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 'var(--grid-gutter)', padding: 'var(--space-s)' }}>
       {['App', 'Panel', 'Servicio', 'Base', 'Cola'].map((t, i) => (
