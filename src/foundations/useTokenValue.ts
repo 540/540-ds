@@ -24,11 +24,13 @@ export function useResolvedValue(name: string, property: string = 'background-co
   const [value, setValue] = useState('');
 
   useEffect(() => {
+    const body = document.body;
+    if (!body) return;
     const probe = document.createElement('div');
     probe.style.position = 'absolute';
     probe.style.visibility = 'hidden';
     probe.style.setProperty(property, `var(${name})`);
-    document.body.appendChild(probe);
+    body.appendChild(probe);
     const read = () => setValue(getComputedStyle(probe).getPropertyValue(property).trim());
     read();
     const observer = new MutationObserver(read);
