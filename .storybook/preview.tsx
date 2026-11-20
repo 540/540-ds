@@ -25,9 +25,6 @@ const preview: Preview = {
       },
     },
     a11y: {
-      // 'error' makes any violation fail the story's test. A story that still fails carries
-      // `a11y: { test: 'todo' }` with a `// TODO a11y: <rule>` comment: that is the list of tolerated
-      // stories, and it can only shrink.
       test: 'error',
     },
     docs: {

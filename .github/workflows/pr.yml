@@ -1,6 +1,3 @@
-# Checks every pull request and push to main: types, lint, server rendering, and the Storybook tests
-# (interactions and accessibility). a11y runs with test: 'error' (.storybook/preview.tsx), so a violation
-# fails the job unless the story carries `a11y: { test: 'todo' }` with its `// TODO a11y:` comment.
 name: PR checks
 
 on:

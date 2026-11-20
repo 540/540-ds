@@ -56,8 +56,6 @@ const centerHolds = (slots: number): Story['play'] => async ({ canvasElement, st
   await step(`${slots} huecos`, () => expect(getComputedStyle(carousel).getPropertyValue('--slots').trim()).toBe(String(slots)));
   await step('el del medio, resaltado', expectCentered);
   await step('tras un paso, sigue el del medio', async () => {
-    // It pauses on hover, and on Linux the test browser's real pointer rests over it (and re-enters it
-    // as the strip moves): take it out of hit-testing and leave, so only the timer drives it
     await userEvent.unhover(carousel);
     carousel.style.pointerEvents = 'none';
     const first = carousel.querySelector('[data-pos="0"]');
