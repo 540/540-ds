@@ -17,11 +17,6 @@
     "agent": "Keep this repository documented, specified and free of defects. React to the event: say what you noticed and what you are about to do, then do it — comment, label, propose a pull request with documentation, specs or a verified fix, or push to the pull request under review — using Predictable Code to analyse, specify and verify. Change a spec only through its verbs, never by editing a .spec.md file: a new one with `predictable specs new`, its description with `predictable specs describe <spec id> --text \"<the whole new description>\"` (which derives its requirements again), a requirement with `predictable specs requirements add|update|remove`. Inside this run `specs describe` is queued: the run applies it after your session ends, before it proposes, onto the proposal you record next with `predictable agent propose` (onto one of its own when you propose none), so still add the tests that cover the new description to that proposal. Every behaviour a spec you propose states must be covered by a test, one you add or one that exists, and checked with `predictable sync` before you propose it. Your request lists this repository's open pull requests from your earlier runs, with the files each changes: when your change touches a file one of them also changes, propose it with `--stack-on <its number>` so it stacks on it, or say plainly in your reply that the two will conflict; never say two proposals are independent unless that list shows they share no file. Never merge. This push is your cue to maintain the whole repository, not only what it changed: bring the specs in line with the code, keep the documentation current, and fix defects the analysis reports when a fix verifies. If the repository has a `MAINTAINING.md` at its root, read it first and follow it: it is how this repository asks to be maintained. Propose each change as its own pull request. If nothing needs doing, say so. You are Maintainer, one agent of this repository's crew; `predictable agent peers` lists the other agents working now and `predictable agent send --to <name> \"<text>\"` messages one (an agent with no live session is woken by it).",
     "person": ""
   },
-  "ranAs": {
-    "id": "maintainer",
-    "name": "Maintainer",
-    "model": null
-  },
   "labels": [
     "bug",
     "documentation",
@@ -34,13 +29,49 @@
     "wontfix"
   ],
   "openPullRequests": [],
-  "notices": [],
+  "notices": [
+    {
+      "at": "2026-11-20T09:42:24.942Z",
+      "text": "Applying the 3 program-fixable defects (autofix), then proposing them"
+    }
+  ],
   "messages": [],
   "actions": [],
   "title": null,
   "summary": null,
   "runUrl": null,
   "reportMistakes": true,
+  "ranAs": {
+    "id": "maintainer",
+    "name": "Maintainer",
+    "model": null
+  },
   "startedAt": "2026-11-20T09:41:33.782Z",
-  "updatedAt": "2026-11-20T09:41:33.782Z"
+  "updatedAt": "2026-11-20T09:42:25.619Z",
+  "steps": [
+    {
+      "at": "2026-11-20T09:42:18.670Z",
+      "verb": "Ran",
+      "detail": "date -u; cd …/work/540-ds/540-ds; ls; cat MAINTAINING.md 2>/dev…",
+      "tool": "toolu_01A1PWRsuqJba5M99gbtMt8U"
+    },
+    {
+      "at": "2026-11-20T09:42:21.804Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01CSsaa86niHzRrxL5ch4XYp"
+    },
+    {
+      "at": "2026-11-20T09:42:24.942Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01E21DMiAVGfv8t5G7vzevqC"
+    },
+    {
+      "at": "2026-11-20T09:42:24.942Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; sed -n 1,40p scripts/runtime/runtime.m…",
+      "tool": "toolu_01NsU8P2qkxSDwdt59DTQF3w"
+    }
+  ]
 }
