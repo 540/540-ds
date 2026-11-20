@@ -45,6 +45,10 @@
     {
       "at": "2026-11-20T15:22:35.169Z",
       "text": "Push removed script specs; checking analysis for remaining work"
+    },
+    {
+      "at": "2026-11-20T15:39:40.651Z",
+      "text": "Fixing unguarded document.body in NavMobile and useResolvedValue; verifying"
     }
   ],
   "steps": [
@@ -95,6 +99,12 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01DMk1oNCUTFQA5gKpisTDud"
+    },
+    {
+      "at": "2026-11-20T15:39:40.651Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01BgAR1uG4MbQbvgRShKxKEi"
     }
   ],
   "messages": [],
@@ -109,5 +119,5 @@
     "model": null
   },
   "startedAt": "2026-11-20T15:21:50.265Z",
-  "updatedAt": "2026-11-20T15:39:38.303Z"
+  "updatedAt": "2026-11-20T15:39:41.400Z"
 }
