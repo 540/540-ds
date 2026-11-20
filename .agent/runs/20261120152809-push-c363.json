@@ -11,7 +11,7 @@
     "sha": "2416d2bd688ab99da062ecbf8f58b85dc3e37231",
     "body": ""
   },
-  "state": "running",
+  "state": "acted",
   "reason": null,
   "instructions": {
     "agent": "Keep this repository documented, specified and free of defects. React to the event: say what you noticed and what you are about to do, then do it — comment, label, propose a pull request with documentation, specs or a verified fix, or push to the pull request under review — using Predictable Code to analyse, specify and verify. Change a spec only through its verbs, never by editing a .spec.md file: a new one with `predictable specs new`, its description with `predictable specs describe <spec id> --text \"<the whole new description>\"` (which derives its requirements again), a requirement with `predictable specs requirements add|update|remove`. Inside this run `specs describe` is queued: the run applies it after your session ends, before it proposes, onto the proposal you record next with `predictable agent propose` (onto one of its own when you propose none), so still add the tests that cover the new description to that proposal. Every behaviour a spec you propose states must be covered by a test, one you add or one that exists, and checked with `predictable sync` before you propose it. Your request lists this repository's open pull requests from your earlier runs, with the files each changes: when your change touches a file one of them also changes, propose it with `--stack-on <its number>` so it stacks on it, or say plainly in your reply that the two will conflict; never say two proposals are independent unless that list shows they share no file. Never merge. This push is your cue to maintain the whole repository, not only what it changed: bring the specs in line with the code, keep the documentation current, and fix defects the analysis reports when a fix verifies. If the repository has a `MAINTAINING.md` at its root, read it first and follow it: it is how this repository asks to be maintained. Propose each change as its own pull request. If nothing needs doing, say so. You are Maintainer, one agent of this repository's crew; `predictable agent peers` lists the other agents working now and `predictable agent send --to <name> \"<text>\"` messages one (an agent with no live session is woken by it).",
@@ -254,13 +254,38 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01FEpJAJupqBs6mwVGqqvTUY"
+    },
+    {
+      "at": "2026-11-20T15:34:36.114Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01V7vWJLiNhLoSR2qRu6NcRR"
+    },
+    {
+      "at": "2026-11-20T15:34:45.574Z",
+      "verb": "Ran",
+      "detail": "cat > tmp/tmp.XXNw9ajE/reply.json <<'EOF'",
+      "tool": "toolu_01Kf3Ki8hpT5p6U1DCBSZTfd"
     }
   ],
   "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
+  "actions": [
+    {
+      "kind": "pull-request",
+      "number": 67,
+      "url": "https://github.com/540/540-ds/pull/67",
+      "title": "Reject out-of-range character references with a TagError"
+    },
+    {
+      "kind": "pull-request",
+      "number": 68,
+      "url": "https://github.com/540/540-ds/pull/68",
+      "title": "Keep the local MCP server up when a request fails"
+    }
+  ],
+  "title": "Fixed decode range and MCP server crash",
+  "summary": "Proposed decode-codepoint-range (out-of-range &#…; now a TagError, with test; fix-check gone); proposed mcp-serve-catch (a malformed request no longer crashes npm run mcp:serve; fix-check gone). Remaining findings judged false positives or trusted-input noise.",
+  "runUrl": "https://github.com/540/540-ds/actions/runs/44763579358",
   "reportMistakes": true,
   "ranAs": {
     "id": "maintainer",
@@ -268,5 +293,5 @@
     "model": null
   },
   "startedAt": "2026-11-20T15:28:10.541Z",
-  "updatedAt": "2026-11-20T15:34:33.773Z"
+  "updatedAt": "2026-11-20T15:35:04.180Z"
 }
