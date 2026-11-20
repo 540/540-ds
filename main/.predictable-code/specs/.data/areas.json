@@ -57,8 +57,4 @@
   {"parent": null,
    "name": "Build Scripts",
    "description":
-   "The scripts that build the component library, the MCP metadata, and the Firebase deployment bundle."},
-  {"parent": "Build Scripts",
-   "name": "Piece Checks",
-   "description":
-   "Scripts that render and validate assembled pieces, checking islands and DOM output against the tag contract rules."}]}
+   "The scripts that build the component library, the MCP metadata, and the Firebase deployment bundle."}]}
