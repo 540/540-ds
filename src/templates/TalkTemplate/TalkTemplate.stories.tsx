@@ -16,15 +16,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = { tags: ['dev'] };
+export const Playground: Story = {
+  tags: ['dev'],
+  // TODO a11y: color-contrast (the dimmed Cards, the Spotlight phrases that are off), scrollable-region-focusable (the SchemaFrame frame, the Slide stage)
+  parameters: { a11y: { test: 'todo' } },
+};
 
 export const EnOscuro: Story = {
   name: 'En oscuro',
-  parameters: { docs: { description: { story: 'La plantilla como se proyecta. Pulsa dentro y recorre con las flechas o el espacio: los bloques con pasos (tarjetas, ciclo, tramo, esquema, barras, zoom) consumen la flecha antes de pasar de parada.' } } },
+  // TODO a11y: color-contrast (the dimmed Cards, the Spotlight phrases that are off), scrollable-region-focusable (the SchemaFrame frame, the Slide stage)
+  parameters: { a11y: { test: 'todo' }, docs: { description: { story: 'La plantilla como se proyecta. Pulsa dentro y recorre con las flechas o el espacio: los bloques con pasos (tarjetas, ciclo, tramo, esquema, barras, zoom) consumen la flecha antes de pasar de parada.' } } },
 };
 
 export const EnClaro: Story = {
   name: 'En claro',
-  parameters: { docs: { description: { story: 'La misma plantilla en claro: todo lo que se ve en oscuro tiene que verse aquí.' } } },
+  // TODO a11y: color-contrast (the dimmed Cards, the Spotlight phrases that are off), scrollable-region-focusable (the SchemaFrame frame, the Slide stage)
+  parameters: { a11y: { test: 'todo' }, docs: { description: { story: 'La misma plantilla en claro: todo lo que se ve en oscuro tiene que verse aquí.' } } },
   args: { defaultTheme: 'light' },
 };

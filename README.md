@@ -33,6 +33,8 @@ Otros comandos útiles:
 | `npm run mcp:inspect` | Abre el MCP del sistema en MCP Inspector (ver [`mcp/README.md`](mcp/README.md)) |
 | `npm run test:mcp` | Pasa las pruebas del MCP |
 
+Cada PR pasa en CI (`.github/workflows/pr.yml`) tipos, lint, `test:ssr` y las pruebas de Storybook. La accesibilidad falla de verdad (`a11y.test: 'error'` en `.storybook/preview.tsx`): una historia con una violación rompe el CI. Las que aún fallan llevan `parameters: { a11y: { test: 'todo' } }` y un comentario `// TODO a11y: <regla>`; esa es la lista de toleradas (`grep -rn "TODO a11y" src`) y solo puede encoger: al arreglar un componente se quita su excepción, y no se añaden nuevas.
+
 ## Cómo está organizado
 
 ```

@@ -1,0 +1,38 @@
+# Checks every pull request and push to main: types, lint, server rendering, and the Storybook tests
+# (interactions and accessibility). a11y runs with test: 'error' (.storybook/preview.tsx), so a violation
+# fails the job unless the story carries `a11y: { test: 'todo' }` with its `// TODO a11y:` comment.
+name: PR checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-checks-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Types
+        run: npx tsc -p tsconfig.app.json --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Server rendering of every story
+        run: npm run test:ssr
+      - name: Install Chromium for the Storybook tests
+        run: npx playwright install --with-deps chromium
+      - name: Storybook tests (interactions and a11y)
+        run: npx vitest run --project=storybook

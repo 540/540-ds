@@ -27,10 +27,15 @@ const Pila = () => (
   </div>
 );
 
-export const Playground: Story = { tags: ['dev'], render: () => <Pila /> };
+export const Playground: Story = {
+  tags: ['dev'], render: () => <Pila />,
+  // TODO a11y: color-contrast (the phrases that are off, at 14 %)
+  parameters: { a11y: { test: 'todo' } },
+};
 
 export const Pila4: Story = {
   name: 'Una pila de frases',
-  parameters: { docs: { description: { story: 'Baja con el scroll: solo la frase que ocupa el centro está encendida; las demás quedan al 14 %.' } } },
+  // TODO a11y: color-contrast (the phrases that are off, at 14 %)
+  parameters: { a11y: { test: 'todo' }, docs: { description: { story: 'Baja con el scroll: solo la frase que ocupa el centro está encendida; las demás quedan al 14 %.' } } },
   render: () => <Pila />,
 };

@@ -25,8 +25,10 @@ const preview: Preview = {
       },
     },
     a11y: {
-      // 'todo' shows violations in the a11y panel without failing tests
-      test: 'todo',
+      // 'error' makes any violation fail the story's test. A story that still fails carries
+      // `a11y: { test: 'todo' }` with a `// TODO a11y: <rule>` comment: that is the list of tolerated
+      // stories, and it can only shrink.
+      test: 'error',
     },
     docs: {
       // Every docs page opens with the level kicker and the 540 logo

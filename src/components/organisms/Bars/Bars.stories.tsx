@@ -59,7 +59,8 @@ export const ConCabeceraYDetalle: Story = {
 
 export const PorPasos: Story = {
   name: 'Por pasos',
-  parameters: { docs: { description: { story: 'Dentro de un `Steps`: las barras crecen en el paso 0 y en el paso 1 se atenúa todo menos la primera fila. Pulsa dentro y usa →.' } } },
+  // TODO a11y: color-contrast (the dimmed rows)
+  parameters: { a11y: { test: 'todo' }, docs: { description: { story: 'Dentro de un `Steps`: las barras crecen en el paso 0 y en el paso 1 se atenúa todo menos la primera fila. Pulsa dentro y usa →.' } } },
   render: () => (
     <Slide id="barras">
       <Steps total={1}>
