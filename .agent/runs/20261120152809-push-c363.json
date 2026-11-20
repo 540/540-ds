@@ -33,6 +33,10 @@
     {
       "at": "2026-11-20T15:29:05.444Z",
       "text": "Merged renderer guards (#55); re-running analysis to check remaining defects"
+    },
+    {
+      "at": "2026-11-20T15:31:30.531Z",
+      "text": "Fixing decode: out-of-range &#…; throws RangeError instead of TagError"
     }
   ],
   "steps": [
@@ -95,6 +99,12 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01HuzZ95y57fCntBEg15b32a"
+    },
+    {
+      "at": "2026-11-20T15:31:30.532Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; python3 - <<'EOF'",
+      "tool": "toolu_01VaHfhEjtysH4X2GoP73UXy"
     }
   ],
   "messages": [],
@@ -109,5 +119,5 @@
     "model": null
   },
   "startedAt": "2026-11-20T15:28:10.541Z",
-  "updatedAt": "2026-11-20T15:31:28.151Z"
+  "updatedAt": "2026-11-20T15:31:31.294Z"
 }
