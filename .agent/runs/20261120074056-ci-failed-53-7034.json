@@ -1,0 +1,30 @@
+{
+  "id": "20261120074056-ci-failed-53-7034",
+  "event": {
+    "kind": "ci-failed",
+    "number": 53,
+    "title": "PR checks",
+    "author": "CoSmOsHeaven",
+    "url": "https://github.com/540/540-ds/actions/runs/44696262986",
+    "ref": "ci/40-pr-checks-a11y",
+    "sha": "2fa5b90da288666353b3ae742f6524dd87f5c8e7",
+    "body": "",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "CI failed is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-20T07:40:56.683Z",
+  "updatedAt": "2026-11-20T07:40:56.683Z"
+}
