@@ -49,7 +49,9 @@ function readImage(baseDir, file, label) {
   } catch {
     throw new TagError(`${label}: image not found: ${full}`);
   }
-  const mime = MIME[path.extname(full).slice(1).toLowerCase()];
+  const ext = path.extname(full).slice(1).toLowerCase();
+  if (!Object.hasOwn(MIME, ext)) throw new TagError(`${label}: unsupported image type: ${full}`);
+  const mime = MIME[ext];
   return `data:${mime};base64,${bytes.toString('base64')}`;
 }
 

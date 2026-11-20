@@ -62,5 +62,6 @@ function mount({ manifest, title, lang, css, body, block }) {
   document.body.prepend(page.content);
 }
 
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
-else boot();
+const start = () => boot().catch((error) => console.error(error));
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+else start();
