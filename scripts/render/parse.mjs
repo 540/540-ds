@@ -6,7 +6,11 @@ export class TagError extends Error {}
 
 export function decode(text, where) {
   return text.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (whole, ref) => {
-    if (ref[0] === '#') return String.fromCodePoint(ref[1] === 'x' || ref[1] === 'X' ? parseInt(ref.slice(2), 16) : Number(ref.slice(1)));
+    if (ref[0] === '#') {
+      const code = ref[1] === 'x' || ref[1] === 'X' ? parseInt(ref.slice(2), 16) : Number(ref.slice(1));
+      if (!(code >= 0 && code <= 0x10ffff)) throw new TagError(`${where}: invalid character reference ${whole}`);
+      return String.fromCodePoint(code);
+    }
     if (Object.hasOwn(ENTITIES, ref)) return ENTITIES[ref];
     throw new TagError(`${where}: unknown entity ${whole}`);
   });
