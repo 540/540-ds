@@ -18,4 +18,3 @@ predictable: areas
   - **MCP Tools**: The individual queries an agent can call, such as fetching a component, its docs, stories, patterns, rules, or the template and its stops.
   - **MCP Transports**: The ways the MCP server can be run and reached, over stdio, HTTP, or as a Firebase function.
 - **Build Scripts**: The scripts that build the component library, the MCP metadata, and the Firebase deployment bundle.
-  - **Piece Checks**: Scripts that render and validate assembled pieces, checking islands and DOM output against the tag contract rules.
