@@ -122,3 +122,81 @@ export const PorCapas: Story = {
     </Slide>
   ),
 };
+
+const CATEGORIES = [
+  { kind: 'cat1', name: 'Grupo uno' },
+  { kind: 'cat2', name: 'Grupo dos' },
+  { kind: 'cat3', name: 'Grupo tres' },
+  { kind: 'cat4', name: 'Grupo cuatro' },
+  { kind: 'cat5', name: 'Grupo cinco' },
+  { kind: 'cat6', name: 'Grupo seis' },
+] as const;
+
+const BRANCHES = [
+  { name: 'Apartado A', leaves: ['cat1', 'cat1', 'cat2'] },
+  { name: 'Apartado B', leaves: ['cat3', 'cat4', 'cat4', 'cat1'] },
+  { name: 'Apartado C', leaves: ['cat5', 'cat6', 'cat2'] },
+] as const;
+
+const CategoryTree = () => {
+  let y = 80;
+  const branches = BRANCHES.map((b) => {
+    const top = y;
+    const leaves = b.leaves.map((kind) => {
+      const ly = y;
+      y += 70;
+      return { kind, ly };
+    });
+    y += 40;
+    return { ...b, mid: (top + y - 110) / 2 + 26, leaves };
+  });
+  return (
+    <Schema viewBox="0 0 2560 900" title="Un árbol con las hojas por categoría" description="Tres apartados con sus pantallas; cada pantalla lleva el color del grupo al que pertenece. A la derecha, la leyenda con los seis grupos.">
+      {branches.map((b) => (
+        <g key={b.name}>
+          <rect className={schema.node} x={300} y={b.mid - 32} width={320} height={64} rx={10} />
+          <text className={schema.nodeText} x={460} y={b.mid + 9} textAnchor="middle">
+            {b.name}
+          </text>
+          <path className={schema.line} d={`M620,${b.mid} L680,${b.mid} M680,${b.leaves[0].ly + 26} L680,${b.leaves[b.leaves.length - 1].ly + 26}`} />
+          {b.leaves.map((l, i) => (
+            <g key={i}>
+              <path className={schema.line} d={`M680,${l.ly + 26} L740,${l.ly + 26}`} />
+              <rect className={schema[l.kind]} x={740} y={l.ly} width={300} height={52} rx={8} />
+              <text className={schema.label} x={890} y={l.ly + 34} textAnchor="middle">
+                Pantalla
+              </text>
+            </g>
+          ))}
+        </g>
+      ))}
+      {CATEGORIES.map((c, i) => (
+        <g key={c.kind}>
+          <rect className={schema[c.kind]} x={1700} y={120 + i * 90} width={56} height={40} rx={8} />
+          <text className={schema.label} x={1790} y={150 + i * 90}>
+            {c.name}
+          </text>
+        </g>
+      ))}
+    </Schema>
+  );
+};
+
+export const PorCategorias: Story = {
+  name: 'Por categorías',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Seis clases, de `cat1` a `cat6`, para distinguir grupos en las cajas: relleno suave y borde del color de la categoría. El texto sigue en tinta. Siempre con leyenda.',
+      },
+    },
+  },
+  render: () => (
+    <Slide id="esquema-categorias">
+      <SectionHeader title="Un árbol por categorías" align="center" />
+      <SchemaFrame caption="Cada color es un grupo; la leyenda dice cuál.">
+        <CategoryTree />
+      </SchemaFrame>
+    </Slide>
+  ),
+};

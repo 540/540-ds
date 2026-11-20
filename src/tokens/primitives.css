@@ -38,6 +38,26 @@
   --540-status-green-soft: #3aa06e;
   --540-status-green-subtle: #257f541a;
 
+  /* ---- Color: categories (schema boxes only; from the Azkoyen architecture map) ---- */
+  --540-category-blue: #2f6fdb;
+  --540-category-blue-soft: #6f9cf0;
+  --540-category-blue-subtle: #2f6fdb4d;
+  --540-category-orange: #d9822b;
+  --540-category-orange-soft: #f0a65e;
+  --540-category-orange-subtle: #d9822b4d;
+  --540-category-green: #1f9d74;
+  --540-category-green-soft: #4fc49c;
+  --540-category-green-subtle: #1f9d744d;
+  --540-category-violet: #7b5cd6;
+  --540-category-violet-soft: #a58ef0;
+  --540-category-violet-subtle: #7b5cd64d;
+  --540-category-pink: #c2418f;
+  --540-category-pink-soft: #e07ab8;
+  --540-category-pink-subtle: #c2418f4d;
+  --540-category-ochre: #b08f00;
+  --540-category-ochre-soft: #d6b73a;
+  --540-category-ochre-subtle: #b08f004d;
+
   /* ---- Gradients and filters (from the talks' code; not in Figma) ---- */
   --540-gradient-gray: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 45%, transparent 70%);
   --540-gradient-gray-paper: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.02) 45%, transparent 70%);

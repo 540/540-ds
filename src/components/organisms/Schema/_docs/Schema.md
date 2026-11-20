@@ -12,6 +12,7 @@ Las formas y los textos se escriben con las clases del objeto `schema`:
 | Grupo | Clases |
 |---|---|
 | Formas | `node` (caja, borde fuerte), `highlighted` (borde primario), `note` (borde discontinuo), `pill` (relleno acento), `inverse`, `dot`, `arc`, `icon`, `iconBox`, `iconFill` |
+| Categorías | `cat1` a `cat6`: caja con relleno suave y borde del color de su grupo (azul, naranja, verde, violeta, rosa y ocre) |
 | Líneas | `line` (secundaria), `lineStrong` (primaria), `lineDashed` (terciaria), `arrowhead`, `arrowheadFill` |
 | Series de gráficas | `series`, `seriesDashed`, `accent`, `accentThin`, `accentDashed`, `accentDotted`, `accentDot` |
 | Textos | `title` 32, `nodeText` 26, `nodeSub` 21, `circleText` 26, `pillText` 23, `inverseText` 26, `noteText` 24, `label` 22, `coreTitle` 44, `coreSub` 26, `micro` 19, `sideText` 24 |
@@ -43,6 +44,10 @@ Las líneas van de 1,15 (secundaria) a 1,6 (primaria). El dibujo no grita: la je
 
 El amarillo aparece en las píldoras (con el texto en negro) y en las series destacadas de las gráficas. Nunca en texto.
 
+### Las categorías agrupan, no adornan
+
+Las seis clases `cat1`–`cat6` existen para un caso: un árbol o un mapa donde hay que ver a qué grupo pertenece cada caja, como un menú ordenado por destino. Pintan el relleno al 30 % y el borde del tono; el texto sigue en tinta. En oscuro el borde sube a un tono más claro para que se lea. El rojo no está: es de estado.
+
 ### Un ancho mínimo
 
 El SVG no baja de 1200 px: un diagrama con texto de 22 px no se lee más estrecho. En móvil se desplaza de lado dentro del SchemaFrame.
@@ -63,6 +68,8 @@ El SVG no baja de 1200 px: un diagrama con texto de 22 px no se lee más estrech
 **Don't**
 
 - Colores que no estén en el vocabulario.
+- Categorías sin leyenda, o más de seis en un dibujo.
+- Categorías para destacar una sola caja: eso es `highlighted` o `pill`.
 - Texto más pequeño que `micro` (19 px).
 
 ## Equivalencias

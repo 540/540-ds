@@ -137,6 +137,8 @@ El amarillo de 540 es **de fondo y de trazo**. En una charla aparece en estos si
 | Una serie destacada en una gráfica (`schema.accent*`, o `tone="accent"` en `Bars` y `Share`) | Una serie o una fila por gráfica |
 | El anillo de foco del teclado | Lo pone el sistema |
 
+**Las categorías de un esquema** (`schema.cat1` a `schema.cat6`) son la única excepción al neutro fuera del amarillo: seis tonos para que se vea a qué grupo pertenece cada caja de un árbol o un mapa. Van solo en cajas de un `Schema`, seis como mucho, siempre con leyenda en el propio dibujo, y nunca en texto, en fondos de parada ni para destacar una sola caja. No cuentan para la cuota del amarillo.
+
 **Nunca** en texto, en fondos de parada o de tarjeta, en bordes, en iconos, en botones, en subrayados ni en fondos de hoja. **Cuota por charla: fuera de las manchas, el amarillo aparece en tres paradas como máximo.** Si una charla pide más, es que se está usando para decorar, y el amarillo no decora: señala.
 
 El rojo y el verde son colores de estado y solo van en **círculos y trazos**: las marcas de `Cycle`, el punto de aviso de `Timeline`, el `Heartbeat`. Nunca en texto. El antetítulo «El problema» va en gris.
@@ -213,7 +215,7 @@ Se repasa entera. Un «no» en cualquiera devuelve la charla a revisión.
 2. ¿Entre 12 y 30 paradas, una idea por parada?
 3. ¿Ningún CSS propio, ningún `style=`, ningún valor escrito a mano, ninguna librería nueva?
 4. ¿Todo el texto en negro o gris, sin colores?
-5. ¿Amarillo solo en manchas, píldoras, un nodo de anillo o una serie, y en tres paradas como máximo?
+5. ¿Amarillo solo en manchas, píldoras, un nodo de anillo o una serie, y en tres paradas como máximo? ¿Categorías solo en cajas de un esquema, con leyenda y seis como mucho?
 6. ¿Rojo y verde solo en círculos y trazos?
 7. ¿Fotos 2:1 neutras, con `alt`, sin personas reconocibles ni texto, menos de 400 KB?
 8. ¿Títulos de dos líneas, cuerpos de tres frases, frases de 14 palabras?

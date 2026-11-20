@@ -58,6 +58,14 @@
 .arc { fill: none; stroke: var(--color-border-strong); stroke-width: 1.6; }
 .icon { fill: none; stroke: var(--color-text-primary); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .iconBox { fill: none; stroke: var(--color-border-strong); stroke-width: 1.15; }
+
+/* Categories: a soft fill and a border of the category's hue, to tell groups apart in a box. Text stays in ink. */
+.cat1 { fill: var(--color-category-1-bg); stroke: var(--color-category-1); stroke-width: 1.8; }
+.cat2 { fill: var(--color-category-2-bg); stroke: var(--color-category-2); stroke-width: 1.8; }
+.cat3 { fill: var(--color-category-3-bg); stroke: var(--color-category-3); stroke-width: 1.8; }
+.cat4 { fill: var(--color-category-4-bg); stroke: var(--color-category-4); stroke-width: 1.8; }
+.cat5 { fill: var(--color-category-5-bg); stroke: var(--color-category-5); stroke-width: 1.8; }
+.cat6 { fill: var(--color-category-6-bg); stroke: var(--color-category-6); stroke-width: 1.8; }
 .iconFill { fill: var(--color-text-primary); }
 
 /* ---- Lines ---- */
