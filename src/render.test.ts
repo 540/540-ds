@@ -201,6 +201,11 @@ describe('renderTalk', () => {
     expect(await problems(`<rev-image src="no-such-photo.webp" alt="a"></rev-image>`)).toContain('image not found');
   });
 
+  it('rejects character references outside Unicode', async () => {
+    expect(await problems(`<rev-slide id="x"><rev-text>a &#99999999; b</rev-text></rev-slide>`)).toContain('invalid character reference &#99999999;');
+    expect(await problems(`<rev-slide id="x"><rev-text>&#x110000;</rev-text></rev-slide>`)).toContain('invalid character reference &#x110000;');
+  });
+
   it('rejects drawing outside the Schema vocabulary', async () => {
     const message = await problems(`<rev-schema view-box="0 0 10 10" title="t"><rect class="node red" fill="#fef401"/><rev-text>x</rev-text></rev-schema>`);
     expect(message).toContain('unknown Schema class "red"');
