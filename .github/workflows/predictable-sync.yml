@@ -35,7 +35,7 @@
 # The stamp below is how the Control Center knows whether this repository is running a
 # current copy. It is compared as a NUMBER, never as a diff, so your own edits to this
 # file — a bigger `runner:`, a different `heap_mb` — are yours and are left alone.
-# predictable-workflow-version: 94
+# predictable-workflow-version: 95
 name: Predictable Code
 # EACH RUN NAMES ITS TARGET (v94, #2917), so the Control Center finds the run a dispatch started
 # among several started together — a crew's agents dispatch side by side (`RUN_TITLE_PREFIX`).
@@ -2230,6 +2230,113 @@ jobs:
               "${RUNNER_TEMP}/pc-agent-notes-now.txt"
           }
 
+          # ──────────────────────────────────────────────────────────────────────────
+          # THE SESSION'S `gh` (v95): the session holds no GitHub credential, so its `gh` (a stand-in
+          # `predictable agent run` puts first on its PATH) hands each command over on the driver's
+          # stream (`predictable_agent_gh`), and THIS shell runs the real `gh` beside it — in the
+          # session's directory, on this machine, so the files a command names are where the session
+          # wrote them — and answers on the steer file the command waits on. With the App's token for
+          # this repository and every permission the App has there (`{scope: "gh"}`), the job's own
+          # token when the plane gives none. Held in this shell like `PC_AGENT_PUSH_TOKEN` above.
+          # REFUSED, each because the token would leave this shell or another rule owns it: `auth`
+          # (prints the token), `extension`, `alias`, `config` (run code with it), `codespace`,
+          # merging (the agent never merges) and deleting a repository. `pc_gh_refusal` is the ONE
+          # list a machine's Control Center holds too (`gh-refusal.ts`, pinned against this one).
+          # ──────────────────────────────────────────────────────────────────────────
+          PC_GH_READ=0
+          pc_gh_token() {
+            [ "${PC_GH_TOKEN_REFUSED:-}" != yes ] || return 1
+            if [ -n "${PC_GH_TOKEN:-}" ] && [ $(( $(date +%s) - ${PC_GH_TOKEN_AT:-0} )) -lt 3000 ]; then
+              return 0
+            fi
+            PC_GH_TOKEN=""
+            PC_GH_TOKEN_REFUSED=yes
+            [ -n "${CONTROL_PLANE:-}" ] && [ -n "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ] || return 1
+            PC_GH_OIDC=$(curl -sS -m 20 \
+              -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" \
+              "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${CONTROL_PLANE}" \
+              | jq -r '.value // empty') || return 1
+            [ -n "$PC_GH_OIDC" ] || return 1
+            PC_GH_TOKEN=$(printf '%s' '{"scope":"gh"}' \
+              | curl -sS -m 30 -X POST -H "Authorization: Bearer ${PC_GH_OIDC}" \
+                  -H 'content-type: application/json' --data-binary @- \
+                  "${CONTROL_PLANE}/api/cloud/org-token" | jq -r '.token // empty') || PC_GH_TOKEN=""
+            [ -n "$PC_GH_TOKEN" ] || return 1
+            PC_GH_TOKEN_REFUSED=""
+            PC_GH_TOKEN_AT=$(date +%s)
+          }
+          pc_gh_refusal() {
+            _first=""; _second=""; _skip=""
+            for _a in "$@"; do
+              case "$_a" in
+                */pulls/*/merge|*/pulls/*/merge\?*|*/merges|*/merges\?*)
+                  echo "the agent never merges: say the pull request is ready and a person merges it"; return 0 ;;
+              esac
+              # A flag's value is not a command word (`gh --repo o/r pr merge` is `pr merge`).
+              if [ -n "$_skip" ]; then _skip=""; continue; fi
+              case "$_a" in -R|--repo) _skip=1; continue ;; -*) continue ;; esac
+              if [ -z "$_first" ]; then _first=$_a; elif [ -z "$_second" ]; then _second=$_a; fi
+            done
+            case "$_first" in
+              auth) echo "gh auth is not run for a session: it would hand over the token it runs with"; return 0 ;;
+              extension|extensions|ext|alias|config|codespace|cs)
+                echo "gh ${_first} is not run for a session: it would run code with the token it runs with"; return 0 ;;
+            esac
+            case "${_first} ${_second}" in
+              "pr merge") echo "the agent never merges: say the pull request is ready and a person merges it"; return 0 ;;
+              "repo delete") echo "a repository is never deleted from an agent session"; return 0 ;;
+            esac
+            return 1
+          }
+          answer_gh_calls() {
+            [ "${PC_COMMAND}" = "agent" ] && [ -f "$AGENT_JSON" ] && [ -n "${PC_STEER_FILE:-}" ] || return 0
+            # Whole lines only: a line the driver is halfway through writing has no newline yet.
+            _total=$(wc -l < "$AGENT_JSON" | tr -d ' ')
+            [ "$_total" -gt "$PC_GH_READ" ] || return 0
+            sed -n "$((PC_GH_READ + 1)),${_total}p;${_total}q" "$AGENT_JSON" \
+              | jq -cR 'fromjson? | objects
+                  | select(.type == "system" and .subtype == "predictable_agent_gh"
+                    and (.id | type) == "string" and (.args | type) == "array")
+                  | {id, args: [.args[] | tostring], cwd: (.cwd // ""), stdin: (.stdin // "")}' \
+                > "${RUNNER_TEMP}/pc-gh-new.ndjson" || :
+            PC_GH_READ=$_total
+            while IFS= read -r _call; do
+              _id=$(printf '%s' "$_call" | jq -r '.id' | tr -cd 'a-zA-Z0-9-')
+              [ -n "$_id" ] || continue
+              # Each argument as it was, newlines included: NUL-separated, never word-split.
+              _args=()
+              while IFS= read -r -d '' _a; do _args+=("$_a"); done \
+                < <(printf '%s' "$_call" | jq -j '.args[] | . + "\u0000"')
+              _cwd=$(printf '%s' "$_call" | jq -r '.cwd')
+              [ -n "$_cwd" ] && [ -d "$_cwd" ] || _cwd="$GITHUB_WORKSPACE"
+              _in=$(printf '%s' "$_call" | jq -r '.stdin')
+              [ -n "$_in" ] && [ -f "$_in" ] || _in=/dev/null
+              : > "${RUNNER_TEMP}/pc-gh-out"
+              if _why=$(pc_gh_refusal "${_args[@]}"); then
+                printf 'gh: %s\n' "$_why" > "${RUNNER_TEMP}/pc-gh-err"; _code=1
+              elif ! command -v gh >/dev/null 2>&1; then
+                printf 'gh: gh is not installed on this runner\n' > "${RUNNER_TEMP}/pc-gh-err"; _code=127
+              else
+                if pc_gh_token; then _tok=$PC_GH_TOKEN; else _tok=${PC_AGENT_PUSH_TOKEN:-}; fi
+                ( cd "$_cwd" && GH_TOKEN="$_tok" GH_REPO="${GITHUB_REPOSITORY}" GH_PROMPT_DISABLED=1 \
+                    GH_NO_UPDATE_NOTIFIER=1 GH_PAGER=cat NO_COLOR=1 timeout 120 gh "${_args[@]}" ) \
+                  < "$_in" > "${RUNNER_TEMP}/pc-gh-out" 2> "${RUNNER_TEMP}/pc-gh-err" && _code=0 || _code=$?
+              fi
+              # Bounded as the command reads it (`maxGhCallAnswer`), and said when cut.
+              if [ "$(wc -c < "${RUNNER_TEMP}/pc-gh-out")" -gt 400000 ]; then
+                head -c 400000 "${RUNNER_TEMP}/pc-gh-out" > "${RUNNER_TEMP}/pc-gh-cut" && mv "${RUNNER_TEMP}/pc-gh-cut" "${RUNNER_TEMP}/pc-gh-out"
+                printf '\ngh: the output was cut at 400000 characters; ask for less\n' >> "${RUNNER_TEMP}/pc-gh-err"
+              fi
+              tail -c 20000 "${RUNNER_TEMP}/pc-gh-err" > "${RUNNER_TEMP}/pc-gh-errcut" || :
+              jq -cn --arg id "$_id" --argjson code "$_code" \
+                --rawfile out "${RUNNER_TEMP}/pc-gh-out" --rawfile err "${RUNNER_TEMP}/pc-gh-errcut" \
+                '{id: $id, text: ({exitCode: $code, stdout: $out, stderr: $err} | tojson), from: "github", answers: $id}' \
+                >> "$PC_STEER_FILE" || :
+            done < "${RUNNER_TEMP}/pc-gh-new.ndjson"
+            rm -f "${RUNNER_TEMP}/pc-gh-new.ndjson" "${RUNNER_TEMP}/pc-gh-out" "${RUNNER_TEMP}/pc-gh-err" \
+              "${RUNNER_TEMP}/pc-gh-errcut"
+          }
+
           : > "$RUN_JSON"
           : > "$RESULT_JSON"
           : > "$AGENT_JSON"
@@ -2658,7 +2765,7 @@ jobs:
             fi
             (
               unset ACTIONS_ID_TOKEN_REQUEST_TOKEN ACTIONS_ID_TOKEN_REQUEST_URL ACTIONS_RUNTIME_TOKEN \
-                PC_AGENT_PUSH_TOKEN GH_TOKEN PC_ORG_TOKEN PC_PUSH_TOKEN PC_PUSH_HEADER
+                PC_AGENT_PUSH_TOKEN GH_TOKEN PC_ORG_TOKEN PC_PUSH_TOKEN PC_PUSH_HEADER PC_GH_TOKEN
               predictable agent run "${PC_ORG_ARGS[@]}" \
                 --request "$AGENT_REQUEST" \
                 --pinned \
@@ -2967,6 +3074,7 @@ jobs:
             sleep "$PUSH_POLL_SECONDS"
             push_progress || :
             open_new_proposals || :
+            answer_gh_calls || :
             # AN IMPLEMENTATION'S ROUNDS REACH THIS LOG AS THEY HAPPEN (#2339), not only when the
             # driver exits: a job GitHub cancels never reaches the dump below, and a cancelled run
             # whose log says nothing about its rounds cannot be told apart from one that never
