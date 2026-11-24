@@ -130,7 +130,7 @@ Cuando haya normas y plantilla de otro tipo (un informe, un post…):
 El MCP vive en el proyecto de Firebase **`rev-ds`** (ID `rev-ds-cd11b`, en `.firebaserc`):
 
 - **Firebase Hosting** da la URL (`https://rev-ds-cd11b.web.app`) y el dominio propio. Reescribe `/mcp` a la función, manda `/` al Storybook y responde 404 a lo demás (`firebase/public/404.html`).
-- **Una Cloud Function de segunda generación**, `mcp`, en `europe-west1`, pública, con 256 MB y sin instancias mínimas: no cuesta nada mientras no se usa, a cambio de un arranque en frío de un par de segundos tras un rato parado. Está en `mcp/firebase.ts`.
+- **Una Cloud Function de segunda generación**, `mcp`, en `europe-west1`, pública, con 256 MB y sin instancias mínimas: no cuesta nada mientras no se usa, a cambio de un arranque en frío de un par de segundos tras un rato parado. Tiene un máximo de tres instancias, que es el tope de gasto: un abuso no puede escalar más allá. Está en `mcp/firebase.ts`.
 - **Lo que se despliega no es el repo**: `npm run build:firebase` empaqueta la función con su metadata en un solo fichero, en `firebase/functions/`, con un `package.json` mínimo. Firebase lo ejecuta solo antes de cada despliegue (`predeploy` en `firebase.json`), así que nunca se despliega nada con un componente sin documentar.
 
 ### Requisito: el plan Blaze
