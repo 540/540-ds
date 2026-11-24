@@ -35,7 +35,7 @@
 # The stamp below is how the Control Center knows whether this repository is running a
 # current copy. It is compared as a NUMBER, never as a diff, so your own edits to this
 # file — a bigger `runner:`, a different `heap_mb` — are yours and are left alone.
-# predictable-workflow-version: 95
+# predictable-workflow-version: 100
 name: Predictable Code
 # EACH RUN NAMES ITS TARGET (v94, #2917), so the Control Center finds the run a dispatch started
 # among several started together — a crew's agents dispatch side by side (`RUN_TITLE_PREFIX`).
@@ -1619,8 +1619,8 @@ jobs:
           # opens each proposal WHILE its session runs (below), and the Propose step everything else.
           # Quoted heredoc: nothing in it is expanded here. Written to the runner's temporary
           # directory, beside the runtime package the Propose step already runs (`launcher.sh`): the
-          # agent's session shares this uid and could rewrite either, which is why the session holds
-          # no credential of its own to act with — see "THE AGENT'S SESSION HOLDS NOTHING" below.
+          # agent's session shares this uid and could rewrite either, which is why no token of this
+          # job's but the one it is given reaches it — see "THE AGENT'S SESSION HOLDS ONE CREDENTIAL" below.
           # ──────────────────────────────────────────────────────────────────────────
           cat > "${RUNNER_TEMP}/pc-propose-helpers.sh" <<'PC_PROPOSE_HELPERS'
           # WHY A PUSH IS WRAPPED AT ALL. A run can do every piece of work correctly and
@@ -2231,26 +2231,17 @@ jobs:
           }
 
           # ──────────────────────────────────────────────────────────────────────────
-          # THE SESSION'S `gh` (v95): the session holds no GitHub credential, so its `gh` (a stand-in
-          # `predictable agent run` puts first on its PATH) hands each command over on the driver's
-          # stream (`predictable_agent_gh`), and THIS shell runs the real `gh` beside it — in the
-          # session's directory, on this machine, so the files a command names are where the session
-          # wrote them — and answers on the steer file the command waits on. With the App's token for
-          # this repository and every permission the App has there (`{scope: "gh"}`), the job's own
-          # token when the plane gives none. Held in this shell like `PC_AGENT_PUSH_TOKEN` above.
-          # REFUSED, each because the token would leave this shell or another rule owns it: `auth`
-          # (prints the token), `extension`, `alias`, `config` (run code with it), `codespace`,
-          # merging (the agent never merges) and deleting a repository. `pc_gh_refusal` is the ONE
-          # list a machine's Control Center holds too (`gh-refusal.ts`, pinned against this one).
+          # THE SESSION'S GITHUB TOKEN (v97): the agent uses `gh` and `git` FREELY, with the App's
+          # installation token for this repository and every permission the App has there
+          # (`{scope: "gh"}`), minted once by the plane from this job's OIDC token and handed to the
+          # session as `GH_TOKEN` and as git's credential for github.com (below, at the spawn). A
+          # relay that ran each `gh` command in this shell on the session's behalf (v95) timed out
+          # on every call, and a session with no git credential could not even read the blobs a
+          # partial clone leaves out — so a conflict could not be merged.
+          # When the plane gives no token (a run started by hand) the session gets none.
           # ──────────────────────────────────────────────────────────────────────────
-          PC_GH_READ=0
           pc_gh_token() {
-            [ "${PC_GH_TOKEN_REFUSED:-}" != yes ] || return 1
-            if [ -n "${PC_GH_TOKEN:-}" ] && [ $(( $(date +%s) - ${PC_GH_TOKEN_AT:-0} )) -lt 3000 ]; then
-              return 0
-            fi
             PC_GH_TOKEN=""
-            PC_GH_TOKEN_REFUSED=yes
             [ -n "${CONTROL_PLANE:-}" ] && [ -n "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ] || return 1
             PC_GH_OIDC=$(curl -sS -m 20 \
               -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" \
@@ -2261,80 +2252,7 @@ jobs:
               | curl -sS -m 30 -X POST -H "Authorization: Bearer ${PC_GH_OIDC}" \
                   -H 'content-type: application/json' --data-binary @- \
                   "${CONTROL_PLANE}/api/cloud/org-token" | jq -r '.token // empty') || PC_GH_TOKEN=""
-            [ -n "$PC_GH_TOKEN" ] || return 1
-            PC_GH_TOKEN_REFUSED=""
-            PC_GH_TOKEN_AT=$(date +%s)
-          }
-          pc_gh_refusal() {
-            _first=""; _second=""; _skip=""
-            for _a in "$@"; do
-              case "$_a" in
-                */pulls/*/merge|*/pulls/*/merge\?*|*/merges|*/merges\?*)
-                  echo "the agent never merges: say the pull request is ready and a person merges it"; return 0 ;;
-              esac
-              # A flag's value is not a command word (`gh --repo o/r pr merge` is `pr merge`).
-              if [ -n "$_skip" ]; then _skip=""; continue; fi
-              case "$_a" in -R|--repo) _skip=1; continue ;; -*) continue ;; esac
-              if [ -z "$_first" ]; then _first=$_a; elif [ -z "$_second" ]; then _second=$_a; fi
-            done
-            case "$_first" in
-              auth) echo "gh auth is not run for a session: it would hand over the token it runs with"; return 0 ;;
-              extension|extensions|ext|alias|config|codespace|cs)
-                echo "gh ${_first} is not run for a session: it would run code with the token it runs with"; return 0 ;;
-            esac
-            case "${_first} ${_second}" in
-              "pr merge") echo "the agent never merges: say the pull request is ready and a person merges it"; return 0 ;;
-              "repo delete") echo "a repository is never deleted from an agent session"; return 0 ;;
-            esac
-            return 1
-          }
-          answer_gh_calls() {
-            [ "${PC_COMMAND}" = "agent" ] && [ -f "$AGENT_JSON" ] && [ -n "${PC_STEER_FILE:-}" ] || return 0
-            # Whole lines only: a line the driver is halfway through writing has no newline yet.
-            _total=$(wc -l < "$AGENT_JSON" | tr -d ' ')
-            [ "$_total" -gt "$PC_GH_READ" ] || return 0
-            sed -n "$((PC_GH_READ + 1)),${_total}p;${_total}q" "$AGENT_JSON" \
-              | jq -cR 'fromjson? | objects
-                  | select(.type == "system" and .subtype == "predictable_agent_gh"
-                    and (.id | type) == "string" and (.args | type) == "array")
-                  | {id, args: [.args[] | tostring], cwd: (.cwd // ""), stdin: (.stdin // "")}' \
-                > "${RUNNER_TEMP}/pc-gh-new.ndjson" || :
-            PC_GH_READ=$_total
-            while IFS= read -r _call; do
-              _id=$(printf '%s' "$_call" | jq -r '.id' | tr -cd 'a-zA-Z0-9-')
-              [ -n "$_id" ] || continue
-              # Each argument as it was, newlines included: NUL-separated, never word-split.
-              _args=()
-              while IFS= read -r -d '' _a; do _args+=("$_a"); done \
-                < <(printf '%s' "$_call" | jq -j '.args[] | . + "\u0000"')
-              _cwd=$(printf '%s' "$_call" | jq -r '.cwd')
-              [ -n "$_cwd" ] && [ -d "$_cwd" ] || _cwd="$GITHUB_WORKSPACE"
-              _in=$(printf '%s' "$_call" | jq -r '.stdin')
-              [ -n "$_in" ] && [ -f "$_in" ] || _in=/dev/null
-              : > "${RUNNER_TEMP}/pc-gh-out"
-              if _why=$(pc_gh_refusal "${_args[@]}"); then
-                printf 'gh: %s\n' "$_why" > "${RUNNER_TEMP}/pc-gh-err"; _code=1
-              elif ! command -v gh >/dev/null 2>&1; then
-                printf 'gh: gh is not installed on this runner\n' > "${RUNNER_TEMP}/pc-gh-err"; _code=127
-              else
-                if pc_gh_token; then _tok=$PC_GH_TOKEN; else _tok=${PC_AGENT_PUSH_TOKEN:-}; fi
-                ( cd "$_cwd" && GH_TOKEN="$_tok" GH_REPO="${GITHUB_REPOSITORY}" GH_PROMPT_DISABLED=1 \
-                    GH_NO_UPDATE_NOTIFIER=1 GH_PAGER=cat NO_COLOR=1 timeout 120 gh "${_args[@]}" ) \
-                  < "$_in" > "${RUNNER_TEMP}/pc-gh-out" 2> "${RUNNER_TEMP}/pc-gh-err" && _code=0 || _code=$?
-              fi
-              # Bounded as the command reads it (`maxGhCallAnswer`), and said when cut.
-              if [ "$(wc -c < "${RUNNER_TEMP}/pc-gh-out")" -gt 400000 ]; then
-                head -c 400000 "${RUNNER_TEMP}/pc-gh-out" > "${RUNNER_TEMP}/pc-gh-cut" && mv "${RUNNER_TEMP}/pc-gh-cut" "${RUNNER_TEMP}/pc-gh-out"
-                printf '\ngh: the output was cut at 400000 characters; ask for less\n' >> "${RUNNER_TEMP}/pc-gh-err"
-              fi
-              tail -c 20000 "${RUNNER_TEMP}/pc-gh-err" > "${RUNNER_TEMP}/pc-gh-errcut" || :
-              jq -cn --arg id "$_id" --argjson code "$_code" \
-                --rawfile out "${RUNNER_TEMP}/pc-gh-out" --rawfile err "${RUNNER_TEMP}/pc-gh-errcut" \
-                '{id: $id, text: ({exitCode: $code, stdout: $out, stderr: $err} | tojson), from: "github", answers: $id}' \
-                >> "$PC_STEER_FILE" || :
-            done < "${RUNNER_TEMP}/pc-gh-new.ndjson"
-            rm -f "${RUNNER_TEMP}/pc-gh-new.ndjson" "${RUNNER_TEMP}/pc-gh-out" "${RUNNER_TEMP}/pc-gh-err" \
-              "${RUNNER_TEMP}/pc-gh-errcut"
+            [ -n "$PC_GH_TOKEN" ]
           }
 
           : > "$RUN_JSON"
@@ -2717,16 +2635,14 @@ jobs:
               git fetch -q --no-tags origin "+refs/heads/${PC_STACK}:refs/remotes/origin/${PC_STACK}" || continue
               git diff --numstat HEAD "refs/remotes/origin/${PC_STACK}" > /dev/null || true
             done || true
-            # THE AGENT'S SESSION HOLDS NOTHING OF THIS JOB'S IT COULD ACT WITH (#2599 review). Its
-            # input is text from whoever opened the issue or wrote the comment, and it works with
-            # `bypassPermissions`, so the reply's checks are a boundary only if the session cannot go
-            # around them. The write token `actions/checkout` persisted is REMOVED, not moved aside —
-            # anything kept on this runner the session could read — the extraheader unset and each
-            # credentials file it includes emptied (the checkout's own cleanup still finds the file);
-            # the Propose step sets its own from its token to push what the reply names. And the
-            # session runs without the OIDC request token and URL and the runtime token, so it can
-            # neither mint a token the Control Center trusts nor report for itself: this step's stream
-            # and the Propose step's report are the only two that carry one.
+            # THE AGENT'S SESSION HOLDS ONE CREDENTIAL, THE ONE IT IS GIVEN (v97): the App's token for
+            # this repository, as `GH_TOKEN` and git's credential (at the spawn below). Nothing else of
+            # this job's: the write token `actions/checkout` persisted is REMOVED, not moved aside —
+            # the extraheader unset and each credentials file it includes emptied (the checkout's own
+            # cleanup still finds the file); the Propose step sets its own from its token to push what
+            # the reply names. And the session runs without the OIDC request token and URL and the
+            # runtime token, so it can neither mint a token the Control Center trusts nor report for
+            # itself: this step's stream and the Propose step's report are the only two that carry one.
             pc_headers=$(git config --local --get-regexp '^http\..*\.extraheader$' 2>/dev/null || true)
             while IFS=' ' read -r key _; do
               if [ -n "$key" ]; then git config --local --unset-all "$key" || true; fi
@@ -2763,9 +2679,34 @@ jobs:
               unset PC_ORG_TOKEN
               PC_ORG_ARGS=(--org-checkouts "$PC_ORG_DIR")
             fi
+            # THE SESSION'S GITHUB TOKEN (v97, `pc_gh_token` above): `gh` reads `GH_TOKEN`, and git
+            # reads the same token as its github.com credential through `GIT_CONFIG_*` — never written
+            # to a configuration file — so `gh`, `git fetch` and a partial clone's lazy reads all work
+            # in the session as they do for a person.
+            # MASKED before anything the session prints can reach this job's log (`$AGENT_JSON` is
+            # printed below): the token itself and the header git sends, since base64 is no mask.
+            # FAILS CLOSED: when the plane gives no token the session gets none — never this job's
+            # own, which this shell alone holds — and `gh` and `git` there answer as unauthenticated.
+            PC_SESSION_GH_TOKEN=""
+            PC_SESSION_GH_HEADER=""
+            if pc_gh_token; then
+              PC_SESSION_GH_TOKEN=$PC_GH_TOKEN
+              PC_SESSION_GH_HEADER="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$PC_SESSION_GH_TOKEN" | base64 | tr -d '\n')"
+              echo "::add-mask::${PC_SESSION_GH_TOKEN}"
+              echo "::add-mask::${PC_SESSION_GH_HEADER#AUTHORIZATION: basic }"
+            else
+              echo "::warning::Predictable Code gave this session no GitHub token, so its gh and git run without one"
+            fi
             (
               unset ACTIONS_ID_TOKEN_REQUEST_TOKEN ACTIONS_ID_TOKEN_REQUEST_URL ACTIONS_RUNTIME_TOKEN \
-                PC_AGENT_PUSH_TOKEN GH_TOKEN PC_ORG_TOKEN PC_PUSH_TOKEN PC_PUSH_HEADER PC_GH_TOKEN
+                PC_AGENT_PUSH_TOKEN GH_TOKEN GITHUB_TOKEN PC_ORG_TOKEN PC_PUSH_TOKEN PC_PUSH_HEADER \
+                PC_GH_TOKEN PC_GH_OIDC
+              if [ -n "$PC_SESSION_GH_TOKEN" ]; then
+                export GH_TOKEN="$PC_SESSION_GH_TOKEN" GH_REPO="${GITHUB_REPOSITORY}" GH_PROMPT_DISABLED=1 \
+                  GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0="http.https://github.com/.extraheader" \
+                  GIT_CONFIG_VALUE_0="$PC_SESSION_GH_HEADER"
+              fi
+              unset PC_SESSION_GH_TOKEN PC_SESSION_GH_HEADER
               predictable agent run "${PC_ORG_ARGS[@]}" \
                 --request "$AGENT_REQUEST" \
                 --pinned \
@@ -2810,12 +2751,21 @@ jobs:
           # description did not say writes nothing and reports its draft (a `spec-draft` progress
           # event, pushed like every other) for the person to confirm in the Control Center. The
           # CONFIRMED pass carries the name they approved, and writes.
-          elif [ "${PC_COMMAND}" = "spec-generate" ] && [ -z "${PC_TEXT}" ]; then
-            predictable specs new --context "${PC_PROMPT}" --confirm-assumptions \
-              --path "$PWD/.predictable-code" --json > "$RESULT_JSON" 2> "$RUN_JSON" &
+          #
+          # EITHER PASS WRITES THE SPEC ONLY (v98, #3018): `specs new` implements by default, and
+          # here the plane starts the implementation as a run of its own on the spec's branch once
+          # this one has proposed it (`--no-implement`). A person who chose spec only is `target`
+          # `backlog`, and the spec is written with its backlog mark (`--backlog`).
           elif [ "${PC_COMMAND}" = "spec-generate" ]; then
-            predictable specs new "${PC_TEXT}" --context "${PC_PROMPT}" \
-              --path "$PWD/.predictable-code" --json > "$RESULT_JSON" 2> "$RUN_JSON" &
+            PC_SPEC_CHOICE="--no-implement"
+            [ "${PC_TARGET:-}" = "backlog" ] && PC_SPEC_CHOICE="--backlog"
+            if [ -z "${PC_TEXT}" ]; then
+              predictable specs new --context "${PC_PROMPT}" --confirm-assumptions "${PC_SPEC_CHOICE}" \
+                --path "$PWD/.predictable-code" --json > "$RESULT_JSON" 2> "$RUN_JSON" &
+            else
+              predictable specs new "${PC_TEXT}" --context "${PC_PROMPT}" "${PC_SPEC_CHOICE}" \
+                --path "$PWD/.predictable-code" --json > "$RESULT_JSON" 2> "$RUN_JSON" &
+            fi
           elif [ "${PC_COMMAND}" = "spec-describe" ]; then
             predictable specs describe "${PC_TARGET}" --text "${PC_TEXT}" \
               --path "$PWD/.predictable-code" --json > "$RESULT_JSON" 2> "$RUN_JSON" &
@@ -2985,6 +2935,16 @@ jobs:
                   return "$REVIEW_STATUS"
                 ;;
               esac
+              # A REQUIREMENT LEFT WITHOUT A PASSING TEST is a defect the change introduces (#3019), but
+              # no code fix answers it: its rows (`category` `requirement-test`) are left to the
+              # requirement-tests session the Control Center starts on this branch, and the stacked
+              # fix takes only the code's defects. A review that owes only tests stacks no fix.
+              REVIEW_CODE_DEFECTS=$(jq -r '[.introduced[] | select(.category != "requirement-test")] | length' \
+                "$REVIEW_FILE" 2>/dev/null | tr -cd '0-9')
+              if [ "${REVIEW_CODE_DEFECTS:-0}" -eq 0 ]; then
+                printf 'none\nthis change owes tests for requirements, not a code fix: a session writes and links them on the branch\n' > "$REVIEW_FIX"
+                return "$REVIEW_STATUS"
+              fi
               if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
                 printf 'not-attempted\nthis repository has no model key (ANTHROPIC_API_KEY), so no fix was attempted\n' > "$REVIEW_FIX"
                 return "$REVIEW_STATUS"
@@ -3000,10 +2960,11 @@ jobs:
               # names the defects and the rules every fix keeps.
               REVIEW_BATCH="${RUNNER_TEMP}/pc-review-fix-batch.json"
               jq --arg pr "${PC_TARGET}" '
-                {findings: [.introduced[] | {fqn, vc, category}],
-                 prompt: ("Pull request #" + $pr + " introduces " + (.introduced | length | tostring)
+                [.introduced[] | select(.category != "requirement-test")] as $code
+                | {findings: [$code[] | {fqn, vc, category}],
+                 prompt: ("Pull request #" + $pr + " introduces " + ($code | length | tostring)
                    + " defect(s) that Predictable Code reports. Fix each one in the source, the way a careful programmer would. Do NOT delete or disable code, and do NOT weaken an existing check: either would make a defect disappear without fixing anything. A fix must leave each defect gone and add no finding.\n\n"
-                   + ([.introduced[] | "- " + .file + ":" + (.line | tostring) + " in " + .fqn + " (" + .label + "): " + .message] | join("\n")))}' \
+                   + ([$code[] | "- " + .file + ":" + (.line | tostring) + " in " + .fqn + " (" + .label + "): " + .message] | join("\n")))}' \
                 "$REVIEW_FILE" > "$REVIEW_BATCH"
               FIX_DEADLINE=$(( PC_STARTED + PC_JOB_SECONDS - 900 - $(date +%s) ))
               [ "$FIX_DEADLINE" -gt 300 ] || FIX_DEADLINE=300
@@ -3074,7 +3035,6 @@ jobs:
             sleep "$PUSH_POLL_SECONDS"
             push_progress || :
             open_new_proposals || :
-            answer_gh_calls || :
             # AN IMPLEMENTATION'S ROUNDS REACH THIS LOG AS THEY HAPPEN (#2339), not only when the
             # driver exits: a job GitHub cancels never reaches the dump below, and a cancelled run
             # whose log says nothing about its rounds cannot be told apart from one that never
@@ -4173,13 +4133,14 @@ jobs:
             done < "$PC_OPENED_NOW"
             PUSHES=$(jq -r '.pushes | length' "$AGENT_FILE" | tr -cd '0-9')
             # A PUSH ONLY FOR A PULL REQUEST OF THIS REPOSITORY, onto its own head — opened, a comment
-            # mentioning the agent, or the agent's own one left conflicting (#2685) — never the
+            # mentioning the agent, the agent's own one left conflicting (#2685), or one whose review
+            # owes tests (#3019) — never the
             # default branch (#2599 review). The event's kind is read from the run's id, which the
             # Control Center dispatched as `target`, and the default branch from the dispatch: neither
             # from anything the agent's session could have written.
             PC_MAY_PUSH=no
             case "${PC_TARGET}" in
-              [0-9]*-pull-request-opened-*|[0-9]*-pull-request-comment-*|[0-9]*-pull-request-conflict-*)
+              [0-9]*-pull-request-opened-*|[0-9]*-pull-request-comment-*|[0-9]*-pull-request-conflict-*|[0-9]*-pull-request-tests-*)
                 [ -n "${PC_DEFAULT_BRANCH}" ] && [ "${GITHUB_REF_NAME}" != "${PC_DEFAULT_BRANCH}" ] && PC_MAY_PUSH=yes
                 ;;
             esac
@@ -4214,7 +4175,7 @@ jobs:
               '($agent[0]) as $a |
                ([$a.refused[]?] + ($notes | split("\n") | map(select(. != "")))) as $left |
                {run: $run, result: {
-                 outcome: (if $a.outcome == "acted" and ($a.comments | length) == 0 and ($a.labels | length) == 0 and (($a.issues // []) | length) == 0 and (($a.engineReports // []) | length) == 0 and ($opened | length) == 0 and ($pushed | length) == 0 and ($a.avatarSvg == null) and (($a.crew // []) | length) == 0 then "nothing" else $a.outcome end),
+                 outcome: (if $a.outcome == "acted" and ($a.comments | length) == 0 and ($a.labels | length) == 0 and (($a.issues // []) | length) == 0 and (($a.engineReports // []) | length) == 0 and ($opened | length) == 0 and ($pushed | length) == 0 and ($a.avatarSvg == null) and (($a.crew // []) | length) == 0 and (($a.merges // []) | length) == 0 then "nothing" else $a.outcome end),
                  title: ($a.title // null),
                  summary: ($a.summary // ""),
                  reason: (if ($left | length) > 0 then ((if $a.reason then $a.reason + "; " else "" end) + "left out: " + ($left | join("; "))) else $a.reason end),
@@ -4224,6 +4185,9 @@ jobs:
                  # suggested for the repository, each held by the driver and again by the plane.
                  avatarSvg: ($a.avatarSvg // null),
                  crew: ($a.crew // []),
+                 # THE MERGES OF A MERGE SESSION (v99, #3088): the pull requests a person handed it that
+                 # `predictable agent merge` merged, already on GitHub; the plane records them.
+                 merges: ($a.merges // []),
                  timedOut: ($a.timedOut // false),
                  pullRequests: $opened, pushes: $pushed}}' \
               > "${RUNNER_TEMP}/pc-agent-report.json"
