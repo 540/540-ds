@@ -116,7 +116,7 @@ Una charla de 540 lleva imágenes **sí o sí**. Una charla solo de texto y tarj
 
 **De dónde salen.** De la **biblioteca de imágenes de 540** («Fundamentos → Biblioteca de imágenes» en Storybook; `search-images` en el MCP), elegidas por la temática de cada parada. Se escriben como `biblioteca:<id>` en el `src` de la foto (`photo='{"src":"biblioteca:carretera-costa-atardecer","alt":"…"}'`) y el render las incrusta. Solo vienen de fuera las capturas y las fotos propias del proyecto que se cuenta. Nunca de una búsqueda cualquiera. Las fotos de muestra de la plantilla no van en una charla real.
 
-- Las **imágenes** (carreteras, paisajes, arquitectura, tecnología, pagos) cuentan algo: van en la portada, los títulos de bloque y los textos con su imagen al lado.
+- Las **imágenes** (carreteras, paisajes, arquitectura, pagos) cuentan algo: van en la portada, los títulos de bloque y los textos con su imagen al lado.
 - Las **texturas** (luz, desenfoques, líneas) son fondos abstractos: sirven para una cita o para un texto con su imagen al lado cuando ninguna escena encaja.
 - Si la biblioteca no tiene nada para un tema, se habla con la diseñadora (ver 13) para añadir fotos; no se busca una por fuera.
 

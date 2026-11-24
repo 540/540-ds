@@ -30,7 +30,7 @@ Esta guía dice qué hace buena una pieza de 540. Las normas de cada tipo de pie
 ## Imágenes
 
 - Una pieza de 540 lleva imágenes. En una charla, como mínimo en la portada, en cada título de bloque y en una parada de cada bloque (es norma).
-- Las fotos salen de la biblioteca de imágenes de 540 (`search-images` en el MCP, `biblioteca:<id>` en el `src`). Busca por lo que cuenta la sección: un proceso o una hoja de ruta, una carretera; el contexto o la visión, un paisaje; una empresa o un sistema, arquitectura; un producto digital, tecnología.
+- Las fotos salen de la biblioteca de imágenes de 540 (`search-images` en el MCP, `biblioteca:<id>` en el `src`). Busca por lo que cuenta la sección: un proceso o una hoja de ruta, una carretera; el contexto o la visión, un paisaje; una empresa o un sistema, arquitectura.
 - Elige la imagen por lo que cuenta la sección, no por bonita: si la sección habla de un proceso, un camino que avanza; si habla de pagos, un datáfono. La temática de la imagen y la de la sección tienen que poder decirse en la misma frase.
 - Varía el motivo: dos cañones o dos carreteras seguidas se leen como la misma foto. Mezcla escenas con alguna textura.
 - Claras y con aire mejor que oscuras y recargadas: el velo del componente ya oscurece lo que lleva texto encima.

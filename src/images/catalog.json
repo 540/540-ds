@@ -360,64 +360,6 @@
       "license": "Unsplash"
     },
     {
-      "id": "tecnologia-escritorio-app",
-      "kind": "imagen",
-      "topics": [
-        "tecnología",
-        "producto digital",
-        "app",
-        "diseño",
-        "desarrollo",
-        "dashboard"
-      ],
-      "description": "Escritorio visto desde arriba con un ordenador, un móvil en su soporte con una app de datos y un teclado",
-      "tone": "clara",
-      "orientation": "vertical",
-      "width": 1600,
-      "height": 2000,
-      "author": "Balázs Kétyi",
-      "source": "https://unsplash.com/photos/L0nipfx-Ry4",
-      "license": "Unsplash"
-    },
-    {
-      "id": "tecnologia-movil-negro-1",
-      "kind": "imagen",
-      "topics": [
-        "tecnología",
-        "móvil",
-        "producto digital",
-        "app",
-        "dispositivo"
-      ],
-      "description": "Parte trasera de un móvil negro sobre fondo negro",
-      "tone": "oscura",
-      "orientation": "horizontal",
-      "width": 2400,
-      "height": 1600,
-      "author": "Omid Armin",
-      "source": "https://unsplash.com/photos/RiIpjkAy0qI",
-      "license": "Unsplash"
-    },
-    {
-      "id": "tecnologia-movil-negro-2",
-      "kind": "imagen",
-      "topics": [
-        "tecnología",
-        "móvil",
-        "producto digital",
-        "app",
-        "dispositivo"
-      ],
-      "description": "Móvil negro tumbado sobre una mesa oscura, con las cámaras enfocadas",
-      "tone": "oscura",
-      "orientation": "horizontal",
-      "width": 2400,
-      "height": 1600,
-      "author": "ubeyonroad",
-      "source": "https://unsplash.com/photos/zJ4XmQsZzMI",
-      "license": "Unsplash"
-    },
-    {
       "id": "textura-degradado-naranja",
       "kind": "textura",
       "topics": [

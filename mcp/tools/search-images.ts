@@ -32,7 +32,7 @@ export const searchImages = defineTool({
     '(`biblioteca:<id>`) as the `src` of the photo and base the `alt` on its `description`. `imagen` photos are scenes ' +
     '(roads, landscapes, architecture, technology, payments); `textura` photos are abstract backgrounds (light, blur, ' +
     'lines). Themes and descriptions are in Spanish: search with Spanish words for what the part of the piece is ' +
-    'about (e.g. "camino proceso", "pagos", "tecnología móvil", "luz"). Pass the ids already used in `exclude`: a photo ' +
+    'about (e.g. "camino proceso", "pagos", "arquitectura", "luz"). Pass the ids already used in `exclude`: a photo ' +
     'never repeats in a piece.',
   inputSchema: {
     query: z.string().optional().describe('Spanish words for the theme, e.g. "hoja de ruta", "equipo", "arquitectura". Omit to list the whole library.'),
