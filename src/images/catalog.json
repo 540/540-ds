@@ -1,0 +1,876 @@
+{
+  "images": [
+    {
+      "id": "arquitectura-edificio-contrapicado-1",
+      "kind": "imagen",
+      "topics": [
+        "arquitectura",
+        "ciudad",
+        "empresa",
+        "estructura",
+        "solidez",
+        "ambición"
+      ],
+      "description": "Dos edificios de oficinas vistos desde abajo, en blanco y negro sobre cielo negro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Omar Rosell",
+      "source": "https://unsplash.com/photos/9UrRjmxlWKs",
+      "license": "Unsplash"
+    },
+    {
+      "id": "arquitectura-edificio-contrapicado-2",
+      "kind": "imagen",
+      "topics": [
+        "arquitectura",
+        "ciudad",
+        "empresa",
+        "estructura",
+        "escala",
+        "crecimiento"
+      ],
+      "description": "Rascacielos de líneas horizontales visto desde abajo, en gris sobre negro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1800,
+      "author": "Mike Hindle",
+      "source": "https://unsplash.com/photos/otqhWc2DWjY",
+      "license": "Unsplash"
+    },
+    {
+      "id": "arquitectura-fachada-oscura",
+      "kind": "imagen",
+      "topics": [
+        "arquitectura",
+        "ciudad",
+        "empresa",
+        "sistema",
+        "orden",
+        "repetición"
+      ],
+      "description": "Fachada de cristal y módulos verticales casi en negro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Samuel Scalzo",
+      "source": "https://unsplash.com/photos/xyuYk9oLA8I",
+      "license": "Unsplash"
+    },
+    {
+      "id": "arquitectura-puerta-silueta",
+      "kind": "imagen",
+      "topics": [
+        "arquitectura",
+        "personas",
+        "decisión",
+        "umbral",
+        "cambio",
+        "empezar"
+      ],
+      "description": "Silueta de una persona que cruza una puerta iluminada al fondo de un pasillo oscuro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Mari Neroli",
+      "source": "https://unsplash.com/photos/mM7fIMtVpXU",
+      "license": "Unsplash"
+    },
+    {
+      "id": "arquitectura-soportales-sombras",
+      "kind": "imagen",
+      "topics": [
+        "arquitectura",
+        "ciudad",
+        "proceso",
+        "ritmo",
+        "perspectiva",
+        "estructura"
+      ],
+      "description": "Soportales de hormigón con sombras diagonales, en blanco y negro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "İrfan Simsar",
+      "source": "https://unsplash.com/photos/BfeKjmosfBE",
+      "license": "Unsplash"
+    },
+    {
+      "id": "arquitectura-ventanas-oscuro",
+      "kind": "imagen",
+      "topics": [
+        "arquitectura",
+        "minimalismo",
+        "pausa",
+        "detalle",
+        "foco"
+      ],
+      "description": "Cinco ventanas estrechas de luz en una pared negra",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1800,
+      "author": "Rafael Garcin",
+      "source": "https://unsplash.com/photos/sdo8F_7y2UY",
+      "license": "Unsplash"
+    },
+    {
+      "id": "carretera-ciclista-contraluz",
+      "kind": "imagen",
+      "topics": [
+        "carretera",
+        "deporte",
+        "personas",
+        "esfuerzo",
+        "ritmo",
+        "progreso"
+      ],
+      "description": "Ciclista a contraluz en una carretera, con su sombra larga en el asfalto, en tonos cálidos",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1350,
+      "author": "Sebastian Pociecha",
+      "source": "https://unsplash.com/photos/R4lUCF2EBW0",
+      "license": "Unsplash"
+    },
+    {
+      "id": "carretera-ciclistas-curva",
+      "kind": "imagen",
+      "topics": [
+        "carretera",
+        "deporte",
+        "equipo",
+        "personas",
+        "colaboración",
+        "ritmo"
+      ],
+      "description": "Dos ciclistas tomando una curva de montaña con luz de tarde",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1350,
+      "author": "Jack Delulio",
+      "source": "https://unsplash.com/photos/oro0KHgeQ_g",
+      "license": "Unsplash"
+    },
+    {
+      "id": "carretera-costa-atardecer",
+      "kind": "imagen",
+      "topics": [
+        "carretera",
+        "viaje",
+        "camino",
+        "horizonte",
+        "futuro",
+        "estrategia"
+      ],
+      "description": "Carretera de costa que se pierde hacia el sol, con el mar a la izquierda",
+      "tone": "clara",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1601,
+      "author": "Will Truettner",
+      "source": "https://unsplash.com/photos/SKwMql8wenU",
+      "license": "Unsplash"
+    },
+    {
+      "id": "carretera-curvas-montana",
+      "kind": "imagen",
+      "topics": [
+        "carretera",
+        "camino",
+        "proceso",
+        "hoja de ruta",
+        "recorrido",
+        "complejidad"
+      ],
+      "description": "Carretera de curvas que sube por una ladera verde, vista desde arriba",
+      "tone": "neutra",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1800,
+      "author": "Michael Scott",
+      "source": "https://unsplash.com/photos/iYw4K_akX_U",
+      "license": "Unsplash"
+    },
+    {
+      "id": "pagos-movil-datafono",
+      "kind": "imagen",
+      "topics": [
+        "pagos",
+        "fintech",
+        "comercio",
+        "retail",
+        "móvil",
+        "banca"
+      ],
+      "description": "Mano que paga con el móvil en un datáfono",
+      "tone": "clara",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Jonas Leupe",
+      "source": "https://unsplash.com/photos/XL1YpEnVLb0",
+      "license": "Unsplash"
+    },
+    {
+      "id": "pagos-tarjeta-datafono",
+      "kind": "imagen",
+      "topics": [
+        "pagos",
+        "fintech",
+        "comercio",
+        "retail",
+        "tarjeta",
+        "banca"
+      ],
+      "description": "Mano que acerca una tarjeta a un datáfono sobre una mesa naranja",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Towfiqu barbhuiya",
+      "source": "https://unsplash.com/photos/HNPrWOH2Z8U",
+      "license": "Unsplash"
+    },
+    {
+      "id": "paisaje-acantilado-atardecer",
+      "kind": "imagen",
+      "topics": [
+        "paisaje",
+        "naturaleza",
+        "horizonte",
+        "visión",
+        "perspectiva",
+        "contexto"
+      ],
+      "description": "Mesetas y acantilados del desierto bajo un cielo de tormenta al atardecer",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Lucas Chizzali",
+      "source": "https://unsplash.com/photos/DYPmbe_jE80",
+      "license": "Unsplash"
+    },
+    {
+      "id": "paisaje-canon-atardecer",
+      "kind": "imagen",
+      "topics": [
+        "paisaje",
+        "naturaleza",
+        "escala",
+        "visión",
+        "exploración",
+        "contexto"
+      ],
+      "description": "Gran cañón al atardecer, con nubes y rayos de sol",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Mark Basarab",
+      "source": "https://unsplash.com/photos/fEOjy7RQ-DQ",
+      "license": "Unsplash"
+    },
+    {
+      "id": "paisaje-canon-cielo",
+      "kind": "imagen",
+      "topics": [
+        "paisaje",
+        "naturaleza",
+        "salida",
+        "oportunidad",
+        "foco",
+        "reto"
+      ],
+      "description": "Grieta estrecha entre dos paredes de roca roja, con el cielo azul al fondo",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Mike Newbry",
+      "source": "https://unsplash.com/photos/CGGW_sVrPBo",
+      "license": "Unsplash"
+    },
+    {
+      "id": "paisaje-canon-oscuro",
+      "kind": "imagen",
+      "topics": [
+        "paisaje",
+        "naturaleza",
+        "reto",
+        "dificultad",
+        "salida",
+        "exploración"
+      ],
+      "description": "Cañón estrecho de roca naranja en penumbra, con el cielo blanco arriba",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Creed Ferguson",
+      "source": "https://unsplash.com/photos/2Ihb_qPRwFE",
+      "license": "Unsplash"
+    },
+    {
+      "id": "paisaje-canon-rojo",
+      "kind": "imagen",
+      "topics": [
+        "paisaje",
+        "naturaleza",
+        "camino",
+        "exploración",
+        "reto",
+        "descubrimiento"
+      ],
+      "description": "Desfiladero de roca roja con un árbol seco y un sendero de arena",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Mike Newbry",
+      "source": "https://unsplash.com/photos/nmICz80M6Bo",
+      "license": "Unsplash"
+    },
+    {
+      "id": "paisaje-sol-colina",
+      "kind": "imagen",
+      "topics": [
+        "paisaje",
+        "naturaleza",
+        "personas",
+        "meta",
+        "esfuerzo",
+        "exploración"
+      ],
+      "description": "Persona que camina por la cresta de una duna, a contraluz bajo el sol",
+      "tone": "neutra",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1601,
+      "author": "Yaroslav Rivny",
+      "source": "https://unsplash.com/photos/3sg6eu7Vm18",
+      "license": "Unsplash"
+    },
+    {
+      "id": "tecnologia-escritorio-app",
+      "kind": "imagen",
+      "topics": [
+        "tecnología",
+        "producto digital",
+        "app",
+        "diseño",
+        "desarrollo",
+        "dashboard"
+      ],
+      "description": "Escritorio visto desde arriba con un ordenador, un móvil en su soporte con una app de datos y un teclado",
+      "tone": "clara",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2000,
+      "author": "Balázs Kétyi",
+      "source": "https://unsplash.com/photos/L0nipfx-Ry4",
+      "license": "Unsplash"
+    },
+    {
+      "id": "tecnologia-movil-negro-1",
+      "kind": "imagen",
+      "topics": [
+        "tecnología",
+        "móvil",
+        "producto digital",
+        "app",
+        "dispositivo"
+      ],
+      "description": "Parte trasera de un móvil negro sobre fondo negro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Omid Armin",
+      "source": "https://unsplash.com/photos/RiIpjkAy0qI",
+      "license": "Unsplash"
+    },
+    {
+      "id": "tecnologia-movil-negro-2",
+      "kind": "imagen",
+      "topics": [
+        "tecnología",
+        "móvil",
+        "producto digital",
+        "app",
+        "dispositivo"
+      ],
+      "description": "Móvil negro tumbado sobre una mesa oscura, con las cámaras enfocadas",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "ubeyonroad",
+      "source": "https://unsplash.com/photos/zJ4XmQsZzMI",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-degradado-naranja",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "degradado",
+        "calma"
+      ],
+      "description": "Degradado de naranja oscuro a negro",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1697,
+      "author": "Francesco Ungaro",
+      "source": "https://unsplash.com/photos/dX1jjAc74Vk",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-desenfoque-dorado-1",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "desenfoque",
+        "ideas"
+      ],
+      "description": "Luz dorada desenfocada en la esquina de un fondo azul muy oscuro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1546,
+      "author": "Liana S",
+      "source": "https://unsplash.com/photos/uahOnTdODf8",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-desenfoque-dorado-2",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "desenfoque",
+        "energía"
+      ],
+      "description": "Destellos dorados desenfocados sobre fondo oscuro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1602,
+      "author": "Liana S",
+      "source": "https://unsplash.com/photos/MsOPODlsOgk",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-desenfoque-naranja-1",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "desenfoque",
+        "energía",
+        "movimiento"
+      ],
+      "description": "Tela naranja en movimiento, desenfocada, con un pliegue oscuro",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Simone Dinoia",
+      "source": "https://unsplash.com/photos/lbcchjmi0hY",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-desenfoque-naranja-2",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "desenfoque",
+        "calidez"
+      ],
+      "description": "Luz naranja de una lámpara contra una pared, muy desenfocada",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Modar Kajo",
+      "source": "https://unsplash.com/photos/216bSoTHNdo",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-desenfoque-naranja-3",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "desenfoque",
+        "energía",
+        "movimiento"
+      ],
+      "description": "Trazos rojos y naranjas desenfocados a la izquierda, sobre negro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Simone Dinoia",
+      "source": "https://unsplash.com/photos/0J7KBVrE-fc",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-desenfoque-remolino",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "movimiento",
+        "transformación"
+      ],
+      "description": "Remolinos de luz naranja y amarilla sobre fondo oscuro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Pawel Czerwinski",
+      "source": "https://unsplash.com/photos/D8yNZwE9FwQ",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-dunas-oscuras",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "naturaleza",
+        "curvas",
+        "calma",
+        "minimalismo"
+      ],
+      "description": "Crestas de dunas con luz rasante, casi en negro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1358,
+      "author": "Marjan Taghipour",
+      "source": "https://unsplash.com/photos/4171mThWNd8",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-fachada-iluminada",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "arquitectura",
+        "ciudad",
+        "luz",
+        "noche"
+      ],
+      "description": "Fachada iluminada de noche con luz cálida, vista desde abajo",
+      "tone": "oscura",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2133,
+      "author": "Yves Cedric Schulze",
+      "source": "https://unsplash.com/photos/GJqjLYWqx6w",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-fachada-lamas",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "arquitectura",
+        "líneas",
+        "luz",
+        "noche"
+      ],
+      "description": "Fachada de lamas metálicas naranjas con luces de ventanas al fondo",
+      "tone": "cálida",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2000,
+      "author": "Branislav Rodman",
+      "source": "https://unsplash.com/photos/O8fZ9bLQ2LU",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-lineas-naranja-1",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "líneas",
+        "luz",
+        "ritmo"
+      ],
+      "description": "Líneas verticales de luz naranja tras un cristal ondulado",
+      "tone": "cálida",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2134,
+      "author": "the blowup",
+      "source": "https://unsplash.com/photos/2QJxmtHh7ew",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-lineas-naranja-2",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "líneas",
+        "ritmo",
+        "detalle"
+      ],
+      "description": "Rayas verticales naranjas y marrones de un cristal estriado",
+      "tone": "cálida",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2400,
+      "author": "Clem Onojeghuo",
+      "source": "https://unsplash.com/photos/nQ6X7BN8QtA",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-lineas-oscuras",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "líneas",
+        "ritmo",
+        "minimalismo"
+      ],
+      "description": "Líneas horizontales de luz naranja que se apagan hacia la derecha sobre negro",
+      "tone": "oscura",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2133,
+      "author": "Udit Chandra",
+      "source": "https://unsplash.com/photos/gT292RH1diA",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-bokeh",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "desenfoque",
+        "celebración"
+      ],
+      "description": "Círculos de luz naranja desenfocados sobre negro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1800,
+      "author": "Josie Weiss",
+      "source": "https://unsplash.com/photos/abW9BUTi5og",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-circulo",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "foco",
+        "meta"
+      ],
+      "description": "Círculo de luz naranja desenfocado sobre fondo gris azulado oscuro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1594,
+      "author": "Chris Barbalis",
+      "source": "https://unsplash.com/photos/IdGjFFoNWaI",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-curva",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "curvas",
+        "movimiento"
+      ],
+      "description": "Arco de luces naranjas desenfocadas tras un cristal estriado",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1646,
+      "author": "Christian Lue",
+      "source": "https://unsplash.com/photos/-NvcyuGUhPk",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-destello",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "idea",
+        "chispa"
+      ],
+      "description": "Destello de luz cálida en la oscuridad",
+      "tone": "oscura",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2133,
+      "author": "Jeffrey Keenan",
+      "source": "https://unsplash.com/photos/bSmQv8b_yoA",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-persiana-1",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "luz",
+        "sombras",
+        "calidez",
+        "rutina"
+      ],
+      "description": "Luz de sol que entra por una persiana y dibuja rayas en la pared",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1964,
+      "author": "maks_d",
+      "source": "https://unsplash.com/photos/ZyVlDOnSNto",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-persiana-2",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "luz",
+        "sombras",
+        "calidez",
+        "líneas"
+      ],
+      "description": "Sombras diagonales de una persiana sobre una pared con luz de tarde",
+      "tone": "cálida",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1600,
+      "author": "Bliss memory",
+      "source": "https://unsplash.com/photos/adFXP8eVkE0",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-trazo-1",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "movimiento",
+        "velocidad"
+      ],
+      "description": "Trazo de luz dorada horizontal sobre fondo azul muy oscuro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1602,
+      "author": "Liana S",
+      "source": "https://unsplash.com/photos/58SMyKAKmmg",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-trazo-2",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "movimiento",
+        "energía"
+      ],
+      "description": "Rayas de luz dorada en diagonal sobre fondo oscuro",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1602,
+      "author": "Liana S",
+      "source": "https://unsplash.com/photos/HiE-gPPR-HI",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-trazo-3",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "abstracto",
+        "luz",
+        "movimiento",
+        "velocidad"
+      ],
+      "description": "Haz de luz dorada que cruza un fondo oscuro de izquierda a derecha",
+      "tone": "oscura",
+      "orientation": "horizontal",
+      "width": 2400,
+      "height": 1602,
+      "author": "Liana S",
+      "source": "https://unsplash.com/photos/oo3Oi3PrdW4",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-triangulo",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "luz",
+        "geometría",
+        "minimalismo",
+        "dirección"
+      ],
+      "description": "Triángulo de luz de sol proyectado en una pared en penumbra",
+      "tone": "cálida",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2010,
+      "author": "Janesca",
+      "source": "https://unsplash.com/photos/sOyDzGNrl_4",
+      "license": "Unsplash"
+    },
+    {
+      "id": "textura-luz-ventana",
+      "kind": "textura",
+      "topics": [
+        "fondo",
+        "luz",
+        "calidez",
+        "hogar",
+        "pausa"
+      ],
+      "description": "Rectángulo de luz naranja de una ventana en una habitación a oscuras",
+      "tone": "oscura",
+      "orientation": "vertical",
+      "width": 1600,
+      "height": 2400,
+      "author": "Alexander Lunyov",
+      "source": "https://unsplash.com/photos/PniAb57gUmA",
+      "license": "Unsplash"
+    }
+  ]
+}

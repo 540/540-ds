@@ -130,6 +130,30 @@ export interface DocFile {
   content: string;
 }
 
+/** A photo of the image library, from src/images/catalog.json. */
+export interface LibraryImage {
+  /** File name without extension, e.g. `carretera-costa-atardecer`. */
+  id: string;
+  /** What goes in a photo's `src`: `biblioteca:<id>`. */
+  ref: string;
+  /** `imagen`: a scene that tells something; `textura`: an abstract background. */
+  kind: 'imagen' | 'textura';
+  /** Themes it fits, in Spanish, e.g. `carretera`, `proceso`, `hoja de ruta`. */
+  topics: string[];
+  /** What it shows, in Spanish: the base for its `alt`. */
+  description: string;
+  tone: 'oscura' | 'clara' | 'cálida' | 'neutra';
+  orientation: 'horizontal' | 'vertical';
+  width: number;
+  height: number;
+  author: string;
+  /** The original photo. */
+  source: string;
+  license: string;
+  /** The photo in the published Storybook, to look at it. */
+  preview: string;
+}
+
 export interface Metadata {
   version: string;
   storybookUrl: string;
@@ -143,4 +167,6 @@ export interface Metadata {
   rules: Record<string, DocFile>;
   /** Template per piece type, split into stops. */
   templates: Record<string, TemplateMeta>;
+  /** The image library, from src/images/catalog.json: served by search-images. */
+  images: LibraryImage[];
 }

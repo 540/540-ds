@@ -24,7 +24,7 @@ import * as path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import ts from 'typescript';
 import { PIECE_TYPES } from '../mcp/piece-types.js';
-import type { ComponentLevel, ComponentMeta, DocFile, Metadata, PatternDef, PropDef, StopDef, StoryDef, TemplateMeta, Token, TokenCategory } from '../mcp/types.js';
+import type { ComponentLevel, ComponentMeta, DocFile, LibraryImage, Metadata, PatternDef, PropDef, StopDef, StoryDef, TemplateMeta, Token, TokenCategory } from '../mcp/types.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'src');
@@ -733,7 +733,17 @@ export function buildMetadata(): Metadata {
     },
     rules,
     templates: buildTemplates(components, rules),
+    images: buildImages(),
   };
+}
+
+/** The image library: src/images/catalog.json, with the reference to write and a preview in Storybook. */
+function buildImages(): LibraryImage[] {
+  const { images } = JSON.parse(read(path.join(root, 'src/images/catalog.json'))) as { images: Omit<LibraryImage, 'ref' | 'preview'>[] };
+  return images.map((image) => {
+    if (!fs.existsSync(path.join(root, 'src/images/photos', `${image.id}.webp`))) throw new Error(`src/images/catalog.json: no photo for ${image.id}`);
+    return { ...image, ref: `biblioteca:${image.id}`, preview: `${STORYBOOK_URL}/biblioteca/${image.id}.webp` };
+  });
 }
 
 function main() {

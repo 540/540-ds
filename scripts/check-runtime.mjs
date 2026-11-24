@@ -10,7 +10,7 @@ import { renderTalk } from './render/index.mjs';
 const root = path.resolve(import.meta.dirname, '..');
 const pieces = path.resolve(process.argv[2] ?? path.join(root, 'pieces'));
 const samples = path.join(root, 'src/assets/samples');
-const TYPES = { '.js': 'text/javascript', '.json': 'application/json', '.html': 'text/html', '.css': 'text/css', '.woff2': 'font/woff2' };
+const TYPES = { '.js': 'text/javascript', '.json': 'application/json', '.html': 'text/html', '.css': 'text/css', '.woff2': 'font/woff2', '.webp': 'image/webp' };
 
 const photo = async (file) => `data:image/webp;base64,${(await readFile(path.join(samples, file))).toString('base64')}`;
 const [pintura, fachada] = await Promise.all(['charla-pintura.webp', 'charla-fachada.webp'].map(photo));
@@ -58,6 +58,8 @@ const TALKS = {
     <rev-grid-item span="6"><rev-card title="Una tarjeta"><rev-text measure="half">Con <strong>negrita</strong>.</rev-text></rev-card></rev-grid-item>
   </rev-grid>
 </rev-slide>`, 'en'),
+  library: page(`<title>Biblioteca</title>
+<rev-image src="biblioteca:carretera-costa-atardecer" alt="Carretera de costa hacia el sol"></rev-image>`),
   broken: page(`<rev-slide id="x">
   <rev-metirc value="1"></rev-metirc>
   <rev-text tone="yellow">Hola</rev-text>
@@ -141,6 +143,19 @@ for (const name of ['deck', 'static']) {
   check(ys.every((y, i) => i === 0 || y >= ys[i - 1]), `deck: the arrow keys go back: ${ys.join(' → ')}`);
   check(ys.at(-1) >= max - 1, `deck: the arrow keys do not reach the end (${ys.at(-1)} of ${max})`);
   console.log(`deck: arrows ${ys.join(' → ')}`);
+}
+
+// A photo of the image library loads from the pieces, next to the runtime
+{
+  const { tab, errors } = await open((t) => t.goto(`${origin}/talk/library`));
+  const img = await tab.evaluate(() => {
+    const el = document.querySelector('img');
+    return el && { src: el.getAttribute('src'), width: el.naturalWidth };
+  });
+  check(!errors.length, `library: console: ${errors.join(' | ')}`);
+  check(img?.src === `${origin}/pieces/images/carretera-costa-atardecer.webp`, `library: unexpected src ${img?.src}`);
+  check(img?.width > 0, 'library: the photo did not load');
+  console.log(`library: ${img?.src} (${img?.width} px)`);
 }
 
 const broken = await open((tab) => tab.goto(`${origin}/talk/broken`));

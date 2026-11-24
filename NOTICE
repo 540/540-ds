@@ -15,3 +15,56 @@ The bundled DM Sans font is licensed under the SIL Open Font License 1.1
 The renderer checks spelling with nspell (MIT) and the dictionary-es (used under
 MPL-1.1) and dictionary-en (MIT and BSD) packages, installed as dependencies and
 not modified.
+
+The image library (src/images/photos and its copy in pieces/images) is not
+covered by the Apache License either. Each photo was published on Unsplash and
+is used under the Unsplash License (https://unsplash.com/license): free to use,
+copy, modify and distribute, including commercially; it may not be sold
+without significant modification or compiled into a similar or competing photo
+service. Photographers and originals:
+
+  arquitectura-edificio-contrapicado-1.webp — Omar Rosell, https://unsplash.com/photos/9UrRjmxlWKs
+  arquitectura-edificio-contrapicado-2.webp — Mike Hindle, https://unsplash.com/photos/otqhWc2DWjY
+  arquitectura-fachada-oscura.webp — Samuel Scalzo, https://unsplash.com/photos/xyuYk9oLA8I
+  arquitectura-puerta-silueta.webp — Mari Neroli, https://unsplash.com/photos/mM7fIMtVpXU
+  arquitectura-soportales-sombras.webp — İrfan Simsar, https://unsplash.com/photos/BfeKjmosfBE
+  arquitectura-ventanas-oscuro.webp — Rafael Garcin, https://unsplash.com/photos/sdo8F_7y2UY
+  carretera-ciclista-contraluz.webp — Sebastian Pociecha, https://unsplash.com/photos/R4lUCF2EBW0
+  carretera-ciclistas-curva.webp — Jack Delulio, https://unsplash.com/photos/oro0KHgeQ_g
+  carretera-costa-atardecer.webp — Will Truettner, https://unsplash.com/photos/SKwMql8wenU
+  carretera-curvas-montana.webp — Michael Scott, https://unsplash.com/photos/iYw4K_akX_U
+  pagos-movil-datafono.webp — Jonas Leupe, https://unsplash.com/photos/XL1YpEnVLb0
+  pagos-tarjeta-datafono.webp — Towfiqu barbhuiya, https://unsplash.com/photos/HNPrWOH2Z8U
+  paisaje-acantilado-atardecer.webp — Lucas Chizzali, https://unsplash.com/photos/DYPmbe_jE80
+  paisaje-canon-atardecer.webp — Mark Basarab, https://unsplash.com/photos/fEOjy7RQ-DQ
+  paisaje-canon-cielo.webp — Mike Newbry, https://unsplash.com/photos/CGGW_sVrPBo
+  paisaje-canon-oscuro.webp — Creed Ferguson, https://unsplash.com/photos/2Ihb_qPRwFE
+  paisaje-canon-rojo.webp — Mike Newbry, https://unsplash.com/photos/nmICz80M6Bo
+  paisaje-sol-colina.webp — Yaroslav Rivny, https://unsplash.com/photos/3sg6eu7Vm18
+  tecnologia-escritorio-app.webp — Balázs Kétyi, https://unsplash.com/photos/L0nipfx-Ry4
+  tecnologia-movil-negro-1.webp — Omid Armin, https://unsplash.com/photos/RiIpjkAy0qI
+  tecnologia-movil-negro-2.webp — ubeyonroad, https://unsplash.com/photos/zJ4XmQsZzMI
+  textura-degradado-naranja.webp — Francesco Ungaro, https://unsplash.com/photos/dX1jjAc74Vk
+  textura-desenfoque-dorado-1.webp — Liana S, https://unsplash.com/photos/uahOnTdODf8
+  textura-desenfoque-dorado-2.webp — Liana S, https://unsplash.com/photos/MsOPODlsOgk
+  textura-desenfoque-naranja-1.webp — Simone Dinoia, https://unsplash.com/photos/lbcchjmi0hY
+  textura-desenfoque-naranja-2.webp — Modar Kajo, https://unsplash.com/photos/216bSoTHNdo
+  textura-desenfoque-naranja-3.webp — Simone Dinoia, https://unsplash.com/photos/0J7KBVrE-fc
+  textura-desenfoque-remolino.webp — Pawel Czerwinski, https://unsplash.com/photos/D8yNZwE9FwQ
+  textura-dunas-oscuras.webp — Marjan Taghipour, https://unsplash.com/photos/4171mThWNd8
+  textura-fachada-iluminada.webp — Yves Cedric Schulze, https://unsplash.com/photos/GJqjLYWqx6w
+  textura-fachada-lamas.webp — Branislav Rodman, https://unsplash.com/photos/O8fZ9bLQ2LU
+  textura-lineas-naranja-1.webp — the blowup, https://unsplash.com/photos/2QJxmtHh7ew
+  textura-lineas-naranja-2.webp — Clem Onojeghuo, https://unsplash.com/photos/nQ6X7BN8QtA
+  textura-lineas-oscuras.webp — Udit Chandra, https://unsplash.com/photos/gT292RH1diA
+  textura-luz-bokeh.webp — Josie Weiss, https://unsplash.com/photos/abW9BUTi5og
+  textura-luz-circulo.webp — Chris Barbalis, https://unsplash.com/photos/IdGjFFoNWaI
+  textura-luz-curva.webp — Christian Lue, https://unsplash.com/photos/-NvcyuGUhPk
+  textura-luz-destello.webp — Jeffrey Keenan, https://unsplash.com/photos/bSmQv8b_yoA
+  textura-luz-persiana-1.webp — maks_d, https://unsplash.com/photos/ZyVlDOnSNto
+  textura-luz-persiana-2.webp — Bliss memory, https://unsplash.com/photos/adFXP8eVkE0
+  textura-luz-trazo-1.webp — Liana S, https://unsplash.com/photos/58SMyKAKmmg
+  textura-luz-trazo-2.webp — Liana S, https://unsplash.com/photos/HiE-gPPR-HI
+  textura-luz-trazo-3.webp — Liana S, https://unsplash.com/photos/oo3Oi3PrdW4
+  textura-luz-triangulo.webp — Janesca, https://unsplash.com/photos/sOyDzGNrl_4
+  textura-luz-ventana.webp — Alexander Lunyov, https://unsplash.com/photos/PniAb57gUmA

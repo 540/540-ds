@@ -18,7 +18,9 @@ export async function renderTalk(source, { pieces, baseDir = process.cwd(), lang
   if (!pieces) throw new Error('renderTalk needs the pieces folder');
   const manifest = JSON.parse(await readFile(path.join(pieces, 'manifest.json'), 'utf8'));
   const talk = extractTalk(source, origin);
-  const { title, nodes, warnings } = prepareTalk(talk.source, { manifest, origin, image: (value, file, label) => readImage(baseDir, file, label) });
+  const { title, nodes, warnings } = prepareTalk(talk.source, { manifest, origin, image: (value, file, label) => readImage(baseDir, file, label),
+    library: (entry, label) => readImage(pieces, entry.file, label),
+  });
 
   if ((lang ?? talk.lang ?? 'es') === 'es') warnings.push(...(await checkSpelling(talk.source, { origin })));
 

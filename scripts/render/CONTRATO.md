@@ -29,6 +29,7 @@ Cada export de componente con mayúscula es una etiqueta (hoy 62). `className`, 
 - Un prop `node` o lista de `node` puede ir, en vez de en el atributo, como `<template slot="nombre-del-prop">…</template>`; para una lista se repite el `template` una vez por elemento.
 - HTML de frase permitido: `strong`, `em`, `b`, `i`, `code`, `small`, `sub`, `sup`, `br` y `a href`. Nada más: ni `div`, ni `class`, ni `style`.
 - Imágenes: cualquier cadena que acabe en `.png`, `.jpg`, `.webp`, `.avif`, `.gif` o `.svg` es una ruta relativa al documento y se incrusta en base64. Las URL remotas son error.
+- Fotos de la biblioteca: `biblioteca:<id>`, con los `id` de `manifest.json` → `images` (las fotos van en `images/` del paquete). El render las incrusta en base64 como cualquier otra. Un `id` que no existe es error, con sugerencia; una foto de la biblioteca repetida en la charla, aviso.
 - Dentro de `<rev-schema>` y `<rev-schema-layer>` se dibuja en SVG con los elementos y atributos de `manifest.svg` y solo con las clases del vocabulario de `Schema` (`svg.classes`), sin colores ni estilos.
 - Un `<title>` opcional, fuera de cualquier etiqueta, da el título de la página.
 
@@ -80,10 +81,10 @@ Donde no hay Node (un artifact de claude.ai, por ejemplo), la charla la pinta el
 ```
 
 - Fuera del bloque solo va el script del runtime (y, si acaso, el esqueleto de la página: `doctype`, `html`, `head`, `body`, `meta`). Un bloque por página.
-- **Fotos**: no hay carpeta junto a la charla, así que van incrustadas como `data:image/…;base64,…`. Una ruta es error; una URL remota, también, como en el render.
+- **Fotos**: las de la biblioteca se escriben igual, `biblioteca:<id>`, y se cargan de jsDelivr con la misma versión que el resto. Las demás no tienen carpeta junto a la charla, así que van incrustadas como `data:image/…;base64,…`. Una ruta es error; una URL remota, también, como en el render.
 - `data-lang` da el idioma de la página (por defecto `es`).
 - El runtime valida igual que el render (comparten `render/core.mjs`). Con errores no pinta nada: enseña un panel con todos, con línea y sugerencia, y un botón para copiarlos. Las líneas cuentan desde la etiqueta `<script type="text/rev">`. Los avisos salen en el mismo panel, pero la charla se pinta.
-- Carga de jsDelivr solo el JS y el CSS de los componentes que usa la charla, y nada más. Sin JavaScript no hay charla: para enviar o archivar, se usa el render.
+- Carga de jsDelivr solo el JS y el CSS de los componentes que usa la charla y las fotos de la biblioteca que lleva, y nada más. Sin JavaScript no hay charla: para enviar o archivar, se usa el render.
 - El render acepta este mismo fichero y escribe la misma página que el runtime (`npm run check:runtime` lo comprueba en Chromium). Las líneas de sus errores cuentan desde el principio del fichero.
 
 `X.Y.Z` es la versión que fija quien lo llama (la skill 540-ds del toolkit). Dentro de este repo, con las piezas

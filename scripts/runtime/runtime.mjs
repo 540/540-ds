@@ -20,7 +20,7 @@ async function boot() {
   const origin = 'charla';
   try {
     const { default: manifest } = await load('runtime/manifest.js');
-    const talk = prepareTalk(block.textContent, { manifest, origin, image: rejectPath });
+    const talk = prepareTalk(block.textContent, { manifest, origin, image: rejectPath, library: fromLibrary });
     const page = await renderBody(talk.nodes, { manifest, warnings: talk.warnings, load });
     const [css, scripts] = await Promise.all([
       Promise.all(page.css.map((file) => load(styleModule(file)).then((m) => m.default))),
@@ -44,6 +44,11 @@ async function boot() {
 // In the runtime there is no folder next to the talk: photos go in the document as data: URIs
 function rejectPath(value, file, label) {
   throw new TagError(`${label}: "${value}" is a file path, and in the browser runtime there is no folder next to the talk; embed the image as a data:image/…;base64,… URI`);
+}
+
+// Photos of the image library come from the same place as the rest of the system
+function fromLibrary(entry) {
+  return new URL(entry.file, pieces).href;
 }
 
 function mount({ manifest, title, lang, css, body, block }) {

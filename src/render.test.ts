@@ -235,6 +235,28 @@ describe('renderTalk', () => {
     expect(await problems(`<rev-image src="no-such-photo.webp" alt="a"></rev-image>`)).toContain('image not found');
   });
 
+  it('embeds photos of the image library and warns when one repeats', async () => {
+    const photo = (alt: string) => `<rev-image src="biblioteca:carretera-costa-atardecer" alt="${alt}"></rev-image>`;
+    const { html, warnings } = await render(`${photo('Carretera de costa')}${photo('Otra vez')}`);
+    expect(html).toMatch(/<img[^>]+src="data:image\/webp;base64,/);
+    expect(html).not.toContain('biblioteca:');
+    expect(warnings.join('\n')).toContain('biblioteca:carretera-costa-atardecer is used 2 times');
+    expect((await render(photo('Una vez'))).warnings.join('\n')).not.toContain('is used');
+  });
+
+  it('rejects an id that is not in the image library, with a suggestion', async () => {
+    const message = await problems(`<rev-image src="biblioteca:carretera-costa-atardeser" alt="a"></rev-image>`);
+    expect(message).toContain('"carretera-costa-atardeser" is not in the image library');
+    expect(message).toContain('did you mean biblioteca:carretera-costa-atardecer?');
+  });
+
+  it('ships every photo of the image library with its catalog entry in the manifest', () => {
+    const manifest = JSON.parse(readFileSync(path.join(pieces, 'manifest.json'), 'utf8'));
+    const catalog = JSON.parse(readFileSync(path.join(root, 'src/images/catalog.json'), 'utf8'));
+    expect(manifest.images.map((i: { id: string }) => i.id)).toEqual(catalog.images.map((i: { id: string }) => i.id));
+    for (const image of manifest.images) expect(existsSync(path.join(pieces, image.file)), image.file).toBe(true);
+  });
+
   it('rejects drawing outside the Schema vocabulary', async () => {
     const message = await problems(`<rev-schema view-box="0 0 10 10" title="t"><rect class="node red" fill="#fef401"/><rev-text>x</rev-text></rev-schema>`);
     expect(message).toContain('unknown Schema class "red"');

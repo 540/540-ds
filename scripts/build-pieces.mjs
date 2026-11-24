@@ -212,6 +212,7 @@ async function writeManifest(components, graph, islands) {
       }),
     ),
     tags: await tagsOf(components),
+    images: await copyImages(),
     phrasing: PHRASING,
     svg: { containers: SVG_CONTAINERS, elements: SVG.elements, attributes: SVG.attributes, classes: Object.keys((await import(pathToFileURL(path.join(out, 'server', byEntry.Schema)).href)).schema) },
   };
@@ -228,6 +229,20 @@ async function tagsOf(components) {
     tags[tag] = { export: name, ...entry };
   }
   return Object.fromEntries(Object.entries(tags).sort(([a], [b]) => a.localeCompare(b)));
+}
+
+// The image library (src/images): the photos go next to the pieces and their catalog into the manifest, so the
+// renderer and the runtime resolve `biblioteca:<id>` the same way.
+async function copyImages() {
+  const { images } = JSON.parse(await readFile(path.join(root, 'src/images/catalog.json'), 'utf8'));
+  await mkdir(path.join(out, 'images'), { recursive: true });
+  return Promise.all(
+    images.map(async (image) => {
+      const file = `images/${image.id}.webp`;
+      await copyFile(path.join(root, 'src/images/photos', `${image.id}.webp`), path.join(out, file));
+      return { ...image, file };
+    }),
+  );
 }
 
 async function copyRenderer() {

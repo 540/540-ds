@@ -209,3 +209,27 @@
 .sectionTitle + .table {
   margin-top: var(--space-l);
 }
+
+/* Image library: the photos at their own proportion, in columns */
+.libraryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-2xl) var(--space-xl);
+  align-items: start;
+}
+
+.libraryItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  margin: 0;
+}
+
+.libraryPhoto {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--color-bg-subtle);
+}

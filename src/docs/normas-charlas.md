@@ -108,16 +108,20 @@ Una charla de 540 lleva imágenes **sí o sí**. Una charla solo de texto y tarj
 - Cada **título de bloque**, con su foto.
 - En cada bloque, **al menos una parada de contenido con imagen**: una foto grande con una frase, un texto con su imagen al lado, una cita con foto, una pantalla (`Screenshot`), dos pantallas comparadas o los casos (`CaseItem`).
 
-**De dónde salen.** De la biblioteca de imágenes de 540, elegidas por la temática de la charla. Mientras la biblioteca no esté en el sistema, de fotos con licencia libre (Unsplash, Pexels) o propias, nunca de una búsqueda cualquiera. Las fotos de muestra de la plantilla no van en una charla real.
+**De dónde salen.** De la **biblioteca de imágenes de 540** («Fundamentos → Biblioteca de imágenes» en Storybook; `search-images` en el MCP), elegidas por la temática de cada parada. Se escriben como `biblioteca:<id>` en el `src` de la foto (`photo='{"src":"biblioteca:carretera-costa-atardecer","alt":"…"}'`) y el render las incrusta. Solo vienen de fuera las capturas y las fotos propias del proyecto que se cuenta. Nunca de una búsqueda cualquiera. Las fotos de muestra de la plantilla no van en una charla real.
+
+- Las **imágenes** (carreteras, paisajes, arquitectura, tecnología, pagos) cuentan algo: van en la portada, los títulos de bloque y las fotos con frase.
+- Las **texturas** (luz, desenfoques, líneas) son fondos abstractos: sirven para una cita o una frase cuando ninguna escena encaja.
+- Si la biblioteca no tiene nada para un tema, se habla con la diseñadora (ver 13) para añadir fotos; no se busca una por fuera.
 
 **Cómo son:**
 
-- **Fotos de portada y de bloque: 2:1**, de 2000 px de ancho como mínimo, en `.webp` y de menos de 400 KB. Sin texto ni logos dentro.
+- **Fotos de portada y de bloque: 2:1**, de 2000 px de ancho como mínimo, en `.webp` y de menos de 400 KB. Sin texto ni logos dentro. Las de la biblioteca ya cumplen todo esto; para la portada y los bloques, las horizontales.
 - **Fotos de contenido:** en la proporción que pida la pieza (`2:1`, `1:1` o `auto` para capturas), con la misma calidad.
 - **Sin personas reconocibles** salvo con su consentimiento (ver 11). Una mano o una silueta sí.
 - **El velo lo pone el componente** (`--gradient-image-veil`); la foto no se oscurece ni se retoca en origen.
 - **`alt` obligatorio** y descriptivo («Fachada de hormigón con la luz de la tarde»).
-- **Las fotos nunca se repiten** dentro de una charla.
+- **Las fotos nunca se repiten** dentro de una charla. El render avisa si una de la biblioteca sale dos veces.
 
 ## 4. Texto y jerarquía
 

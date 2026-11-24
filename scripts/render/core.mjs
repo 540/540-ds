@@ -41,9 +41,11 @@ const lineOf = (source, pos) => {
 /**
  * Checks a tag document against the manifest and resolves it into nodes ready to render.
  * `image(value, file, label)` turns a local image path into a data: URI, or throws a TagError.
+ * `library(entry, label)` turns a photo of the image library (`biblioteca:<id>`, an entry of `manifest.images`)
+ * into the address the page uses.
  * Throws a TagError listing every problem.
  */
-export function prepareTalk(source, { manifest, image, origin = 'document' }) {
+export function prepareTalk(source, { manifest, image, library, origin = 'document' }) {
   const errors = [];
   const warnings = [];
 
@@ -65,7 +67,11 @@ export function prepareTalk(source, { manifest, image, origin = 'document' }) {
   });
 
   checkVariety(nodes, warnings);
-  const resolved = resolveNodes(nodes, { svg: false }, { manifest, errors, warnings, image });
+  const photos = new Map();
+  const resolved = resolveNodes(nodes, { svg: false }, { manifest, errors, warnings, image, library, photos });
+  for (const [id, labels] of photos) {
+    if (labels.length > 1) warnings.push(`biblioteca:${id} is used ${labels.length} times (${labels.join(', ')}); a photo never repeats in a talk, pick another one from the library`);
+  }
   if (errors.length) throw new TagError(`${origin} has ${errors.length} problem${errors.length > 1 ? 's' : ''}:\n${errors.map((e) => `- ${e}`).join('\n')}`);
   return { title, nodes: resolved, warnings };
 }
@@ -363,11 +369,27 @@ function asNumber(raw, label) {
   return value;
 }
 
+/** A photo of the image library: `biblioteca:<id>`, with the ids of `manifest.images`. */
+export const LIBRARY_PREFIX = 'biblioteca:';
+
 function asImage(value, label, env) {
+  if (value.startsWith(LIBRARY_PREFIX)) return asLibraryImage(value.slice(LIBRARY_PREFIX.length), label, env);
   const file = value.split(/[?#]/)[0];
   if (!IMAGE.test(file) || value.startsWith('data:')) return value;
   if (REMOTE.test(value)) throw new TagError(`${label} points to a remote image (${value}); the page must work offline: save the file next to the document and use its path`);
   return env.image(value, file, label);
+}
+
+function asLibraryImage(id, label, env) {
+  const images = env.manifest.images ?? [];
+  const entry = images.find((image) => image.id === id);
+  if (!entry) {
+    const near = closest(id, images.map((image) => image.id));
+    throw new TagError(`${label}: "${id}" is not in the image library${near ? ` (did you mean biblioteca:${near}?)` : ''}; the ids are in manifest.json → images`);
+  }
+  if (!env.library) throw new TagError(`${label}: this renderer cannot read the image library`);
+  env.photos?.set(id, [...(env.photos.get(id) ?? []), label]);
+  return env.library(entry, label);
 }
 
 function describe(type) {

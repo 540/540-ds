@@ -88,6 +88,7 @@ describe('tools', () => {
         'list-components',
         'list-templates',
         'search-components',
+        'search-images',
       ].sort(),
     );
     for (const t of tools) expect(t.annotations?.readOnlyHint, t.name).toBe(true);
@@ -211,6 +212,35 @@ describe('tools', () => {
     expect(Object.values(portada.sampleAssets)).toContain('src/assets/samples/charla-fachada.webp');
     expect(result.missing).toEqual(['nope']);
     expect((await call('get-template-stops', { pieceType: 'talk', stops: ['nope'] })).isError).toBe(true);
+  });
+
+  it('builds the image library with a photo per entry and its credit', () => {
+    expect(metadata.images.length).toBeGreaterThan(40);
+    for (const image of metadata.images) {
+      expect(image.ref).toBe(`biblioteca:${image.id}`);
+      expect(image.topics.length, image.id).toBeGreaterThan(0);
+      expect(image.description, image.id).not.toBe('');
+      expect(image.author, image.id).not.toBe('');
+      expect(image.source, image.id).toMatch(/^https:\/\/unsplash\.com\/photos\//);
+    }
+  });
+
+  it('search-images finds photos by theme, filters and skips the ones already used', async () => {
+    const roads = (await call('search-images', { query: 'carreteras', kind: 'imagen' })).json();
+    expect(roads.images.length).toBeGreaterThan(2);
+    expect(roads.images.every((i: { id: string }) => i.id.startsWith('carretera-'))).toBe(true);
+    expect(roads.images[0].ref).toMatch(/^biblioteca:/);
+
+    const first = roads.images[0].ref;
+    const again = (await call('search-images', { query: 'carreteras', kind: 'imagen', exclude: [first] })).json();
+    expect(again.images.map((i: { ref: string }) => i.ref)).not.toContain(first);
+
+    const vertical = (await call('search-images', { orientation: 'vertical', limit: 60 })).json();
+    expect(vertical.images.every((i: { orientation: string }) => i.orientation === 'vertical')).toBe(true);
+
+    const none = (await call('search-images', { query: 'submarino' })).json();
+    expect(none.images).toEqual([]);
+    expect(none.hint).toMatch(/No photo matched/);
   });
 
   it('get-patterns filters by need and points to stops', async () => {

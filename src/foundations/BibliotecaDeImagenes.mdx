@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ImageLibrary } from './index';
+
+<Meta title="Fundamentos/Biblioteca de imágenes" />
+
+# Biblioteca de imágenes
+
+Las fotos de las piezas de 540 salen de aquí. Cada una se escribe en el `src` de la foto como `biblioteca:<id>`, y el render la incrusta en la página:
+
+```html
+<rev-cover title='["La charla"]' photo='{"src":"biblioteca:carretera-costa-atardecer","alt":"Carretera de costa hacia el sol"}'></rev-cover>
+```
+
+- Se eligen **por lo que cuenta la parada**: un proceso o una hoja de ruta, una carretera; el contexto, un paisaje; una empresa o un sistema, arquitectura. En el MCP, `search-images` busca por tema.
+- Para la portada y los títulos de bloque (2:1), las **horizontales**.
+- El `alt` se escribe a partir de la descripción de la foto, contando lo que se ve.
+- **Una foto no se repite** en la misma pieza; el render avisa.
+- Si falta una temática, se pide a diseño que añada fotos (normas de charlas, 13). No se busca una por fuera.
+
+Todas son de Unsplash y se usan con su licencia, que permite el uso comercial y modificarlas. No hace falta poner el crédito en la pieza, pero aquí queda el de cada una. La lista completa está en `NOTICE`.
+
+## Imágenes
+
+Escenas que cuentan algo: carreteras, paisajes, arquitectura, tecnología y pagos.
+
+<ImageLibrary kind="imagen" />
+
+## Texturas
+
+Fondos abstractos de luz, desenfoques y líneas, para una cita o una frase cuando ninguna escena encaja.
+
+<ImageLibrary kind="textura" />
+
+## Añadir fotos
+
+1. Que sea de Unsplash (no Unsplash+) o propia de 540, sin texto, logos ni personas reconocibles.
+2. Pásala a `.webp` de 2400 px de lado largo y menos de 400 KB, y guárdala en `src/images/photos/<tema>-<qué-se-ve>.webp`.
+3. Añade su entrada a `src/images/catalog.json`: temas, descripción, tono, orientación, medidas, autor y enlace al original.
+4. Añade el crédito a `NOTICE` y regenera el MCP (`npm run build-mcp-metadata -- --strict`).

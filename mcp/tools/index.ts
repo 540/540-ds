@@ -14,6 +14,7 @@ import { getTokens } from './get-tokens.js';
 import { listComponents } from './list-components.js';
 import { listTemplates } from './list-templates.js';
 import { searchComponents } from './search-components.js';
+import { searchImages } from './search-images.js';
 import type { ToolDef } from './shared.js';
 
 export const tools: ToolDef<any>[] = [
@@ -29,4 +30,5 @@ export const tools: ToolDef<any>[] = [
   getComponentDocs,
   getComponentStories,
   getTokens,
+  searchImages,
 ];
