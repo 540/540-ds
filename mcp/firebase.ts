@@ -16,7 +16,8 @@ export const mcp = onRequest(
     memory: '256MiB',
     /** No idle instances: free when unused, at the cost of a cold start after a quiet spell. */
     minInstances: 0,
-    maxInstances: 10,
+    /** The spending cap: with 80 requests per instance, three instances serve 240 at once. More than that is abuse, not use. */
+    maxInstances: 3,
     concurrency: 80,
     timeoutSeconds: 30,
   },
