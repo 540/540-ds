@@ -25,8 +25,7 @@ const preview: Preview = {
       },
     },
     a11y: {
-      // 'todo' shows violations in the a11y panel without failing tests
-      test: 'todo',
+      test: 'error',
     },
     docs: {
       // Every docs page opens with the level kicker and the 540 logo

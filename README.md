@@ -33,6 +33,8 @@ Otros comandos útiles:
 | `npm run mcp:inspect` | Abre el MCP del sistema en MCP Inspector (ver [`mcp/README.md`](mcp/README.md)) |
 | `npm run test:mcp` | Pasa las pruebas del MCP |
 
+Cada PR pasa en CI (`.github/workflows/pr.yml`) tipos, lint, `test:ssr` y las pruebas de Storybook. La accesibilidad falla de verdad (`a11y.test: 'error'` en `.storybook/preview.tsx`): una historia con una violación rompe el CI. Las que aún fallan llevan `parameters: { a11y: { test: 'todo' } }` y un comentario `// TODO a11y: <regla>`; esa es la lista de toleradas (`grep -rn "TODO a11y" src`) y solo puede encoger: al arreglar un componente se quita su excepción, y no se añaden nuevas.
+
 ## Cómo está organizado
 
 ```
@@ -73,7 +75,7 @@ Button/
 Los tokens están en `src/tokens`. Hay dos niveles:
 
 - **Primitivos** (`primitives.css`): el valor en bruto con nombre. Por ejemplo `--540-accent-yellow: #fef401;`.
-- **Semánticos** (`semantic-*.css`): el uso, apuntando a un primitivo. Por ejemplo `--color-bg-accent: var(--540-accent-yellow);`. Los componentes solo usan estos.
+- **Semánticos** (`semantic-*.css`): el uso, apuntando a un primitivo. Por ejemplo `--color-bg-accent: var(--540-accent-yellow);`. Los componentes solo usan estos: `npm run lint` (y el CI) falla si aparece un `--540-*` en `src/components` (CSS, `.ts` y `.tsx`, sin stories ni `_docs`). Los ficheros que aún los usan están en la lista de `scripts/check-primitives.mjs`, que solo puede encoger: al limpiar uno hay que sacarlo de la lista (la comprobación lo exige) y no se añaden nuevos.
 
 Para **cambiar un valor** (un gris, un tamaño), edita el primitivo en `primitives.css`. Todo lo que lo use cambia a la vez, y las páginas de Fundamentos enseñan el valor nuevo porque lo leen del CSS.
 

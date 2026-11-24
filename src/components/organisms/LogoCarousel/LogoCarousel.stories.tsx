@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, waitFor } from 'storybook/test';
+import { expect, userEvent, waitFor } from 'storybook/test';
 import { LogoCarousel } from './LogoCarousel';
 import { LOGO_CAROUSEL_DEFAULTS } from './types';
 import doc from './_docs/LogoCarousel.md?raw';
@@ -56,6 +56,8 @@ const centerHolds = (slots: number): Story['play'] => async ({ canvasElement, st
   await step(`${slots} huecos`, () => expect(getComputedStyle(carousel).getPropertyValue('--slots').trim()).toBe(String(slots)));
   await step('el del medio, resaltado', expectCentered);
   await step('tras un paso, sigue el del medio', async () => {
+    await userEvent.unhover(carousel);
+    carousel.style.pointerEvents = 'none';
     const first = carousel.querySelector('[data-pos="0"]');
     await waitFor(() => expect(carousel.querySelector('[data-pos="0"]')).not.toBe(first), { timeout: 3000 });
     await expectCentered();
