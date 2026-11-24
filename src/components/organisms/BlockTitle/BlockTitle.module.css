@@ -12,6 +12,11 @@
   overflow: hidden;
 }
 
+/* The photo bleeds like the cover's: no radius */
+.photo img {
+  border-radius: 0;
+}
+
 .layer {
   scale: 1.18;
   transform-origin: center;

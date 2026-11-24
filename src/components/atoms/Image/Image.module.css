@@ -1,5 +1,11 @@
 /* Image — content image. Crops to fill its box and never deforms (cover, centered).
-   The only piece of the system without a token: just proportion and crop. */
+   A content image is always rounded, like a screenshot. The radius has no specificity (:where) so
+   any piece that bleeds its photo or gives it another shape (Cover, BlockTitle, a pill portrait)
+   overrides it with one class, whichever stylesheet loads last. */
+
+:where(.image) {
+  border-radius: var(--radius-default);
+}
 
 .image {
   display: block;
@@ -16,9 +22,13 @@
   aspect-ratio: 1 / 1;
 }
 
-/* The container owns the height: what a section background needs */
+/* The container owns the height and the shape: what a section background needs */
 .ratio-fill {
   height: 100%;
+}
+
+:where(.ratio-fill) {
+  border-radius: 0;
 }
 
 /* The file owns the height: the only one that does not crop. Reserve its room. */

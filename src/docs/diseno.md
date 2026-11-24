@@ -34,7 +34,7 @@ Esta guía dice qué hace buena una pieza de 540. Las normas de cada tipo de pie
 - Elige la imagen por lo que cuenta la sección, no por bonita: si la sección habla de un proceso, un camino que avanza; si habla de pagos, un datáfono. La temática de la imagen y la de la sección tienen que poder decirse en la misma frase.
 - Varía el motivo: dos cañones o dos carreteras seguidas se leen como la misma foto. Mezcla escenas con alguna textura.
 - Claras y con aire mejor que oscuras y recargadas: el velo del componente ya oscurece lo que lleva texto encima.
-- Una imagen grande con una frase es una parada de aire: úsala para respirar entre dos paradas densas.
+- Para una parada de aire con imagen, pon un texto con su imagen al lado o una pantalla centrada: respiran entre dos paradas densas.
 - Las capturas de pantalla se enseñan enteras; si hay que leer un detalle, se amplía en una hoja (`Sheet`).
 
 ## Cuánto cabe en una charla

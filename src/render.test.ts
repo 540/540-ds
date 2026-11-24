@@ -187,6 +187,20 @@ describe('renderTalk', () => {
     expect(warnings[0]).toContain('uno and dos');
   });
 
+  it('warns about a big photo with a sentence under it', async () => {
+    const photo = `<rev-slide id="foto"><rev-stack><rev-image src="charla-escultura.webp" alt="Una foto" ratio="2:1"></rev-image><rev-text variant="statement">Una frase.</rev-text></rev-stack></rev-slide>`;
+    const { warnings } = await render(`<rev-deck items='[]' footer='{"tagline":"Pie.","copyright":"© 2026 540"}' storage-key="">${photo}</rev-deck>`);
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain('foto is a big photo with a sentence');
+  });
+
+  it('warns when the text beside a photo is aligned to the start', async () => {
+    const slide = `<rev-slide id="lado"><rev-grid><rev-grid-item span="7"><rev-section-header title="Un título" description="Una frase." align="start"></rev-section-header></rev-grid-item><rev-grid-item span="5"><rev-image src="charla-escultura.webp" alt="Una foto" ratio="1:1"></rev-image></rev-grid-item></rev-grid></rev-slide>`;
+    const { warnings } = await render(`<rev-deck items='[]' footer='{"tagline":"Pie.","copyright":"© 2026 540"}' storage-key="">${slide}</rev-deck>`);
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain('lado aligns the text beside its photo to the start');
+  });
+
   it('warns about misspelled words in a Spanish talk, with suggestions', async () => {
     const { warnings } = await render('<rev-slide id="uno"><rev-section-header title="Una chalra sobre el proyceto" description="Con Zubiarte, MainQueueFault y un card sorting en el Open space."></rev-section-header><rev-text>Un <code>npm run rendr</code> y el proyceto otra vez.</rev-text></rev-slide>');
     expect(warnings).toHaveLength(2);

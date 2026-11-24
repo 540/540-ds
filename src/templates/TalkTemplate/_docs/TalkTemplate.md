@@ -11,7 +11,7 @@ Es un **catálogo de paradas, no una charla para dar**: tiene muchas más parada
 | 02 · Comparar | Antes y ahora (`Card` + `ArrowList`) · tres tarjetas por pasos con pie · cuatro tarjetas · cinco compactas con destacada · cinco centradas · seis numeradas · equipo con retrato · `TeamMember` · `CardList` · `CaseItem` · `Punchline` aparte |
 | 03 · Procesos | `Flow` con `Punchline` dentro · `Timeline` con aviso, flujo y zoom (`Sheet`) · `ProgressBar` por pasos · `Cycle` con panel · `Schema` por capas · `Heartbeat` |
 | 04 · Datos | Cuatro `Metric` con `Count` y `MetricNote` · dos `Bars` y un `Share` por pasos · tabla de barras con detalle · línea anotada con `Schema` · `LineChart` · `BarSeries` apiladas · `Dumbbell` · `Funnel` · tres `ProgressRing` · `Waffle` · `Heatmap` · `Scatter` |
-| 05 · Imágenes y pantallas | Foto grande con una frase (`Image` + `Text`) · texto con su imagen al lado (`Grid` 7 + 5) · cita con foto · dos pantallas comparadas (`Grid` 6 + 6 con `Image ratio="auto"`) · `Screenshot` · `Tools` (las que se quedan y las descartadas) · `LogoCarousel` · `Marquee` · `Question` · contacto con `Form` |
+| 05 · Imágenes y pantallas | Texto con su imagen al lado (`Grid` 7 + 5) · cita con foto · dos pantallas comparadas (`Grid` 6 + 6 con `Image ratio="auto"`) · `Screenshot` · `Tools` (las que se quedan y las descartadas) · `LogoCarousel` · `Marquee` · `Question` · contacto con `Form` |
 | Cierre | `Closing` y el pie del `Deck` |
 
 ## Cómo se usa

@@ -808,21 +808,12 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
       {/* ---------- 05 · Imágenes y pantallas: photos, screenshots, tools, logos, questions ---------- */}
       <BlockTitle id="pantallas" ordinal="05" title="Imágenes, pantallas y preguntas" photo={{ src: david, alt: 'Detalle de una escultura clásica de mármol blanco' }} />
 
-      <Slide id="foto-frase">
-        <Stack>
-          <Image src={escultura} alt="Escultura blanca sentada ante una pared de piedra con una ventana hexagonal" ratio="2:1" />
-          <Text variant="statement" align="center" wrap="balance" measure="wide">
-            Una frase que se dice, con la foto que la acompaña.
-          </Text>
-        </Stack>
-      </Slide>
-
       <Slide id="texto-imagen">
         <Grid align="center">
           <GridItem span={7}>
             <Stack>
-              <SectionHeader title="Un texto con su imagen al lado" description="La imagen cuenta lo mismo que el texto: no decora." align="start" />
-              <Text variant="body-l" tone="secondary" wrap="pretty" measure="prose">
+              <SectionHeader title="Un texto con su imagen al lado" description="La imagen cuenta lo mismo que el texto: no decora." align="center" />
+              <Text variant="body-l" tone="secondary" wrap="pretty" measure="prose" align="center">
                 Un párrafo de cuerpo que explica la idea, con <strong>la parte que importa</strong> en negrita.
               </Text>
             </Stack>
@@ -840,10 +831,10 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
           </GridItem>
           <GridItem span={7}>
             <Stack gap="s">
-              <Text as="blockquote" variant="title-l" wrap="balance">
+              <Text as="blockquote" variant="title-l" wrap="balance" align="center">
                 «Una cita corta, con la cara de quien la dijo al lado.»
               </Text>
-              <Text variant="body-s" tone="secondary">
+              <Text variant="body-s" tone="secondary" align="center">
                 Nombre Apellido, su rol
               </Text>
             </Stack>

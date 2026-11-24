@@ -33,6 +33,11 @@
   overflow: hidden;
 }
 
+/* The dialog rounds its own corners: the photo at its top is square */
+.media img {
+  border-radius: 0;
+}
+
 .body {
   display: flex;
   flex-direction: column;

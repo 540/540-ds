@@ -67,6 +67,7 @@ export function prepareTalk(source, { manifest, image, library, origin = 'docume
   });
 
   checkVariety(nodes, warnings);
+  checkPhotoSentence(nodes, warnings);
   const photos = new Map();
   const resolved = resolveNodes(nodes, { svg: false }, { manifest, errors, warnings, image, library, photos });
   for (const [id, labels] of photos) {
@@ -110,6 +111,31 @@ const stopLabel = (node) => node.attrs.find((a) => a.name === 'id')?.value ?? no
  * Warns when the talk repeats itself: a stop shape over 30 % of the content stops, or the same
  * shape twice in a row. Only looks at the direct children of the deck.
  */
+/** A big photo with a sentence under it is not a 540 stop (text with its image beside it instead), and the text beside a photo is centered. */
+function checkPhotoSentence(nodes, warnings) {
+  const deck = nodes.find((n) => n.type === 'element' && n.name === 'rev-deck');
+  if (!deck) return;
+  const els = (n) => (n.children ?? []).filter((c) => c.type === 'element');
+  const attr = (n, name) => n.attrs?.find((a) => a.name === name)?.value;
+  for (const slide of els(deck).filter((n) => n.name === 'rev-slide')) {
+    const stack = els(slide).find((n) => n.name === 'rev-stack') ?? slide;
+    const kids = els(stack);
+    const photo = kids.some((n) => n.name === 'rev-image');
+    const sentence = kids.some((n) => n.name === 'rev-text' && attr(n, 'variant') === 'statement');
+    if (photo && sentence) {
+      warnings.push(`${slide.at}: ${stopLabel(slide)} is a big photo with a sentence, which is not a 540 stop; put the text beside its image (Grid 7 + 5 with SectionHeader and Image)`);
+    }
+    const grid = els(slide).find((n) => n.name === 'rev-grid') ?? els(stack).find((n) => n.name === 'rev-grid');
+    if (grid && els(grid).some((item) => els(item).some((n) => n.name === 'rev-image'))) {
+      const walk = (n) => [n, ...els(n).flatMap(walk)];
+      const left = walk(grid).filter((n) => ['rev-section-header', 'rev-text'].includes(n.name) && attr(n, 'align') === 'start');
+      if (left.length) {
+        warnings.push(`${slide.at}: ${stopLabel(slide)} aligns the text beside its photo to the start; text beside a photo is centered like every other stop: use align="center"`);
+      }
+    }
+  }
+}
+
 function checkVariety(nodes, warnings) {
   const deck = nodes.find((n) => n.type === 'element' && n.name === 'rev-deck');
   if (!deck) return;

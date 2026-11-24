@@ -96,7 +96,7 @@ export const EnLaReticula: Story = {
     docs: {
       description: {
         story:
-          'Tres fotos de distinta forma (horizontal, vertical, vertical) en tres cajas `2:1` de una rejilla: la caja manda y las tres quedan iguales. Es la foto de un caso en el portfolio. El radio y el recorte los pone el contenedor (`overflow: hidden`), no la imagen.',
+          'Tres fotos de distinta forma (horizontal, vertical, vertical) en tres cajas `2:1` de una rejilla: la caja manda y las tres quedan iguales. Es la foto de un caso en el portfolio. Cada una lleva su radio: una foto de contenido va siempre redondeada, como una captura.',
       },
     },
   },
@@ -107,9 +107,7 @@ export const EnLaReticula: Story = {
         { src: david, alt: ALT_DAVID },
         { src: fachada, alt: ALT_FACHADA },
       ].map((img) => (
-        <div key={img.src} style={{ borderRadius: 'var(--radius-default)', overflow: 'hidden' }}>
-          <Image src={img.src} alt={img.alt} ratio="2:1" />
-        </div>
+        <Image key={img.src} src={img.src} alt={img.alt} ratio="2:1" />
       ))}
     </div>
   ),
@@ -124,7 +122,7 @@ export const Retrato: Story = {
     },
   },
   render: () => (
-    <div style={{ width: 240, borderRadius: 'var(--radius-default)', overflow: 'hidden' }}>
+    <div style={{ width: 240 }}>
       <Image src={retrato} alt="Retrato neutro de una persona" ratio="1:1" />
     </div>
   ),

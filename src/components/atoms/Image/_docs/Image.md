@@ -2,7 +2,7 @@ Imagen de contenido: **recorta para llenar su caja y nunca se deforma**, salvo c
 
 ## Anatomía
 
-Un único `img`. Es la única pieza del sistema sin un solo token: no tiene color, ni radio, ni relleno, ni hueco que enlazar. Solo proporción y recorte.
+Un único `img`, con las esquinas redondeadas (`--radius-default`). No tiene color, ni relleno, ni hueco que enlazar: proporción, recorte y radio.
 
 ## Cuándo usarlo
 
@@ -36,9 +36,16 @@ Ninguno. La carga va con `loading="lazy"` por defecto; la foto de portada, que s
 
 ## Decisiones de diseño
 
-### Sin radio propio
+### Siempre redondeada
 
-Lo recorta el contenedor. Si la imagen llevara el suyo, una tarjeta con imagen tendría dos radios que cuadrar a mano. La posición también es del contenedor.
+Una imagen de contenido va redondeada, igual que una captura (`Screenshot`): al lado de un texto o centrada, la misma esquina. No hay opción para quitarlo. Solo la pierden las piezas que llevan la foto a sangre o le dan otra forma, y lo hace la pieza, no quien la usa:
+
+- `Cover` y `BlockTitle`: la foto sangra, sin radio.
+- `Dialog`: la foto va arriba, dentro de un diálogo que ya redondea sus esquinas.
+- `Card`: el retrato es un círculo.
+- `fill`: el contenedor pone la forma.
+
+El radio no tiene especificidad (`:where`), así que cualquiera de esas piezas lo cambia con una sola clase.
 
 ### `auto` exige reservar el sitio
 
@@ -60,13 +67,13 @@ Está en el tipo, así que no se puede montar la imagen sin decidirlo. `alt=""` 
 
 - `2:1` para casos y fondos de título, `1:1` para retratos.
 - Un `alt` que describa, o `alt=""` a conciencia.
-- El radio en la tarjeta o en el contenedor, con `overflow: hidden`.
 
 **Don't**
 
 - Fijar un alto a mano: hay una proporción.
 - `auto` sin reservar el sitio.
 - Deformar o dejar franjas: no hay opción, y no debería haberla.
+- Quitarle el radio a una foto de contenido: si una pieza necesita la foto a sangre, lo decide la pieza.
 
 ## Equivalencias con Figma
 

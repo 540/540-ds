@@ -50,3 +50,7 @@
   margin-inline: calc(50% - 50vw);
   overflow: hidden;
 }
+
+.photo img {
+  border-radius: 0;
+}
