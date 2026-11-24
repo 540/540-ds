@@ -54,8 +54,9 @@
   padding: var(--padding-card);
 }
 
-/* Text over media does not follow the theme: white in both */
-.data > * {
+/* Text over media does not follow the theme: white in both. Two classes so it beats the tone of
+   Text (one class), whichever stylesheet loads last. */
+.item .data > * {
   color: var(--color-text-on-media);
 }
 
