@@ -64,9 +64,65 @@ export function prepareTalk(source, { manifest, image, origin = 'document' }) {
     return false;
   });
 
+  checkVariety(nodes, warnings);
   const resolved = resolveNodes(nodes, { svg: false }, { manifest, errors, warnings, image });
   if (errors.length) throw new TagError(`${origin} has ${errors.length} problem${errors.length > 1 ? 's' : ''}:\n${errors.map((e) => `- ${e}`).join('\n')}`);
   return { title, nodes: resolved, warnings };
+}
+
+
+/** Stops that frame the talk and do not count for variety. */
+const FRAME_STOPS = new Set(['rev-cover', 'rev-block-title', 'rev-closing']);
+/** Layout and text pieces: they shape every stop, so they do not tell two stops apart. */
+const LAYOUT_TAGS = new Set(['rev-slide', 'rev-stack', 'rev-grid', 'rev-grid-item', 'rev-text', 'rev-section-header', 'rev-steps', 'rev-step', 'rev-panel-stack']);
+/** No shape may take more than this share of the content stops (talk rules, 1 · Variedad). */
+const MAX_SHAPE_SHARE = 0.3;
+/** Below this many content stops the share is not meaningful. */
+const MIN_STOPS_FOR_SHARE = 5;
+
+/**
+ * The shape of a stop: its own tag and the catalog pieces inside it, layout aside. Two stops with
+ * the same pieces have the same shape, whatever their copy says.
+ */
+function stopShape(node) {
+  const tags = new Set();
+  const visit = (n) => {
+    if (n.type !== 'element') return;
+    if (n.name.startsWith('rev-') && !LAYOUT_TAGS.has(n.name)) tags.add(n.name.slice(4));
+    if (n.name === 'rev-schema' || n.name === 'rev-schema-layer') return;
+    for (const c of n.children ?? []) visit(c);
+  };
+  for (const c of node.children ?? []) visit(c);
+  const own = node.name.slice(4);
+  const inner = [...tags].sort();
+  return inner.length ? `${own}: ${inner.join(' + ')}` : own;
+}
+
+const stopLabel = (node) => node.attrs.find((a) => a.name === 'id')?.value ?? node.at;
+
+/**
+ * Warns when the talk repeats itself: a stop shape over 30 % of the content stops, or the same
+ * shape twice in a row. Only looks at the direct children of the deck.
+ */
+function checkVariety(nodes, warnings) {
+  const deck = nodes.find((n) => n.type === 'element' && n.name === 'rev-deck');
+  if (!deck) return;
+  const stops = deck.children.filter((n) => n.type === 'element' && n.name.startsWith('rev-') && !FRAME_STOPS.has(n.name));
+  const shapes = stops.map((n) => ({ node: n, shape: stopShape(n) }));
+  for (let i = 1; i < shapes.length; i++) {
+    if (shapes[i].shape === shapes[i - 1].shape) {
+      warnings.push(`${shapes[i].node.at}: two stops in a row with the same shape (${shapes[i].shape}): ${stopLabel(shapes[i - 1].node)} and ${stopLabel(shapes[i].node)}; change the piece of one of them`);
+    }
+  }
+  if (shapes.length < MIN_STOPS_FOR_SHARE) return;
+  const groups = new Map();
+  for (const s of shapes) groups.set(s.shape, [...(groups.get(s.shape) ?? []), s.node]);
+  for (const [shape, group] of groups) {
+    const share = group.length / shapes.length;
+    if (share > MAX_SHAPE_SHARE) {
+      warnings.push(`${group[0].at}: ${group.length} of ${shapes.length} content stops (${Math.round(share * 100)} %) have the same shape (${shape}): ${group.map(stopLabel).join(', ')}; no shape may pass ${MAX_SHAPE_SHARE * 100} %, mix in other pieces`);
+    }
+  }
 }
 
 const camel = (name) => name.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());

@@ -167,6 +167,40 @@ describe('renderTalk', () => {
     expect(warnings[0]).toContain('<rev-stack>');
   });
 
+  it('warns when one stop shape passes 30 % of the content stops', async () => {
+    const cards = (id: string) => `<rev-slide id="${id}"><rev-grid><rev-grid-item span="6"><rev-card title="Una">Texto.</rev-card></rev-grid-item></rev-grid></rev-slide>`;
+    const quote = (id: string) => `<rev-quote id="${id}" sentence="«Una cita.»" author="Alguien"></rev-quote>`;
+    const list = (id: string) => `<rev-slide id="${id}"><rev-simple-list items='["Uno"]'></rev-simple-list></rev-slide>`;
+    const metric = (id: string) => `<rev-slide id="${id}"><rev-metric value="20 %" label="Menos tiempo"></rev-metric></rev-slide>`;
+    const talk = `<rev-deck items='[]' footer='{"tagline":"Pie.","copyright":"© 2026 540"}' storage-key="">${[cards('a'), quote('b'), cards('c'), list('d'), cards('e'), metric('f')].join('')}</rev-deck>`;
+    const { warnings } = await render(talk);
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain('3 of 6 content stops (50 %)');
+    expect(warnings[0]).toContain('a, c, e');
+  });
+
+  it('warns when two stops in a row have the same shape, whatever their copy', async () => {
+    const list = (id: string, item: string) => `<rev-slide id="${id}"><rev-simple-list items='["${item}"]'></rev-simple-list></rev-slide>`;
+    const { warnings } = await render(`<rev-deck items='[]' footer='{"tagline":"Pie.","copyright":"© 2026 540"}' storage-key="">${list('uno', 'Uno')}${list('dos', 'Dos')}</rev-deck>`);
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain('two stops in a row with the same shape');
+    expect(warnings[0]).toContain('uno and dos');
+  });
+
+  it('warns about misspelled words in a Spanish talk, with suggestions', async () => {
+    const { warnings } = await render('<rev-slide id="uno"><rev-section-header title="Una chalra sobre el proyceto" description="Con Zubiarte, MainQueueFault y un card sorting en el Open space."></rev-section-header><rev-text>Un <code>npm run rendr</code> y el proyceto otra vez.</rev-text></rev-slide>');
+    expect(warnings).toHaveLength(2);
+    expect(warnings[0]).toContain('"chalra"');
+    expect(warnings[1]).toContain('"proyceto"');
+    expect(warnings[1]).toContain('2 times');
+    expect(warnings[1]).toContain('"proyecto"');
+  });
+
+  it('does not check the spelling of a talk in another language', async () => {
+    const { warnings } = await renderTalk('<rev-text>Una chalra.</rev-text>', { pieces, baseDir, origin: 'test', lang: 'en' });
+    expect(warnings).toEqual([]);
+  });
+
   it('fails loudly on unknown tags, props and values, listing every problem', async () => {
     const message = await problems(`
       <rev-slyde id="x"></rev-slyde>

@@ -1,0 +1,17 @@
+# Palabras que los diccionarios no conocen y en 540 están bien escritas.
+# Una por línea, en minúsculas. El corrector del render las da por buenas.
+# Se añade una palabra cuando el render avisa de ella y está bien escrita.
+
+# Del sistema y de las charlas
+cenital
+datáfono
+gomets
+gomet
+microcopy
+onboarding
+prototipado
+prototipar
+prototipamos
+storybook
+telemetría
+tokens

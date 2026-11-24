@@ -4,6 +4,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { TagError, extractTalk, prepareTalk, renderBody } from './core.mjs';
 import { MIME } from './rules.mjs';
+import { checkSpelling } from './spelling.mjs';
 
 export { TagError };
 
@@ -11,12 +12,15 @@ export { TagError };
  * Turns a document written with <rev-…> tags into one self-contained HTML page.
  * Also takes a talk written for the browser runtime (tags inside <script type="text/rev">).
  * Throws a TagError listing every problem (unknown tags or props, wrong values, missing images).
+ * In a Spanish talk, also warns about every word the Spanish and English dictionaries do not know.
  */
 export async function renderTalk(source, { pieces, baseDir = process.cwd(), lang, origin = 'document' } = {}) {
   if (!pieces) throw new Error('renderTalk needs the pieces folder');
   const manifest = JSON.parse(await readFile(path.join(pieces, 'manifest.json'), 'utf8'));
   const talk = extractTalk(source, origin);
   const { title, nodes, warnings } = prepareTalk(talk.source, { manifest, origin, image: (value, file, label) => readImage(baseDir, file, label) });
+
+  if ((lang ?? talk.lang ?? 'es') === 'es') warnings.push(...(await checkSpelling(talk.source, { origin })));
 
   const page = await renderBody(nodes, { manifest, warnings, load: (file) => import(pathToFileURL(path.join(pieces, file)).href) });
   const text = (file) => readFile(path.join(pieces, file), 'utf8');

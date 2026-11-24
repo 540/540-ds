@@ -25,14 +25,36 @@ Esta guía dice qué hace buena una pieza de 540. Las normas de cada tipo de pie
 - No repitas la misma estructura en dos secciones seguidas. Una cabecera con rejilla de tarjetas es una opción, no la forma por defecto: en una pieza, como mucho una vez.
 - Alterna secciones densas con secciones de aire: una frase, una cita, una imagen grande.
 - En cada pieza, al menos una sección visual (cifras, diagrama, flujo, cronología o imagen), no solo texto.
+- Combina: antes de repetir una pieza, mira si hay otra en el catálogo que cuente lo mismo. En una charla, ninguna forma de parada pasa del 30 % (es norma, y el render avisa).
 
 ## Imágenes
 
-Pendiente.
+- Una pieza de 540 lleva imágenes. En una charla, como mínimo en la portada, en cada título de bloque y en una parada de cada bloque (es norma).
+- Elige la imagen por lo que cuenta la sección, no por bonita: si la sección habla de recetas, una taza; si habla de un proceso, un taller o unas manos trabajando. La temática de la imagen y la de la sección tienen que poder decirse en la misma frase.
+- Varía el motivo: dos fotos de granos de café en la misma charla se leen como la misma foto.
+- Claras y con aire mejor que oscuras y recargadas: el velo del componente ya oscurece lo que lleva texto encima.
+- Una imagen grande con una frase es una parada de aire: úsala para respirar entre dos paradas densas.
+- Las capturas de pantalla se enseñan enteras; si hay que leer un detalle, se amplía en una hoja (`Sheet`).
+
+## Cuánto cabe en una charla
+
+Son orientaciones, no normas: si una parada pide más, que sea porque lo necesita.
+
+- **Paradas:** entre 12 y 30. Menos de 12 suele ser un artículo; más de 30 no se cuenta en una sesión.
+- **Bloques:** de tres a seis, cada uno con de dos a seis paradas.
+- **Una idea por parada.** Si una parada necesita dos títulos, suelen ser dos paradas.
+- **Portada:** el título en dos o tres líneas cortas; la pregunta, una frase; el lead, dos.
+- **Títulos:** dos líneas como mucho en proyección (unos 60 caracteres).
+- **Descripción de una cabecera:** una o dos frases.
+- **Cuerpo:** unas tres frases por bloque de texto; en una sala, un párrafo de cinco no se lee.
+- **Frases de `statement`:** unas 14 palabras; son frases que se dicen, no que se leen.
+- **Cierre:** la frase, corta; dos o tres párrafos como mucho; la última línea, de menos de diez palabras.
+- **Remates:** uno por bloque suele bastar.
 
 ## Tono del texto
 
-Pendiente.
+- Las paradas se escriben en segunda persona o en primera del plural, sin mezclar.
+- Frases cortas, con verbo. Sin superlativos.
 
 ## Piezas de referencia
 

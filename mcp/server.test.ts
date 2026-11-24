@@ -215,8 +215,10 @@ describe('tools', () => {
 
   it('get-patterns filters by need and points to stops', async () => {
     const result = (await call('get-patterns', { pieceType: 'talk', need: 'cita' })).json();
-    expect(result.patterns).toHaveLength(1);
+    expect(result.patterns).toHaveLength(2);
     expect(result.patterns[0]).toMatchObject({ piece: '`Quote`', stops: ['cita'] });
+    expect(result.patterns[1].need).toContain('cara de quien la dijo');
+    expect(result.patterns[1].stops).toContain('cita-foto');
   });
 
   it('get-rules returns the talk rules, also without pieceType', async () => {

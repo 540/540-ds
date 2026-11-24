@@ -1,4 +1,5 @@
 import { Count } from '../../components/atoms/Count';
+import { Image } from '../../components/atoms/Image';
 import { Text } from '../../components/atoms/Text';
 import { Card } from '../../components/molecules/Card';
 import { CaseItem } from '../../components/molecules/CaseItem';
@@ -59,7 +60,7 @@ import c9 from '../../assets/samples/logos/cliente-9.svg';
 import retrato from '../../assets/samples/retrato.svg';
 
 /* The full talk template: every kind of stop the system can build, in the order a talk uses
-   them, with generic copy. A real talk picks from here (12 to 30 stops) and keeps the rules
+   them, with generic copy. A real talk picks from here, mixes the kinds of stop and keeps the rules
    in src/docs/normas-charlas.md. Nothing here is styled by hand: only catalog pieces. */
 
 const ITEMS = [
@@ -67,7 +68,7 @@ const ITEMS = [
   { href: '#comparar', label: 'Comparar' },
   { href: '#procesos', label: 'Procesos' },
   { href: '#datos', label: 'Datos' },
-  { href: '#pantallas', label: 'Pantallas' },
+  { href: '#pantallas', label: 'Imágenes y pantallas' },
 ];
 
 const FOOTER = {
@@ -257,6 +258,15 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
 
       {/* ---------- 01 · Contar: texts, theses, stories, quotes ---------- */}
       <BlockTitle id="contar" ordinal="01" title="Contar: frases, historias y citas" photo={{ src: pintura, alt: 'Detalle de una pared con pintura desconchada en varias capas' }} />
+
+      <Slide id="agenda">
+        <Stack>
+          <SectionHeader title="De qué va la charla" description="El índice: un bloque por línea, en el orden en que se cuentan." align="center" />
+          <Stack measure="half">
+            <SimpleList items={['El primer bloque, en pocas palabras.', 'El segundo bloque.', 'El tercero.', 'Y el cuarto, que cierra.']} />
+          </Stack>
+        </Stack>
+      </Slide>
 
       <Slide id="contexto">
         <Stack>
@@ -654,8 +664,69 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
         </SchemaFrame>
       </Slide>
 
-      {/* ---------- 05 · Pantallas: screenshots, tools, logos, questions ---------- */}
-      <BlockTitle id="pantallas" ordinal="05" title="Pantallas, herramientas y preguntas" photo={{ src: david, alt: 'Detalle de una escultura clásica de mármol blanco' }} />
+      {/* ---------- 05 · Imágenes y pantallas: photos, screenshots, tools, logos, questions ---------- */}
+      <BlockTitle id="pantallas" ordinal="05" title="Imágenes, pantallas y preguntas" photo={{ src: david, alt: 'Detalle de una escultura clásica de mármol blanco' }} />
+
+      <Slide id="foto-frase">
+        <Stack>
+          <Image src={escultura} alt="Escultura blanca sentada ante una pared de piedra con una ventana hexagonal" ratio="2:1" />
+          <Text variant="statement" align="center" wrap="balance" measure="wide">
+            Una frase que se dice, con la foto que la acompaña.
+          </Text>
+        </Stack>
+      </Slide>
+
+      <Slide id="texto-imagen">
+        <Grid align="center">
+          <GridItem span={7}>
+            <Stack>
+              <SectionHeader title="Un texto con su imagen al lado" description="La imagen cuenta lo mismo que el texto: no decora." align="start" />
+              <Text variant="body-l" tone="secondary" wrap="pretty" measure="prose">
+                Un párrafo de cuerpo que explica la idea, con <strong>la parte que importa</strong> en negrita.
+              </Text>
+            </Stack>
+          </GridItem>
+          <GridItem span={5}>
+            <Image src={placa} alt="Placa base vista de cerca, con dos ventiladores de cobre" ratio="1:1" />
+          </GridItem>
+        </Grid>
+      </Slide>
+
+      <Slide id="cita-foto">
+        <Grid align="center">
+          <GridItem span={5}>
+            <Image src={retrato} alt="Retrato de ejemplo de una persona del equipo" ratio="1:1" />
+          </GridItem>
+          <GridItem span={7}>
+            <Stack gap="s">
+              <Text as="blockquote" variant="title-l" wrap="balance">
+                «Una cita corta, con la cara de quien la dijo al lado.»
+              </Text>
+              <Text variant="body-s" tone="secondary">
+                Nombre Apellido, su rol
+              </Text>
+            </Stack>
+          </GridItem>
+        </Grid>
+      </Slide>
+
+      <Slide id="dos-pantallas">
+        <Stack>
+          <SectionHeader title="Dos pantallas, antes y ahora" description="Una al lado de la otra, enteras y con su etiqueta encima." align="center" />
+          <Grid align="center">
+            {['Antes', 'Ahora'].map((label) => (
+              <GridItem key={label} span={6}>
+                <Stack gap="s">
+                  <Text variant="body-s" tone="secondary" align="center">
+                    {label}
+                  </Text>
+                  <Image src={captura} alt={`${label}: ${SCREEN_ALT}`} ratio="auto" />
+                </Stack>
+              </GridItem>
+            ))}
+          </Grid>
+        </Stack>
+      </Slide>
 
       <Slide id="captura">
         <Stack>

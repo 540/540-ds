@@ -11,3 +11,7 @@ src/assets/samples/charla-*.webp, and their copies in the built package.
 
 The bundled DM Sans font is licensed under the SIL Open Font License 1.1
 (see dist/fonts/OFL.txt).
+
+The renderer checks spelling with nspell (MIT) and the dictionary-es (used under
+MPL-1.1) and dictionary-en (MIT and BSD) packages, installed as dependencies and
+not modified.

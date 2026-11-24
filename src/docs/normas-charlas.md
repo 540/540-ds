@@ -1,6 +1,6 @@
 # Normas para montar una charla
 
-Estas normas son **obligatorias** para cualquier presentación que se construya con el sistema, la monte una persona o un agente. Están escritas como guardarraíles: dicen qué se puede hacer, con qué pieza, y qué no se hace nunca. Si algo no está aquí, se pregunta antes de hacerlo; no se improvisa.
+Estas normas son **obligatorias** para cualquier presentación que se construya con el sistema, la monte una persona o un agente. Cuidan dos cosas: que la charla sea de 540 (componentes, color, tipografía, efectos) y que se pueda proyectar y recorrer bien (accesibilidad, datos, aire). El contenido, en cambio, es libre: cuánto texto lleva cada parada, cuántas paradas tiene la charla o qué pieza elegir para cada cosa son **criterio**, y ese criterio está en la guía de diseño (`get-design-guide` en el MCP, `src/docs/diseno.md` en el repositorio).
 
 Se leen enteras antes de empezar y se repasa la lista final antes de dar la charla por buena.
 
@@ -18,43 +18,58 @@ Una charla se monta **solo con los componentes del catálogo**, con sus props, y
 - Emojis, iconos decorativos, GIFs, vídeos con autoplay.
 - Texto en color: el texto es negro o gris (`tone="primary"` o `tone="secondary"`), siempre.
 
-**Si falta una pieza**, no se hace a mano: se pide un componente nuevo siguiendo el apartado «Cómo pedir un componente nuevo» del README. Mientras llega, la parada se resuelve con la pieza más cercana del catálogo o se deja con un texto que diga qué falta.
+**Si falta una pieza**, no se hace a mano: se habla con diseño (ver 13).
 
 ## 1. Estructura de una charla
 
-Para empezar una charla se copia la plantilla **Plantillas/Charla completa** (`src/templates/TalkTemplate`), que tiene todas las paradas que sabe hacer el sistema, y se borra lo que no se cuenta.
+Para empezar una charla se parte de la plantilla **Plantillas/Charla completa** (`src/templates/TalkTemplate`), que tiene todas las paradas que sabe hacer el sistema, y se eligen las que hacen falta.
 
-Una charla es un `Deck` con este orden, y no otro:
+Una charla es un `Deck` con este orden:
 
 1. **`Cover`**: la portada. Una sola.
-2. **Bloques numerados**, de uno a seis. Cada bloque es un `BlockTitle` con su foto y, detrás, de una a seis paradas.
+2. **Bloques numerados**. Cada bloque es un `BlockTitle` con su foto y, detrás, sus paradas.
 3. **`Closing`**: el cierre. Uno solo.
 4. **El pie** (`DeckFooter`), que lo pone el `Deck` con `footer`.
 
 Reglas de estructura:
 
-- **Entre 12 y 30 paradas** en total. Menos de 12 es un artículo; más de 30 no se cuenta en una sesión.
-- **Una idea por parada.** Si una parada necesita dos títulos, son dos paradas.
 - **Cada bloque numerado lleva su foto**: un `BlockTitle` sin `photo` no se acepta. El ordinal es `"01"`, `"02"`…, en orden y sin saltos.
-- **Un remate por bloque como máximo**: `Statements`, `Quote` o `Punchline` en una `Slide` con `tone="raised"`. Los remates no van seguidos: entre dos remates hay al menos una parada de contenido.
+- Los remates (`Statements`, `Quote`, `Punchline`) no van seguidos: entre dos remates hay al menos una parada de contenido.
 - Los `id` de las paradas van en minúsculas, sin acentos, con guiones (`quienes-somos`), únicos, y los de los destinos de la barra (`items` del `Deck`) apuntan a los `BlockTitle`.
-- La barra de arriba lleva **entre tres y seis destinos**: los bloques. No se enlazan paradas sueltas.
+- La barra de arriba lleva **un destino por bloque**, y solo los bloques: no se enlazan paradas sueltas.
+
+Cuántas paradas lleva la charla, cuántas lleva cada bloque y cuánto texto cabe en cada una son criterio: están en la guía de diseño.
+
+### Variedad: ninguna forma de parada pasa del 30 %
+
+Una charla combina las piezas del catálogo; no repite la misma parada una y otra vez.
+
+- **Ninguna forma de parada ocupa más del 30 % de las paradas de contenido.** Dos paradas tienen la misma forma cuando usan las mismas piezas (una cabecera con tres tarjetas y otra cabecera con tres tarjetas son la misma forma, aunque cambie el texto). La portada, los títulos de bloque y el cierre no cuentan.
+- **Nunca dos paradas seguidas con la misma forma.**
+- **Se alternan** las paradas densas (tarjetas, listas, gráficos) con las de aire (una frase, una cita, una imagen grande).
+- El render avisa cuando una forma pasa del 30 %. El aviso se corrige: se cambia de pieza o se juntan paradas.
 
 ### Las piezas y para qué parada sirven
+
+La tabla es orientativa: dice qué pieza cuenta mejor cada cosa y qué no se hace nunca. Si hay dos piezas que sirven, se elige la que no se ha usado todavía.
 
 | Para contar… | Pieza | Nunca |
 |---|---|---|
 | El título de un bloque | `BlockTitle` con foto | Un `Slide` con un `h2` grande |
 | Un título con dos frases de entrada | `Slide` + `SectionHeader` | Un título sin descripción debajo de otro título |
+| Una idea con una foto grande | `Slide` con `Image` en `2:1` y un `Text` de frase | Una foto sin nada que contar |
+| Un texto con su imagen al lado | `Grid` 7 + 5 con `SectionHeader` y `Image` | La imagen como fondo detrás del texto |
 | Dos a cuatro cosas comparables | `Grid` + `Card` | Más de cuatro tarjetas por fila |
-| Cinco cosas | `Grid layout="fiveCentered"` o `layout="five" compact` | Seis o más |
+| Cinco cosas | `Grid layout="fiveCentered"` o `layout="five" compact` | Seis o más en una fila |
 | Una historia o una objeción | `Story` | Un párrafo largo suelto |
 | Una cita | `Quote` | Comillas en un `Text` |
+| Una cita con la cara de quien la dijo | `Grid` con `Image` en `1:1` y `Text` | Un retrato sin permiso (ver 11) |
 | Pasos en fila | `Flow` | Flechas escritas en texto |
 | Una cronología | `Timeline` | Una lista con fechas en negrita |
 | Un ciclo | `Cycle` | Un `Flow` que vuelve al principio |
 | Un diagrama | `Schema` dentro de `SchemaFrame` | Una imagen de un diagrama |
-| Una pantalla | `Screenshot` | `Image` con una captura |
+| Una pantalla | `Screenshot` | Una captura recortada sin avisar |
+| Dos pantallas comparadas (antes y ahora) | `Grid` 6 + 6 con `Image ratio="auto"` y su etiqueta | Dos `Screenshot` en una rejilla |
 | Varias piezas en una parada | `Stack` | Un `div` con margen o `gap` |
 | Cifras | `Metric` en un `Grid` + `MetricNote`; `Count` si la cifra sube | Números grandes en `Text` |
 | Cantidades comparadas o un ranking | `Bars` | Una lista de números |
@@ -64,63 +79,67 @@ Reglas de estructura:
 | Algo que se cuenta por partes | `Steps` | Varias paradas casi iguales |
 | Un detalle ampliado | `Sheet` dentro de un `Step` | `Dialog` |
 | Preguntas con respuesta | `Question` | Texto con «P:» y «R:» |
-| Tres a cinco líneas | `SimpleList`, `ArrowList`, `ProblemList` | `ul` sin componente |
+| Una lista o el índice de la charla | `SimpleList`, `ArrowList`, `ProblemList` | `ul` sin componente |
 | Tres frases de tesis | `Statements` | Tres `Slide` con un `statement` |
 
 ## 2. Portada y cierre
 
 **`Cover`:**
 
-- `title` en dos o tres líneas, cada línea de cuatro palabras como máximo.
-- `question` o `lead`, no las dos largas: la pregunta es una frase; el lead, dos.
+- `title` corto, en dos o tres líneas.
+- `question` o `lead`, no las dos largas.
 - `event` con el nombre del evento y la fecha («Open space · marzo 2026»).
 - `photo` siempre, 2:1, y `client` solo si hay permiso para usar el logo (ver 11).
 
 **`Closing`:**
 
-- `sentence`: una frase de 14 palabras como máximo, con `<strong>` en una parte si hace falta, no en toda.
-- `body`: de uno a tres párrafos de dos frases.
-- `punchline`: la última línea, de menos de diez palabras.
+- `sentence`: una frase corta, con `<strong>` en una parte si hace falta, no en toda.
+- `body` y `punchline` opcionales.
 
 El pie lleva la frase de la marca, las redes y el «¡Gracias!». No se le añade nada ni se le quita nada.
 
-## 3. Subsecciones con imagen
+## 3. Imágenes: siempre
 
-Cada bloque empieza con una foto. Las normas de esa foto:
+Una charla de 540 lleva imágenes **sí o sí**. Una charla solo de texto y tarjetas no se acepta.
 
-- **Formato 2:1**, de 2000 px de ancho como mínimo, en `.webp` y de menos de 400 KB.
-- **Neutra**: arquitectura, materiales, texturas, paisaje, objetos. Sin personas reconocibles, sin texto, sin pantallas, sin logos.
+**Dónde van, como mínimo:**
+
+- La **portada**, con su foto.
+- Cada **título de bloque**, con su foto.
+- En cada bloque, **al menos una parada de contenido con imagen**: una foto grande con una frase, un texto con su imagen al lado, una cita con foto, una pantalla (`Screenshot`), dos pantallas comparadas o los casos (`CaseItem`).
+
+**De dónde salen.** De la biblioteca de imágenes de 540, elegidas por la temática de la charla. Mientras la biblioteca no esté en el sistema, de fotos con licencia libre (Unsplash, Pexels) o propias, nunca de una búsqueda cualquiera. Las fotos de muestra de la plantilla no van en una charla real.
+
+**Cómo son:**
+
+- **Fotos de portada y de bloque: 2:1**, de 2000 px de ancho como mínimo, en `.webp` y de menos de 400 KB. Sin texto ni logos dentro.
+- **Fotos de contenido:** en la proporción que pida la pieza (`2:1`, `1:1` o `auto` para capturas), con la misma calidad.
+- **Sin personas reconocibles** salvo con su consentimiento (ver 11). Una mano o una silueta sí.
 - **El velo lo pone el componente** (`--gradient-image-veil`); la foto no se oscurece ni se retoca en origen.
-- **`alt` obligatorio** y descriptivo («Fachada de hormigón con la luz de la tarde»). Si la foto es pura decoración no vale `alt=""` aquí: una foto de bloque siempre se describe.
-- Una foto por bloque. **No** hay fotos en paradas de contenido, salvo:
-  - el retrato redondo del equipo (`Card` con `portrait`, o `TeamMember`), siempre con el mismo encuadre para todas las personas;
-  - una `Screenshot` cuando la parada habla de una pantalla;
-  - las imágenes de los casos (`CaseItem`), solo en una charla sobre proyectos.
-- La portada lleva su propia foto, con las mismas normas.
-- Las fotos nunca se repiten dentro de una charla, y una charla no reutiliza las fotos de otra sin cambiar al menos la de portada.
+- **`alt` obligatorio** y descriptivo («Fachada de hormigón con la luz de la tarde»).
+- **Las fotos nunca se repiten** dentro de una charla.
 
 ## 4. Texto y jerarquía
 
 - **Una `h2` por parada**, puesta por `SectionHeader`, `BlockTitle` o la pieza que corresponda. Nunca dos títulos del mismo nivel en una parada.
-- **Títulos de dos líneas como máximo** en proyección (unos 60 caracteres). Si no cabe, se acorta; no se baja el tamaño.
-- **Descripción de la cabecera: una o dos frases.** Más que eso va en el cuerpo de la parada.
-- **Cuerpo: tres frases por bloque de texto.** Un párrafo de cinco frases en una sala no se lee.
-- **Frases de `statement`: 14 palabras como máximo.** Son frases que se dicen, no que se leen.
+- **Si un título no cabe, se acorta; no se baja el tamaño.**
 - **Negrita (`<strong>`) una vez por párrafo**, en la parte que importa. Nunca un párrafo entero.
 - `<code>` solo para comandos, nombres de archivo y rutas.
 - Mayúsculas sostenidas solo las que pone el sistema (`micro-bold`). No se escriben títulos en mayúsculas.
+- **Sin faltas de ortografía**, en todo el texto: títulos, cuerpos, listas, `alt`, títulos y descripciones de los esquemas. El render avisa de cada palabra que no está en el diccionario; el aviso se corrige o, si la palabra está bien escrita (un término de 540, un nombre), se añade a `palabras-540.txt`. El corrector no ve las tildes diacríticas («solo», «él», «más»), la concordancia ni una palabra bien escrita en el sitio equivocado: por eso, además, se relee todo antes de entregar.
 - Ortotipografía en español: «comillas latinas», signos de apertura (¿ ¡), raya para incisos, espacio antes del símbolo de porcentaje (20 %) y coma decimal (0,84).
-- Las paradas se escriben en segunda persona o en primera del plural, como en las charlas; no se mezclan.
 - Tono: el de las charlas de 540. Nada de superlativos ni de «revolucionario», «increíble», «mágico».
+
+Cuántas palabras lleva un título, una frase o un párrafo es criterio: está en la guía de diseño.
 
 ## 5. Márgenes y aire
 
 El aire lo ponen las piezas. Quien monta la charla no mide nada.
 
-- **`Slide` pone el margen de la parada** (`--padding-page` a los lados y `--padding-section-block` arriba y abajo) y centra el contenido en un escenario de 1200 px. No se añaden márgenes, ni `div` con `padding`, ni separadores.
+- **`Slide` pone el margen de la parada** y centra el contenido en un escenario de 1200 px. No se añaden márgenes, ni `div` con `padding`, ni separadores.
 - **Entre piezas de una parada, solo los huecos que dan los componentes** (`Stack`, `Grid`, `SectionHeader`, `Section`). Si dos piezas quedan pegadas, es que falta la pieza que las contiene, no un margen.
 - **Nada sale del escenario de 1200 px** salvo lo que ya es de lado a lado por diseño: la foto de bloque, `CardList`, `Marquee`, `SchemaFrame`.
-- **Los textos llevan su medida** (`measure`): `half` para descripciones y cuerpos, `wide` para frases, `prose` para texto corrido. Un párrafo de más de 70 caracteres por línea no se acepta.
+- **Los textos llevan su medida** (`measure`): `half` para descripciones y cuerpos, `wide` para frases, `prose` para texto corrido.
 - **Columnas: cuatro como máximo en proyección**, cinco solo con `Grid` `five` o `fiveCentered`. Dos columnas desiguales solo 7 + 5 u 8 + 4.
 - **Cada parada cabe en una pantalla** de 1440 × 900 en escala de proyección, sin scroll dentro de la parada. Si no cabe, sobra contenido, no falta sitio.
 - **Se revisa en los tres anchos** de la barra de Storybook (375, 768, 1440). En móvil todo va a una columna y nada se recorta.
@@ -139,7 +158,7 @@ El amarillo de 540 es **de fondo y de trazo**. En una charla aparece en estos si
 
 **Nunca** en texto, en fondos de parada o de tarjeta, en bordes, en iconos, en botones, en subrayados ni en fondos de hoja. **Cuota por charla: fuera de las manchas, el amarillo aparece en tres paradas como máximo.** Si una charla pide más, es que se está usando para decorar, y el amarillo no decora: señala.
 
-El rojo y el verde son colores de estado y solo van en **círculos y trazos**: las marcas de `Cycle`, el punto de aviso de `Timeline`, el `Heartbeat`. Nunca en texto. El antetítulo «El problema» va en gris.
+El rojo y el verde son colores de estado y solo van en **círculos y trazos**: las marcas de `Cycle`, el punto de aviso de `Timeline`, el `Heartbeat`. Nunca en texto.
 
 Todo lo demás es negro, gris y los fondos del sistema. Las tarjetas son del color de la página y se separan con el borde; la única banda distinta es `tone="raised"`.
 
@@ -152,13 +171,13 @@ Todo lo demás es negro, gris y los fondos del sistema. Las tarjetas son del col
 
 ## 8. Efectos: los que hay y cómo se usan
 
-Los efectos son los de las charlas anteriores y **ya están dentro de los componentes**: no se programa ninguna animación en una charla.
+Los efectos **ya están dentro de los componentes**: no se programa ninguna animación en una charla.
 
 | Efecto de las charlas | Pieza del sistema | Regla |
 |---|---|---|
 | Manchas que derivan en el fondo | `Deck` con `blobs` | Siempre encendidas |
 | La foto de bloque que se acerca al pasar (1,18 → 1) | `BlockTitle` con `photo` | Con cada bloque |
-| Las frases que se encienden una a una (`frase`) | `Statements`, `Spotlight` | Una pila por charla; de tres a cinco frases |
+| Las frases que se encienden una a una (`frase`) | `Statements`, `Spotlight` | De tres a cinco frases |
 | El eje que se dibuja y el punto que aparece | `Timeline` | De tres a ocho pasos |
 | Lo que se enciende con la flecha (`pasos`) | `Steps` | Ocho pasos como máximo; un `Steps` por parada |
 | El detalle que sube (`zoom`) | `Sheet` en un `Step` | Una hoja por parada |
@@ -176,9 +195,8 @@ Guardarraíles del movimiento:
 
 - **Un efecto fuerte por parada** (una pila de frases, un `Steps`, un `Cycle`, un `Schema` por capas). Dos piezas que se mueven a la vez compiten.
 - **Lo que se repite en bucle** (`Marquee`, `LogoCarousel`, `Heartbeat`, el autoplay de `Carousel`) aparece **una vez por charla** cada uno, y nunca dos en la misma parada.
-- **Las duraciones y las curvas no se cambian.** Son las de las charlas.
+- **Las duraciones y las curvas no se cambian.**
 - **Todo respeta `prefers-reduced-motion`.** Lo hacen los componentes; por eso no se añade ningún efecto fuera de ellos.
-- Las entradas de texto de las charlas hechas con GSAP (`entrada`, `escalonado`, `pieza`, `revelar`, `secciones`, el `parallax` de texto) **todavía no están en el sistema**. Mientras no estén, las paradas entran sin animación. No se sustituyen por una animación propia ni se añade GSAP a una charla.
 
 ## 9. Navegación y paradas
 
@@ -200,33 +218,36 @@ Guardarraíles del movimiento:
 ## 11. Nombres, logos y datos
 
 - Los **textos de ejemplo** en Storybook son genéricos. Las charlas reales llevan su contenido, pero nunca se suben al catálogo.
-- **Logos y nombres de clientes** solo con permiso por escrito del cliente. Sin permiso, la parada dice «un cliente del sector X».
+- **Logos y nombres de clientes:** en una charla interna de 540, libres. En una charla que sale de 540, solo con permiso por escrito del cliente; sin permiso, la parada dice «un cliente del sector X».
 - Las **capturas** no llevan datos reales de personas ni de clientes: se anonimizan antes o se usan datos de ejemplo.
-- Las **personas** del equipo salen con su nombre y su rol, con un retrato con el mismo encuadre para todas, y con su consentimiento.
+- Las **personas** salen con su nombre y su rol, con un retrato con el mismo encuadre para todas, y con su consentimiento.
 - Las **cifras** llevan su fuente en una `MetricNote` (qué se midió, cuándo, cómo).
 
 ## 12. Lista final antes de dar la charla por buena
 
 Se repasa entera. Un «no» en cualquiera devuelve la charla a revisión.
 
-1. ¿Hay una `Cover`, de uno a seis bloques con `BlockTitle` y foto, y un `Closing`?
-2. ¿Entre 12 y 30 paradas, una idea por parada?
-3. ¿Ningún CSS propio, ningún `style=`, ningún valor escrito a mano, ninguna librería nueva?
-4. ¿Todo el texto en negro o gris, sin colores?
-5. ¿Amarillo solo en manchas, píldoras, un nodo de anillo o una serie, y en tres paradas como máximo?
-6. ¿Rojo y verde solo en círculos y trazos?
-7. ¿Fotos 2:1 neutras, con `alt`, sin personas reconocibles ni texto, menos de 400 KB?
-8. ¿Títulos de dos líneas, cuerpos de tres frases, frases de 14 palabras?
-9. ¿Cada parada cabe en 1440 × 900 en proyección y se ve bien en 375 y 768?
-10. ¿Revisado en oscuro y en claro?
-11. ¿Un efecto fuerte por parada y las piezas en bucle una vez por charla?
-12. ¿Panel de accesibilidad en verde, una `h2` por parada, todo recorrible con teclado?
-13. ¿Logos, nombres, capturas y retratos con permiso y sin datos reales?
-14. ¿Las cifras con su `MetricNote`?
-15. ¿La barra con tres a seis destinos y el logo volviendo a la portada?
+1. ¿Hay una `Cover`, bloques con `BlockTitle` y foto, y un `Closing`?
+2. ¿Ninguna forma de parada pasa del 30 % de las de contenido y no hay dos seguidas iguales? ¿El render no da avisos?
+3. ¿Sin faltas de ortografía? ¿El render no avisa de ninguna palabra y se ha releído todo, `alt` incluidos?
+4. ¿Imágenes en la portada, en cada título de bloque y en al menos una parada de cada bloque, sin repetir ninguna?
+5. ¿Ningún CSS propio, ningún `style=`, ningún valor escrito a mano, ninguna librería nueva?
+6. ¿Todo el texto en negro o gris, sin colores?
+7. ¿Amarillo solo en manchas, píldoras, un nodo de anillo o una serie, y en tres paradas como máximo?
+8. ¿Rojo y verde solo en círculos y trazos?
+9. ¿Fotos de portada y de bloque en 2:1, con `alt`, sin texto ni logos, menos de 400 KB?
+10. ¿Cada parada cabe en 1440 × 900 en proyección y se ve bien en 375 y 768?
+11. ¿Revisado en oscuro y en claro?
+12. ¿Un efecto fuerte por parada y las piezas en bucle una vez por charla?
+13. ¿Panel de accesibilidad en verde, una `h2` por parada, todo recorrible con teclado?
+14. ¿Logos, nombres, capturas y retratos con permiso y sin datos reales?
+15. ¿Las cifras con su `MetricNote`?
+16. ¿La barra con un destino por bloque y el logo volviendo a la portada?
 
 ## 13. Qué hacer cuando el encargo pide algo fuera de las normas
 
-Quien monta la charla (persona o agente) **no cumple el encargo saltándose una norma**. Responde con la norma que lo impide y propone la pieza del sistema que resuelve lo mismo. Si de verdad hace falta algo nuevo, se pide el componente a diseño con el formato del README, y hasta que exista la charla se monta sin él.
+Quien monta la charla (persona o agente) **no cumple el encargo saltándose una norma**. Dice qué norma lo impide y **habla con la diseñadora** para ver si hace falta un componente nuevo, una variante de uno que ya existe o una plantilla nueva. Un agente lo dice en la conversación y propone qué pieza haría falta; no la inventa.
+
+Mientras se decide, la charla se monta con la pieza más cercana del catálogo, o se deja la parada con un texto que diga qué falta. Si diseño crea la pieza, entra en el catálogo y en la plantilla, y las normas se actualizan con ella.
 
 Las normas cambian solo desde diseño, en este archivo (`src/docs/normas-charlas.md`), y cada cambio va con su commit.

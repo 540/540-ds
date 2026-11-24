@@ -38,6 +38,8 @@ Cada export de componente con mayúscula es una etiqueta (hoy 62). `className`, 
 - Pre-renderiza todo a HTML estático e incluye solo el CSS de `base.css` y de los componentes usados, con DM Sans incrustada.
 - Añade JavaScript (runtime de Preact + scripts de isla) solo si la charla usa algún componente interactivo. Una charla solo con piezas estáticas sale sin ningún `<script>`.
 - Dentro de `<rev-steps>`, lo que sigue los pasos (`Step`, `Count`, `Bars`, `Sheet`, `Schema`, `Share`) entra en la isla de `Steps`. Si un envoltorio estático (`<rev-stack>`, `<rev-grid>`…) lo separa de sus pasos, avisa: esa pieza no seguirá los pasos.
+- En una charla en castellano, avisa de cada palabra que no está en el diccionario de español ni en el de inglés, con la línea donde aparece por primera vez, cuántas veces sale y sugerencias. Da por buenas las palabras de `render/palabras-540.txt`, los nombres propios (con mayúscula), las siglas, lo que va en `<code>` y los atributos que no son texto (`src`, `href`, `id`, `variant`…).
+- Avisa cuando la charla se repite (normas de charlas, «Variedad»): si una forma de parada pasa del 30 % de las paradas de contenido del `<rev-deck>`, o si dos paradas seguidas tienen la misma forma. La forma de una parada es su etiqueta y las piezas del catálogo que lleva dentro, sin contar las de maquetación (`rev-stack`, `rev-grid`, `rev-text`, `rev-section-header`…). La portada, los títulos de bloque y el cierre no cuentan.
 - Fija la versión del sistema con `<meta name="540-ds-version">`.
 
 ## Ejemplo
