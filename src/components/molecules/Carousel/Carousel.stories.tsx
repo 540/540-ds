@@ -4,15 +4,15 @@ import { SectionHeader } from '../SectionHeader';
 import { Carousel } from './Carousel';
 import { CAROUSEL_CONTROLS, CAROUSEL_DEFAULTS } from './types';
 import doc from './_docs/Carousel.md?raw';
-import pintura from '../../../assets/samples/charla-pintura.webp';
-import david from '../../../assets/samples/charla-david.webp';
-import fachada from '../../../assets/samples/charla-fachada.webp';
+import canon from '../../../assets/samples/paisaje-canon-oscuro.webp';
+import ventana from '../../../assets/samples/textura-luz-ventana.webp';
+import fachada from '../../../assets/samples/textura-fachada-lamas.webp';
 
 const CASOS = [
-  <CaseItem key="1" src={pintura} title="Primer caso" description="Una frase que cuenta de qué iba el caso." href="#caso-1" />,
-  <CaseItem key="2" src={david} title="Segundo caso" description="Una frase que cuenta de qué iba este otro." href="#caso-2" />,
+  <CaseItem key="1" src={canon} title="Primer caso" description="Una frase que cuenta de qué iba el caso." href="#caso-1" />,
+  <CaseItem key="2" src={ventana} title="Segundo caso" description="Una frase que cuenta de qué iba este otro." href="#caso-2" />,
   <CaseItem key="3" src={fachada} title="Tercer caso" description="Una frase más, igual de corta." href="#caso-3" />,
-  <CaseItem key="4" src={pintura} title="Cuarto caso" description="Y una cuarta pieza para que la tira se pase." href="#caso-4" />,
+  <CaseItem key="4" src={canon} title="Cuarto caso" description="Y una cuarta pieza para que la tira se pase." href="#caso-4" />,
 ];
 
 const meta = {

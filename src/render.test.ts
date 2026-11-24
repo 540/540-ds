@@ -12,7 +12,7 @@ const kb = (html: string) => `${(Buffer.byteLength(html) / 1024).toFixed(0)} KB`
 
 const STATIC_TALK = `
 <title>Solo piezas estáticas</title>
-<rev-block-title id="bloque-1" ordinal="01" title="Lo que <strong>medimos</strong>" photo='{"src":"charla-fachada.webp","alt":"Fachada de hormigón"}'></rev-block-title>
+<rev-block-title id="bloque-1" ordinal="01" title="Lo que <strong>medimos</strong>" photo='{"src":"textura-fachada-lamas.webp","alt":"Fachada de hormigón"}'></rev-block-title>
 <rev-slide id="cifras">
   <rev-section-header title="Tres cifras" description="Lo que cambió en un año."></rev-section-header>
   <rev-grid>
@@ -29,8 +29,8 @@ const STATIC_TALK = `
 const DECK_TALK = `
 <title>Charla con Deck</title>
 <rev-deck items='[{"href":"#bloque-1","label":"Bloque"}]' footer='{"tagline":"Hacemos <strong>software</strong>.","copyright":"© 2026 540"}' storage-key="">
-  <rev-cover title='["Una charla","de prueba"]' event="Open space · marzo 2026" photo='{"src":"charla-pintura.webp","alt":"Pintura"}'></rev-cover>
-  <rev-block-title id="bloque-1" ordinal="01" title="El bloque" photo='{"src":"charla-fachada.webp","alt":"Fachada"}'></rev-block-title>
+  <rev-cover title='["Una charla","de prueba"]' event="Open space · marzo 2026" photo='{"src":"paisaje-canon-oscuro.webp","alt":"Cañón"}'></rev-cover>
+  <rev-block-title id="bloque-1" ordinal="01" title="El bloque" photo='{"src":"textura-fachada-lamas.webp","alt":"Fachada"}'></rev-block-title>
   <rev-slide id="pasos">
     <rev-steps total="2">
       <rev-step from="0"><rev-text variant="title-m">Primero</rev-text></rev-step>
@@ -188,14 +188,14 @@ describe('renderTalk', () => {
   });
 
   it('warns about a big photo with a sentence under it', async () => {
-    const photo = `<rev-slide id="foto"><rev-stack><rev-image src="charla-escultura.webp" alt="Una foto" ratio="2:1"></rev-image><rev-text variant="statement">Una frase.</rev-text></rev-stack></rev-slide>`;
+    const photo = `<rev-slide id="foto"><rev-stack><rev-image src="arquitectura-soportales-sombras.webp" alt="Una foto" ratio="2:1"></rev-image><rev-text variant="statement">Una frase.</rev-text></rev-stack></rev-slide>`;
     const { warnings } = await render(`<rev-deck items='[]' footer='{"tagline":"Pie.","copyright":"© 2026 540"}' storage-key="">${photo}</rev-deck>`);
     expect(warnings).toHaveLength(1);
     expect(warnings[0]).toContain('foto is a big photo with a sentence');
   });
 
   it('warns when the text beside a photo is aligned to the start', async () => {
-    const slide = `<rev-slide id="lado"><rev-grid><rev-grid-item span="7"><rev-section-header title="Un título" description="Una frase." align="start"></rev-section-header></rev-grid-item><rev-grid-item span="5"><rev-image src="charla-escultura.webp" alt="Una foto" ratio="1:1"></rev-image></rev-grid-item></rev-grid></rev-slide>`;
+    const slide = `<rev-slide id="lado"><rev-grid><rev-grid-item span="7"><rev-section-header title="Un título" description="Una frase." align="start"></rev-section-header></rev-grid-item><rev-grid-item span="5"><rev-image src="arquitectura-soportales-sombras.webp" alt="Una foto" ratio="1:1"></rev-image></rev-grid-item></rev-grid></rev-slide>`;
     const { warnings } = await render(`<rev-deck items='[]' footer='{"tagline":"Pie.","copyright":"© 2026 540"}' storage-key="">${slide}</rev-deck>`);
     expect(warnings).toHaveLength(1);
     expect(warnings[0]).toContain('lado aligns the text beside its photo to the start');
@@ -221,7 +221,7 @@ describe('renderTalk', () => {
       <rev-slide id="y" tone="loud" storageKey="a" class="c">
         <div>hola</div>
         <rev-text style="color: red">x</rev-text>
-        <rev-cover title='["a"]' photo='{"src":"charla-pintura.webp","alt":"a","extra":1}'></rev-cover>
+        <rev-cover title='["a"]' photo='{"src":"paisaje-canon-oscuro.webp","alt":"a","extra":1}'></rev-cover>
         <rev-dialog open title="x">y</rev-dialog>
         <rev-count></rev-count>
         <rev-grid-item span="13">x</rev-grid-item>

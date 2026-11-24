@@ -3,7 +3,7 @@ import { Text } from '../../atoms/Text';
 import { Slide } from '../Slide';
 import { BlockTitle } from './BlockTitle';
 import doc from './_docs/BlockTitle.md?raw';
-import david from '../../../assets/samples/charla-david.webp';
+import ventana from '../../../assets/samples/textura-luz-ventana.webp';
 
 const meta = {
   title: 'Organismos/BlockTitle',
@@ -14,7 +14,7 @@ const meta = {
     id: 'bloque-01',
     ordinal: '01',
     title: 'Título del primer bloque',
-    photo: { src: david, alt: '' },
+    photo: { src: ventana, alt: '' },
   },
   argTypes: {
     id: { control: 'text', table: { type: { summary: 'string' } } },

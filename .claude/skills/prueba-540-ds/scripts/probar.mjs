@@ -69,7 +69,7 @@ How:
 - Your only source for the design system is the 540-ds-local MCP. Follow its instructions exactly as it gives them. Do not rely on anything you remember about 540.
 - Write the piece as pieza.rev.html in the current folder, with <rev-…> tags. The tag contract: \`${render} --contract\`. The props of the tags you use: \`${render} --tags <Component> …\`.
 - Render it with \`${render} pieza.rev.html\`. If it exits with errors or warnings, fix pieza.rev.html (never pieza.html) and render again, until it exits with 0.
-- Images: there are no real photos. Use the samples in ./muestras with relative paths (muestras/charla-teclado.webp…).
+- Images: there are no real photos. Use the samples in ./muestras with relative paths (muestras/textura-degradado-naranja.webp…).
 - If something you need has no component, or the docs, rules or guide are unclear, missing or contradict each other, do not work around it: note it.
 
 At the end, write informe.md in Spanish, for the designer who maintains the system (not technical), with these sections:

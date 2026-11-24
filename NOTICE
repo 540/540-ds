@@ -23,7 +23,9 @@ The following are NOT licensed under the Apache License 2.0.
 
 3. Photographs. The photographs in src/images/photos and in
    src/assets/samples, and their copies in the built package, are not owned by
-   540 and remain the property of their photographers.
+   540 and remain the property of their photographers. The six photographs in
+   src/assets/samples are cropped copies of six photographs of
+   src/images/photos, with the same file names.
 
    Each photo in src/images/photos was published on Unsplash and is used under
    the Unsplash License (https://unsplash.com/license): free to use, copy,

@@ -30,7 +30,7 @@ const label = (text) => t(text, { variant: 'body-s', tone: 'secondary', align: '
 const slide = (slideId, story, ...children) => h(get('Slide'), { id: slideId }, label(story), ...children);
 const grid = (columns, children, style = {}) => h('div', { style: { display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 'var(--grid-gutter)', textAlign: 'start', ...style } }, ...children);
 
-const [pintura, david, fachada] = await Promise.all(['charla-pintura.webp', 'charla-david.webp', 'charla-fachada.webp'].map(sample));
+const [canon, ventana, fachada] = await Promise.all(['paisaje-canon-oscuro.webp', 'textura-luz-ventana.webp', 'textura-fachada-lamas.webp'].map(sample));
 const logos = await Promise.all(Array.from({ length: 9 }, (_, i) => sample(`logos/cliente-${i + 1}.svg`)));
 const NODES = ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'];
 const chain = (y, kind) =>
@@ -116,10 +116,10 @@ const body = slot(
         label: 'Casos del portfolio',
         controls: 'dots',
         items: [
-          [pintura, 'Primer caso', 'Una frase que cuenta de qué iba el caso.'],
-          [david, 'Segundo caso', 'Una frase que cuenta de qué iba este otro.'],
+          [canon, 'Primer caso', 'Una frase que cuenta de qué iba el caso.'],
+          [ventana, 'Segundo caso', 'Una frase que cuenta de qué iba este otro.'],
           [fachada, 'Tercer caso', 'Una frase más, igual de corta.'],
-          [pintura, 'Cuarto caso', 'Y una cuarta pieza para que la tira se pase.'],
+          [canon, 'Cuarto caso', 'Y una cuarta pieza para que la tira se pase.'],
         ].map(([src, title, description], i) => slot(h(get('CaseItem'), { src, title, description, href: `#caso-${i + 1}` }))),
       }),
     ),

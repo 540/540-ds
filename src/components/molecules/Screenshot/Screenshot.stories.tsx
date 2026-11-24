@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader } from '../SectionHeader';
-import pintura from '../../../assets/samples/charla-pintura.webp';
+import canon from '../../../assets/samples/paisaje-canon-oscuro.webp';
 import { Screenshot } from './Screenshot';
 import doc from './_docs/Screenshot.md?raw';
 
@@ -9,7 +9,7 @@ const meta = {
   component: Screenshot,
   tags: ['autodocs', '!dev'],
   parameters: { docs: { description: { component: doc } }, layout: 'padded' },
-  args: { src: pintura, alt: 'Una pantalla de ejemplo con un panel y sus datos.', width: 1800, height: 900 },
+  args: { src: canon, alt: 'Una pantalla de ejemplo con un panel y sus datos.', width: 1800, height: 900 },
   argTypes: {
     src: { control: false, table: { type: { summary: 'string' } } },
     alt: { control: 'text', table: { type: { summary: 'string' } } },

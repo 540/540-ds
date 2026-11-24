@@ -3,13 +3,13 @@ import { CaseItem } from './CaseItem';
 import styles from './CaseItem.module.css';
 import { CASE_ITEM_DEFAULTS } from './types';
 import doc from './_docs/CaseItem.md?raw';
-import pintura from '../../../assets/samples/charla-pintura.webp';
-import david from '../../../assets/samples/charla-david.webp';
-import fachada from '../../../assets/samples/charla-fachada.webp';
+import canon from '../../../assets/samples/paisaje-canon-oscuro.webp';
+import ventana from '../../../assets/samples/textura-luz-ventana.webp';
+import fachada from '../../../assets/samples/textura-fachada-lamas.webp';
 
 const CASOS = [
-  { src: pintura, title: 'Nombre del caso', description: 'Una frase que cuenta de qué iba el caso.', href: '#caso-1' },
-  { src: david, title: 'Otro caso', description: 'Una frase que cuenta de qué iba este otro.', href: '#caso-2' },
+  { src: canon, title: 'Nombre del caso', description: 'Una frase que cuenta de qué iba el caso.', href: '#caso-1' },
+  { src: ventana, title: 'Otro caso', description: 'Una frase que cuenta de qué iba este otro.', href: '#caso-2' },
   { src: fachada, title: 'Un tercer caso', description: 'Una frase más, igual de corta.', href: '#caso-3' },
 ];
 
@@ -65,7 +65,7 @@ export const SinDestino: Story = {
   parameters: { docs: { description: { story: 'Un caso que todavía no tiene página: sin `href` no es un enlace y la foto no se mueve al pasar.' } } },
   render: () => (
     <div style={{ width: 588 }}>
-      <CaseItem src={david} title="Un caso que viene" description="Todavía sin página. La pieza se ve igual, pero no promete nada." />
+      <CaseItem src={ventana} title="Un caso que viene" description="Todavía sin página. La pieza se ve igual, pero no promete nada." />
     </div>
   ),
 };

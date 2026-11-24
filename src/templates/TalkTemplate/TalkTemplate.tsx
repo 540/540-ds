@@ -47,12 +47,12 @@ import { Tools } from '../../components/organisms/Tools';
 import { Waffle } from '../../components/organisms/Waffle';
 import type { DeckTheme } from '../../components/organisms/Deck';
 import captura from '../../assets/samples/captura.svg';
-import david from '../../assets/samples/charla-david.webp';
-import escultura from '../../assets/samples/charla-escultura.webp';
-import fachada from '../../assets/samples/charla-fachada.webp';
-import pintura from '../../assets/samples/charla-pintura.webp';
-import placa from '../../assets/samples/charla-placa.webp';
-import teclado from '../../assets/samples/charla-teclado.webp';
+import ventana from '../../assets/samples/textura-luz-ventana.webp';
+import soportales from '../../assets/samples/arquitectura-soportales-sombras.webp';
+import fachada from '../../assets/samples/textura-fachada-lamas.webp';
+import canon from '../../assets/samples/paisaje-canon-oscuro.webp';
+import ventanales from '../../assets/samples/arquitectura-ventanas-oscuro.webp';
+import degradado from '../../assets/samples/textura-degradado-naranja.webp';
 import logo540Claro from '../../assets/samples/logo-540-claro.svg';
 import logo540PortadaClaro from '../../assets/samples/logo-540-portada-claro.svg';
 import logo540PortadaOscuro from '../../assets/samples/logo-540-portada-oscuro.svg';
@@ -261,11 +261,11 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
         question="¿La pregunta que abre la charla, en una frase?"
         event="Nombre del evento · marzo 2026"
         client={{ light: logo540PortadaClaro, dark: logo540PortadaOscuro, alt: '540' }}
-        photo={{ src: fachada, alt: 'Fachada de un edificio con la luz de la tarde' }}
+        photo={{ src: fachada, alt: 'Fachada de lamas metálicas naranjas con luces de ventanas al fondo' }}
       />
 
       {/* ---------- 01 · Contar: texts, theses, stories, quotes ---------- */}
-      <BlockTitle id="contar" ordinal="01" title="Contar: frases, historias y citas" photo={{ src: pintura, alt: 'Detalle de una pared con pintura desconchada en varias capas' }} />
+      <BlockTitle id="contar" ordinal="01" title="Contar: frases, historias y citas" photo={{ src: canon, alt: 'Cañón estrecho de roca naranja en penumbra, con el cielo blanco arriba' }} />
 
       <Slide id="agenda">
         <Stack>
@@ -337,7 +337,7 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
       <Quote id="cita" sentence="«Una cita corta de alguien que lo dijo mejor que nosotros.»" author="Nombre Apellido, su rol" />
 
       {/* ---------- 02 · Comparar: cards, teams, cases ---------- */}
-      <BlockTitle id="comparar" ordinal="02" title="Comparar: tarjetas, equipos y casos" photo={{ src: teclado, alt: 'Teclado de un portátil con luz azul, desenfocado' }} />
+      <BlockTitle id="comparar" ordinal="02" title="Comparar: tarjetas, equipos y casos" photo={{ src: degradado, alt: 'Degradado de naranja oscuro a negro' }} />
 
       <Slide id="antes-ahora">
         <Stack>
@@ -486,10 +486,10 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
           <SectionHeader title="Casos, solo en una charla de proyectos" align="center" />
           <Grid>
             <GridItem span={6}>
-              <CaseItem src={david} title="Nombre del primer caso" description="Una frase sobre lo que fue el caso." />
+              <CaseItem src={ventana} title="Nombre del primer caso" description="Una frase sobre lo que fue el caso." />
             </GridItem>
             <GridItem span={6}>
-              <CaseItem src={escultura} title="Nombre del segundo caso" description="Otra frase sobre este caso." />
+              <CaseItem src={soportales} title="Nombre del segundo caso" description="Otra frase sobre este caso." />
             </GridItem>
           </Grid>
         </Stack>
@@ -498,7 +498,7 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
       <Punchline placement="standalone" id="remate-comparar" sentence="Un remate: la frase que se lleva la sala." transition="Y una transición que lleva al bloque siguiente." />
 
       {/* ---------- 03 · Procesos: flows, timelines, cycles, diagrams ---------- */}
-      <BlockTitle id="procesos" ordinal="03" title="Procesos: pasos, cronologías y ciclos" photo={{ src: placa, alt: 'Placa base vista de cerca, con dos ventiladores de cobre' }} />
+      <BlockTitle id="procesos" ordinal="03" title="Procesos: pasos, cronologías y ciclos" photo={{ src: ventanales, alt: 'Cinco ventanas estrechas de luz en una pared negra' }} />
 
       <Slide id="flujo">
         <Stack>
@@ -582,7 +582,7 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
       </Slide>
 
       {/* ---------- 04 · Datos: metrics, bars, shares, lines ---------- */}
-      <BlockTitle id="datos" ordinal="04" title="Datos: cifras, barras y líneas" photo={{ src: escultura, alt: 'Escultura blanca sentada ante una pared de piedra con una ventana hexagonal' }} />
+      <BlockTitle id="datos" ordinal="04" title="Datos: cifras, barras y líneas" photo={{ src: soportales, alt: 'Soportales de hormigón con sombras diagonales, en blanco y negro' }} />
 
       <Slide id="cifras">
         <Stack>
@@ -806,7 +806,7 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
       </Slide>
 
       {/* ---------- 05 · Imágenes y pantallas: photos, screenshots, tools, logos, questions ---------- */}
-      <BlockTitle id="pantallas" ordinal="05" title="Imágenes, pantallas y preguntas" photo={{ src: david, alt: 'Detalle de una escultura clásica de mármol blanco' }} />
+      <BlockTitle id="pantallas" ordinal="05" title="Imágenes, pantallas y preguntas" photo={{ src: ventana, alt: 'Rectángulo de luz naranja de una ventana en una habitación a oscuras' }} />
 
       <Slide id="texto-imagen">
         <Grid align="center">
@@ -819,7 +819,7 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
             </Stack>
           </GridItem>
           <GridItem span={5}>
-            <Image src={placa} alt="Placa base vista de cerca, con dos ventiladores de cobre" ratio="1:1" />
+            <Image src={ventanales} alt="Cinco ventanas estrechas de luz en una pared negra" ratio="1:1" />
           </GridItem>
         </Grid>
       </Slide>

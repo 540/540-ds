@@ -57,7 +57,7 @@ Está en el tipo, así que no se puede montar la imagen sin decidirlo. `alt=""` 
 
 ## Accesibilidad
 
-- **Rol** `img`, con el texto alternativo que describe lo que muestra, no lo que es («El David visto desde abajo bajo la cúpula», no «foto»).
+- **Rol** `img`, con el texto alternativo que describe lo que muestra, no lo que es («Rectángulo de luz naranja de una ventana en una habitación a oscuras», no «foto»).
 - **Decorativa** con `alt=""`: el lector de pantalla la salta. Es lo correcto para las fotos de ambiente detrás de un título.
 - **Texto sobre la foto:** solo sobre un velo (`--gradient-image-veil`) y en `--color-text-on-media`; el contraste sobre una foto desnuda no está garantizado.
 

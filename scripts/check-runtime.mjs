@@ -13,7 +13,7 @@ const samples = path.join(root, 'src/assets/samples');
 const TYPES = { '.js': 'text/javascript', '.json': 'application/json', '.html': 'text/html', '.css': 'text/css', '.woff2': 'font/woff2', '.webp': 'image/webp' };
 
 const photo = async (file) => `data:image/webp;base64,${(await readFile(path.join(samples, file))).toString('base64')}`;
-const [pintura, fachada] = await Promise.all(['charla-pintura.webp', 'charla-fachada.webp'].map(photo));
+const [canon, fachada] = await Promise.all(['paisaje-canon-oscuro.webp', 'textura-fachada-lamas.webp'].map(photo));
 
 const page = (tags, lang = 'es') => `<script type="module" src="/pieces/runtime/runtime.js"></script>
 <script type="text/rev" data-lang="${lang}">
@@ -24,7 +24,7 @@ ${tags}
 const TALKS = {
   deck: page(`<title>Charla con Deck</title>
 <rev-deck items='[{"href":"#bloque-1","label":"Bloque"}]' footer='{"tagline":"Hacemos <strong>software</strong>.","copyright":"© 2026 540"}' storage-key="">
-  <rev-cover title='["Una charla","de prueba"]' event="Open space · marzo 2026" photo='{"src":"${pintura}","alt":"Pintura"}'></rev-cover>
+  <rev-cover title='["Una charla","de prueba"]' event="Open space · marzo 2026" photo='{"src":"${canon}","alt":"Cañón"}'></rev-cover>
   <rev-block-title id="bloque-1" ordinal="01" title="El bloque" photo='{"src":"${fachada}","alt":"Fachada"}'></rev-block-title>
   <rev-slide id="pasos">
     <rev-steps total="2">

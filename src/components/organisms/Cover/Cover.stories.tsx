@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Cover } from './Cover';
 import { COVER_DEFAULTS } from './types';
 import doc from './_docs/Cover.md?raw';
-import fachada from '../../../assets/samples/charla-fachada.webp';
+import fachada from '../../../assets/samples/textura-fachada-lamas.webp';
 import logo540Claro from '../../../assets/samples/logo-540-portada-claro.svg';
 import logo540Oscuro from '../../../assets/samples/logo-540-portada-oscuro.svg';
 

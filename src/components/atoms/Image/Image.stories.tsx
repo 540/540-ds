@@ -4,9 +4,9 @@ import { Text } from '../Text';
 import { Image } from './Image';
 import { IMAGE_DEFAULTS, IMAGE_RATIOS } from './types';
 import doc from './_docs/Image.md?raw';
-import pintura from '../../../assets/samples/charla-pintura.webp';
-import david from '../../../assets/samples/charla-david.webp';
-import fachada from '../../../assets/samples/charla-fachada.webp';
+import canon from '../../../assets/samples/paisaje-canon-oscuro.webp';
+import ventana from '../../../assets/samples/textura-luz-ventana.webp';
+import fachada from '../../../assets/samples/textura-fachada-lamas.webp';
 import retrato from '../../../assets/samples/retrato.svg';
 import logoCliente from '../../../assets/samples/logo-cliente.svg';
 
@@ -20,9 +20,9 @@ const Stack = ({ gap = 'var(--space-s)', children }: { gap?: string; children: R
   <div style={{ display: 'grid', gap }}>{children}</div>
 );
 
-const ALT_FACHADA = 'Fachada de una nave curva, con la misma pieza romboidal repetida en toda su superficie';
-const ALT_DAVID = 'El David de Miguel Ángel, visto desde abajo bajo la cúpula de la Galería de la Academia';
-const ALT_PINTURA = 'Brochazos de pintura blanca arrastrados sobre una superficie gris, unos encima de otros';
+const ALT_FACHADA = 'Fachada de lamas metálicas naranjas con luces de ventanas al fondo';
+const ALT_VENTANA = 'Rectángulo de luz naranja de una ventana en una habitación a oscuras';
+const ALT_CANON = 'Cañón estrecho de roca naranja en penumbra, con el cielo blanco arriba';
 
 const meta = {
   title: 'Átomos/Image',
@@ -103,8 +103,8 @@ export const EnLaReticula: Story = {
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--grid-gutter)' }}>
       {[
-        { src: pintura, alt: ALT_PINTURA },
-        { src: david, alt: ALT_DAVID },
+        { src: canon, alt: ALT_CANON },
+        { src: ventana, alt: ALT_VENTANA },
         { src: fachada, alt: ALT_FACHADA },
       ].map((img) => (
         <Image key={img.src} src={img.src} alt={img.alt} ratio="2:1" />
@@ -156,7 +156,7 @@ export const Decorativa: Story = {
   },
   render: () => (
     <div style={{ width: 480 }}>
-      <Image src={david} alt="" ratio="2:1" />
+      <Image src={ventana} alt="" ratio="2:1" />
     </div>
   ),
 };

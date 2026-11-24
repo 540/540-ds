@@ -209,7 +209,7 @@ describe('tools', () => {
     expect(ciclo.code).toMatch(/^<Slide id="ciclo">/);
     expect(ciclo.dependencies).toContain('function CycleWithPanel');
     expect(ciclo.dependencies).toContain('const PHASES');
-    expect(Object.values(portada.sampleAssets)).toContain('src/assets/samples/charla-fachada.webp');
+    expect(Object.values(portada.sampleAssets)).toContain('src/assets/samples/textura-fachada-lamas.webp');
     expect(result.missing).toEqual(['nope']);
     expect((await call('get-template-stops', { pieceType: 'talk', stops: ['nope'] })).isError).toBe(true);
   });
