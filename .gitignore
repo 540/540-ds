@@ -42,3 +42,10 @@ firebase-debug.log
 
 # Local tries of the design system (.claude/skills/prueba-540-ds)
 pruebas/
+
+# Secrets and local credentials: never commit them
+.env
+.env.*
+!.env.example
+*.pem
+*.key

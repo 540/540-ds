@@ -20,7 +20,7 @@ Un SVG con el trazado de la marca. Hereda el color de quien lo envuelve: un icon
 
 | `network` | Origen del trazado |
 |---|---|
-| `linkedin` | Trazado clásico (Simple Icons lo retiró tras una reclamación de marca) |
+| `linkedin` | Trazado clásico de la marca |
 | `x` | Simple Icons (CC0) |
 | `youtube` | Simple Icons (CC0) |
 | `instagram` | Simple Icons (CC0) |

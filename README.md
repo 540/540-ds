@@ -14,7 +14,7 @@ brew install node git
 Después, en la app Terminal:
 
 ```bash
-cd ~/Projects/540-ds
+cd 540-ds
 npm install
 npm run storybook
 ```
@@ -245,8 +245,23 @@ npm pack            # crea 540deg-ds-X.Y.Z.tgz, instalable con npm install ./rut
 ## Fuentes de verdad
 
 1. Este código.
-2. Las charlas anteriores (`base-540.css`, `navegacion-540.js` y su guía de estilos), de donde salen las piezas de presentación.
+2. Las charlas anteriores de 540, de donde salen las piezas de presentación.
+
+## Contribuciones
+
+Este repositorio es código abierto, pero no es un proyecto de contribución abierta. Lo publicamos para enseñar cómo trabajamos y para que sirva de ejemplo. No aceptamos pull requests de fuera del equipo de 540. Si encuentras un error, abre un issue.
+
+Para avisar de un problema de seguridad, sigue [SECURITY.md](SECURITY.md).
 
 ## Licencia
 
-El código está bajo [Apache License 2.0](LICENSE). La licencia no da derechos sobre el nombre, el logo ni la identidad visual de 540, ni sobre las fotos de muestra: siguen siendo de 540 (ver [NOTICE](NOTICE)). DM Sans va con su propia licencia, SIL OFL 1.1.
+El código y la documentación están bajo [Apache License 2.0](LICENSE), incluidos los tokens y los estilos.
+
+Quedan fuera de esa licencia (ver [NOTICE](NOTICE)):
+
+- **El nombre y los logos de 540.** Puedes nombrar a 540 para decir de dónde sale el código. No puedes usar el logo ni dar a entender que 540 respalda tu producto. Ver [TRADEMARKS.md](TRADEMARKS.md).
+- **Los logos de redes sociales** de `SocialIcon`: son marcas de sus dueños.
+- **Las fotos**: son de sus fotógrafos. Las de la biblioteca de imágenes se usan con la [licencia de Unsplash](https://unsplash.com/license), y el `NOTICE` lista el autor y el original de cada una.
+- **La fuente DM Sans**: va con su propia licencia, SIL OFL 1.1.
+
+Los avisos de las bibliotecas que van dentro del paquete (Preact y Lucide) están en [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt).

@@ -2,26 +2,35 @@
 Copyright 2026 540 Degrees
 
 This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+The license covers the source code and the documentation in this repository
+and in the published package, including the design tokens and the styles.
 
-The license covers the source code only. It grants no rights over the 540
-name, logo or visual identity, nor over the sample photographs, which remain
-the property of 540 Degrees (Apache License 2.0, section 6). This includes
-src/assets/logo-540.svg, src/assets/samples/logo-540-*.svg and
-src/assets/samples/charla-*.webp, and their copies in the built package.
+EXCEPTIONS
 
-The bundled DM Sans font is licensed under the SIL Open Font License 1.1
-(see dist/fonts/OFL.txt).
+The following are NOT licensed under the Apache License 2.0.
 
-The renderer checks spelling with nspell (MIT) and the dictionary-es (used under
-MPL-1.1) and dictionary-en (MIT and BSD) packages, installed as dependencies and
-not modified.
+1. The 540 name and logos. "540" and the 540 logo identify 540 and its work.
+   Section 6 of the Apache License grants no permission to use them. This
+   covers src/assets/logo-540.svg, src/assets/samples/logo-540-*.svg,
+   public/logo-540.svg, public/favicon.svg, public/og-image.png,
+   firebase/public/favicon.svg and their copies in the built package. See
+   TRADEMARKS.md for how you may refer to 540.
 
-The image library (src/images/photos and its copy in pieces/images) is not
-covered by the Apache License either. Each photo was published on Unsplash and
-is used under the Unsplash License (https://unsplash.com/license): free to use,
-copy, modify and distribute, including commercially; it may not be sold
-without significant modification or compiled into a similar or competing photo
-service. Photographers and originals:
+2. Third-party trademarks. The social network logos in
+   src/components/atoms/SocialIcon/paths.ts are trademarks of their owners
+   (LinkedIn, X, YouTube, Instagram). They are included only to link to those
+   networks. No rights over them are granted.
+
+3. Photographs. The photographs in src/images/photos and in
+   src/assets/samples, and their copies in the built package, are not owned by
+   540 and remain the property of their photographers.
+
+   Each photo in src/images/photos was published on Unsplash and is used under
+   the Unsplash License (https://unsplash.com/license): free to use, copy,
+   modify and distribute, including commercially. The Unsplash License does not
+   cover trademarks, people or works of art that appear in a photo. It does
+   not allow selling the photos without significant modification or compiling
+   them into a similar or competing photo service. Photographers and originals:
 
   arquitectura-edificio-contrapicado-1.webp — Omar Rosell, https://unsplash.com/photos/9UrRjmxlWKs
   arquitectura-edificio-contrapicado-2.webp — Mike Hindle, https://unsplash.com/photos/otqhWc2DWjY
@@ -68,3 +77,19 @@ service. Photographers and originals:
   textura-luz-trazo-3.webp — Liana S, https://unsplash.com/photos/oo3Oi3PrdW4
   textura-luz-triangulo.webp — Janesca, https://unsplash.com/photos/sOyDzGNrl_4
   textura-luz-ventana.webp — Alexander Lunyov, https://unsplash.com/photos/PniAb57gUmA
+
+THIRD-PARTY SOFTWARE
+
+- DM Sans, Copyright 2014 The DM Sans Project Authors, SIL Open Font License
+  1.1. The license text goes with the font (dist/fonts/OFL.txt and
+  pieces/fonts/OFL.txt).
+- Preact, Copyright (c) 2015-present Jason Miller, MIT License. Bundled in the
+  self-contained pieces (pieces/).
+- Lucide, Copyright (c) Lucide Icons and Contributors, ISC License; some icons
+  derive from Feather, Copyright (c) 2013-present Cole Bemis, MIT License.
+  Bundled in the self-contained pieces (pieces/).
+- The renderer checks spelling with nspell (MIT) and the dictionary-es (used
+  under MPL-1.1) and dictionary-en (MIT and BSD) packages, installed as
+  dependencies and not modified.
+
+The full license texts are in THIRD_PARTY_NOTICES.txt.

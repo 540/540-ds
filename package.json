@@ -31,7 +31,9 @@
     "pieces",
     "!pieces/demo.html",
     "!pieces/samples",
-    "NOTICE"
+    "NOTICE",
+    "THIRD_PARTY_NOTICES.txt",
+    "TRADEMARKS.md"
   ],
   "publishConfig": {
     "access": "public",
