@@ -1,5 +1,5 @@
 540 Design System
-Copyright 2026 540 Degrees
+Copyright 2026 540 Tech Consulting S.L.
 
 This product is licensed under the Apache License, Version 2.0 (see LICENSE).
 The license covers the source code and the documentation in this repository
@@ -9,7 +9,8 @@ EXCEPTIONS
 
 The following are NOT licensed under the Apache License 2.0.
 
-1. The 540 name and logos. "540" and the 540 logo identify 540 and its work.
+1. The 540 name and logos. "540" is the trade name of 540 Tech Consulting
+   S.L. "540" and the 540 logo identify that company and its work.
    Section 6 of the Apache License grants no permission to use them. This
    covers src/assets/logo-540.svg, src/assets/samples/logo-540-*.svg,
    public/logo-540.svg, public/favicon.svg, public/og-image.png,

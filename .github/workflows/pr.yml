@@ -15,6 +15,8 @@ concurrency:
 
 jobs:
   check:
+    # The ruleset of main requires this check by name: keep it unique across workflows.
+    name: PR checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
