@@ -59,7 +59,3 @@ En las charlas, cada parada es una Section que además ocupa la pantalla entera 
 - Anidar secciones.
 - Meter el fondo en la columna.
 - Fijar el ancho de la columna: es `max-width`.
-
-## Equivalencias con Figma
-
-Página `Section` del archivo de diseño, set `Section` (17:9). `Tono = default / raised` es `tone`. En las charlas es `section` / `section-raised` y `columna-540` en base-540.css.

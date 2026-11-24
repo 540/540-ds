@@ -75,7 +75,7 @@ export const ConContenido: Story = {
       <div style={{ display: 'grid', gap: 'var(--space-xl)' }}>
         <SectionHeader titleId="s4" title="Lo que creía" align="center" />
         <Text variant="body-l" tone="secondary" align="center" wrap="pretty" measure="half">
-          Que un sistema de diseño era un archivo de Figma bien ordenado. Que si las pantallas estaban limpias, el resto venía solo.
+          Que un sistema de diseño era un archivo de diseño bien ordenado. Que si las pantallas estaban limpias, el resto venía solo.
         </Text>
       </div>
     </Section>

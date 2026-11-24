@@ -53,4 +53,4 @@ Los logotipos en negro sobre transparente se invierten en el tema oscuro (`inver
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.herr`, `.herr-logo[data-marca]` y `[data-inv]` (base-540.css, GUIA-ESTILOS paradas 14 y 15 y «v2: logos normalizados por área de tinta»).
+En las charlas es `.herr`, `.herr-logo[data-marca]` y `[data-inv]` (base-540.css, GUIA-ESTILOS paradas 14 y 15 y «v2: logos normalizados por área de tinta»).

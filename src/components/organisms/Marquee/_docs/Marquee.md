@@ -50,4 +50,4 @@ La franja se separa del resto con las líneas de arriba y abajo, sin fondo: es u
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.charla-marquesina`, `.charla-marquesinaTira` y `.charla-marquesinaPieza` (base-540.css).
+En las charlas es `.charla-marquesina`, `.charla-marquesinaTira` y `.charla-marquesinaPieza` (base-540.css).

@@ -66,4 +66,4 @@ La pila estira lo que lleva dentro: una rejilla sigue teniendo sus doce columnas
 
 ## Equivalencias
 
-No está en Figma. En las charlas son los márgenes de `.header`, `.charla-rejilla`, `.charla-transicion` y `.remate-dentro` en `base-540.css`.
+En las charlas son los márgenes de `.header`, `.charla-rejilla`, `.charla-transicion` y `.remate-dentro` en `base-540.css`.

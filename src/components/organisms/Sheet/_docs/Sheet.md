@@ -26,7 +26,6 @@ La hoja: **un panel que sube desde el borde de abajo de la pantalla, encima de l
 
 Dentro de un Step, se abre cuando el paso se enciende. **Se cierra sola** en cuanto su parada deja de ocupar el centro de la pantalla: una hoja abierta nunca se queda flotando sobre otra parada.
 
-
 Dentro de una `Timeline` se cierra en cuanto su paso deja el centro; en cualquier otra parada, en cuanto la parada lo deja. Lo normal es un `Step` con `from` y `to`: la primera flecha la abre, la segunda la cierra y la tercera pasa de parada.
 ## Decisiones de diseño
 
@@ -62,4 +61,4 @@ En proyección el cuerpo va a 20 px; dentro de la hoja vuelve a 16 para que un d
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.paso > .zoom`, `.zoom-cabecera` y el velo `.section::after` (CSS propio de la charla y `arranque-540.js`, «los zooms se anclan a la ventana»).
+En las charlas es `.paso > .zoom`, `.zoom-cabecera` y el velo `.section::after` (CSS propio de la charla y `arranque-540.js`, «los zooms se anclan a la ventana»).

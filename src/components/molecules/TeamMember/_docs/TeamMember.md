@@ -62,7 +62,3 @@ Tres piezas apiladas con el mismo aire entre ellas. Una caja alrededor pediría 
 - Enlazar toda la tarjeta.
 - Bios de un párrafo.
 - Retratos redondeados a mano: las esquinas rectas son del sistema.
-
-## Equivalencias con Figma
-
-Página `TeamMember` del archivo de diseño, set `TeamMember` (17:21). `Alineación = start / center` es `align`; `bio` es `bio`. El resumen de la ficha en Figma habla de «retrato redondo»; el dibujo y la descripción del componente lo recortan a cuadrado 1:1, y eso es lo que hace el código.

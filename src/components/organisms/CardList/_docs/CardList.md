@@ -57,7 +57,3 @@ Cualquier cosa que no sea una Card `row` aquí dentro se queda sin la raya que l
 
 - Mezclar Card `boxed` dentro.
 - Anidar en otro bloque a sangre.
-
-## Equivalencias con Figma
-
-Página `CardList` del archivo de diseño, componente `CardList` (47:3). En las charlas es `.lista` en base-540.css.

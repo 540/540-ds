@@ -56,4 +56,4 @@ Un paso apagado va con `aria-hidden`: el lector de pantalla oye lo mismo que ve 
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `[data-pasos]`, `.paso[data-paso][data-hasta]`, `.pila-paneles` y `.oculta-total` (CSS propio de la charla y `navegacion-540.js`, apartado 6b).
+En las charlas es `[data-pasos]`, `.paso[data-paso][data-hasta]`, `.pila-paneles` y `.oculta-total` (CSS propio de la charla y `navegacion-540.js`, apartado 6b).

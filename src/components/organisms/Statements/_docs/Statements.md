@@ -64,4 +64,4 @@ El contenedor de las frases se sale de la columna (`margin-inline: calc(50% - 50
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `#tesis-seccion`, `.tesis-pila`, `.tesis-parada` y `.tesis-frase` con `[data-mov="frase"]` (base-540.css y navegacion-540.js).
+En las charlas es `#tesis-seccion`, `.tesis-pila`, `.tesis-parada` y `.tesis-frase` con `[data-mov="frase"]` (base-540.css y navegacion-540.js).

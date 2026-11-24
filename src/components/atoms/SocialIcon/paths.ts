@@ -1,4 +1,4 @@
-/* Brand marks of the four networks the system keeps, in the 18 px canvas Figma exported.
+/* Brand marks of the four networks the system keeps, in an 18 px canvas.
    X, YouTube and Instagram come from Simple Icons (CC0); LinkedIn keeps its classic path. */
 export const SOCIAL_VIEWBOX = '0 0 18 18';
 export const SOCIAL_PATHS = {

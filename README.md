@@ -105,13 +105,13 @@ Están en `src/docs/normas-charlas.md` y se leen en Storybook en **Introducción
 Abre Claude Code en la carpeta del proyecto y pídeselo con estos datos:
 
 - **Qué es y para qué sirve**, en una frase.
-- **Dónde está en Figma** (el enlace a la página) o **en qué charla** se usa, si existe ya.
+- **En qué charla** se usa, si existe ya.
 - **Variantes, tamaños y estados** que necesita, o «decide tú» si no lo sabes.
 - **En qué nivel va**: átomo, molécula u organismo.
 
 Ejemplo:
 
-> Crea el componente Badge. Es una etiqueta pequeña para marcar un estado («Nuevo», «Borrador»). Está en la página Badge del Figma. Variantes neutral y accent, un solo tamaño. Es un átomo.
+> Crea el componente Badge. Es una etiqueta pequeña para marcar un estado («Nuevo», «Borrador»). Variantes neutral y accent, un solo tamaño. Es un átomo.
 
 El componente se creará con la misma estructura que los demás (componente, estilos, tipos, historias y ficha), con su página Docs en Storybook y pasando las pruebas de accesibilidad.
 
@@ -246,7 +246,6 @@ npm pack            # crea 540deg-ds-X.Y.Z.tgz, instalable con npm install ./rut
 
 1. Este código.
 2. Las charlas anteriores (`base-540.css`, `navegacion-540.js` y su guía de estilos), de donde salen las piezas de presentación.
-3. El archivo de Figma «540 · Design System», de donde se copian las fichas de los componentes. Si Figma y el código discrepan, manda el código.
 
 ## Licencia
 

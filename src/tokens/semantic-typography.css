@@ -3,7 +3,7 @@
    Mobile first: base values are the small scale; at >= 1024px the five large
    styles grow to their desktop size. Body, micro and UI sizes never change
    ("a 16 se lee igual en un móvil que en un monitor").
-   Source: Figma → Tipografía, reconciled with the talks' base-540.css (code wins):
+   Source: the talks' base-540.css:
    titles and body use line-height "normal"; the statement size is fluid.
    ========================================================================== */
 

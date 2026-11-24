@@ -64,7 +64,3 @@ Un índice de uno no dice nada: con `count` menor que 2 el componente no renderi
 - Puntos sin `onSelect` en algo que sí se puede recorrer.
 - Más de seis: pon números.
 - Colorear el activo: se alarga.
-
-## Equivalencias con Figma
-
-Página `Bullets` del archivo de diseño, set `Bullets` (16:17). `Orientación = horizontal / vertical` es `orientation`. En las charlas es el componente `puntos` de base-540.css y el índice lateral `v2-indice`.

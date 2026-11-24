@@ -60,4 +60,4 @@ A diferencia del pie de la web, aquí no hay columnas ni avisos legales: logotip
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.marco-pie`, `.marco-halo`, `.footer-pie` centrado y `.v2-gracias` (base-540.css); el script lo cuenta como última parada.
+En las charlas es `.marco-pie`, `.marco-halo`, `.footer-pie` centrado y `.v2-gracias` (base-540.css); el script lo cuenta como última parada.

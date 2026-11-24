@@ -51,7 +51,7 @@ No se mezclan tamaños dentro de un mismo grupo de botones.
 | Focus | anillo de 2 px con 2 px de separación, solo con teclado | igual | igual |
 | Disabled | fondo `bg-disabled`, texto `text-disabled` | borde `border-default`, texto `text-disabled` | texto `text-disabled` |
 
-No hay estado *cargando*: ni el Figma ni las charlas lo necesitan. Si un día hace falta, se compone (icono y etiqueta cambian), no se pide con una opción.
+No hay estado *cargando*: las charlas no lo necesitan. Si un día hace falta, se compone (icono y etiqueta cambian), no se pide con una opción.
 
 ## Decisiones de diseño
 
@@ -92,17 +92,3 @@ Dos botones rellenos juntos compiten y obligan a leer los dos para decidir. En u
 - `iconOnly` en `primary` u `outline`.
 - `disabled` junto a `href`.
 - Mezclar `md` y `sm` en el mismo grupo.
-
-## Equivalencias con Figma
-
-Página `Button` del archivo de diseño, set `Button` (11:51).
-
-| En el diseño | En el código |
-|---|---|
-| `Variante = primary / outline / ghost` | `variant` |
-| `Tamaño = md / sm` | `size` |
-| `Estado = normal / hover / active / disabled` | lo pone el navegador; `disabled` es la prop |
-| `Solo icono = sí / no` (variante) | `iconOnly` (solo con `icon`) |
-| `Con icono` + `Icono` (propiedades) | `icon` |
-
-Lo que Figma no puede pintar: el estado de foco (un anillo sin borde) y la etiqueta invisible del solo icono. Los dos existen en el código.

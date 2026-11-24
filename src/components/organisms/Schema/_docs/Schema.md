@@ -67,4 +67,4 @@ El SVG no baja de 1200 px: un diagrama con texto de 22 px no se lee más estrech
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `svg.esq[data-guia]`, `.esq-capa[data-paso][data-rotulo]`, `.esq-marco`, `.esq-pie`, `.esq-datos`, `.esq-parada-voz` y todas las clases `esq-*` (base-540.css y CSS propio de cada charla).
+En las charlas es `svg.esq[data-guia]`, `.esq-capa[data-paso][data-rotulo]`, `.esq-marco`, `.esq-pie`, `.esq-datos`, `.esq-parada-voz` y todas las clases `esq-*` (base-540.css y CSS propio de cada charla).

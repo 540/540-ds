@@ -51,4 +51,4 @@ Dentro de la frase, lo que va en `strong` es la parte que se quiere que se quede
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.charla-cierre`, `.charla-cierreFrase` y `.charla-cierreCuerpo` (base-540.css).
+En las charlas es `.charla-cierre`, `.charla-cierreFrase` y `.charla-cierreCuerpo` (base-540.css).

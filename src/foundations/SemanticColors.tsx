@@ -61,7 +61,7 @@ export function SemanticColors() {
 
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Degradados y filtros</h3>
-        <p className={styles.sectionDescription}>Vienen del código de las charlas, no de Figma. También cambian con el tema.</p>
+        <p className={styles.sectionDescription}>Vienen del código de las charlas. También cambian con el tema.</p>
         <table className={styles.table}>
           <thead>
             <tr>

@@ -55,4 +55,4 @@ La frase es el remate; la transición, a media retícula y en gris, es el puente
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.charla-remate`, `.charla-remateFrase`, `.charla-transicion` y `.remate-dentro` (base-540.css, GUIA-ESTILOS paradas 18 y 19).
+En las charlas es `.charla-remate`, `.charla-remateFrase`, `.charla-transicion` y `.remate-dentro` (base-540.css, GUIA-ESTILOS paradas 18 y 19).

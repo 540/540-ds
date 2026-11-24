@@ -62,4 +62,4 @@ No se puede recolorear un logotipo ajeno: se guardan los dos y el tema enseña u
 
 ## Equivalencias
 
-No está en Figma como pieza. En las charlas es `.charla-portada`, `.charla-portadaBloque`, `.charla-portadaTexto`, `.charla-tituloLinea`, `.charla-pregunta`, `.charla-entrada` y `.charla-portadaFoto` (base-540.css).
+En las charlas es `.charla-portada`, `.charla-portadaBloque`, `.charla-portadaTexto`, `.charla-tituloLinea`, `.charla-pregunta`, `.charla-entrada` y `.charla-portadaFoto` (base-540.css).

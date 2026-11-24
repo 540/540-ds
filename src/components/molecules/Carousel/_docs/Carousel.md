@@ -69,7 +69,3 @@ Sin puntos, sin flechas y sin cabecera la tira se queda sin mando y solo avanza 
 - Texto largo dentro de los huecos.
 - `row` y `sides` a la vez: no existe.
 - Menos de dos piezas.
-
-## Equivalencias con Figma
-
-Página `Carousel` del archivo de diseño, set `Carousel` (54:79). `Cabecera = sí / no` es `header`; `Mandos = puntos / fila / lados` es `controls`. Es disperso a propósito: no todas las casillas existen en el código.

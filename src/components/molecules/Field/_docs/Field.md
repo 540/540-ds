@@ -66,7 +66,3 @@ El campo dice qué se escribe en él y nada más.
 - Un campo sin etiqueta (el tipo no lo permite).
 - Placeholder como etiqueta.
 - Un rojo de error puesto desde fuera.
-
-## Equivalencias con Figma
-
-Página `Field` del archivo de diseño, set `Field` (16:43). `Tamaño = md / sm` es `size`; `Estado = normal / foco / disabled` lo pone el navegador o `disabled`. En Figma la etiqueta está escrita en mayúsculas; en el código las pone el estilo.

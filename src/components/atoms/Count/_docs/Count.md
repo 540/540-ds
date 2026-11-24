@@ -54,4 +54,4 @@ Es la de las charlas (1,4 s). No hay prop para cambiarla.
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `[data-cuenta]` (show & tell), `components/charts/Count.tsx` (newsletter) y el `Count` de `MigrationDataSlide.tsx`.
+En las charlas es `[data-cuenta]` (show & tell), `components/charts/Count.tsx` (newsletter) y el `Count` de `MigrationDataSlide.tsx`.

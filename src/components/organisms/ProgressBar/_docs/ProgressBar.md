@@ -46,4 +46,4 @@ Los mismos 16 px y la misma tinta que los de Timeline: una barra horizontal es u
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.barra-tiempo` (con `[data-mov="crece"]`) y `.progreso[data-hitos]` (CSS propio y `arranque-540.js`).
+En las charlas es `.barra-tiempo` (con `[data-mov="crece"]`) y `.progreso[data-hitos]` (CSS propio y `arranque-540.js`).

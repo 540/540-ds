@@ -64,4 +64,4 @@ Ni antetítulo, ni entradilla, ni foto detrás: los tres se retiraron del sistem
 
 ## Equivalencias
 
-En Figma no existe como pieza: es Section más las reglas de la página «Anchos de pantalla». En las charlas es `.diapo` y `.diapo-cont` (base-540.css, sección «Paso de diapositivas»).
+Es Section más las reglas de los anchos de pantalla. En las charlas es `.diapo` y `.diapo-cont` (base-540.css, sección «Paso de diapositivas»).

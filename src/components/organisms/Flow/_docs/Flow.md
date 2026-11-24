@@ -52,4 +52,4 @@ Es de las pocas cosas redondas que no se pulsan. Se acepta porque la fila de pí
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.charla-flujo` y `.charla-paso[data-destacado]` (base-540.css, GUIA-ESTILOS «Regla: las flechas de los pasos encadenados van separadas»).
+En las charlas es `.charla-flujo` y `.charla-paso[data-destacado]` (base-540.css, GUIA-ESTILOS «Regla: las flechas de los pasos encadenados van separadas»).

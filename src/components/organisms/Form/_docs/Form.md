@@ -56,7 +56,3 @@ Los globos de validación del navegador salen en el idioma del sistema operativo
 
 - Dos botones de envío.
 - Copy dentro del Form: aquí no hay texto.
-
-## Equivalencias con Figma
-
-Página `Form` del archivo de diseño, componente `Form` (43:3). El botón es el `primary` de serie.

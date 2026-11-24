@@ -54,4 +54,4 @@ Las notas de telemetría son letra pequeña de verdad: 14 px aunque el cuerpo su
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.card-centrada` con `.dato-delta` y `.nota-telemetria` (CSS propio de la charla).
+En las charlas es `.card-centrada` con `.dato-delta` y `.nota-telemetria` (CSS propio de la charla).

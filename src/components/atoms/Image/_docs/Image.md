@@ -74,7 +74,3 @@ Está en el tipo, así que no se puede montar la imagen sin decidirlo. `alt=""` 
 - `auto` sin reservar el sitio.
 - Deformar o dejar franjas: no hay opción, y no debería haberla.
 - Quitarle el radio a una foto de contenido: si una pieza necesita la foto a sangre, lo decide la pieza.
-
-## Equivalencias con Figma
-
-Página `Image` del archivo de diseño, set `Image` (22:2). `Proporción = 2:1 / 1:1 / fill / auto` es `ratio`. En Figma los altos de las variantes son de ejemplo; en el código no hay ningún alto escrito, hay una proporción.

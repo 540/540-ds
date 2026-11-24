@@ -44,4 +44,4 @@ Quién lo dijo importa, pero la frase es lo que se lee desde el fondo. La atribu
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.charla-cita` y `.charla-citaFrase` (base-540.css, GUIA-ESTILOS parada 8).
+En las charlas es `.charla-cita` y `.charla-citaFrase` (base-540.css, GUIA-ESTILOS parada 8).

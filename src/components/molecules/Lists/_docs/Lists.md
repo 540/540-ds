@@ -47,4 +47,4 @@ En ProblemList la etiqueta nombra y el texto cuenta: dos tintas, dos funciones.
 
 ## Equivalencias
 
-No están en Figma. En las charlas son `.lista-simple`, `.lista-flechas` y `.lista-problemas` / `.problema` (CSS propio de las charlas).
+En las charlas son `.lista-simple`, `.lista-flechas` y `.lista-problemas` / `.problema` (CSS propio de las charlas).

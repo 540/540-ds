@@ -71,7 +71,3 @@ La tinta la pone el tema.
 - Un ítem sin `href`.
 - Color de marca o raya para el actual: solo negrita.
 - Usarlo como botón.
-
-## Equivalencias con Figma
-
-Página `MenuItem` del archivo de diseño, set `MenuItem` (15:37). `Tamaño = sm / lg` es `size`; `Actual = sí / no` es `current`; `Estado` lo pone el navegador. En Figma las mayúsculas de `sm` están escritas en el contenido y el hover y el pulsado son tamaños de letra distintos, porque Figma no tiene `transform` en texto. En las charlas es `navitem` en base-540.css.

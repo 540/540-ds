@@ -93,7 +93,3 @@ El fondo es el de la página; la separa el borde.
 - Una tarjeta sola.
 - Radios o sombras.
 - `state` en `boxed`: no hace nada.
-
-## Equivalencias con Figma
-
-Página `Card` del archivo de diseño, set `Card` (13:27). `Variante = boxed / row` es `variant`; `Alineación` es `align`; `Estado = abierta / plegada / encendida` es `state` (`open` / `folded` / `active`); `ordinal` es `ordinal`. En las charlas es `card`, `card-row`, `card-revela`, `card-activa` y `card-centrada` en base-540.css, y `card-pie`, `card-despues`, `destacable` / `destacada`, `image-redonda` y `tono-rojo` en el CSS propio de cada charla.

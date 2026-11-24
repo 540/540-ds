@@ -79,4 +79,4 @@ Menu y NavMobile están las dos en el DOM y el CSS elige cuál se ve: medir en e
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.marco`, `.marco-barra`, `main[data-mov=secciones]`, `.v2-indice` y `.marco-pie` (base-540.css) más `navegacion-540.js` y el tema de `arranque-540.js`.
+En las charlas es `.marco`, `.marco-barra`, `main[data-mov=secciones]`, `.v2-indice` y `.marco-pie` (base-540.css) más `navegacion-540.js` y el tema de `arranque-540.js`.

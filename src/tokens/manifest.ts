@@ -47,7 +47,7 @@ export const colorPrimitives: ColorPrimitiveGroup[] = [
   },
   {
     title: 'Estado',
-    description: 'Error y éxito. El sistema no tiene aviso ni info: no aparecen en Figma.',
+    description: 'Error y éxito. El sistema no tiene aviso ni info.',
     items: [
       { name: '--540-status-red', label: 'Status / Red' },
       { name: '--540-status-red-soft', label: 'Status / Red Soft' },
@@ -128,7 +128,7 @@ export type TextStyle = {
 };
 
 export const textStyles: TextStyle[] = [
-  { key: 'statement', label: 'Statement', tokenPrefix: '--text-statement', sizeMobile: 20, sizeDesktop: 76, fluid: 'clamp(20px, 5.1vw, 76px)', weight: 800, weightName: 'ExtraBold', lineHeight: 0.9, letterSpacing: '-3 %', usage: 'La frase de una parada del recorrido, la que cruza el centro de la pantalla.', note: 'En Figma es 64 / 48 px; en las charlas es fluido (5,1 % del ancho, entre 20 y 76 px). Manda el código.' },
+  { key: 'statement', label: 'Statement', tokenPrefix: '--text-statement', sizeMobile: 20, sizeDesktop: 76, fluid: 'clamp(20px, 5.1vw, 76px)', weight: 800, weightName: 'ExtraBold', lineHeight: 0.9, letterSpacing: '-3 %', usage: 'La frase de una parada del recorrido, la que cruza el centro de la pantalla.', note: 'Fluido, como en las charlas: el 5,1 % del ancho, entre 20 y 76 px.' },
   { key: 'title-l', label: 'Título / L', tokenPrefix: '--text-title-l', sizeMobile: 28, sizeDesktop: 36, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 42, letterSpacing: '0', usage: 'Subtítulo de sección.' },
   { key: 'title-m', label: 'Título / M', tokenPrefix: '--text-title-m', sizeMobile: 26, sizeDesktop: 32, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 36, letterSpacing: '0', usage: 'Título de bloque.' },
   { key: 'title-s', label: 'Título / S', tokenPrefix: '--text-title-s', sizeMobile: 22, sizeDesktop: 26, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 28, letterSpacing: '0', usage: 'Título de tarjeta.' },
@@ -136,10 +136,10 @@ export const textStyles: TextStyle[] = [
   { key: 'body-l', label: 'Body / L', tokenPrefix: '--text-body-l', sizeMobile: 18, sizeDesktop: 18, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 22, letterSpacing: '0', usage: 'Entradilla y texto destacado.' },
   { key: 'body-m', label: 'Body / M', tokenPrefix: '--text-body-m', sizeMobile: 16, sizeDesktop: 16, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 20, letterSpacing: '0', usage: 'Texto corrido.' },
   { key: 'body-s', label: 'Body / S', tokenPrefix: '--text-body-s', sizeMobile: 14, sizeDesktop: 14, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 18, letterSpacing: '0', usage: 'Texto de interfaz.' },
-  { key: 'body-s-light', label: 'Body / S Light', tokenPrefix: '--text-body-s-light', sizeMobile: 14, sizeDesktop: 14, weight: 350, weightName: 'Light (350)', lineHeight: 'normal', projection: 18, letterSpacing: '0', usage: 'Texto secundario.', note: 'En Figma se ve con peso 300 porque solo tiene instancias estáticas; el código usa 350, que a 14 px no se rompe.' },
+  { key: 'body-s-light', label: 'Body / S Light', tokenPrefix: '--text-body-s-light', sizeMobile: 14, sizeDesktop: 14, weight: 350, weightName: 'Light (350)', lineHeight: 'normal', projection: 18, letterSpacing: '0', usage: 'Texto secundario.', note: 'Peso 350, que a 14 px no se rompe.' },
   { key: 'body-s-bold', label: 'Body / S Bold', tokenPrefix: '--text-body-s-bold', sizeMobile: 14, sizeDesktop: 14, weight: 700, weightName: 'Bold', lineHeight: 'normal', projection: 14, letterSpacing: '0', usage: 'Texto de interfaz enfatizado.' },
   { key: 'micro', label: 'Body / Micro', tokenPrefix: '--text-micro', sizeMobile: 12, sizeDesktop: 12, weight: 400, weightName: 'Regular', lineHeight: 'normal', projection: 12, letterSpacing: '0', usage: 'Letra pequeña que se lee sola: el ordinal de una banda.' },
-  { key: 'micro-light', label: 'Body / Micro Light', tokenPrefix: '--text-micro-light', sizeMobile: 12, sizeDesktop: 12, weight: 350, weightName: 'Light (350)', lineHeight: 'normal', projection: 12, letterSpacing: '0', usage: 'Letra pequeña de apoyo: etiquetas de dato, pies.', note: 'Mismo caso que Body / S Light: 350 en código, 300 en Figma.' },
+  { key: 'micro-light', label: 'Body / Micro Light', tokenPrefix: '--text-micro-light', sizeMobile: 12, sizeDesktop: 12, weight: 350, weightName: 'Light (350)', lineHeight: 'normal', projection: 12, letterSpacing: '0', usage: 'Letra pequeña de apoyo: etiquetas de dato, pies.', note: 'Peso 350, como Body / S Light.' },
   { key: 'micro-bold', label: 'Body / Micro Bold', tokenPrefix: '--text-micro-bold', sizeMobile: 12, sizeDesktop: 12, weight: 700, weightName: 'Bold', lineHeight: 'normal', projection: 12, letterSpacing: '0', usage: 'Etiquetas en mayúsculas.' },
 ];
 

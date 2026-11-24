@@ -53,4 +53,4 @@ Los nodos se reparten en el círculo según cuántas fases haya; las etiquetas s
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `svg.ciclo[data-estados]`, `.ciclo-nodo[data-estado][data-marca]`, `.ciclo-arco` (CSS propio de la charla y `arranque-540.js`, «el anillo de siete fases»).
+En las charlas es `svg.ciclo[data-estados]`, `.ciclo-nodo[data-estado][data-marca]`, `.ciclo-arco` (CSS propio de la charla y `arranque-540.js`, «el anillo de siete fases»).

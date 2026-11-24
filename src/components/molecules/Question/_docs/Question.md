@@ -44,4 +44,4 @@ La pregunta en negro es lo que se plantea; la respuesta en gris es lo que se dec
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.pregunta` y `.respuesta` (CSS propio de la charla).
+En las charlas es `.pregunta` y `.respuesta` (CSS propio de la charla).

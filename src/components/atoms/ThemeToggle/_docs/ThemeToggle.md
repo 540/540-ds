@@ -64,7 +64,3 @@ No es un selector de paletas.
 
 - Cambiar el icono por otro par: luna y sol son los del sistema.
 - Usarlo para algo que no sea el tema.
-
-## Equivalencias con Figma
-
-Página `ThemeToggle` del archivo de diseño, set `ThemeToggle` (25:2), en borrador. `Tema = claro / oscuro` es `dark`; `Estado` lo pone el navegador. En Figma el trazo del icono va a 1,333 porque el lienzo de 24 de Lucide se pinta a 16, que es exactamente lo que hace el navegador aquí.

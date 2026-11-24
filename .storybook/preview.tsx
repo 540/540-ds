@@ -37,7 +37,7 @@ const preview: Preview = {
       ),
     },
     viewport: {
-      // The three reference widths the system is designed at (Figma → Anchos de pantalla)
+      // The three reference widths the system is designed at
       options: {
         mobile: { name: 'Móvil (375)', styles: { width: '375px', height: '812px' }, type: 'mobile' },
         tablet: { name: 'Tablet (768)', styles: { width: '768px', height: '1024px' }, type: 'tablet' },

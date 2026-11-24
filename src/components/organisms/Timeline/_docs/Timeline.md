@@ -60,4 +60,4 @@ Un mes se lee entero antes de pasar al siguiente. El índice lateral tiene una r
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.crono`, `.crono-paso` y `.crono-punto` (base-540.css, GUIA-ESTILOS parada 13 y «v2: la línea de tiempo es un eje continuo»).
+En las charlas es `.crono`, `.crono-paso` y `.crono-punto` (base-540.css, GUIA-ESTILOS parada 13 y «v2: la línea de tiempo es un eje continuo»).

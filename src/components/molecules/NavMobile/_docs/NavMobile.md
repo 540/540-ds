@@ -68,7 +68,3 @@ Los mismos objetos para las dos navegaciones, construidos una sola vez, para que
 - Enseñarlo a la vez que Menu.
 - Una lista distinta de la de Menu.
 - Un panel que no cierre al elegir destino.
-
-## Equivalencias con Figma
-
-Página `NavMobile` del archivo de diseño, set `NavMobile` (40:89). `Abierto = sí / no` es el estado interno. En las charlas es `navmovil-*` en base-540.css.

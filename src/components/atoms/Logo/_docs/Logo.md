@@ -59,7 +59,3 @@ Por defecto se lee «540». Con `label=""` desaparece del recorrido del lector d
 - Fijar el ancho o estirarlo.
 - Cambiarle el color a mano: hereda el del contexto.
 - Dos logotipos en la misma sección.
-
-## Equivalencias con Figma
-
-Página `Logo` del archivo de diseño, set `Logo` (14:24). `Tamaño = md / sm / xs` es `size`. En Figma el relleno está enlazado a `Text/Primary`; en el código es `currentColor` sobre `--color-text-primary`, que es lo mismo con otro nombre.

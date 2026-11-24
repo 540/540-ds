@@ -34,7 +34,7 @@ Los de cada MenuItem (hover, active, focus, actual). La barra no tiene estado pr
 
 ### El conmutador de tema va fuera de la lista
 
-No es un destino: metido en la lista se contaría como el séptimo sitio al que se puede ir. Por eso se pasa en `end` y se pinta en la tercera columna, fuera del `ul`. En Figma el conmutador vive dentro de la pieza; en el código lo pone la página.
+No es un destino: metido en la lista se contaría como el séptimo sitio al que se puede ir. Por eso se pasa en `end` y se pinta en la tercera columna, fuera del `ul`. El conmutador lo pone la página, no la pieza.
 
 ### Un solo actual
 
@@ -60,7 +60,3 @@ Un solo destino con `current` en la lista.
 - Enseñarlo a la vez que NavMobile.
 - Dos menús con el mismo nombre.
 - Acciones en el menú.
-
-## Equivalencias con Figma
-
-Página `Menu` del archivo de diseño, componente `Menu` (34:14). En Figma los destinos quedan centrados sobre los 1200 de la columna; en la web, sobre los 1160 que ocupa la navegación, 20 px a la izquierda. En las charlas es `menu`, `menu-inicio` y `menu-lista` en base-540.css.

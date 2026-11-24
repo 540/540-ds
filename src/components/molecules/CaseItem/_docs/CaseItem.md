@@ -68,7 +68,3 @@ Con `href`, todo el bloque es un enlace y no se meten enlaces dentro. Su nombre 
 - Enlaces dentro de la pieza.
 - Subrayar el nombre o cambiarle el color al pasar: el acercamiento ya lo dice.
 - Alargar la caja con más texto.
-
-## Equivalencias con Figma
-
-Página `CaseItem` del archivo de diseño, set `CaseItem` (28:16). `Estado = normal / hover / active` lo pone el navegador; los tres son los de un caso enlazado.

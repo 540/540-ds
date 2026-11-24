@@ -7,7 +7,7 @@ import doc from './_docs/Card.md?raw';
 
 const SERVICIOS = [
   { ordinal: '01', title: 'Producto', body: 'Diseñamos y construimos el producto entero: investigación, interfaz y código, con el mismo equipo de principio a fin.' },
-  { ordinal: '02', title: 'Sistemas de diseño', body: 'Tokens, componentes y documentación que el equipo de desarrollo usa de verdad, no un archivo de Figma bien ordenado.' },
+  { ordinal: '02', title: 'Sistemas de diseño', body: 'Tokens, componentes y documentación que el equipo de desarrollo usa de verdad, no un archivo de diseño bien ordenado.' },
   { ordinal: '03', title: 'Formación', body: 'Talleres para equipos que quieren dejar de entregar pantallas y entregar el sistema que las produce.' },
   { ordinal: '04', title: 'Acompañamiento', body: 'Un diseñador dentro del equipo, con decisiones que se toman en el código y no en una presentación.' },
 ];
@@ -93,7 +93,7 @@ export const Centrada: Story = {
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--grid-gutter)', maxWidth: 800 }}>
       <Card align="center" title="Sí se tira">
-        El archivo de Figma que ya no coincide con lo que hay en producción. Lo que no se mantiene, estorba.
+        El archivo de diseño que ya no coincide con lo que hay en producción. Lo que no se mantiene, estorba.
       </Card>
       <Card align="center" title="No se tira">
         El criterio con el que se tomaron las decisiones. Eso es lo que hay que escribir en el sistema.

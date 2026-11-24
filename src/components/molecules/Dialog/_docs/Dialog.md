@@ -70,7 +70,3 @@ Dos diálogos abiertos a la vez no es un caso que el sistema resuelva.
 - Dos diálogos a la vez.
 - Sombras o bordes para separarlo.
 - Un retrato sin `alt` (vacío si el título ya nombra a la persona).
-
-## Equivalencias con Figma
-
-Página `Dialog` del archivo de diseño, componente `Dialog` (41:3), en borrador. `media` y `pie` son casillas, como en el código. El velo no está en Figma porque es el `::backdrop` del navegador.

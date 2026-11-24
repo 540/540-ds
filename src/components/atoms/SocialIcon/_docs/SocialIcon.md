@@ -63,7 +63,3 @@ Hereda `currentColor`. Para el dorado del hover, el color va en el enlace.
 - Suelto, sin enlace.
 - Redibujado a trazo o recoloreado por partes.
 - Pasar un trazado desde fuera.
-
-## Equivalencias con Figma
-
-Página `SocialIcon` del archivo de diseño, set `SocialIcon` (15:27). `Red = linkedin / x / youtube / instagram` es `network`; `Tamaño = md / sm` es `size`. En las charlas es `footer-red` en base-540.css (24 × 24, hover en dorado).

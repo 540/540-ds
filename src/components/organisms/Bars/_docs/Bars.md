@@ -66,4 +66,4 @@ Leer una barra y bajar la vista a un eje cuesta en una sala. La cifra va donde a
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `components/charts/Bars.tsx` (newsletter) y `.cc__vs` / `[data-barra]` (show & tell).
+En las charlas es `components/charts/Bars.tsx` (newsletter) y `.cc__vs` / `[data-barra]` (show & tell).

@@ -47,4 +47,4 @@ Al 14 % las demás piezas se intuyen pero no compiten: se sabe que hay más, y s
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.ilumina[data-on]` (CSS propio y `arranque-540.js`, «bloques .ilumina») y la iluminación de las tesis y los meses en `navegacion-540.js`.
+En las charlas es `.ilumina[data-on]` (CSS propio y `arranque-540.js`, «bloques .ilumina») y la iluminación de las tesis y los meses en `navegacion-540.js`.

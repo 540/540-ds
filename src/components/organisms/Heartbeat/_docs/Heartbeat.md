@@ -44,4 +44,4 @@ Es de las pocas piezas de la charla en color de estado, y es trazo, no texto: el
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.latido`, `.latido-onda` y `.latido-corazon` (CSS propio de la charla).
+En las charlas es `.latido`, `.latido-onda` y `.latido-corazon` (CSS propio de la charla).

@@ -2,7 +2,7 @@ import styles from './foundations.module.css';
 import { ColorSwatch } from './ColorSwatch';
 import { colorPrimitives } from '../tokens/manifest';
 
-/** All primitive colors, grouped as in Figma. */
+/** All primitive colors, grouped by family. */
 export function ColorPrimitives() {
   return (
     <div className={styles.block}>

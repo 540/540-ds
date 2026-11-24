@@ -60,4 +60,4 @@ Los párrafos van en gris; la frase que abre la siguiente parada, en primario. E
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.charla-historia` y `.charla-objecion` dentro de `.section-raised` (base-540.css, GUIA-ESTILOS paradas 2, 6, 9 y 20).
+En las charlas es `.charla-historia` y `.charla-objecion` dentro de `.section-raised` (base-540.css, GUIA-ESTILOS paradas 2, 6, 9 y 20).

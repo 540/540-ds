@@ -62,7 +62,3 @@ El mismo reparto que en la barra: el nombre lo pone el enlace y el dibujo va dec
 - Dos pies.
 - Títulos de columna como encabezados.
 - Pasar iconos de red desde fuera.
-
-## Equivalencias con Figma
-
-Página `Footer` del archivo de diseño, componente `Footer` (52:3). `cabecera` es la parte de arriba, que existe si hay `tagline`, `groups` o `networks`. En Figma los títulos de columna están escritos en mayúsculas; en el código las pone el estilo. En las charlas es `footer-*` en base-540.css.

@@ -54,4 +54,4 @@ Las capturas van con `loading="eager"`: una parada con la captura en blanco no s
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.image.image-auto.captura` (CSS propio de la charla).
+En las charlas es `.image.image-auto.captura` (CSS propio de la charla).

@@ -107,7 +107,3 @@ Encadenar textos con márgenes propios hace que cada charla acabe con un ritmo d
 - Texto en color. Negro y gris.
 - Texto largo en `micro`.
 - Añadir márgenes a Text: el aire es del contenedor.
-
-## Equivalencias con Figma
-
-Página `Tipografía` del archivo de diseño. Los trece estilos de texto tienen el mismo nombre que `variant` (`Título/L` → `title-l`, `Body/S Light` → `body-s-light`). Dos diferencias que conviene saber: en Figma los estilos Light son peso 300 (solo trae instancias estáticas) y el código usa 350; y el *statement* en Figma es 64 / 48 px mientras que en el código es fluido. Manda el código.

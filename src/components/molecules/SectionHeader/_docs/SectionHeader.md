@@ -64,7 +64,3 @@ La tinta la pone el tema.
 - Antetítulos o etiquetas encima del título.
 - Elegir el nivel por el tamaño.
 - Entradillas largas.
-
-## Equivalencias con Figma
-
-Página `SectionHeader` del archivo de diseño, set `SectionHeader` (12:9). `Alineación = start / center` es `align`; `entradilla` es `description`. En las charlas es `header` / `header-center` en base-540.css.

@@ -55,4 +55,4 @@ Las charlas hacen el parallax y el zoom con GSAP (`data-mov="revelar"` y `data-m
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `.charla-fichaParada` más `.header-center`, y `.charla-foto[data-mov="revelar"] > .charla-fotoCapa[data-mov="parallax"]` (base-540.css, GUIA-ESTILOS «Regla de estructura»).
+En las charlas es `.charla-fichaParada` más `.header-center`, y `.charla-foto[data-mov="revelar"] > .charla-fotoCapa[data-mov="parallax"]` (base-540.css, GUIA-ESTILOS «Regla de estructura»).

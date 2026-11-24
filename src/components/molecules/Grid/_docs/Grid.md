@@ -68,4 +68,4 @@ Lo que va dentro de una celda ocupa el 100 % de su alto, así que las tarjetas d
 
 ## Equivalencias
 
-Figma: página «Medidas» (Grid) y «Anchos de pantalla». En las charlas es `.grid`, `.grid-item`, `.grid-span-*`, `.cinco-columnas`, `.rejilla-cinco` y `.compacta` (base-540.css y CSS propio).
+En las charlas es `.grid`, `.grid-item`, `.grid-span-*`, `.cinco-columnas`, `.rejilla-cinco` y `.compacta` (base-540.css y CSS propio).

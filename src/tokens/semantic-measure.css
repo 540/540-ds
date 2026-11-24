@@ -2,7 +2,7 @@
    SEMANTIC MEASURE TOKENS — space, padding, sizes, grid and radius.
    Single mode: the theme never moves a measure.
    Mobile first: page margins, section air and gutters grow at >= 1024px.
-   Source: Figma → Medidas; mobile values from the talks' base-540.css.
+   Source: the talks' base-540.css, mobile values included.
    ========================================================================== */
 
 :root {

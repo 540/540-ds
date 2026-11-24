@@ -2,7 +2,7 @@
    SEMANTIC COLOR TOKENS — what a color is FOR, pointing to a primitive.
    Two modes: light (default) and dark. The theme changes the alias, never the name.
    Switch with <html data-theme="dark">.
-   Source: Figma → Color (Claro / Oscuro) and the talks' base-540.css (gradients, filters).
+   Source: the talks' base-540.css (colors, gradients, filters).
    ========================================================================== */
 
 :root,

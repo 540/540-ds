@@ -50,4 +50,4 @@ El color sale de `--color-bg-accent` mezclado con transparente, así que si el a
 
 ## Equivalencias
 
-No están en Figma. En las charlas son `.manchas`, `.manchas-manchaA` y `.manchas-manchaB` en base-540.css.
+En las charlas son `.manchas`, `.manchas-manchaA` y `.manchas-manchaB` en base-540.css.

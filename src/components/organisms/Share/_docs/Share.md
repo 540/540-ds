@@ -60,4 +60,4 @@ Se pasan las cantidades; los porcentajes salen de su suma, con coma decimal y es
 
 ## Equivalencias
 
-No está en Figma. En las charlas es `components/charts/Share.tsx` (newsletter) y `.mig__bar` (show & tell).
+En las charlas es `components/charts/Share.tsx` (newsletter) y `.mig__bar` (show & tell).

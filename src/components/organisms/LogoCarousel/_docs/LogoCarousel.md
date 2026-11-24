@@ -54,7 +54,3 @@ Son marcas ajenas y a todo color compiten entre sí. El filtro del tema las igua
 
 - Enlaces en los logotipos.
 - Logotipos a su color.
-
-## Equivalencias con Figma
-
-Página `LogoCarousel` del archivo de diseño, set `LogoCarousel` (67:310). `Tinta = papel / negro` es el tema. En las charlas, la tira de logotipos de cliente usa los mismos filtros (`--filter-logo-cliente`).
