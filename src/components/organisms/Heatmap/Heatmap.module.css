@@ -1,0 +1,93 @@
+/* Heatmap — a table of cells painted with --chart-color at five opacities. Names and figures are HTML; the cells are
+   a CSS grid, so they stay square-ish whatever the number of columns. */
+
+.chart {
+  position: relative;
+  display: grid;
+  gap: var(--space-l);
+  text-align: start;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-xs);
+  align-items: center;
+  outline-offset: var(--space-s);
+}
+
+.column {
+  text-align: center;
+  overflow: visible;
+  min-block-size: 1.5em;
+}
+
+.row {
+  padding-inline-end: var(--space-s);
+}
+
+.cell {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 1;
+  min-block-size: var(--space-l);
+  max-block-size: var(--space-3xl);
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cell[data-on] {
+  opacity: 1;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--chart-color);
+}
+
+.cell[data-active] {
+  outline: 2px solid var(--color-border-strong);
+  outline-offset: 1px;
+}
+
+/* The tooltip hangs from the active cell: below it in the top half, above it in the bottom half */
+.tooltip {
+  inset-block-end: calc(100% + var(--space-s));
+  inset-inline-start: 0;
+}
+
+.tooltip[data-below] {
+  inset-block-end: auto;
+  inset-block-start: calc(100% + var(--space-s));
+}
+
+.tooltip[data-side='start'] {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+/* The color key: five steps between the two ends */
+.key {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-s);
+}
+
+.steps {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.step {
+  inline-size: var(--space-l);
+  block-size: var(--space-m);
+  background: var(--chart-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: none;
+  }
+}

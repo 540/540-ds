@@ -1,0 +1,66 @@
+/* ProgressRing — a gray track and an arc in the chart color, with the figure in the centre. The drawing is
+   square and scales as a whole, so the stroke keeps its proportion at every size. */
+
+.ring {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-m);
+  text-align: center;
+}
+
+.dial {
+  position: relative;
+  inline-size: min(100%, var(--ring-size));
+  aspect-ratio: 1;
+}
+
+.size-s {
+  --ring-size: calc(var(--space-3xl) * 2.5);
+}
+
+.size-m {
+  --ring-size: calc(var(--space-3xl) * 4);
+}
+
+.size-l {
+  --ring-size: calc(var(--space-3xl) * 5.5);
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.track,
+.arc {
+  fill: none;
+  stroke-width: 8;
+}
+
+.track {
+  stroke: var(--color-border-default);
+}
+
+/* The arc counts from twelve o'clock, clockwise, in step with the figure (the same 1.4 s ease-out as Count) */
+.arc {
+  stroke: var(--chart-color);
+  stroke-dasharray: 100 100;
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.figure {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc {
+    transition: none;
+  }
+}

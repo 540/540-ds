@@ -1,0 +1,100 @@
+/* BarSeries — Bars with several series per row. Grouped: a thin bar per series, one under the other, each
+   with its figure at the tip. Stacked: one bar split into its series, the total at the tip. Bars grow from
+   the left like Bars (same height, easing and stagger). */
+
+.chart {
+  position: relative;
+  display: grid;
+  gap: var(--space-l);
+  text-align: start;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-l);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'label'
+    'track';
+  column-gap: var(--space-l);
+  row-gap: var(--space-xs);
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .row {
+    grid-template-columns: minmax(8rem, 2fr) minmax(0, 5fr);
+    grid-template-areas: 'label track';
+  }
+}
+
+.label {
+  grid-area: label;
+}
+
+.group {
+  grid-area: track;
+  display: grid;
+  gap: var(--space-xs);
+  min-inline-size: 0;
+}
+
+.stacked {
+  grid-area: track;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  min-inline-size: 0;
+}
+
+.fill {
+  flex: none;
+  block-size: var(--space-xl);
+  max-inline-size: calc(100% - 5ch);
+  transition: inline-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.thin {
+  block-size: var(--space-m);
+  background: var(--chart-color);
+}
+
+/* The stacked bar: its segments share its width by their figures */
+.stack {
+  display: flex;
+  overflow: hidden;
+}
+
+.segment {
+  flex-basis: 0;
+  flex-shrink: 1;
+  min-inline-size: 0;
+  background: var(--chart-color);
+  border-inline-end: 2px solid var(--color-bg-default);
+}
+
+.segment:last-child {
+  border-inline-end: 0;
+}
+
+.value {
+  flex: none;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

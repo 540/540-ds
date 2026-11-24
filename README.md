@@ -50,7 +50,7 @@ src/
   components/
     atoms/           Text, Button, Logo, Image, ThemeToggle, Bullets, MenuItem, SocialIcon, Count
     molecules/       SectionHeader, Section, Card, Menu, CaseItem, TeamMember, Footer, NavMobile, Field, Carousel, Dialog, Grid, Question, Lists, Screenshot, Metric, Stack
-    organisms/       Deck, Slide, Cover, Closing, Statements, BlockTitle, Story, Quote, Punchline, Timeline, Flow, Tools, Marquee, CardList, Form, LogoCarousel, DeckFooter, Blobs, Steps, Cycle, Sheet, ProgressBar, Heartbeat, Spotlight, Schema, Bars, Share
+    organisms/       Deck, Slide, Cover, Closing, Statements, BlockTitle, Story, Quote, Punchline, Timeline, Flow, Tools, Marquee, CardList, Form, LogoCarousel, DeckFooter, Blobs, Steps, Cycle, Sheet, ProgressBar, Heartbeat, Spotlight, Schema, Bars, Share, LineChart, BarSeries, Dumbbell, Funnel, ProgressRing, Waffle, Heatmap, Scatter
   templates/         TalkTemplate: la charla completa, con todas las paradas posibles
   hooks/             useReveal: cuándo una pieza entra en pantalla (contadores y gráficas)
   styles/global.css  reset y estilos base

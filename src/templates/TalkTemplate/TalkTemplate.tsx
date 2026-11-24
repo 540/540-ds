@@ -13,20 +13,27 @@ import { SectionHeader } from '../../components/molecules/SectionHeader';
 import { Stack } from '../../components/molecules/Stack';
 import { TeamMember } from '../../components/molecules/TeamMember';
 import { Bars } from '../../components/organisms/Bars';
+import { BarSeries } from '../../components/organisms/BarSeries';
 import { BlockTitle } from '../../components/organisms/BlockTitle';
 import { CardList } from '../../components/organisms/CardList';
 import { Closing } from '../../components/organisms/Closing';
 import { Cover } from '../../components/organisms/Cover';
 import { Cycle } from '../../components/organisms/Cycle';
 import { Deck } from '../../components/organisms/Deck';
+import { Dumbbell } from '../../components/organisms/Dumbbell';
 import { Flow } from '../../components/organisms/Flow';
 import { Form } from '../../components/organisms/Form';
+import { Funnel } from '../../components/organisms/Funnel';
 import { Heartbeat } from '../../components/organisms/Heartbeat';
+import { Heatmap } from '../../components/organisms/Heatmap';
+import { LineChart } from '../../components/organisms/LineChart';
 import { LogoCarousel } from '../../components/organisms/LogoCarousel';
 import { Marquee } from '../../components/organisms/Marquee';
 import { ProgressBar } from '../../components/organisms/ProgressBar';
+import { ProgressRing } from '../../components/organisms/ProgressRing';
 import { Punchline } from '../../components/organisms/Punchline';
 import { Quote } from '../../components/organisms/Quote';
+import { Scatter } from '../../components/organisms/Scatter';
 import { Schema, SchemaFrame, SchemaLayer, SchemaVoice, schema } from '../../components/organisms/Schema';
 import { Share } from '../../components/organisms/Share';
 import { Sheet } from '../../components/organisms/Sheet';
@@ -37,6 +44,7 @@ import { PanelStack, Step, Steps, useSteps } from '../../components/organisms/St
 import { Story } from '../../components/organisms/Story';
 import { Timeline } from '../../components/organisms/Timeline';
 import { Tools } from '../../components/organisms/Tools';
+import { Waffle } from '../../components/organisms/Waffle';
 import type { DeckTheme } from '../../components/organisms/Deck';
 import captura from '../../assets/samples/captura.svg';
 import david from '../../assets/samples/charla-david.webp';
@@ -206,7 +214,7 @@ const y = (v: number) => 720 - ((v - 40) / 40) * 560;
 const path = (vals: number[]) => vals.map((v, i) => `${i ? 'L' : 'M'}${x(i)},${y(v)}`).join(' ');
 
 /** A two-series line chart drawn with the Schema vocabulary: gray context, one yellow series. */
-function LineChart() {
+function SchemaLine() {
   return (
     <Schema viewBox="0 0 2560 820" title="Evolución de dos series en ocho entregas" description="La serie de contexto, en gris, se mueve entre el 58 y el 72 %. La serie destacada, en amarillo, sube del 48 al 79 % y supera a la otra desde la quinta entrega." data>
       {[40, 50, 60, 70, 80].map((t) => (
@@ -660,8 +668,141 @@ export function TalkTemplate({ defaultTheme = 'dark' }: TalkTemplateProps) {
       <Slide id="linea">
         <SectionHeader title="Una evolución en el tiempo" description="La línea de contexto en gris y la que cuenta la historia en amarillo." align="center" />
         <SchemaFrame caption="Porcentaje por entrega, de la primera a la octava.">
-          <LineChart />
+          <SchemaLine />
         </SchemaFrame>
+      </Slide>
+
+      <Slide id="lineas">
+        <Stack>
+          <SectionHeader title="Dos tendencias en el tiempo" description="La serie que cuenta la historia en tinta y la que la acompaña en gris. Señala la línea para ver cada cifra." align="center" />
+          <LineChart
+            label="Altas y bajas por mes"
+            categories={['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']}
+            series={[
+              { label: 'Altas', values: [120, 135, 150, 148, 172, 190, 185, 210, 236, 251, 270, 302] },
+              { label: 'Bajas', values: [40, 42, 38, 45, 44, 50, 61, 58, 55, 52, 49, 47] },
+            ]}
+          />
+        </Stack>
+      </Slide>
+
+      <Slide id="series-apiladas">
+        <Stack>
+          <SectionHeader title="De qué se compone cada total" description="Una barra por fila, partida en sus dos canales, con el total en la punta." align="center" />
+          <BarSeries
+            label="Personas por categoría y canal"
+            mode="stacked"
+            series={[{ label: 'Web' }, { label: 'App' }]}
+            rows={[
+              { label: 'Primera categoría', values: [210, 140] },
+              { label: 'Segunda categoría', values: [120, 98] },
+              { label: 'Tercera categoría', values: [64, 60] },
+            ]}
+          />
+        </Stack>
+      </Slide>
+
+      <Slide id="antes-despues">
+        <Stack>
+          <SectionHeader title="Cuánto cambió cada cosa" description="Antes en gris y después en tinta, con la diferencia al final de cada fila." align="center" />
+          <Dumbbell
+            label="Satisfacción por categoría, antes y después"
+            labels={{ before: 'Antes', after: 'Ahora' }}
+            rows={[
+              { label: 'Primera categoría', before: 52, after: 71 },
+              { label: 'Segunda categoría', before: 64, after: 78 },
+              { label: 'Tercera categoría', before: 70, after: 74 },
+              { label: 'Cuarta categoría', before: 58, after: 49 },
+            ]}
+          />
+        </Stack>
+      </Slide>
+
+      <Slide id="embudo">
+        <Stack>
+          <SectionHeader title="Dónde se queda la gente" description="Cada paso con su cifra y lo que pasa al siguiente." align="center" />
+          <Funnel
+            label="De la visita a la compra"
+            steps={[
+              { label: 'Visitas', value: 12400 },
+              { label: 'Ficha vista', value: 7690 },
+              { label: 'Carrito', value: 2310 },
+              { label: 'Compra', value: 1120 },
+            ]}
+          />
+        </Stack>
+      </Slide>
+
+      <Slide id="anillos">
+        <Stack>
+          <SectionHeader title="Tres avances hacia su meta" description="Un anillo por medida; la que importa, en tinta, y las demás en gris." align="center" />
+          <Grid align="center">
+            <GridItem span={4}>
+              <ProgressRing value={64} label="Primera medida" caption="Primera medida" tone="context" />
+            </GridItem>
+            <GridItem span={4}>
+              <ProgressRing value={91} label="Segunda medida" caption="Segunda medida" />
+            </GridItem>
+            <GridItem span={4}>
+              <ProgressRing value={38} label="Tercera medida" caption="Tercera medida" tone="context" />
+            </GridItem>
+          </Grid>
+        </Stack>
+      </Slide>
+
+      <Slide id="gofre">
+        <Stack>
+          <SectionHeader title="Una proporción que se cuenta" description="Cien cuadros: los que cumplen, encendidos." align="center" />
+          <Waffle value={37} display="37 de cada 100" label="Personas que lo usan cada semana" caption="Personas que lo usan cada semana" />
+        </Stack>
+      </Slide>
+
+      <Slide id="mapa-calor">
+        <Stack>
+          <SectionHeader title="Cuándo pasa más" description="Más oscuro, más actividad. Señala una celda para ver su cifra." align="center" />
+          <Heatmap
+            label="Actividad por día y franja"
+            rows={['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes']}
+            columns={['8 h', '10 h', '12 h', '14 h', '16 h', '18 h', '20 h']}
+            values={[
+              [12, 40, 52, 30, 44, 61, 20],
+              [10, 38, 49, 33, 47, 66, 24],
+              [14, 42, 55, 35, 50, 70, 28],
+              [11, 36, 47, 29, 41, 58, 22],
+              [8, 30, 41, 26, 35, 44, 15],
+            ]}
+            scale={{ low: 'Menos', high: 'Más' }}
+          />
+        </Stack>
+      </Slide>
+
+      <Slide id="dispersion">
+        <Stack>
+          <SectionHeader title="Dos medidas a la vez" description="Cada punto es una tienda; la que importa, en amarillo y con su nombre." align="center" />
+          <Scatter
+            label="Ticket medio frente a ventas por tienda"
+            xLabel="Ticket medio"
+            yLabel="Ventas al mes"
+            xUnit=" €"
+            yUnit=" k"
+            highlight="Tienda F"
+            groups={[
+              {
+                label: 'Tiendas',
+                points: [
+                  { label: 'Tienda A', x: 24, y: 38 },
+                  { label: 'Tienda B', x: 31, y: 52 },
+                  { label: 'Tienda C', x: 28, y: 41 },
+                  { label: 'Tienda D', x: 42, y: 66 },
+                  { label: 'Tienda E', x: 36, y: 49 },
+                  { label: 'Tienda F', x: 47, y: 88 },
+                  { label: 'Tienda G', x: 19, y: 30 },
+                  { label: 'Tienda H', x: 33, y: 58 },
+                ],
+              },
+            ]}
+          />
+        </Stack>
       </Slide>
 
       {/* ---------- 05 · Imágenes y pantallas: photos, screenshots, tools, logos, questions ---------- */}

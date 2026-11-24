@@ -1,0 +1,126 @@
+/* Dumbbell — a before and after per row: two dots joined by a line over faint guides, the after figure at
+   the right. The after dot and the line move with the same curve, so the line follows the dot. */
+
+.chart {
+  position: relative;
+  display: grid;
+  gap: var(--space-l);
+  text-align: start;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-m);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'label figure'
+    'track track';
+  column-gap: var(--space-l);
+  row-gap: var(--space-xs);
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .row {
+    grid-template-columns: minmax(8rem, 2fr) minmax(0, 5fr) minmax(7rem, auto);
+    grid-template-areas: 'label track figure';
+  }
+}
+
+.label {
+  grid-area: label;
+}
+
+.track {
+  grid-area: track;
+  display: block;
+  min-inline-size: 0;
+}
+
+/* The scale runs half a dot in from each edge, so a dot at the ends stays inside */
+.scale {
+  position: relative;
+  display: block;
+  block-size: var(--space-xl);
+  margin-inline: calc(var(--space-l) / 2);
+}
+
+.grid {
+  position: absolute;
+  inset-block: 0;
+  border-inline-start: 1px solid var(--color-border-default);
+}
+
+.line {
+  position: absolute;
+  inset-block-start: 50%;
+  block-size: 3px;
+  background: var(--color-text-tertiary);
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.line[data-back] {
+  transform-origin: right center;
+}
+
+.line[data-on] {
+  transform: translateY(-50%) scaleX(1);
+}
+
+.dot {
+  position: absolute;
+  inset-block-start: 50%;
+  inline-size: var(--space-m);
+  block-size: var(--space-m);
+  border-radius: 50%;
+  background: var(--chart-color);
+  transform: translate(-50%, -50%);
+}
+
+.after {
+  inline-size: var(--space-l);
+  block-size: var(--space-l);
+  border: 2px solid var(--color-bg-default);
+  transition: inset-inline-start 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.figure {
+  grid-area: figure;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: var(--space-s);
+}
+
+.ticks {
+  block-size: 1.5em;
+}
+
+.tick {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.tick:first-child {
+  transform: none;
+}
+
+.tick:last-child {
+  transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .after {
+    transition: none;
+  }
+}

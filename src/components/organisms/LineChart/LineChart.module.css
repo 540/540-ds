@@ -1,0 +1,136 @@
+/* LineChart — lines over a frame of round figures. The drawing stretches with the frame; strokes keep their
+   width (non-scaling-stroke) and dots, figures and names are HTML, so nothing deforms. */
+
+.chart {
+  position: relative;
+  display: grid;
+  gap: var(--space-l);
+  text-align: start;
+}
+
+.frame {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: var(--space-s);
+  row-gap: var(--space-s);
+}
+
+.ticks {
+  position: relative;
+  min-inline-size: 3ch;
+}
+
+.tick {
+  position: absolute;
+  inset-inline-end: 0;
+  transform: translateY(-50%);
+}
+
+.plot {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  outline-offset: var(--space-s);
+  touch-action: pan-y;
+}
+
+@media (min-width: 768px) {
+  .plot {
+    aspect-ratio: 5 / 2;
+  }
+}
+
+.grid {
+  position: absolute;
+  inset-inline: 0;
+  border-block-start: 1px solid var(--color-border-default);
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+}
+
+.line {
+  fill: none;
+  stroke: var(--chart-color);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.dashed {
+  stroke-width: 2.5;
+  stroke-dasharray: 12 9;
+}
+
+/* Each series opens from the left, like a pen drawing it */
+.series {
+  clip-path: inset(-20% 101% -20% -1%);
+  transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.series[data-on] {
+  clip-path: inset(-20% -1% -20% -1%);
+}
+
+.area {
+  fill: var(--chart-color);
+  opacity: 0.12;
+  stroke: none;
+}
+
+.cursor {
+  position: absolute;
+  inset-block: 0;
+  border-inline-start: 1px solid var(--color-border-strong);
+  pointer-events: none;
+}
+
+.dot {
+  position: absolute;
+  inline-size: var(--space-m);
+  block-size: var(--space-m);
+  border-radius: 50%;
+  background: var(--chart-color);
+  border: 2px solid var(--color-bg-default);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.tooltip {
+  inset-block-start: 0;
+  transform: translateX(var(--space-m));
+}
+
+.tooltip[data-side='start'] {
+  transform: translateX(calc(-100% - var(--space-m)));
+}
+
+.categories {
+  grid-column: 2;
+  position: relative;
+  block-size: 1.5em;
+}
+
+.category {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.category:first-child {
+  transform: none;
+}
+
+.category:last-child {
+  transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .series {
+    transition: none;
+  }
+}

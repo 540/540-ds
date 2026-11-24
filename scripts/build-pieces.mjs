@@ -18,7 +18,7 @@ const out = path.join(root, 'pieces');
 const pkg = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const commit = execSync('git rev-parse --short HEAD', { cwd: root }).toString().trim();
 
-const ISLANDS = ['Deck', 'Carousel', 'Count', 'Marquee', 'Steps', 'Timeline', 'Bars', 'Spotlight', 'Statements', 'Sheet', 'Schema', 'Share', 'NavMobile', 'LogoCarousel'];
+const ISLANDS = ['Deck', 'Carousel', 'Count', 'Marquee', 'Steps', 'Timeline', 'Bars', 'Spotlight', 'Statements', 'Sheet', 'Schema', 'Share', 'NavMobile', 'LogoCarousel', 'LineChart', 'BarSeries', 'Dumbbell', 'Funnel', 'ProgressRing', 'Waffle', 'Heatmap', 'Scatter'];
 
 const SHARED = {
   react: '__ds540.React',

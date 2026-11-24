@@ -73,8 +73,15 @@ La tabla es orientativa: dice qué pieza cuenta mejor cada cosa y qué no se hac
 | Varias piezas en una parada | `Stack` | Un `div` con margen o `gap` |
 | Cifras | `Metric` en un `Grid` + `MetricNote`; `Count` si la cifra sube | Números grandes en `Text` |
 | Cantidades comparadas o un ranking | `Bars` | Una lista de números |
+| Varias series por fila, o de qué se compone cada total | `BarSeries` (`mode="grouped"` o `mode="stacked"`) | Varias `Bars` seguidas |
+| Cuánto cambió cada cosa entre dos momentos | `Dumbbell` | Dos `Bars` lado a lado |
+| Cuántos quedan en cada paso de un proceso | `Funnel` | Un `Flow` con cifras |
 | Partes de un todo | `Share` | Un gráfico circular |
-| Una evolución en el tiempo | `Schema` con `schema.series` y `schema.accent` | Una imagen de una gráfica |
+| Una evolución en el tiempo | `LineChart`; `Schema` con `schema.series` si lleva anotaciones dibujadas | Una imagen de una gráfica |
+| Un porcentaje o el avance hacia una meta | `ProgressRing`, solo o varios en un `Grid` | Un gráfico circular |
+| Una proporción que se cuenta («37 de cada 100») | `Waffle` | Un porcentaje suelto en un `Text` |
+| Intensidad en una tabla (días por horas, equipos por meses) | `Heatmap` | Una tabla con números de colores |
+| La relación entre dos variables | `Scatter` | Dos listas de números |
 | Herramientas o logos | `Tools`, `LogoCarousel`, `Marquee` | Logos sueltos en una rejilla |
 | Algo que se cuenta por partes | `Steps` | Varias paradas casi iguales |
 | Un detalle ampliado | `Sheet` dentro de un `Step` | `Dialog` |
@@ -157,12 +164,14 @@ El amarillo de 540 es **de fondo y de trazo**. En una charla aparece en estos si
 | Las manchas del fondo (`Deck` con `blobs`) | Siempre, ya atenuadas al 11 % y al 7 %. No se suben |
 | Las píldoras de un `Schema` (`schema.pill`) | Una o dos píldoras por diagrama |
 | El nodo «preocupación» de un `Cycle` (`marks` con `yellow`) | Un nodo por anillo |
-| Una serie destacada en una gráfica (`schema.accent*`, o `tone="accent"` en `Bars` y `Share`) | Una serie o una fila por gráfica |
+| Una serie destacada en una gráfica (`schema.accent*`, o `tone="accent"` en cualquier gráfica: `Bars`, `Share`, `LineChart`, `BarSeries`…) | Una serie, una fila o un punto por gráfica |
 | El anillo de foco del teclado | Lo pone el sistema |
 
 **Nunca** en texto, en fondos de parada o de tarjeta, en bordes, en iconos, en botones, en subrayados ni en fondos de hoja. **Cuota por charla: fuera de las manchas, el amarillo aparece en tres paradas como máximo.** Si una charla pide más, es que se está usando para decorar, y el amarillo no decora: señala.
 
 El rojo y el verde son colores de estado y solo van en **círculos y trazos**: las marcas de `Cycle`, el punto de aviso de `Timeline`, el `Heartbeat`. Nunca en texto.
+
+**Las series de una gráfica** van en tinta (la que cuenta la historia), en gris (el contexto) y, como mucho una, en amarillo. Una gráfica distingue tres series como máximo; si hay más, son varias gráficas o unas `Bars`.
 
 Todo lo demás es negro, gris y los fondos del sistema. Las tarjetas son del color de la página y se separan con el borde; la única banda distinta es `tone="raised"`.
 
@@ -192,7 +201,8 @@ Los efectos **ya están dentro de los componentes**: no se programa ninguna anim
 | El latido | `Heartbeat` | Uno por charla |
 | La barra que se llena | `ProgressBar` | Con `Steps` o sola |
 | Las cifras que suben (`data-cuenta`) | `Count` | Cuatro por parada como máximo |
-| Las barras que crecen | `Bars`, `Share` | Una gráfica que crece por paso |
+| Las gráficas que crecen o se dibujan | `Bars`, `Share`, `LineChart`, `BarSeries`, `Dumbbell`, `Funnel`, `ProgressRing`, `Waffle`, `Heatmap`, `Scatter` | Una gráfica que crece por paso |
+| La ficha con la cifra al señalar | `LineChart`, `Heatmap`, `Scatter` | La pone la gráfica; no se escribe la cifra en cada punto |
 | La barra de arriba que se esconde y el índice lateral | `Deck` | Siempre |
 
 Guardarraíles del movimiento:

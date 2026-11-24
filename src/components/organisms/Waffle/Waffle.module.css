@@ -1,0 +1,59 @@
+/* Waffle — a grid of 10 × 10 squares, one per hundredth, and beside it the figure and its caption. The
+   squares are square and gapped, with no radius; the empty ones are the light gray of a track. */
+
+.waffle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xl) var(--space-2xl);
+  text-align: start;
+}
+
+.grid {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: var(--space-xs);
+  inline-size: min(100%, calc(var(--space-3xl) * 6));
+}
+
+.cell {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--color-border-default);
+}
+
+/* Each highlighted square fills in place, a little after the one before it */
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--chart-color);
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fill[data-on] {
+  opacity: 1;
+  transform: none;
+}
+
+.body {
+  flex: 1 1 calc(var(--space-3xl) * 4);
+  display: grid;
+  gap: var(--space-s);
+  justify-items: start;
+}
+
+.figure {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

@@ -95,7 +95,7 @@ export function Step({ from = 0, to, collapse = false, children, className }: St
   const on = current >= from && (to === undefined || current < to);
   return (
     <StepOnContext.Provider value={on}>
-      <div className={[styles.step, collapse ? styles.collapse : '', className ?? ''].filter(Boolean).join(' ')} data-on={on ? '' : undefined} aria-hidden={on ? undefined : true}>
+      <div className={[styles.step, collapse ? styles.collapse : '', className ?? ''].filter(Boolean).join(' ')} data-on={on ? '' : undefined} aria-hidden={on ? undefined : true} inert={!on}>
         {children}
       </div>
     </StepOnContext.Provider>

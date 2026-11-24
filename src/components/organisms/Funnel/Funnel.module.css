@@ -1,0 +1,80 @@
+/* Funnel — the steps of a process: centered bars that narrow with the figure, the figure at the right and,
+   between two steps, the share that went on in gray micro. Same bar height and curve as Bars. */
+
+.chart {
+  position: relative;
+  display: grid;
+  gap: var(--space-l);
+  text-align: start;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'conversion conversion'
+    'label value'
+    'track track';
+  column-gap: var(--space-l);
+  row-gap: var(--space-xs);
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .step {
+    grid-template-columns: minmax(8rem, 2fr) minmax(0, 5fr) minmax(5rem, auto);
+    grid-template-areas:
+      '. conversion .'
+      'label track value';
+  }
+}
+
+.label {
+  grid-area: label;
+}
+
+.track {
+  grid-area: track;
+  display: flex;
+  justify-content: center;
+  min-inline-size: 0;
+}
+
+.fill {
+  flex: none;
+  block-size: var(--space-xl);
+  background: var(--chart-color);
+  transition: inline-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.value {
+  grid-area: value;
+  text-align: end;
+}
+
+/* The share that went on from the step above, centered under the bars */
+.conversion {
+  grid-area: conversion;
+  justify-self: center;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.conversion[data-on] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill,
+  .conversion {
+    transition: none;
+  }
+}
