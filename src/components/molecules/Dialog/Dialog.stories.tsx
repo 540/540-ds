@@ -23,7 +23,7 @@ function Demo(props: { media?: boolean; footer?: boolean; long?: boolean }) {
         media={props.media ? { src: retrato, alt: '' } : undefined}
         footer={
           props.footer ? (
-            <Button variant="outline" size="sm" icon={<ArrowRight />} href="#markel">
+            <Button variant="outline" size="sm" icon={<ArrowRight />} href="#perfil">
               Ver perfil
             </Button>
           ) : undefined

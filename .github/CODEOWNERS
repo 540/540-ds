@@ -1,0 +1,3 @@
+# Workflows deploy the MCP and Storybook and publish the npm package: a change here needs the
+# review of an owner. The ruleset of main requires the review of a code owner.
+/.github/ @LeWricka @gorkma @mikelros @pabloalbizu

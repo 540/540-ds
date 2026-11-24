@@ -1,6 +1,6 @@
 # Uso del nombre y del logo de 540
 
-«540» y el logo de 540 identifican a 540 y a su trabajo. La licencia Apache 2.0 del código no da permiso para usarlos (sección 6).
+«540» es el nombre comercial de 540 Tech Consulting S.L. «540» y el logo de 540 identifican a esa empresa y a su trabajo. La licencia Apache 2.0 del código no da permiso para usarlos (sección 6).
 
 ## Puedes, sin pedir permiso
 

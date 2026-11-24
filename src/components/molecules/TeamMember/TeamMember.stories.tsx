@@ -68,8 +68,8 @@ export const EnFila: Story = {
   parameters: { docs: { description: { story: 'Tres fichas en una fila de tres (384 px cada una). El retrato sigue el ancho de la ficha; la misma pieza vale a 240 en una tira.' } } },
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--grid-gutter)' }}>
-      <TeamMember {...PERSONA} href="#markel" />
-      <TeamMember {...PERSONA} name="Olaia Merino" role="Head of Design" bio="Diseño de producto y del sistema. Ahora, llevando el sistema a Storybook." href="#olaia" />
+      <TeamMember {...PERSONA} href="#perfil" />
+      <TeamMember {...PERSONA} name="Tercer Nombre" role="Head of Design" bio="Diseño de producto y del sistema. Ahora, llevando el sistema a Storybook." href="#tercero" />
       <TeamMember {...PERSONA} name="Otro Nombre" role="Head of Delivery" bio="Entrega y relación con el cliente. Lo que se contrata es lo que se entrega." href="#otro" />
     </div>
   ),
