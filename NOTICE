@@ -33,7 +33,12 @@ The following are NOT licensed under the Apache License 2.0.
    modify and distribute, including commercially. The Unsplash License does not
    cover trademarks, people or works of art that appear in a photo. It does
    not allow selling the photos without significant modification or compiling
-   them into a similar or competing photo service. Photographers and originals:
+   them into a similar or competing photo service. The Unsplash Terms
+   (https://unsplash.com/terms) also do not allow using the photos in
+   connection with machine learning or artificial intelligence datasets, such
+   as training a model. 540 does not use the photos to train models or to
+   build datasets: the image library only lets a person or an agent choose a
+   photo for a piece. Photographers and originals:
 
   arquitectura-edificio-contrapicado-1.webp — Omar Rosell, https://unsplash.com/photos/9UrRjmxlWKs
   arquitectura-edificio-contrapicado-2.webp — Mike Hindle, https://unsplash.com/photos/otqhWc2DWjY
