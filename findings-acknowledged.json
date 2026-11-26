@@ -1,0 +1,19 @@
+{
+  "v": 1,
+  "acknowledged": [
+    {
+      "key": "mcp.serve.__moduleInit__|site.input-error-as-server-error.-.701a75a4",
+      "ts": "2026-11-26T18:32:51.448Z",
+      "reason": "Accepted. mcp/serve.ts is only the local development server (npm run mcp:serve). A 500 for a malformed URL affects no user, and the deployed Firebase function does not use this file. Reviewed in #6 and #11.",
+      "fqn": "mcp.serve.__moduleInit__",
+      "file": "mcp/serve.ts",
+      "line": 20,
+      "title": "A malformed request is answered as a server failure",
+      "defectClass": "misattributed-failure",
+      "code": {
+        "declaration": "854d83be974dcecd",
+        "callers": "89133354f2041b41"
+      }
+    }
+  ]
+}
