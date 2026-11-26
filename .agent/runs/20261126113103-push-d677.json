@@ -99,6 +99,27 @@
       "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
       "tool": "toolu_01PuSWpGknoSYA9sr1eWntdM",
       "description": "Build on PR #8 and list layout"
+    },
+    {
+      "at": "2026-11-26T11:32:21.748Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
+      "tool": "toolu_019ZDdcYJUnhdGwAHLsvXV82",
+      "description": "Record covered code for each capability spec"
+    },
+    {
+      "at": "2026-11-26T11:32:34.273Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
+      "tool": "toolu_018tjqTfFVis784AvXsK5V6N",
+      "description": "Cover library spec and recheck undocumented"
+    },
+    {
+      "at": "2026-11-26T11:32:40.505Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
+      "tool": "toolu_01FoegS48Azp64SzEwjK5p5c",
+      "description": "Cover MCP tools folder and recheck"
     }
   ],
   "messages": [],
@@ -113,5 +134,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T11:31:05.206Z",
-  "updatedAt": "2026-11-26T11:32:13.053Z"
+  "updatedAt": "2026-11-26T11:32:41.136Z"
 }
