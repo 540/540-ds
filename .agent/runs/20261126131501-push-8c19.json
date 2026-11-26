@@ -33,6 +33,10 @@
     {
       "at": "2026-11-26T13:15:50.631Z",
       "text": "Push #6 on main: checking specs/docs for mcp/serve.ts and defects"
+    },
+    {
+      "at": "2026-11-26T13:20:20.044Z",
+      "text": "Fix proposed (serve 400). Drafting MCP tools capability spec"
     }
   ],
   "steps": [
@@ -169,6 +173,27 @@
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_0145ZzYzjaCnTriVEqtCNpBt",
       "description": "specs new help and areas"
+    },
+    {
+      "at": "2026-11-26T13:20:07.594Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_0187mnsMvnVSpt3UeErETAty",
+      "description": "More specs new flags and mcp tests"
+    },
+    {
+      "at": "2026-11-26T13:20:10.713Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; grep -n \"^\\s*\\(it\\",
+      "tool": "toolu_01Qgy5eyFUE2Wdz6RxzjEXYi",
+      "description": "List mcp tests and tools index"
+    },
+    {
+      "at": "2026-11-26T13:20:20.044Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01VpriJvcfoALPqeMCGXQj12",
+      "description": "Draft MCP tools capability spec"
     }
   ],
   "messages": [],
@@ -183,5 +208,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T13:15:02.321Z",
-  "updatedAt": "2026-11-26T13:20:05.203Z"
+  "updatedAt": "2026-11-26T13:20:20.764Z"
 }
