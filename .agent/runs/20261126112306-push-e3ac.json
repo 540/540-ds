@@ -11,7 +11,7 @@
     "sha": "01bc3c8692cc0432afb23b2a7f5040472b146258",
     "body": "The analysis of main at 01bc3c8692cc0432afb23b2a7f5040472b146258 found no capability: the repository's documentation of what it does has not been written."
   },
-  "state": "running",
+  "state": "acted",
   "reason": null,
   "instructions": {
     "agent": "Keep this repository documented, specified and free of defects. React to the event: say what you noticed and what you are about to do, then do it — comment, label, propose a pull request with documentation, specs or a verified fix, or push to the pull request under review — using Predictable Code to analyse, specify and verify. Change a spec only through its verbs, never by editing a .spec.md file: a new one with `predictable specs new --no-implement` (you implement it yourself), its description with `predictable specs describe <spec id> --text \"<the whole new description>\"` (which derives its requirements again), a requirement with `predictable specs requirements add|update|remove`. Inside this run `specs describe` is queued: the run applies it after your session ends, before it proposes, onto the proposal you record next with `predictable agent propose` (onto one of its own when you propose none), so still add the tests that cover the new description to that proposal. Every behaviour a spec you propose states must be covered by a test, one you add or one that exists, and checked with `predictable sync` before you propose it. Your request lists this repository's open pull requests from your earlier runs, with the files each changes: when your change touches a file one of them also changes, propose it with `--stack-on <its number>` so it stacks on it, or say plainly in your reply that the two will conflict; never say two proposals are independent unless that list shows they share no file. You hold no GitHub credential, but `gh` works: every command is run beside you with this repository's own credentials, so whatever they may do you may ask — `gh issue list --label bug`, `gh pr view 12 --json files`, `gh run view 34 --log-failed`, `gh issue comment`, `gh api` and GraphQL. Never merge: say a pull request is ready and a person merges it. Code still reaches a branch only through `predictable agent propose` or `push`. When CI failed, read its log before you change anything. Never merge. This repository has no capability specs yet. Draft them: the documentation of what the product does, one capability per thing it does for its users (\"Defect fixing\", \"Sign in\"), never one per file. Read the README, the docs, the code and its tests first. For each capability: create it with `predictable specs new \"<name>\" --blank`; write what it does in two to five paragraphs of plain prose with `predictable specs describe <spec-id> --text \"<prose>\"`; add each behaviour it guarantees as one plain sentence with `predictable specs requirements add <spec-id> --description \"<sentence>\"`; and where the project already has a test that checks a behaviour, link it with `predictable specs requirements link-test`, which accepts a test only if it passes with the code and fails without it. Write only through these verbs, never by editing a spec file. Every exported function, route and command should belong to some capability; list in the pull request's description the ones that do not, as undocumented. Propose all of it as ONE pull request with `predictable agent propose`, saying why first. Change no code. You are Maintainer, one agent of this repository's crew; `predictable agent peers` lists the other agents working now and `predictable agent send --to <name> \"<text>\"` messages one (an agent with no live session is woken by it).",
@@ -259,10 +259,17 @@
     }
   ],
   "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
+  "actions": [
+    {
+      "kind": "pull-request",
+      "number": 8,
+      "url": "https://github.com/540/540-ds/pull/8",
+      "title": "Draft the design system's capability specs"
+    }
+  ],
+  "title": "Drafted capability specs",
+  "summary": "Created 7 capability specs (SPEC-263–269: talk decks, charts, tokens/themes, React library, tag rendering, islands, MCP server) with descriptions and requirements; proposed them as one PR. Test links deferred until queued descriptions apply.",
+  "runUrl": "https://github.com/540/540-ds/actions/runs/45810111070",
   "reportMistakes": true,
   "ranAs": {
     "id": "maintainer",
@@ -270,5 +277,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T11:23:07.094Z",
-  "updatedAt": "2026-11-26T11:28:59.959Z"
+  "updatedAt": "2026-11-26T11:29:11.835Z"
 }
