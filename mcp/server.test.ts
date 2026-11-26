@@ -1,10 +1,12 @@
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
-import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
+import { McpError, type CallToolResult } from '@modelcontextprotocol/sdk/types.js';
+import { z } from 'zod';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { buildMetadata } from '../scripts/build-mcp-metadata.js';
 import { PIECE_TYPES } from './piece-types.js';
 import { createServer } from './server.js';
+import { SKILLS_EXTENSION } from './skills.js';
 import type { Metadata } from './types.js';
 
 // A real MCP client talking to the server in memory, over metadata built from the current code.
@@ -82,6 +84,7 @@ describe('tools', () => {
         'get-design-guide',
         'get-patterns',
         'get-rules',
+        'get-skill',
         'get-template',
         'get-template-stops',
         'get-tokens',
@@ -117,6 +120,24 @@ describe('tools', () => {
     expect(result.body).toContain('Source: src/docs/diseno.md');
     expect(result.body).toContain('# Guía de diseño de 540');
     expect(result.body).not.toContain('<!--');
+  });
+
+  it('the instructions send the agent to the 540-ds skill', () => {
+    expect(client.getInstructions()).toContain('skill://540-ds/SKILL.md');
+  });
+
+  it('get-skill returns SKILL.md of 540-ds by default, a supporting file with `file`, and errors on unknown ones', async () => {
+    const skillMd = await call('get-skill');
+    expect(skillMd.isError).toBe(false);
+    expect(skillMd.body).toContain('Source: src/docs/skills/540-ds/SKILL.md');
+    expect(skillMd.body).toContain('referencias/etiquetas.md');
+    expect(skillMd.body).toMatch(/^---\nname: 540-ds\n/m);
+
+    const react = await call('get-skill', { file: 'referencias/react.md' });
+    expect(react.body).toContain('# Vía React');
+
+    expect((await call('get-skill', { skill: 'nope' })).isError).toBe(true);
+    expect((await call('get-skill', { file: 'nope.md' })).isError).toBe(true);
   });
 
   it('list-templates lists every piece type with what it is, its triggers and the tools that have data', async () => {
@@ -263,5 +284,70 @@ describe('tools', () => {
     }
     const { tools } = await client.listTools();
     for (const t of tools) expect(JSON.stringify(t), t.name).not.toMatch(/report|dashboard|social/i);
+  });
+});
+
+describe('skills (MCP skills extension)', () => {
+  const SkillsResult = z.object({ resultType: z.string(), skills: z.array(z.any()), ttlMs: z.number(), cacheScope: z.string() }).passthrough();
+  const SkillResult = z.object({ resultType: z.string(), skill: z.any(), ttlMs: z.number(), cacheScope: z.string() }).passthrough();
+
+  it('declares the extension and the resources capability', () => {
+    const capabilities = client.getServerCapabilities();
+    expect(capabilities?.resources).toBeDefined();
+    expect(capabilities?.extensions?.[SKILLS_EXTENSION]).toEqual({});
+  });
+
+  it('the 540-ds skill has a valid frontmatter: name equal to its folder and a description', () => {
+    const skill = metadata.skills.find((s) => s.name === '540-ds');
+    expect(skill?.frontmatter.name).toBe('540-ds');
+    expect(skill?.description.length).toBeGreaterThan(50);
+    expect(skill?.files[0].path).toBe('SKILL.md');
+    expect(skill?.files.map((f) => f.path)).toEqual(expect.arrayContaining(['referencias/etiquetas.md', 'referencias/react.md']));
+  });
+
+  it('skills/list gives every skill with its SKILL.md uri, frontmatter and every file with digest and size', async () => {
+    const result = await client.request({ method: 'skills/list' } as never, SkillsResult);
+    expect(result.resultType).toBe('complete');
+    expect(result.cacheScope).toBe('public');
+    const skill = result.skills.find((s: { uri: string }) => s.uri === 'skill://540-ds/SKILL.md');
+    expect(skill.frontmatter.name).toBe('540-ds');
+    expect(skill.resources[0].uri).toBe('skill://540-ds/SKILL.md');
+    for (const r of skill.resources) {
+      expect(r.digest).toMatch(/^sha256:[0-9a-f]{64}$/);
+      expect(r.size).toBeGreaterThan(0);
+    }
+  });
+
+  it('skills/get gives one skill, and -32602 for an unknown uri', async () => {
+    const result = await client.request({ method: 'skills/get', params: { uri: 'skill://540-ds/SKILL.md' } } as never, SkillResult);
+    expect(result.skill.frontmatter.name).toBe('540-ds');
+    const unknown = client.request({ method: 'skills/get', params: { uri: 'skill://nope/SKILL.md' } } as never, SkillResult);
+    await expect(unknown).rejects.toBeInstanceOf(McpError);
+    await expect(unknown).rejects.toMatchObject({ code: -32602 });
+  });
+
+  it('serves every file of every skill as a resource, with the size skills/list gives', async () => {
+    const { resources } = await client.listResources();
+    for (const skill of metadata.skills) {
+      for (const file of skill.files) {
+        const uri = `skill://${skill.name}/${file.path}`;
+        expect(resources.map((r) => r.uri), uri).toContain(uri);
+        const { contents } = await client.readResource({ uri });
+        const text = 'text' in contents[0] ? contents[0].text : '';
+        expect(Buffer.byteLength(text, 'utf-8'), uri).toBe(file.size);
+      }
+    }
+    expect(resources.find((r) => r.uri === 'skill://540-ds/SKILL.md')?.mimeType).toBe('text/markdown');
+  });
+
+  it('every tool the skills name exists', async () => {
+    const { tools } = await client.listTools();
+    const names = new Set(tools.map((t) => t.name));
+    for (const skill of metadata.skills) {
+      for (const file of skill.files) {
+        const named = file.content.match(/`((?:get|list|search)-[a-z-]+)`/g) ?? [];
+        for (const name of named) expect(names, `${skill.name}/${file.path}: ${name}`).toContain(name.slice(1, -1));
+      }
+    }
   });
 });

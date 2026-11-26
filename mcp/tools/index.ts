@@ -8,6 +8,7 @@ import { getComponentStories } from './get-component-stories.js';
 import { getDesignGuide } from './get-design-guide.js';
 import { getPatterns } from './get-patterns.js';
 import { getRules } from './get-rules.js';
+import { getSkill } from './get-skill.js';
 import { getTemplate } from './get-template.js';
 import { getTemplateStops } from './get-template-stops.js';
 import { getTokens } from './get-tokens.js';
@@ -18,6 +19,7 @@ import { searchImages } from './search-images.js';
 import type { ToolDef } from './shared.js';
 
 export const tools: ToolDef<any>[] = [
+  getSkill,
   getDesignGuide,
   listTemplates,
   getRules,

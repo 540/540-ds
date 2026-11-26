@@ -30,6 +30,7 @@ servidor MCP (mcp/server.ts + una tool por fichero en mcp/tools/)
 
 | Tool | Para qué la usa el agente |
 |---|---|
+| `get-skill` | Los ficheros de la skill `540-ds` (`SKILL.md` y `referencias/`), para los clientes que no leen recursos. Ver «La skill» |
 | `get-design-guide` | La guía de diseño de 540 (`src/docs/diseno.md`): el criterio para elegir entre lo permitido, en cualquier pieza, con plantilla o sin ella. Lo primero de todo |
 | `list-templates` | Las plantillas que hay (hoy, la charla): su `pieceType`, para qué sirve cada una, con qué palabras se pide, qué tools tienen datos y si es estable. Lo primero, antes de montar nada |
 | `get-rules` | Las normas del tipo de pieza. Lo primero en cuanto se usa una plantilla |
@@ -43,7 +44,22 @@ servidor MCP (mcp/server.ts + una tool por fichero en mcp/tools/)
 | `get-component-stories` | Sus variantes con el enlace a Storybook y, si se pide, el código |
 | `get-tokens` | Los tokens semánticos con sus valores en claro, oscuro, escritorio y proyección |
 
-Al conectarse, el agente recibe además unas instrucciones con el orden de trabajo: `get-design-guide` → `list-templates` → (solo si el usuario pide ese tipo de pieza) normas → plantilla y patrones → copiar paradas → solo componentes del catálogo. Si no pide ninguna plantilla, compone con el catálogo.
+Al conectarse, el agente recibe además unas instrucciones: que lea la skill `540-ds` y, dentro de ella, el orden de trabajo: `get-design-guide` → `list-templates` → (solo si el usuario pide ese tipo de pieza) normas → plantilla y patrones → copiar paradas → solo componentes del catálogo. Si no pide ninguna plantilla, compone con el catálogo.
+
+## La skill
+
+El MCP sirve también la skill **`540-ds`**: el proceso con la persona (plantilla o diseño libre, HTML con render, HTML con runtime o React, aprobar la estructura, repasar y entregar). Las instrucciones y las tools dicen cómo usar el sistema; la skill, cómo llevar el encargo de principio a fin. Vive en `src/docs/skills/540-ds/` y va en el mismo despliegue que las tools, así que nunca se desfasa de ellas.
+
+Se sirve como dice la extensión de skills de MCP ([spec, beta](https://skills.extensions.modelcontextprotocol.io/specification/beta/skills)), en `mcp/skills.ts`:
+
+- Cada fichero es un recurso `skill://540-ds/<ruta>`: `skill://540-ds/SKILL.md`, `skill://540-ds/referencias/react.md`…
+- `skills/list` y `skills/get` dan el catálogo: la URI de `SKILL.md`, su frontmatter y cada fichero con su `digest` y su tamaño.
+- La extensión (`io.modelcontextprotocol/skills`) se declara en las capacidades de `initialize`: el SDK aún no tiene `server/discover`.
+- Para los clientes que no leen recursos, la tool `get-skill` devuelve los mismos ficheros.
+
+Hoy Claude no carga sola una skill servida por MCP: la lee porque las instrucciones se lo piden. Por eso la skill del plugin de 540 se queda como un envoltorio corto que se activa con las mismas palabras y manda leer esta.
+
+Para añadir otra skill, crea `src/docs/skills/<nombre>/SKILL.md` con un frontmatter con `name` (igual que la carpeta) y `description`, y sus ficheros al lado. `build-mcp-metadata -- --strict` falla si el `name` no coincide o falta la `description`, y `npm run test:mcp` comprueba que cada tool que nombra existe.
 
 ## Lo que edita diseño sin tocar código
 
@@ -224,11 +240,13 @@ Para cambiar de dominio más adelante, añade el nuevo y **deja también el viej
 
 ```
 scripts/build-mcp-metadata.ts   genera mcp/metadata.json desde src/
+src/docs/skills/                las skills que sirve el MCP (hoy, 540-ds)
 scripts/build-mcp-firebase.ts   empaqueta la función en firebase/functions/
 mcp/
   types.ts                      forma de la metadata
   piece-types.ts                los tipos de pieza (plantillas): la única fuente de list-templates y del enum de pieceType
   server.ts                     el servidor MCP y sus instrucciones
+  skills.ts                     las skills: recursos skill://, skills/list y skills/get
   tools/                        una tool por fichero; index.ts las registra
   http.ts                       el manejador HTTP (local y Firebase)
   node-adapter.ts               traduce entre las peticiones de Node y las web
