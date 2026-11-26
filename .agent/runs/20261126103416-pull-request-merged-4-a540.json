@@ -1,0 +1,30 @@
+{
+  "id": "20261126103416-pull-request-merged-4-a540",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 4,
+    "title": "Add the Predictable Code analysis workflow",
+    "author": "predictable-code[bot]",
+    "url": "https://github.com/540/540-ds/pull/4",
+    "ref": "main",
+    "sha": "eaab004f1f34decf0ab48cc4fde312559ef42648",
+    "body": "This adds one workflow. Merging it is what turns Predictable Code on for this repository.\n\n**What it does when it runs.** Translates the code, analyses it, infers requirements, and\ncommits the analysis to one branch of its own, `predictable-code-database`, under the name of\nthe branch it analysed. It never commits to your branches — no source file is changed — and\nopens no pull request for an analysis; a fix or a specification it writes for you is still\nproposed as a pull request.\n\n**Where it runs.** On your own runner, on your account, spending your Actions minutes. The\nhosted Control Center dispatches it and reads the analysis from that branch; it never runs\nyour code and stores no copy of it.\n\n**What it reads.** The analysis on that branch, and — when you open a finding — the one source\nfile that finding is about, so the app can show you the code beside the claim. Both are read\non demand through the App's installation access to this repository, and neither is written\nanywhere on our side.\n\n**What it needs from you.** No secret, and no configuration. The job authenticates to the\ncontrol plane with the OIDC token GitHub mints for it, and receives a short-lived download\nof the CLI in return — so there is nothing to provision and nothing to rotate.\n\n**How to turn it off.** Delete this file. That is the whole of it — no console, no setting\nof ours, nothing left behind.\n\nIt runs only on `workflow_dispatch`, so merging it starts nothing by itself.\n\n<!-- predictable-code:auto-merge off method=squash by=gorkma -->\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-26T10:34:16.059Z",
+  "updatedAt": "2026-11-26T10:34:16.059Z"
+}
