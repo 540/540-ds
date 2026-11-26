@@ -1,0 +1,30 @@
+{
+  "id": "20261126183647-pull-request-merged-12-b5f3",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 12,
+    "title": "docs(specs): MCP tools capability",
+    "author": "predictable-code[bot]",
+    "url": "https://github.com/540/540-ds/pull/12",
+    "ref": "main",
+    "sha": "82261aa0a7a44e7a66a47f5a53ca0964206a85bc",
+    "body": "## Why\n\n`predictable specs undocumented` reports 151 of 151 exported functions documented by no capability: the existing spec pages each document one source file, so no capability states what the MCP tool registry as a whole offers an agent. The 16 exports under `mcp/tools` and `mcp/piece-types.ts` (`getComponent`, `listTemplates`, `PIECE_TYPES`, `tools`…) had no capability prose.\n\n## What changed\n\nAdds capability SPEC-263 \"MCP tools\" (`specs/mcp-tools.spec.md`), covering `mcp/tools` and `mcp/piece-types.ts`, with a description of what each read-only tool returns. No code or test changes.\n\n## Changed after review\n\nTwo sentences repeated the names of tests in `mcp/server.test.ts` and said more than the code does. Both now state what the code does:\n\n- `search-components` is a literal text match over names, descriptions, props and docs, with its weights. It does not match by meaning.\n- `get-component` suggests a name only when the name contains the query, or the query, longer than 2 characters, contains the name.\n\n## Evidence\n\n- Each sentence of the description has a test in `mcp/server.test.ts` (`npm run test:mcp`: 32 passed), except the details added after review: the weights, the cap of 5 occurrences in the docs, the limit of 8 results and the typo that gets no suggestion. Those were checked by reading `mcp/tools/search-components.ts` and `notFound` in `mcp/tools/shared.ts`; no test covers them.\n- After this, 134 exported functions are still documented by no capability (components, tokens, render scripts, runtime).\n\nThe analysis did not verify this change: no `predictable fix-check` reported a defect gone for it.\n\n<!-- predictable-code:auto-merge off method=squash -->",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-26T18:36:47.398Z",
+  "updatedAt": "2026-11-26T18:36:47.398Z"
+}
