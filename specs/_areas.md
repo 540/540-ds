@@ -20,5 +20,4 @@ predictable: areas
   - **MCP Metadata**: The generated metadata and image catalog describing components, patterns, and tokens for the tools to read.
 - **Build and Check Scripts**: The command line scripts that build, render, and validate the design system and its pieces.
   - **Piece Rendering**: The scripts that render a finished piece from the template and check its structure, spelling, and rules.
-  - **Validation Checks**: Scripts that check islands, pieces, primitives, and runtime behavior stay correct as the library changes.
   - **Runtime Panel**: A debugging overlay panel used while checking rendered pieces at runtime.
