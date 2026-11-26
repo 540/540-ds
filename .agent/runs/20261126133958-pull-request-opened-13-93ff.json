@@ -1,0 +1,30 @@
+{
+  "id": "20261126133958-pull-request-opened-13-93ff",
+  "event": {
+    "kind": "pull-request-opened",
+    "number": 13,
+    "title": "docs: tell the Predictable agent to keep the specs and not fix defects",
+    "author": "gorkma",
+    "url": "https://github.com/540/540-ds/pull/13",
+    "ref": "docs/maintaining",
+    "sha": "6576c97ae4490596229f3e200ab1ec34277a837a",
+    "body": "## Summary\n\nAfter each push to `main`, the Predictable Code agent reads `MAINTAINING.md` at the root, when it exists, and follows it before its default duties. This adds that file with one decision: the agent keeps the specs and stops proposing defect fixes.\n\n```diff\n on(push to main)\n   analyse main\n+  read MAINTAINING.md\n   bring the specs in line with the code      # stays\n-  fix the defects the analysis reports\n+  leave every defect to a person\n```\n\nThe file also keeps two rules that already hold in this repo: specs only for the four analysed code folders (`src`, `mcp`, `scripts/render`, `scripts/runtime`), and specs that state only what the code does.\n\n## Evidence\n\n- **Before:** on 26 November the agent ran four times after a push and opened fix and spec pull requests on its own. #6 needed a correction before it could merge; #8 was closed because a review found 11 false and 39 overstated claims in its 283.\n  **After:** not measured yet. The file is an instruction to a model, not a switch: the first agent run after this merges shows whether it holds.\n- The agent's own instructions name this file: \"If the repository has a `MAINTAINING.md` at its root, read it first and follow it: it is how this repository asks to be maintained.\"\n\n## Merge Danger\n\n**Door:** two-way\n\nDelete the file and the agent goes back to its defaults.\n\n**Blast Radius:** tooling\n\nNo code, test or published file changes. Only the Predictable agent reads this file.\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request opened is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-26T13:39:58.738Z",
+  "updatedAt": "2026-11-26T13:39:58.738Z"
+}
