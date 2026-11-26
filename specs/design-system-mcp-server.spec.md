@@ -3,7 +3,7 @@ predictable: spec
 ---
 # Design system MCP server
 
-<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":[],"created":"","guidelines":[],"id":"SPEC-269","lastModified":"","lastVerified":"","proseDigest":"89133354f2041b41","relatedSpecs":[]} -->
+<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":["mcp","mcp/tools","mcp/piece-types.ts"],"created":"","guidelines":[],"id":"SPEC-269","lastModified":"","lastVerified":"","proseDigest":"d072cdc154d64b5c","relatedSpecs":[]} -->
 The MCP server lets an AI agent (Claude Desktop, claude.ai, Claude Code) consult the 540 design system while it assembles a piece: the design guide, the available templates, the rules of each piece type, the template and its stops, the patterns, the components with their props, sheets and stories, the semantic tokens and the image library. It is read only and stateless: each request is answered on its own, as JSON, so it runs as a Cloud Function without a database. Today it serves one piece type, talks; any other piece type is refused.
 
 Everything the server knows comes from the code through build-mcp-metadata: each component's JSDoc, its props from types.ts with their defaults, its stories without the Playground ones and its sheet; the semantic tokens from the CSS; the talk rules; TalkTemplate split into stops (a cover, numbered blocks with a photo, a closing); the connection instructions and the design guide from src/docs, without the HTML comment meant for editors. The agent never sees className, style or inherited HTML attributes, nor primitive tokens. With --strict the build fails when a required document is missing.

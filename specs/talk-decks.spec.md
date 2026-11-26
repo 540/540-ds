@@ -3,7 +3,7 @@ predictable: spec
 ---
 # Talk decks
 
-<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":[],"created":"","guidelines":[],"id":"SPEC-263","lastModified":"","lastVerified":"","proseDigest":"89133354f2041b41","relatedSpecs":[]} -->
+<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":["src/components/organisms/Deck","src/components/organisms/DeckFooter","src/components/organisms/Slide","src/components/organisms/Steps","src/templates"],"created":"","guidelines":[],"id":"SPEC-263","lastModified":"","lastVerified":"","proseDigest":"75f90f09760652d0","relatedSpecs":[]} -->
 540 builds its talks (presentations) with this design system. A talk is a Deck: the root frame that holds the blobs in the background, a top bar with the menu and the theme toggle, the talk's stops (Slide components), a side index and the DeckFooter as the last stop. Inside it the talk is assembled only from catalog pieces such as Cover, BlockTitle, Statements, Story, Quote, Punchline, Timeline, Steps, Spotlight and Closing, following the talk rules in src/docs/normas-charlas.md. TalkTemplate is a complete example talk with every possible stop, used as the reference to copy from.
 
 The Deck walks the audience through the talk from the keyboard: next and previous with the arrow keys, Page Up/Down and Space, first and last stop with Home and End. A stop taller than the window is scrolled through first, a block title with its photo is one stop, and elements marked as stops inside a Slide (theses, timeline steps, spotlight phrases) become the stops instead of the Slide. The keyboard does nothing while the speaker types in a field or a dialog is open, and with reduced motion the jump is instant.

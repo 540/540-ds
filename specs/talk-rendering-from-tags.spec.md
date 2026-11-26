@@ -3,7 +3,7 @@ predictable: spec
 ---
 # Talk rendering from tags
 
-<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":[],"created":"","guidelines":[],"id":"SPEC-267","lastModified":"","lastVerified":"","proseDigest":"89133354f2041b41","relatedSpecs":[]} -->
+<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":["scripts/render","src/render.setup.ts"],"created":"","guidelines":[],"id":"SPEC-267","lastModified":"","lastVerified":"","proseDigest":"f87a98905e503039","relatedSpecs":[]} -->
 A talk can be written as an HTML fragment of <rev-…> tags, one tag per catalog component export (GridItem becomes rev-grid-item, storageKey becomes storage-key, children is the tag's content). The 540-ds-render command shipped in the npm package, and renderTalk behind it, turn such a document into one self-contained .html file that works offline: pre-rendered static HTML, only the CSS of base styles and of the components used, the DM Sans font and every image embedded, and JavaScript only when the talk uses an interactive component. The command can also print the tag contract, the props of given tags and the version.
 
 The tag contract is not written by hand: build:pieces derives it from the component names and their Props types into the pieces manifest, and the MCP server reads the same contract. Attribute values follow the prop's type: plain strings, numbers, booleans by presence, enum values, phrasing HTML for nodes (only strong, em, b, i, code, small, sub, sup, br and a), JSON for arrays and objects, relative image paths and biblioteca:<id> photos from the image library. Drawing inside Schema is limited to the SVG elements and classes of its vocabulary.

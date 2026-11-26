@@ -3,7 +3,7 @@ predictable: spec
 ---
 # Static pre-rendering and islands
 
-<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":[],"created":"","guidelines":[],"id":"SPEC-268","lastModified":"","lastVerified":"","proseDigest":"89133354f2041b41","relatedSpecs":[]} -->
+<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":["src/runtime","scripts/runtime"],"created":"","guidelines":[],"id":"SPEC-268","lastModified":"","lastVerified":"","proseDigest":"4f05a9117a54d06d","relatedSpecs":[]} -->
 Components are pre-rendered to static HTML, and only interactive ones are brought to life in the browser as islands. The pieces build (build:pieces) produces, for each component, a server module bundled with Preact for pre-rendering in Node, its stylesheet, and, for the fourteen interactive components, an island script, together with a manifest listing each component's module, stylesheets in load order, island and whether it reads the steps of Steps.
 
 An island is rendered on the server inside a ds-island element carrying its component name and its props as JSON. Static content passed to it as children travels as ds-slot elements that Preact leaves untouched, so islands inside them hydrate on their own, and a slot mounted again on the client has its new islands hydrated too. Decoding the props on the client revives slots and nested elements from the registry of components. Components that read the Steps context go inside the Steps island instead of travelling as slots. Dialog is not an island because its onClose function cannot travel as JSON.

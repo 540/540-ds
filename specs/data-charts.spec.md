@@ -3,7 +3,7 @@ predictable: spec
 ---
 # Data charts
 
-<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":[],"created":"","guidelines":[],"id":"SPEC-264","lastModified":"","lastVerified":"","proseDigest":"89133354f2041b41","relatedSpecs":[]} -->
+<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":["src/charts","src/components/organisms/LineChart","src/components/organisms/Bars","src/components/organisms/BarSeries","src/components/organisms/Dumbbell","src/components/organisms/Funnel","src/components/organisms/ProgressRing","src/components/organisms/ProgressBar","src/components/organisms/Waffle","src/components/organisms/Heatmap","src/components/organisms/Scatter","src/components/atoms/Count"],"created":"","guidelines":[],"id":"SPEC-264","lastModified":"","lastVerified":"","proseDigest":"18cd8a7049198128","relatedSpecs":[]} -->
 Talks and pages tell numbers with a family of chart components: LineChart for change over time, Bars and BarSeries for amounts, Dumbbell for before and after, Funnel, ProgressRing, Waffle, Heatmap and Scatter, plus Metric and Count for a single big figure. They share the building blocks in src/charts: three tones (ink for the main series, context for the rest, accent only where the talk rules allow it), a scale that rounds the axis to nice numbers, a number format for the language with fixed decimals and a unit, a legend, and a data table.
 
 Every chart draws itself when it enters the screen (useReveal), and draws its final state straight away when the user prefers reduced motion or when rendered on the server. The drawing is decorative for assistive technology: each chart carries the same data as a table that only screen readers see, with a caption, column headers and one header cell per row.

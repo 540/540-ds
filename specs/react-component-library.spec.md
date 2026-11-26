@@ -3,7 +3,7 @@ predictable: spec
 ---
 # React component library
 
-<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":[],"created":"","guidelines":[],"id":"SPEC-266","lastModified":"","lastVerified":"","proseDigest":"89133354f2041b41","relatedSpecs":[]} -->
+<!-- predictable:capability={"authors":["runner"],"backlog":false,"covers":["src/components","src/hooks"],"created":"","guidelines":[],"id":"SPEC-266","lastModified":"","lastVerified":"","proseDigest":"749b30c8870256d5","relatedSpecs":[]} -->
 The design system is published on npm as @540deg/ds for React 19 projects: every catalog component (atoms, molecules, organisms) and TalkTemplate with their TypeScript types, and a single stylesheet, @540deg/ds/styles.css, with the tokens, the reset, the base styles, the embedded DM Sans font and the styles of every component. Components do not import CSS themselves, so they work with any bundler and on the server, and the package is free of side effects except for CSS so unused components are dropped.
 
 Besides the talk pieces, the catalog covers the 540 website: Menu and NavMobile, Footer, Section and SectionHeader, Card, CardList, CaseItem, TeamMember, Form and Field, Carousel, Dialog, Grid, Lists, LogoCarousel, Marquee, Question and others. Each component exports its Props type and the lists of allowed values for its options, and documents itself through its JSDoc, its stories in Storybook and a sheet in Spanish saying when to use it and when not.
