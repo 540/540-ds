@@ -17,8 +17,15 @@ const origin = `http://localhost:${port}`;
 const metadata = buildMetadata();
 
 createHttpServer(async (req, res) => {
+  let pathname: string;
   try {
-    const { pathname } = new URL(req.url ?? '/', origin);
+    ({ pathname } = new URL(req.url ?? '/', origin));
+  } catch {
+    // A request target that is not a valid URL is the client's mistake: 400, not a server failure.
+    res.writeHead(400).end('Bad request: the URL is not valid.');
+    return;
+  }
+  try {
     if (pathname !== '/mcp') {
       res.writeHead(404).end('Not found. The MCP is at /mcp.');
       return;
