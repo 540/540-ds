@@ -21,7 +21,7 @@
         "report-mistakes": true,
         "improve-from-reports": true,
         "requirement-tests": true,
-        "implement-specs": true
+        "implement-specs": false
       },
       "events": {},
       "avatar": null,
