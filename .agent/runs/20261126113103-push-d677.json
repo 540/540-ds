@@ -58,21 +58,12 @@
     {
       "at": "2026-11-26T11:31:59.907Z",
       "text": "Push removed script specs; checking undocumented capabilities and defects"
+    },
+    {
+      "at": "2026-11-26T11:32:12.408Z",
+      "text": "Stacking on #8: recording what code each capability covers"
     }
   ],
-  "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
-  "reportMistakes": true,
-  "ranAs": {
-    "id": "maintainer",
-    "name": "Maintainer",
-    "model": null
-  },
-  "startedAt": "2026-11-26T11:31:05.206Z",
-  "updatedAt": "2026-11-26T11:32:00.574Z",
   "steps": [
     {
       "at": "2026-11-26T11:31:56.766Z",
@@ -94,6 +85,33 @@
       "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
       "tool": "toolu_01K3Ly3pNMeoFpwt7guRYoTt",
       "description": "Show head of undocumented list and specs layout"
+    },
+    {
+      "at": "2026-11-26T11:32:06.166Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; gh pr view 8 --json state,title,body,f…",
+      "tool": "toolu_01WP6HvYPUHNkd5HA15cnszR",
+      "description": "Inspect open PR #8 and a capability spec"
+    },
+    {
+      "at": "2026-11-26T11:32:09.277Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
+      "tool": "toolu_01PuSWpGknoSYA9sr1eWntdM",
+      "description": "Build on PR #8 and list layout"
     }
-  ]
+  ],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "reportMistakes": true,
+  "ranAs": {
+    "id": "maintainer",
+    "name": "Maintainer",
+    "model": null
+  },
+  "startedAt": "2026-11-26T11:31:05.206Z",
+  "updatedAt": "2026-11-26T11:32:13.053Z"
 }
