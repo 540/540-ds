@@ -33,6 +33,10 @@
     {
       "at": "2026-11-26T18:40:00.735Z",
       "text": "Push #12 on main: checking undocumented specs"
+    },
+    {
+      "at": "2026-11-26T18:40:22.753Z",
+      "text": "Drafting MCP transports capability spec + node-adapter test"
     }
   ],
   "steps": [
@@ -91,5 +95,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T18:39:11.166Z",
-  "updatedAt": "2026-11-26T18:40:23.419Z"
+  "updatedAt": "2026-11-26T18:40:25.934Z"
 }
