@@ -22,7 +22,14 @@ createHttpServer(async (req, res) => {
     res.writeHead(404).end('Not found. The MCP is at /mcp.');
     return;
   }
-  await sendWebResponse(res, await handleMcpRequest(toWebRequest(req, origin), metadata));
+  try {
+    await sendWebResponse(res, await handleMcpRequest(toWebRequest(req, origin), metadata));
+  } catch (error) {
+    // A failing request answers 500 instead of leaving an unhandled rejection that stops the server.
+    console.error(error);
+    if (!res.headersSent) res.writeHead(500);
+    res.end();
+  }
 }).listen(port, () => {
   console.log(`540-ds MCP on ${origin}/mcp (${Object.keys(metadata.components).length} components)`);
 });
