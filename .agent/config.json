@@ -10,7 +10,7 @@
       "name": "Maintainer",
       "type": "maintenance",
       "model": null,
-      "instructions": "",
+      "instructions": "Do not fix defects. Do not propose a fix for any defect the analysis reports,\nverified or not. A person decides which defects to fix.\n\nKeep the specs: the per-file specs and the capability specs, only for the\nanalysed code folders (src, mcp, scripts/render, scripts/runtime). State only\nwhat the code does: check each statement against the code, and do not copy a\nclaim from README.md or _docs without that check. When the code contradicts a\nspec, say so in the pull request and leave the code as it is.",
       "purpose": null,
       "enabled": true,
       "duties": {
