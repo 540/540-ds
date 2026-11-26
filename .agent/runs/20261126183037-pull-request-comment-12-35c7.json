@@ -7,20 +7,15 @@
     "author": "gorkma",
     "url": "https://github.com/540/540-ds/pull/12#issuecomment-7200542800",
     "ref": "predictable/agent/20261126131501-push-8c19/specs-mcp-tools",
+    "defaultBranch": "main",
     "sha": "3e66e16a315930799961e61be7a19ea20f765238",
-    "body": "Two statements in the description of SPEC-263 say more than the code does. Fix both before this can merge. Keep everything else as it is.\n\n1. \"search-components finds components by meaning, in Spanish too.\" It does not match by meaning. `mcp/tools/search-components.ts` folds the query, splits it into terms, and scores each term as literal text found in the component and part names, their descriptions, the prop names and descriptions, and the docs. A Spanish word such as \"cita\" finds `Quote` only because the docs are in Spanish and contain that word. State it as a literal text match over those four sources, with the weights if you name them.\n\n2. \"get-component ... suggests names when it finds none.\" `notFound` in `mcp/tools/shared.ts` suggests a name only when the name contains the query, or the query (longer than 2 characters) contains the name. A typo such as \"Buton\" gets no suggestion. State that condition.\n\nBoth sentences repeat the names of two tests in `mcp/server.test.ts` (lines 169 and 189). A test name is not evidence of what the code does: check each statement against the code.\n\nRules for the change:\n- Change the spec only through `predictable specs describe`, never by editing the .spec.md file.\n- Do not change production code or tests. Do not rename those two tests.\n- In your reply, quote the two new sentences.",
-    "defaultBranch": "main"
+    "body": "Two statements in the description of SPEC-263 say more than the code does. Fix both before this can merge. Keep everything else as it is.\n\n1. \"search-components finds components by meaning, in Spanish too.\" It does not match by meaning. `mcp/tools/search-components.ts` folds the query, splits it into terms, and scores each term as literal text found in the component and part names, their descriptions, the prop names and descriptions, and the docs. A Spanish word such as \"cita\" finds `Quote` only because the docs are in Spanish and contain that word. State it as a literal text match over those four sources, with the weights if you name them.\n\n2. \"get-component ... suggests names when it finds none.\" `notFound` in `mcp/tools/shared.ts` suggests a name only when the name contains the query, or the query (longer than 2 characters) contains the name. A typo such as \"Buton\" gets no suggestion. State that condition.\n\nBoth sentences repeat the names of two tests in `mcp/server.test.ts` (lines 169 and 189). A test name is not evidence of what the code does: check each statement against the code.\n\nRules for the change:\n- Change the spec only through `predictable specs describe`, never by editing the .spec.md file.\n- Do not change production code or tests. Do not rename those two tests.\n- In your reply, quote the two new sentences."
   },
   "state": "running",
   "reason": null,
   "instructions": {
     "agent": "Keep this repository documented, specified and free of defects. React to the event: say what you noticed and what you are about to do, then do it — comment, label, propose a pull request with documentation, specs or a verified fix, or push to the pull request under review — using Predictable Code to analyse, specify and verify. Change a spec only through its verbs, never by editing a .spec.md file: a new one with `predictable specs new --no-implement` (you implement it yourself), its description with `predictable specs describe <spec id> --text \"<the whole new description>\"` (which derives its requirements again), a requirement with `predictable specs requirements add|update|remove`. Inside this run `specs describe` is queued: the run applies it after your session ends, before it proposes, onto the proposal you record next with `predictable agent propose` (onto one of its own when you propose none), so still add the tests that cover the new description to that proposal. Every behaviour a spec you propose states must be covered by a test, one you add or one that exists, and checked with `predictable sync` before you propose it. Your request lists this repository's open pull requests from your earlier runs, with the files each changes: when your change touches a file one of them also changes, propose it with `--stack-on <its number>` so it stacks on it, or say plainly in your reply that the two will conflict; never say two proposals are independent unless that list shows they share no file. You hold no GitHub credential, but `gh` works: every command is run beside you with this repository's own credentials, so whatever they may do you may ask — `gh issue list --label bug`, `gh pr view 12 --json files`, `gh run view 34 --log-failed`, `gh issue comment`, `gh api` and GraphQL. Never merge: say a pull request is ready and a person merges it. Code still reaches a branch only through `predictable agent propose` or `push`. When CI failed, read its log before you change anything. Never merge. This is feedback on one of your own pull requests. Address what it asks on this branch: make the changes, check them with Predictable Code, push them with `predictable agent push`, and reply on the pull request saying what you changed — or, where you disagree, why. Messages that arrive while you work are more feedback on the same pull request. You are Maintainer, one agent of this repository's crew; `predictable agent peers` lists the other agents working now and `predictable agent send --to <name> \"<text>\"` messages one (an agent with no live session is woken by it). Your instructions as Maintainer: Do not fix defects. Do not propose a fix for any defect the analysis reports,\nverified or not. A person decides which defects to fix.\n\nKeep the specs: the per-file specs and the capability specs, only for the\nanalysed code folders (src, mcp, scripts/render, scripts/runtime). State only\nwhat the code does: check each statement against the code, and do not copy a\nclaim from README.md or _docs without that check. When the code contradicts a\nspec, say so in the pull request and leave the code as it is.",
     "person": ""
-  },
-  "ranAs": {
-    "id": "maintainer",
-    "name": "Maintainer",
-    "model": null
   },
   "labels": [
     "bug",
@@ -44,13 +39,37 @@
       ]
     }
   ],
-  "notices": [],
+  "notices": [
+    {
+      "at": "2026-11-26T18:31:37.716Z",
+      "text": "Fixing two SPEC-263 statements per #12 review"
+    }
+  ],
   "messages": [],
   "actions": [],
   "title": null,
   "summary": null,
   "runUrl": null,
   "reportMistakes": true,
+  "ranAs": {
+    "id": "maintainer",
+    "name": "Maintainer",
+    "model": null
+  },
   "startedAt": "2026-11-26T18:30:39.129Z",
-  "updatedAt": "2026-11-26T18:30:39.129Z"
+  "updatedAt": "2026-11-26T18:31:38.375Z",
+  "steps": [
+    {
+      "at": "2026-11-26T18:31:37.716Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; (…/predictable-plugin/bin/predictable …",
+      "tool": "toolu_013ko4Dc9zuRFCdpZgPBGvDo"
+    },
+    {
+      "at": "2026-11-26T18:31:37.716Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; cat mcp/tools/search-components.ts; gr…",
+      "tool": "toolu_01Pg6RMPkwBu8oCfDeNg76uc"
+    }
+  ]
 }
