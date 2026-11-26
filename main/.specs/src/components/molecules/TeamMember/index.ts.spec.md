@@ -1,0 +1,9 @@
+---
+predictable: spec
+---
+## Specification Details
+- **ID:** SPEC-148
+- **Name:** src/components/molecules/TeamMember/index.ts
+
+### Description
+`index.ts` — Index. No requirements recorded yet.

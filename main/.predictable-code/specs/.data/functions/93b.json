@@ -1,0 +1,1 @@
+[{"calleePage":[],"callees":0,"callerPage":[{"callees":3,"callers":0,"danglingCalls":0,"fqn":"Code.mcp.tools.«list-templates».listTemplates","isEntryPoint":true,"module":"","reachable":true}],"callers":1,"danglingCalls":0,"fqn":"Code.mcp.tools.«list-templates».toolsFor","isEntryPoint":false,"isolated":false,"module":"","reachable":true}]

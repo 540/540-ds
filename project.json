@@ -1,0 +1,17 @@
+{"sourceExtensions": ["mjs", "ts", "tsx"],
+ "sandbox": null,
+ "runtime": null,
+ "name": "540-ds",
+ "mode": "yolo",
+ "maxRegenerateIterations": null,
+ "maxReconcileIterations": 3,
+ "guidelines": [],
+ "excludePaths": [".claude", ".storybook"],
+ "docPaths": ["src/docs", "."],
+ "docExtensions": ["md"],
+ "defaultSpecsDir": null,
+ "codePaths": ["."],
+ "aiProvider":
+ {"model": "claude-sonnet-5",
+  "fastModel": "claude-haiku-4-5",
+  "engine": "claudeCode"}}

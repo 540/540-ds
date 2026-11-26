@@ -1,0 +1,1 @@
+[{"calleePage":[],"callees":0,"callerPage":[{"callees":3,"callers":0,"danglingCalls":0,"fqn":"Code.scripts.«check-runtime».__moduleInit__","isEntryPoint":true,"module":"","reachable":true}],"callers":1,"danglingCalls":0,"fqn":"Code.scripts.«check-runtime».check","isEntryPoint":false,"isolated":false,"module":"","reachable":true}]

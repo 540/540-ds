@@ -1,0 +1,1 @@
+[{"calleePage":[],"callees":0,"callerPage":[{"callees":7,"callers":1,"danglingCalls":0,"fqn":"Code.scripts.render.spelling.checkSpelling","isEntryPoint":false,"module":"scripts.render.spelling","reachable":true}],"callers":1,"danglingCalls":0,"fqn":"Code.scripts.render.spelling.loadWords","isEntryPoint":false,"isolated":false,"module":"scripts.render.spelling","reachable":true}]

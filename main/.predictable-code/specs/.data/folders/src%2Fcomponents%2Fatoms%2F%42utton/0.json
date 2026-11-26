@@ -1,0 +1,1 @@
+{"defects":0,"dir":"src/components/atoms/Button","others":1,"page":0,"pageSize":50,"rows":[{"defects":0,"defectsByLanguage":{},"findings":[{"claim":"undecided","key":"Code.src.components.atoms.Button.Button.Button|il1.null-dereference"}],"kind":"file","name":"Button.tsx","others":1,"path":"src/components/atoms/Button/Button.tsx"}],"total":1}
