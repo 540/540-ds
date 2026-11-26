@@ -37,6 +37,10 @@
     {
       "at": "2026-11-26T18:40:22.753Z",
       "text": "Drafting MCP transports capability spec + node-adapter test"
+    },
+    {
+      "at": "2026-11-26T18:41:57.028Z",
+      "text": "Proposed MCP transports spec (SPEC-264) + node-adapter tests"
     }
   ],
   "steps": [
@@ -140,8 +144,8 @@
       "at": "2026-11-26T18:41:31.532Z",
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; sed -n 268,300p tmp/sync2.json; python…",
-      "tool": "toolu_01MmkE7N3gReUhEQP7urMFbr",
-      "failed": true
+      "failed": true,
+      "tool": "toolu_01MmkE7N3gReUhEQP7urMFbr"
     },
     {
       "at": "2026-11-26T18:41:34.647Z",
@@ -166,6 +170,12 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01FkEfHhrVMNC9sbYV9msBUN"
+    },
+    {
+      "at": "2026-11-26T18:41:57.028Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01GchyAFU2sNxAnJ6Stxg8gu"
     }
   ],
   "messages": [],
@@ -180,5 +190,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T18:39:11.166Z",
-  "updatedAt": "2026-11-26T18:41:50.849Z"
+  "updatedAt": "2026-11-26T18:41:57.640Z"
 }
