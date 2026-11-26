@@ -47,6 +47,10 @@
     {
       "at": "2026-11-26T11:24:27.807Z",
       "text": "Reading docs/tests; creating 7 capability specs"
+    },
+    {
+      "at": "2026-11-26T11:28:01.930Z",
+      "text": "Linking existing MCP tests to the spec"
     }
   ],
   "steps": [
@@ -150,8 +154,8 @@
       "at": "2026-11-26T11:27:40.260Z",
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
-      "tool": "toolu_018e4rGBVvKAELJsoZBK9hVb",
-      "failed": true
+      "failed": true,
+      "tool": "toolu_018e4rGBVvKAELJsoZBK9hVb"
     },
     {
       "at": "2026-11-26T11:27:43.358Z",
@@ -182,6 +186,18 @@
       "verb": "Ran",
       "detail": "tail -c 800 tmp/sync.json; echo; date -u",
       "tool": "toolu_01LMg5iGxQsEVVqHn2SgRCkz"
+    },
+    {
+      "at": "2026-11-26T11:27:58.838Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_017MMEMSk5yxCsxqw7zEbi85"
+    },
+    {
+      "at": "2026-11-26T11:27:58.839Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01BRfqUV4LeT6WuAZGUX92cR"
     }
   ],
   "messages": [],
@@ -196,5 +212,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T11:23:07.094Z",
-  "updatedAt": "2026-11-26T11:27:56.422Z"
+  "updatedAt": "2026-11-26T11:28:02.550Z"
 }
