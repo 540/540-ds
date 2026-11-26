@@ -1,0 +1,30 @@
+{
+  "id": "20261126131343-pull-request-merged-6-621d",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 6,
+    "title": "fix(mcp): local server answers 500 when a request fails instead of crashing",
+    "author": "predictable-code[bot]",
+    "url": "https://github.com/540/540-ds/pull/6",
+    "ref": "main",
+    "sha": "f0af73f705a8367dca6740b47c03fb86f1836173",
+    "body": "## Summary\n\n`node:http` ignores the promise an async request handler returns. A throw inside the handler of `mcp/serve.ts` was an unhandled rejection, and on current Node that stops the process: one bad request killed the local MCP server (`npm run mcp:serve`).\n\n```diff\n createHttpServer(async (req, res) =>\n+  try\n     parse the URL                      # throws on \"GET //\"\n     if path is not /mcp: answer 404\n     build the web Request              # throws on TRACE\n     handle the MCP request, send the response\n+  catch\n+    log the error\n+    answer 500, or end the response if the headers were already sent\n```\n\nChanged after review: the first version of this PR put the `try` below the URL parse, so `GET //` still stopped the server. The `try` now covers the whole handler.\n\nOnly the local development server changes. The Firebase function is untouched: `firebase-functions` already wraps its handler and answers 500.\n\n## Evidence\n\nLocal server started with `tsx mcp/serve.ts`, Node 24.22.3:\n\n| Request | `main` | This PR |\n|---|---|---|\n| `TRACE /mcp` | process stops | 500, server keeps running |\n| `GET //` | process stops | 500, server keeps running |\n| `GET /otra` | 404 | 404 |\n| `POST /mcp` `initialize` | 200 | 200 |\n\n- `npx tsc -p tsconfig.mcp.json --noEmit`: no errors.\n- `npm run test:mcp`: 2 files, 32 tests passed. No test covers `serve.ts` itself: it starts a server on import.\n\n## Merge Danger\n\n**Door:** two-way\n\n**Blast Radius:** local\n\nNothing published or deployed uses `mcp/serve.ts`. No real MCP client reaches the new `catch`: the SDK answers malformed MCP requests itself with a JSON-RPC error.\n\n<!-- predictable-code:auto-merge off method=squash -->",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-26T13:13:43.537Z",
+  "updatedAt": "2026-11-26T13:13:43.537Z"
+}
