@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/hooks/useReveal.ts
 
 ### Description
+<!-- predictable:module-summary=A React hook module that provides reveal/visibility state for triggering entrance animations or conditional rendering of UI elements. -->
 **Areas:** Runtime
 
 `useReveal.ts` — Use reveal. No requirements recorded yet.

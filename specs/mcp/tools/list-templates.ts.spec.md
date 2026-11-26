@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** mcp/tools/list-templates.ts
 
 ### Description
+<!-- predictable:module-summary=A module providing a function to list available templates. -->
 **Areas:** MCP Tools
 
 `list-templates.ts` — List-templates. No requirements recorded yet.

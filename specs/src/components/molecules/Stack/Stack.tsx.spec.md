@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/Stack/Stack.tsx
 
 ### Description
+<!-- predictable:module-summary=The Stack module provides a UI component for rendering child elements in a stacked layout. -->
 **Areas:** Molecules
 
 `Stack.tsx` — Stack. No requirements recorded yet.

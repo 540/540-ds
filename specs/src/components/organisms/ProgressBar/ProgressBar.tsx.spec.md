@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/ProgressBar/ProgressBar.tsx
 
 ### Description
+<!-- predictable:module-summary=A UI component that renders a visual progress bar indicator. -->
 **Areas:** Organisms
 
 `ProgressBar.tsx` — Progress bar. No requirements recorded yet.

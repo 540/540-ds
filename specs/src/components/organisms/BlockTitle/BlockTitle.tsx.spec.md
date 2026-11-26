@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/BlockTitle/BlockTitle.tsx
 
 ### Description
+<!-- predictable:module-summary=Renders the title text of a block. -->
 **Areas:** Organisms
 
 `BlockTitle.tsx` — Block title. No requirements recorded yet.

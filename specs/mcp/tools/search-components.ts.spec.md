@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** mcp/tools/search-components.ts
 
 ### Description
+<!-- predictable:module-summary=Module Search-components exposes a function to search for components, likely by querying available components based on criteria such as name or type. -->
 **Areas:** MCP Tools
 
 `search-components.ts` — Search-components. No requirements recorded yet.

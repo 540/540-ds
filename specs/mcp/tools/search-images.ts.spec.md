@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** mcp/tools/search-images.ts
 
 ### Description
+<!-- predictable:module-summary=The Search-images module provides a search-images function that performs an image search operation, exposed via a searchImages entry point, but no further requirements or implementation details have been recorded yet. -->
 **Areas:** MCP Tools
 
 `search-images.ts` — Search-images. No requirements recorded yet.

@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Slide/Slide.tsx
 
 ### Description
+<!-- predictable:module-summary=The Slide module defines a single UI component representing an individual slide element, with no documented requirements yet. -->
 **Areas:** Organisms
 
 `Slide.tsx` — Slide. No requirements recorded yet.

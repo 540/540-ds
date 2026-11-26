@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Closing/Closing.tsx
 
 ### Description
+<!-- predictable:module-summary=The Closing module represents the UI component responsible for presenting a closing screen, though no detailed requirements have been recorded yet. -->
 **Areas:** Organisms
 
 `Closing.tsx` — Closing. No requirements recorded yet.

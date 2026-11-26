@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Quote/Quote.tsx
 
 ### Description
+<!-- predictable:module-summary=A UI component module that renders a quotation display element. -->
 **Areas:** Organisms
 
 `Quote.tsx` — Quote. No requirements recorded yet.

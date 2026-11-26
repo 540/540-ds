@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/CardList/CardList.tsx
 
 ### Description
+<!-- predictable:module-summary=A minimal UI module providing a CardList component with no recorded requirements beyond its presence. -->
 **Areas:** Organisms
 
 `CardList.tsx` — Card list. No requirements recorded yet.
