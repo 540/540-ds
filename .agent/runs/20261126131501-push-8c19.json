@@ -35,19 +35,6 @@
       "text": "Push #6 on main: checking specs/docs for mcp/serve.ts and defects"
     }
   ],
-  "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
-  "reportMistakes": true,
-  "ranAs": {
-    "id": "maintainer",
-    "name": "Maintainer",
-    "model": null
-  },
-  "startedAt": "2026-11-26T13:15:02.321Z",
-  "updatedAt": "2026-11-26T13:15:51.345Z",
   "steps": [
     {
       "at": "2026-11-26T13:15:47.499Z",
@@ -62,6 +49,40 @@
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01CfjPLP6UmoqgSENh8V3MSi",
       "description": "Notify and view diff"
+    },
+    {
+      "at": "2026-11-26T13:15:53.780Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; grep -n -i \"serve\\",
+      "tool": "toolu_01BdrQgjA1jv3nJ6VHyeamTz",
+      "description": "Check docs and specs for serve.ts"
+    },
+    {
+      "at": "2026-11-26T13:15:53.780Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; sleep 60; tail -c 1500 tmp/sync.json; …",
+      "tool": "toolu_012gyNxrxC8XAcGqvPrGM8w8",
+      "description": "Wait for sync"
+    },
+    {
+      "at": "2026-11-26T13:16:59.163Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_014f1NLjsRSYFLEJSrffgUTK",
+      "description": "Summarize findings and undocumented"
     }
-  ]
+  ],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "reportMistakes": true,
+  "ranAs": {
+    "id": "maintainer",
+    "name": "Maintainer",
+    "model": null
+  },
+  "startedAt": "2026-11-26T13:15:02.321Z",
+  "updatedAt": "2026-11-26T13:16:59.884Z"
 }
