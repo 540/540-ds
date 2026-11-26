@@ -1,1 +1,1 @@
-{"page":3,"pageSize":50,"rows":[{"file":"src/tokens/manifest.ts","fqn":"src.tokens.manifest.sizeTokens","line":181},{"file":"src/tokens/manifest.ts","fqn":"src.tokens.manifest.radiusTokens","line":194},{"file":"vite.lib.config.ts","fqn":"vite.lib.config.default","line":9}],"total":153}
+{"page":3,"pageSize":50,"rows":[{"file":"src/tokens/manifest.ts","fqn":"src.tokens.manifest.radiusTokens","line":194}],"total":151}

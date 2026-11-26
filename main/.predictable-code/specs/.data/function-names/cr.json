@@ -1,1 +1,1 @@
-[{"fqn":"Code.mcp.server.createServer","label":"server.createServer","module":"mcp.server"},{"fqn":"Code.scripts.lib.«pieces-harness».createHarness","label":"«pieces-harness».createHarness","module":""},{"fqn":"Code.scripts.«build-mcp-metadata».createProgram","label":"«build-mcp-metadata».createProgram","module":""}]
+[{"fqn":"Code.mcp.server.createServer","label":"server.createServer","module":"mcp.server"}]

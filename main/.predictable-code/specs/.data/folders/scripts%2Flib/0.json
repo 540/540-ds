@@ -1,1 +1,0 @@
-{"defects":1,"dir":"scripts/lib","others":0,"page":0,"pageSize":50,"rows":[{"defects":1,"defectsByLanguage":{"typescript":1},"findings":[{"claim":"defect","key":"scripts.lib.tag-contract.readContract|site.classifier-default-is-a-category.json.d2349ccc"}],"kind":"file","name":"tag-contract.mjs","others":0,"path":"scripts/lib/tag-contract.mjs"}],"total":1}

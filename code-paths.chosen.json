@@ -1,8 +1,0 @@
-{
-  "codePaths": [
-    "mcp",
-    "scripts/render",
-    "scripts/runtime",
-    "src"
-  ]
-}
