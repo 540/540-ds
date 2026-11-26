@@ -97,7 +97,22 @@
       "verb": "Ran",
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01EBZT3K9Dr8Lrz1vvkFdKkK",
-      "description": "Run fix-check and smoke test server"
+      "description": "Run fix-check and smoke test server",
+      "failed": true
+    },
+    {
+      "at": "2026-11-26T13:17:33.418Z",
+      "verb": "Ran",
+      "detail": "sleep 90; cat /tmp/fc.json",
+      "tool": "toolu_01PYjpqSPkSp45pN97eBHW5f",
+      "description": "Wait for fix-check result"
+    },
+    {
+      "at": "2026-11-26T13:19:03.644Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01KAsZPU5RGPKf1NodwAvAZx",
+      "description": "Record fix-check start on original code"
     }
   ],
   "messages": [],
@@ -112,5 +127,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T13:15:02.321Z",
-  "updatedAt": "2026-11-26T13:17:18.729Z"
+  "updatedAt": "2026-11-26T13:19:04.481Z"
 }
