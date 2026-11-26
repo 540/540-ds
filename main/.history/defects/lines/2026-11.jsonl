@@ -1,1 +1,2 @@
 {"v":1,"at":"2026-11-26T10:35:25.000Z","commit":"eaab004f1f34decf0ab48cc4fde312559ef42648","open":37,"foundCount":null,"fixedCount":null,"found":null,"fixed":null,"requirements":{"verified":35,"violated":44},"foundByIntroducer":null}
+{"v":1,"at":"2026-11-26T10:53:02.000Z","commit":"01bc3c8692cc0432afb23b2a7f5040472b146258","open":37,"foundCount":0,"fixedCount":0,"found":[],"fixed":[],"requirements":{"verified":35,"violated":44},"foundByIntroducer":null}
