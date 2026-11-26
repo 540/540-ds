@@ -1,0 +1,30 @@
+{
+  "id": "20261126112948-pull-request-merged-7-fd14",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 7,
+    "title": "docs(specs): remove the specs of the build and check scripts",
+    "author": "gorkma",
+    "url": "https://github.com/540/540-ds/pull/7",
+    "ref": "main",
+    "sha": "bd400c5b08a1c2725cca5818b11ec1d41e67c61e",
+    "body": "## Summary\n\nPredictable Code now analyses four code folders only: `src`, `mcp`, `scripts/render` and `scripts/runtime`. The build and check scripts are project tooling and are out of scope. Their specs were written before that choice (#5) and nothing verifies them any more, so they would go stale.\n\n```diff\n specs/\n ├── _areas.md                      # drops the \"Validation Checks\" line: no spec uses it now\n ├── mcp/\n ├── src/\n └── scripts/\n     ├── render/                    # ships in the package as pieces/render: stays\n     ├── runtime/                   # ships as pieces/runtime/runtime.js: stays\n-    ├── build-mcp-firebase.ts.spec.md\n-    ├── build-mcp-metadata.ts.spec.md\n-    ├── build-pieces.mjs.spec.md\n-    ├── check-islands.mjs.spec.md\n-    ├── check-pieces.mjs.spec.md\n-    ├── check-primitives.mjs.spec.md\n-    ├── check-runtime.mjs.spec.md\n-    └── lib/\n-        ├── pieces-harness.mjs.spec.md\n-        ├── preact-alias.mjs.spec.md\n-        └── tag-contract.mjs.spec.md\n```\n\nNo source file, test or setting changes. The \"MCP Metadata\" area stays in `_areas.md` although no spec uses it after this: it describes data the MCP server reads.\n\n## Evidence\n\n- **Before:** 121 specs on `main`, 10 of them for files outside the four code folders.\n  **After:** 111 specs, 0 outside the four code folders.\n- The current analysis (of `01bc3c8`, after the code folders changed) attaches 0 of its 118 requirements to the 10 deleted specs (SPEC-001 to 004, 011, 025, 061 to 064).\n- Every requirement in the deleted specs carries `predictable:inferred`: Predictable derived them from the code, nobody wrote one by hand.\n- No file outside `specs/` refers to the deleted specs or to the \"Validation Checks\" area.\n\n## Merge Danger\n\n**Door:** two-way\n\nA revert restores the files. If the build and check scripts go back into the code folders, Predictable derives their specs again.\n\n**Blast Radius:** docs\n\nOnly generated Markdown under `specs/`. The merge is a push to `main`, so it starts one Predictable sync and one run of its repository agent.\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-26T11:29:48.382Z",
+  "updatedAt": "2026-11-26T11:29:48.382Z"
+}
