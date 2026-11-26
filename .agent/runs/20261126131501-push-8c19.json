@@ -141,6 +141,34 @@
       "detail": "cd …/work/540-ds/540-ds; git ls-files specs",
       "tool": "toolu_01MEqotKd46i6eiV7P4TaSr2",
       "description": "Inspect tracked specs and serve spec"
+    },
+    {
+      "at": "2026-11-26T13:19:36.295Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_012JFsxEFsZEQM2PqmHbMGvc",
+      "description": "Cover help and mcp spec IDs"
+    },
+    {
+      "at": "2026-11-26T13:19:45.802Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01PENZG7zhMDA91pJokd38ZJ",
+      "description": "Map undocumented exports to tracked specs"
+    },
+    {
+      "at": "2026-11-26T13:19:48.908Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01Ff9XySbcgtz89gm9ivR3Kj",
+      "description": "Run specs cover for each mapping"
+    },
+    {
+      "at": "2026-11-26T13:20:04.470Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_0145ZzYzjaCnTriVEqtCNpBt",
+      "description": "specs new help and areas"
     }
   ],
   "messages": [],
@@ -155,5 +183,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T13:15:02.321Z",
-  "updatedAt": "2026-11-26T13:19:30.765Z"
+  "updatedAt": "2026-11-26T13:20:05.203Z"
 }
