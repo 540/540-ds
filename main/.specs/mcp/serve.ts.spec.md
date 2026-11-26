@@ -6,7 +6,7 @@ predictable: spec
 - **Name:** mcp/serve.ts
 
 ### Description
-`serve.ts` — Serve. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `http` and `«node-adapter»`. Observed: “This async callback's work is never awaited.” 1 requirement: 1 violated.
+`serve.ts` — Serve. This project's call graph records DIRECT calls only, so a function passed to a container, destructured into an exported binding, or reached through a dynamic lookup is not one it can see. Within that limit it records no call to this module. At run time it reaches `http` and `«node-adapter»`. Observed: “A malformed request is answered as a server failure.” 1 requirement: 1 violated.
 
 ### Notation
 
@@ -21,14 +21,14 @@ Tags: `[implemented, violated]` — the analysis found a case where the conditio
 #### serve.__moduleInit__ <!-- predictable:group -->
 
 ##### BEH-0001 [implemented, violated]
-This async callback's work is never awaited. This callback returns before its work finishes and hands back nothing to wait on. The caller carries on too early, and a later failure is raised where nobody catches it. Safe to rely on when the asynchronous work the module's top-level code starts returns a handle that its caller waits for.
+A malformed request is answered as a server failure. This `catch` answers every failure with a server status, including input the sender got wrong. The sender is told the server broke and retries the same bad request. Safe to rely on when a malformed request is answered as a client error.
 
 <!-- predictable:behaviour -->
 
 <!-- predictable:subject=serve.__moduleInit__ -->
 
-<!-- predictable:vc=site.async-work-in-void-slot.-.c47e47ad -->
+<!-- predictable:vc=site.input-error-as-server-error.-.701a75a4 -->
 
-- **Code locations:** [mcp/serve.ts:25](../../mcp/serve.ts#L25)
+- **Code locations:** [mcp/serve.ts:20](../../mcp/serve.ts#L20)
 
 <!-- predictable:code-locations=.predictable-code/specs/locations/SPEC-010/BEH-0001.md -->
