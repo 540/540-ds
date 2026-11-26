@@ -11,7 +11,7 @@
     "sha": "01bc3c8692cc0432afb23b2a7f5040472b146258",
     "body": "The analysis of main at 01bc3c8692cc0432afb23b2a7f5040472b146258 reports 37 defects. 1 of them a program can fix: run `predictable autofix --list` first. Fix them, proposing each verified fix as a pull request."
   },
-  "state": "running",
+  "state": "acted",
   "reason": null,
   "instructions": {
     "agent": "Keep this repository documented, specified and free of defects. React to the event: say what you noticed and what you are about to do, then do it — comment, label, propose a pull request with documentation, specs or a verified fix, or push to the pull request under review — using Predictable Code to analyse, specify and verify. Change a spec only through its verbs, never by editing a .spec.md file: a new one with `predictable specs new --no-implement` (you implement it yourself), its description with `predictable specs describe <spec id> --text \"<the whole new description>\"` (which derives its requirements again), a requirement with `predictable specs requirements add|update|remove`. Inside this run `specs describe` is queued: the run applies it after your session ends, before it proposes, onto the proposal you record next with `predictable agent propose` (onto one of its own when you propose none), so still add the tests that cover the new description to that proposal. Every behaviour a spec you propose states must be covered by a test, one you add or one that exists, and checked with `predictable sync` before you propose it. Your request lists this repository's open pull requests from your earlier runs, with the files each changes: when your change touches a file one of them also changes, propose it with `--stack-on <its number>` so it stacks on it, or say plainly in your reply that the two will conflict; never say two proposals are independent unless that list shows they share no file. You hold no GitHub credential, but `gh` works: every command is run beside you with this repository's own credentials, so whatever they may do you may ask — `gh issue list --label bug`, `gh pr view 12 --json files`, `gh run view 34 --log-failed`, `gh issue comment`, `gh api` and GraphQL. Never merge: say a pull request is ready and a person merges it. Code still reaches a branch only through `predictable agent propose` or `push`. When CI failed, read its log before you change anything. Never merge. This push is your cue to maintain the whole repository, not only what it changed: bring the specs in line with the code, keep the documentation current, and fix defects the analysis reports when a fix verifies (`predictable defects` lists them; `--language csharp,typescript` narrows them to some languages). If the repository has a `MAINTAINING.md` at its root, read it first and follow it: it is how this repository asks to be maintained. Propose each change as its own pull request. If nothing needs doing, say so. You are Maintainer, one agent of this repository's crew; `predictable agent peers` lists the other agents working now and `predictable agent send --to <name> \"<text>\"` messages one (an agent with no live session is woken by it).",
@@ -154,13 +154,34 @@
       "detail": "P='…/predictable-runtime-installed/bin/predictable'; cd tmp/tmp…",
       "tool": "toolu_01BjXfSpntz7eT1BtcaiiwjU",
       "description": "Retry report from its own repo"
+    },
+    {
+      "at": "2026-11-26T10:55:47.232Z",
+      "verb": "Ran",
+      "detail": "P='…/predictable-runtime-installed/bin/predictable'; cd tmp/tmp…",
+      "tool": "toolu_01Pit2b7f3yHYunHQehwk7w3",
+      "description": "Retry report without path"
+    },
+    {
+      "at": "2026-11-26T10:55:50.353Z",
+      "verb": "Ran",
+      "detail": "cat > tmp/tmp.XXtPof2h/reply.json <<'EOF'",
+      "tool": "toolu_01MZktorxMQbKJAmh4HbYZa2",
+      "description": "Write reply"
     }
   ],
   "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
+  "actions": [
+    {
+      "kind": "pull-request",
+      "number": 6,
+      "url": "https://github.com/540/540-ds/pull/6",
+      "title": "MCP local server: answer 500 when a request fails instead of crashing"
+    }
+  ],
+  "title": "Fixed MCP server unhandled rejection",
+  "summary": "Proposed verified fix for mcp/serve.ts async handler (defect gone, none added); autofix for check-runtime TYPES lookup refused (not in build; key always has a dot, not reachable); remaining findings reviewed as false positives (arrays flagged as lazy sequences, guarded .at(-1), document.body in effects); false-positive report to Predictable refused as 'inside this checkout'.",
+  "runUrl": "https://github.com/540/540-ds/actions/runs/45805490165",
   "reportMistakes": true,
   "ranAs": {
     "id": "maintainer",
@@ -168,5 +189,5 @@
     "model": null
   },
   "startedAt": "2026-11-26T10:53:17.798Z",
-  "updatedAt": "2026-11-26T10:55:44.778Z"
+  "updatedAt": "2026-11-26T10:56:07.735Z"
 }
