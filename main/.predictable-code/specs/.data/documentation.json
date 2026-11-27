@@ -1,7 +1,4 @@
-{"withoutAreas":
- [{"specId": "SPEC-263",
-   "name": "MCP tools",
-   "key": "specs/mcp-tools.spec.md"}],
+{"withoutAreas": [],
  "version": 1,
  "undescribed": [],
  "newlyUndescribed": [],
