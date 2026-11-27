@@ -33,6 +33,10 @@
     {
       "at": "2026-11-27T20:15:16.397Z",
       "text": "Push #21 landed; checking specs for undocumented code"
+    },
+    {
+      "at": "2026-11-27T20:16:31.490Z",
+      "text": "Drafting the component prop vocabularies capability"
     }
   ],
   "steps": [
@@ -167,5 +171,5 @@
     "model": null
   },
   "startedAt": "2026-11-27T20:14:18.183Z",
-  "updatedAt": "2026-11-27T20:16:32.094Z"
+  "updatedAt": "2026-11-27T20:16:34.416Z"
 }
