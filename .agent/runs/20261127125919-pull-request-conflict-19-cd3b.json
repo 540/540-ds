@@ -17,11 +17,6 @@
     "agent": "Keep this repository documented, specified and free of defects. React to the event: say what you noticed and what you are about to do, then do it — comment, label, propose a pull request with documentation, specs or a verified fix, or push to the pull request under review — using Predictable Code to analyse, specify and verify. Change a spec only through its verbs, never by editing a .spec.md file: a new one with `predictable specs new --no-implement` (you implement it yourself), its description with `predictable specs describe <spec id> --text \"<the whole new description>\"` (which derives its requirements again), a requirement with `predictable specs requirements add|update|remove`. Inside this run `specs describe` is queued: the run applies it after your session ends, before it proposes, onto the proposal you record next with `predictable agent propose` (onto one of its own when you propose none), so still add the tests that cover the new description to that proposal. Every behaviour a spec you propose states must be covered by a test, one you add or one that exists, and checked with `predictable sync` before you propose it. Give every command you run a description: the short sentence in plain words saying what it does and why (Bash's `description`, e.g. \"Build the reproduction and run its test\"). It is what the person following this session reads for each step; the command itself is shown only when they open it. Verify every fix before you propose it with `predictable fix-check`, the one verdict on a fix: in this session a sync is INCREMENTAL — it reuses every engine, IL document and analysed function whose inputs did not change and analyses again only what your edit touched — so it costs a fraction of the first analysis. Never skip it or propose an unverified fix to save time; when time is short, propose fewer fixes, each verified. Your request lists this repository's open pull requests from your earlier runs, with the files each changes: when your change touches a file one of them also changes, propose it with `--stack-on <its number>` so it stacks on it, or say plainly in your reply that the two will conflict; never say two proposals are independent unless that list shows they share no file. You hold no GitHub credential, but `gh` works: every command is run beside you with this repository's own credentials, so whatever they may do you may ask — `gh issue list --label bug`, `gh pr view 12 --json files`, `gh run view 34 --log-failed`, `gh issue comment`, `gh api` and GraphQL. Never merge: say a pull request is ready and a person merges it. Code still reaches a branch only through `predictable agent propose` or `push`. When CI failed, read its log before you change anything. Never merge. One of your own pull requests no longer merges: a change merged into its base `main` conflicts with it. Merge that base into this branch (`git fetch origin main && git merge origin/main`), resolve every conflict keeping the intent of both sides, check that the project still builds and that Predictable Code reports nothing new, commit the merge, and push it to this same branch with `predictable agent push`. Never force-push, never rebase, never push to `main`, and change nothing else. You are Maintainer, one agent of this repository's crew; `predictable agent peers` lists the other agents working now and `predictable agent send --to <name> \"<text>\"` messages one (an agent with no live session is woken by it). Your instructions as Maintainer: Do not fix defects. Do not propose a fix for any defect the analysis reports,\nverified or not. A person decides which defects to fix.\n\nKeep the specs: the per-file specs and the capability specs, only for the\nanalysed code folders (src, mcp, scripts/render, scripts/runtime). State only\nwhat the code does: check each statement against the code, and do not copy a\nclaim from README.md or _docs without that check. When the code contradicts a\nspec, say so in the pull request and leave the code as it is.",
     "person": ""
   },
-  "ranAs": {
-    "id": "maintainer",
-    "name": "Maintainer",
-    "model": null
-  },
   "labels": [
     "bug",
     "documentation",
@@ -60,13 +55,39 @@
       ]
     }
   ],
-  "notices": [],
+  "notices": [
+    {
+      "at": "2026-11-27T13:00:17.462Z",
+      "text": "PR #19 conflicts with main; merging main into it"
+    }
+  ],
   "messages": [],
   "actions": [],
   "title": null,
   "summary": null,
   "runUrl": null,
   "reportMistakes": true,
+  "ranAs": {
+    "id": "maintainer",
+    "name": "Maintainer",
+    "model": null
+  },
   "startedAt": "2026-11-27T12:59:21.078Z",
-  "updatedAt": "2026-11-27T12:59:21.078Z"
+  "updatedAt": "2026-11-27T13:00:18.129Z",
+  "steps": [
+    {
+      "at": "2026-11-27T13:00:17.462Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; (…/predictable-plugin/bin/predictable …",
+      "tool": "toolu_015fGSpXrF197mMSxiAfFP89",
+      "description": "Start background sync, notify, and merge main into the branch"
+    },
+    {
+      "at": "2026-11-27T13:00:17.462Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; git diff; git log --oneline -5 origin/…",
+      "tool": "toolu_01MFHAwDeJ2RLuuYyfDD9xfQ",
+      "description": "Show the conflicting hunks and recent main commits"
+    }
+  ]
 }
