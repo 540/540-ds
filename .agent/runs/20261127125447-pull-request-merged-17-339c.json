@@ -1,0 +1,30 @@
+{
+  "id": "20261127125447-pull-request-merged-17-339c",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 17,
+    "title": "docs(specs): descriptions for 2 spec(s), written by a model",
+    "author": "predictable-code[bot]",
+    "url": "https://github.com/540/540-ds/pull/17",
+    "ref": "main",
+    "sha": "739acd25bc3435ec7309da1afa507120a6a27faa",
+    "body": "This pull request carries descriptions a model wrote for **2 spec file(s)**, across 1 commit(s) of one documentation run. Each sentence is in the diff.\n\nWhat the last run did:\n\n### Descriptions written by a model\n\n2 spec(s) in this run had no description or no area (2 of them only an area: their descriptions are left as they were), so a model (`` claude-sonnet-5 ``) wrote 2 of them, using this repository's own key, in its own Actions. **A model wrote every sentence below — review them as you would text nobody on your team wrote.** A person's own description is never replaced, and only the spec files listed here are in this change.\n\n- `` specs/island-server-rendering.spec.md `` — `` areas: Runtime ``\n- `` specs/mcp-transports.spec.md `` — `` areas: MCP Transports ``\n\nWhat the model calls cost: US$0.06.\n\n<!-- predictable-code:auto-merge on method=squash -->\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-27T12:54:47.984Z",
+  "updatedAt": "2026-11-27T12:54:47.984Z"
+}
