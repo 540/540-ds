@@ -37,6 +37,10 @@
     {
       "at": "2026-11-27T20:16:31.490Z",
       "text": "Drafting the component prop vocabularies capability"
+    },
+    {
+      "at": "2026-11-27T20:17:15.199Z",
+      "text": "Proposing the component prop vocabularies spec"
     }
   ],
   "steps": [
@@ -213,5 +217,5 @@
     "model": null
   },
   "startedAt": "2026-11-27T20:14:18.183Z",
-  "updatedAt": "2026-11-27T20:17:12.754Z"
+  "updatedAt": "2026-11-27T20:17:15.678Z"
 }
