@@ -174,5 +174,29 @@
     "model": null
   },
   "startedAt": "2026-11-27T12:59:21.078Z",
-  "updatedAt": "2026-11-27T13:02:27.884Z"
+  "updatedAt": "2026-11-27T13:02:27.884Z",
+  "spend": {
+    "costUsd": 0.34899899999999995,
+    "models": [
+      {
+        "model": "claude-opus-5-5",
+        "inputTokens": 28,
+        "outputTokens": 5400,
+        "cacheReadTokens": 452435,
+        "cacheWriteTokens": 30080,
+        "costUsd": 0.34899899999999995
+      }
+    ],
+    "sessions": 1,
+    "stoppedAtBudget": false,
+    "engines": [
+      "claude"
+    ]
+  },
+  "compute": {
+    "minutes": 4,
+    "jobs": 1,
+    "selfHosted": false,
+    "estimatedUsd": 0.024
+  }
 }
