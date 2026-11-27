@@ -98,6 +98,34 @@
       "detail": "python3 - <<'EOF'",
       "tool": "toolu_01UR47TskjsH4gQJTm21esbU",
       "description": "Add a tokens test project and run its new test"
+    },
+    {
+      "at": "2026-11-27T12:09:13.525Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; tail -c 600 tmp/sync.json; echo; P='…/…",
+      "tool": "toolu_01QK3eeaotStShnutMuhdEGN",
+      "description": "Draft the design tokens capability spec for existing code"
+    },
+    {
+      "at": "2026-11-27T12:09:16.608Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01XP3Q6Z5Te4Y6uyqxqWYg8N",
+      "description": "Create an empty design tokens capability skeleton"
+    },
+    {
+      "at": "2026-11-27T12:09:25.843Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01TG2JUCTDfLHcy2nbutdrwH",
+      "description": "Record the code the capability covers and queue its description"
+    },
+    {
+      "at": "2026-11-27T12:09:32.027Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; date -u; npx tsc -p tsconfig.app.json …",
+      "tool": "toolu_017kMRpcpq1LoSeNpgumQ8EK",
+      "description": "Typecheck and re-sync to check the new capability"
     }
   ],
   "messages": [],
@@ -112,5 +140,5 @@
     "model": null
   },
   "startedAt": "2026-11-27T12:07:45.789Z",
-  "updatedAt": "2026-11-27T12:09:01.883Z"
+  "updatedAt": "2026-11-27T12:09:32.771Z"
 }
