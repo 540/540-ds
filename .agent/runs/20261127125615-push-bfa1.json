@@ -47,19 +47,6 @@
       "text": "Push #17 (spec descriptions); checking undocumented specs"
     }
   ],
-  "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
-  "reportMistakes": true,
-  "ranAs": {
-    "id": "maintainer",
-    "name": "Maintainer",
-    "model": null
-  },
-  "startedAt": "2026-11-27T12:56:16.872Z",
-  "updatedAt": "2026-11-27T12:56:58.944Z",
   "steps": [
     {
       "at": "2026-11-27T12:56:58.148Z",
@@ -74,6 +61,47 @@
       "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
       "tool": "toolu_01PFgDdhc9KeucTs1TK3W1zB",
       "description": "Notify, list specs, and list capabilities whose code is undocumented or changed"
+    },
+    {
+      "at": "2026-11-27T12:57:01.282Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
+      "tool": "toolu_01Ku8BG7XUo9W8MYk2cBNo3s",
+      "description": "Group undocumented items by area and read the capability index"
+    },
+    {
+      "at": "2026-11-27T12:57:07.553Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
+      "tool": "toolu_01NKtYmy2BngWcnsfmXYstcx",
+      "description": "List capability specs, spec commands, and PR #18's design-tokens spec"
+    },
+    {
+      "at": "2026-11-27T12:57:13.781Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; grep -E 'scripts",
+      "tool": "toolu_01NGZW1y3ji8kcqb8jA2D8tz",
+      "description": "Show undocumented script/runtime exports and the render scripts' sizes"
+    },
+    {
+      "at": "2026-11-27T12:57:16.993Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; grep -o '\"covers\":\\[[^]]*\\]' specs/mcp…",
+      "tool": "toolu_01AvBfMw5qmbCfg2AnFgHYxn",
+      "description": "Read the two capabilities' covers and the uncovered files' code"
     }
-  ]
+  ],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "reportMistakes": true,
+  "ranAs": {
+    "id": "maintainer",
+    "name": "Maintainer",
+    "model": null
+  },
+  "startedAt": "2026-11-27T12:56:16.872Z",
+  "updatedAt": "2026-11-27T12:57:17.873Z"
 }
