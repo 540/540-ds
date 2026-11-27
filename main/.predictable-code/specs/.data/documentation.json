@@ -1,4 +1,10 @@
-{"withoutAreas": [],
+{"withoutAreas":
+ [{"specId": "SPEC-403",
+   "name": "Island server rendering",
+   "key": "specs/island-server-rendering.spec.md"},
+  {"specId": "SPEC-264",
+   "name": "MCP transports",
+   "key": "specs/mcp-transports.spec.md"}],
  "version": 1,
  "undescribed": [],
  "newlyUndescribed": [],
