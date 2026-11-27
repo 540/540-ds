@@ -122,6 +122,34 @@
       "verb": "Wrote",
       "detail": "…/src/runtime/server.test.tsx",
       "tool": "toolu_011KvsWwDVP3zUZfErp5vuUN"
+    },
+    {
+      "at": "2026-11-27T11:25:36.677Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; sed -i \"s#include: \\['src/islands.test…",
+      "tool": "toolu_01Gk9nPnCSezCxMWoA4aCmdC",
+      "description": "Add runtime tests to the islands project and run them"
+    },
+    {
+      "at": "2026-11-27T11:25:39.779Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; npx tsc -p tsconfig.app.json --noEmit …",
+      "tool": "toolu_012vGJ3iyeghzasHUwiyZKoa",
+      "description": "Typecheck the app including the new test"
+    },
+    {
+      "at": "2026-11-27T11:25:49.068Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; sed -i \"s#^import type { ComponentType…",
+      "tool": "toolu_01Cf1e3se2BrApsAQMaxwzhd",
+      "description": "Drop needless casts, re-typecheck and re-run the tests"
+    },
+    {
+      "at": "2026-11-27T11:25:58.366Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01Y1ABDoAFXXA6LNbXewjajd",
+      "description": "Notify and read remaining specs new flags"
     }
   ],
   "messages": [],
@@ -136,5 +164,5 @@
     "model": null
   },
   "startedAt": "2026-11-27T11:24:08.405Z",
-  "updatedAt": "2026-11-27T11:25:34.182Z"
+  "updatedAt": "2026-11-27T11:25:58.935Z"
 }
