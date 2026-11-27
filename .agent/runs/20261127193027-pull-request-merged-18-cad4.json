@@ -1,0 +1,30 @@
+{
+  "id": "20261127193027-pull-request-merged-18-cad4",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 18,
+    "title": "docs(specs): design tokens capability",
+    "author": "predictable-code[bot]",
+    "url": "https://github.com/540/540-ds/pull/18",
+    "ref": "main",
+    "sha": "e30724edc615dc0e44421a409bd8cbec0259b9d4",
+    "body": "## Why\n\nNo capability documented src/tokens: specs undocumented listed BREAKPOINTS, DESIGN_WIDTHS, MEDIA and the nine token lists of manifest.ts (colorPrimitives, semanticColors, textStyles, effectTokens, spacingTokens, paddingTokens, gridTokens, sizeTokens, radiusTokens) among the 131 exports no capability documents, and nothing checked that every token the Foundations pages name is actually declared in the token CSS.\n\n## What changed\n\nAdds the Design tokens capability (SPEC-543), covering src/tokens/breakpoints.ts and src/tokens/manifest.ts; its description is written from the code (the breakpoint values, the MEDIA queries built from them, the shape of each manifest list), and it states that every token name and light/dark alias the manifest names is declared in primitives.css, semantic-color.css, semantic-typography.css or semantic-measure.css. Adds src/tokens/tokens.test.ts, which checks the breakpoint values and media queries and reads the four token CSS files to check every name, alias and text-style token (<prefix>-size/-weight/-line-height/-letter-spacing) the manifest names is declared there (8 tests, all passing), and a 'tokens' vitest project in vite.config.ts that runs it (npx vitest run --project=tokens). Undocumented exports go from 131 to 119. tsc -p tsconfig.app.json passes. Code is unchanged. Note: the analysis reports 28 requirements as violated in other, pre-existing specs; this PR does not touch them.\n\n## How it was verified\n\nNot verified by the analysis: no `predictable fix-check` in this session reported a defect gone for this change. Review it as an unverified change.\n\n<!-- predictable-code:auto-merge off method=squash -->\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-27T19:30:27.218Z",
+  "updatedAt": "2026-11-27T19:30:27.218Z"
+}
