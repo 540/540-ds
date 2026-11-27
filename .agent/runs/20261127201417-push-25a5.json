@@ -157,6 +157,34 @@
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01BWWQzA2CsZq6vaKUP4Mscp",
       "description": "Draft a capability spec documenting the component prop option arrays and defaults"
+    },
+    {
+      "at": "2026-11-27T20:16:34.614Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01Je1UD3gdoZBz7QsLAQXWiD",
+      "description": "Create a blank capability skeleton for the prop vocabularies"
+    },
+    {
+      "at": "2026-11-27T20:16:40.860Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01WAgZocscP1y5R9xRdkF4f3",
+      "description": "Record every component types.ts as covered by the new capability"
+    },
+    {
+      "at": "2026-11-27T20:16:43.974Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01QwqBFveoNcz8VPnjPm6c2N",
+      "description": "Cover the 52 types.ts files that declare exports"
+    },
+    {
+      "at": "2026-11-27T20:16:50.226Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01L43S9sa9m7tuQBtqnXYX7K",
+      "description": "Queue the new capability's description"
     }
   ],
   "messages": [],
@@ -171,5 +199,5 @@
     "model": null
   },
   "startedAt": "2026-11-27T20:14:18.183Z",
-  "updatedAt": "2026-11-27T20:16:34.416Z"
+  "updatedAt": "2026-11-27T20:16:50.889Z"
 }
