@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/SectionHeader/SectionHeader.tsx
 
 ### Description
+<!-- predictable:module-summary=Section header is a presentational UI component that renders a labeled header for a content section. -->
 **Areas:** Molecules
 
 `SectionHeader.tsx` — Section header. No requirements recorded yet.

@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/foundations/TypeSpecimens.tsx
 
 ### Description
+<!-- predictable:module-summary=A module providing a reference display of typographic styles used across the UI. -->
 **Areas:** Foundations
 
 `TypeSpecimens.tsx` — Type specimens. No requirements recorded yet.

@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/charts/Legend.tsx
 
 ### Description
+<!-- predictable:module-summary=The Legend module provides a UI component that renders a legend explaining the colors, symbols, or categories used in an associated chart or visualization. -->
 **Areas:** Charts
 
 `Legend.tsx` — Legend. No requirements recorded yet.

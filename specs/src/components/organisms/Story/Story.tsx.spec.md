@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/organisms/Story/Story.tsx
 
 ### Description
+<!-- predictable:module-summary=Documented the Story module as a single component with no recorded requirements. -->
 **Areas:** Organisms
 
 `Story.tsx` — Story. No requirements recorded yet.

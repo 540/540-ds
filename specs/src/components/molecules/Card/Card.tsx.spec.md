@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/Card/Card.tsx
 
 ### Description
+<!-- predictable:module-summary=Card is a UI component module providing a reusable Card presentational element, with no recorded requirements yet. -->
 **Areas:** Molecules
 
 `Card.tsx` — Card. No requirements recorded yet.

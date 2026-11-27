@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** mcp/node-adapter.ts
 
 ### Description
+<!-- predictable:module-summary=Node-adapter is a module providing a Node-specific adapter implementation, currently failing one of its declared requirements. -->
 **Areas:** MCP Transports
 
 `node-adapter.ts` — Node-adapter. 1 requirement: 1 violated.

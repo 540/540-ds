@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/molecules/Footer/Footer.tsx
 
 ### Description
+<!-- predictable:module-summary=The Footer module defines a React component that renders the page's footer section. -->
 **Areas:** Molecules
 
 `Footer.tsx` — Footer. No requirements recorded yet.

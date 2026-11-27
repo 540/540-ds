@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/components/atoms/Text/Text.tsx
 
 ### Description
+<!-- predictable:module-summary=The Text module provides a reusable UI component for rendering styled text content within the application. -->
 **Areas:** Atoms
 
 `Text.tsx` — Text. No requirements recorded yet.

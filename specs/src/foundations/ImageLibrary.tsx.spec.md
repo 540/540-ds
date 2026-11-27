@@ -6,6 +6,7 @@ predictable: spec
 - **Name:** src/foundations/ImageLibrary.tsx
 
 ### Description
+<!-- predictable:module-summary=Documented the Image library module as a UI component for browsing and selecting images from a stored collection. -->
 **Areas:** Foundations
 
 `ImageLibrary.tsx` — Image library. No requirements recorded yet.
