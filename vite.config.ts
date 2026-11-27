@@ -42,7 +42,7 @@ export default defineConfig({
       test: {
         name: 'islands',
         environment: 'node',
-        include: ['src/islands.test.tsx'],
+        include: ['src/islands.test.tsx', 'src/runtime/**/*.test.tsx'],
         setupFiles: ['src/ssr.setup.ts'],
         server: { deps: { inline: [/storybook/, /lucide-react/] } },
       },
