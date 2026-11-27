@@ -35,19 +35,6 @@
       "text": "Push #21 landed; checking specs for undocumented code"
     }
   ],
-  "messages": [],
-  "actions": [],
-  "title": null,
-  "summary": null,
-  "runUrl": null,
-  "reportMistakes": true,
-  "ranAs": {
-    "id": "maintainer",
-    "name": "Maintainer",
-    "model": null
-  },
-  "startedAt": "2026-11-27T20:14:18.183Z",
-  "updatedAt": "2026-11-27T20:15:16.994Z",
   "steps": [
     {
       "at": "2026-11-27T20:15:13.242Z",
@@ -69,6 +56,54 @@
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01MYd855fuqRGctWUDbN4mHp",
       "description": "List capabilities with stale prose and undocumented exports"
+    },
+    {
+      "at": "2026-11-27T20:15:19.557Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01TDYcRNKSQeUTstE9dC6beJ",
+      "description": "Read the head of the undocumented report"
+    },
+    {
+      "at": "2026-11-27T20:15:22.700Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; cat specs/_areas.md",
+      "tool": "toolu_012Y6X259qF5BjY8AxfG5v4c",
+      "description": "Read area map and existing capability specs"
+    },
+    {
+      "at": "2026-11-27T20:15:25.884Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; cat src/components/atoms/Text/types.ts…",
+      "tool": "toolu_019mJEtFb4VPfNYKswft4YFe",
+      "description": "Read sample types.ts files and the non-types undocumented exports"
+    },
+    {
+      "at": "2026-11-27T20:15:32.136Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; ls src/components/*/*/types.ts",
+      "tool": "toolu_01GSuRrZwjoEpfPGmFc1QnDm",
+      "description": "Check the defaults/options pattern across all component types files"
+    },
+    {
+      "at": "2026-11-27T20:15:35.274Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; grep -n '\"test' package.json; ls mcp/*…",
+      "tool": "toolu_01Hk2bNBKm2Rn9ECgFRiPTvG",
+      "description": "Find tests and how metadata reads options and defaults"
     }
-  ]
+  ],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "reportMistakes": true,
+  "ranAs": {
+    "id": "maintainer",
+    "name": "Maintainer",
+    "model": null
+  },
+  "startedAt": "2026-11-27T20:14:18.183Z",
+  "updatedAt": "2026-11-27T20:15:35.861Z"
 }
