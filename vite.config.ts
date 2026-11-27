@@ -18,7 +18,7 @@ export default defineConfig({
       test: {
         name: 'ssr',
         environment: 'node',
-        include: ['src/ssr.test.tsx'],
+        include: ['src/ssr.test.tsx', 'src/components/**/*.test.tsx'],
         setupFiles: ['src/ssr.setup.ts'],
       },
     }, {
