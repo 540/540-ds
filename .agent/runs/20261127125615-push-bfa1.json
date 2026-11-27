@@ -45,6 +45,10 @@
     {
       "at": "2026-11-27T12:56:58.149Z",
       "text": "Push #17 (spec descriptions); checking undocumented specs"
+    },
+    {
+      "at": "2026-11-27T12:59:09.087Z",
+      "text": "Proposing piece-rendering capability + covers, stacked on #18"
     }
   ],
   "steps": [
@@ -222,6 +226,27 @@
       "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
       "tool": "toolu_01HfqJZc2jH8J3eeCctgMV7h",
       "description": "Analyse the repository incrementally with the new and covered specs"
+    },
+    {
+      "at": "2026-11-27T12:58:56.650Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; python3 -c \"",
+      "tool": "toolu_0122tiCKaokGhMUHm3Hm4sLC",
+      "description": "Summarise requirement verdicts per spec"
+    },
+    {
+      "at": "2026-11-27T12:58:59.756Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; python3 -c \"",
+      "tool": "toolu_01CHKsjpYBzhJwet7EnhrgG8",
+      "description": "Show verdicts of the capability specs"
+    },
+    {
+      "at": "2026-11-27T12:59:09.086Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P=…/predictable-runtime-installed/bin/…",
+      "tool": "toolu_013owNKXJnR8igXGkNgeKEsh",
+      "description": "Notify and propose the documentation pull request stacked on #18"
     }
   ],
   "messages": [],
@@ -236,5 +261,5 @@
     "model": null
   },
   "startedAt": "2026-11-27T12:56:16.872Z",
-  "updatedAt": "2026-11-27T12:58:48.189Z"
+  "updatedAt": "2026-11-27T12:59:09.702Z"
 }
