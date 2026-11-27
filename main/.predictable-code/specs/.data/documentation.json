@@ -1,4 +1,7 @@
-{"withoutAreas": [],
+{"withoutAreas":
+ [{"specId": "SPEC-543",
+   "name": "Design tokens",
+   "key": "specs/design-tokens.spec.md"}],
  "version": 1,
  "undescribed": [],
  "newlyUndescribed": [],

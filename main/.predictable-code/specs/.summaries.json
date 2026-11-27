@@ -204,6 +204,8 @@
   "A React component representing the main timeline view, with no further implementation detail available from the current declarations."],
  ["src/components/organisms/Tools/Tools.tsx",
   "Tools is an MCP server module exposing a single exported operation as part of the set of agent-callable queries for the design system."],
+ ["src/components/organisms/Waffle/Waffle.tsx",
+  "A UI component module providing a Waffle chart display element, with no recorded requirements yet."],
  ["src/foundations/Breakpoints.tsx",
   "The Breakpoints module defines a UI component for displaying or managing breakpoints, with no further behavioral detail available from the current declarations."],
  ["src/foundations/ColorPrimitives.tsx",
