@@ -49,6 +49,13 @@ export default defineConfig({
     }, {
       extends: true,
       test: {
+        name: 'tokens',
+        environment: 'node',
+        include: ['src/tokens/**/*.test.ts'],
+      },
+    }, {
+      extends: true,
+      test: {
         name: 'mcp',
         environment: 'node',
         include: ['mcp/**/*.test.ts'],
