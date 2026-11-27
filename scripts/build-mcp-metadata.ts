@@ -15,16 +15,18 @@
  *   - tokens: the semantic CSS files in src/tokens (never the --540-* primitives)
  *   - instructions: src/docs/instrucciones-mcp.md, what every client reads on connecting
  *   - design guide: src/docs/diseno.md, served by get-design-guide
+ *   - skills: src/docs/skills/<name>/ (SKILL.md and its supporting files), served as skill:// resources
  *   - rules:  src/docs/normas-*.md, one per piece type
  *   - templates: src/templates/<Name>/<Name>.tsx split into its stops (the direct children of its Deck),
  *       and the patterns table ("Para contar… | Pieza | Nunca") of the piece type's rules
  */
+import { createHash } from 'node:crypto';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import ts from 'typescript';
 import { PIECE_TYPES } from '../mcp/piece-types.js';
-import type { ComponentLevel, ComponentMeta, DocFile, LibraryImage, Metadata, PatternDef, PropDef, StopDef, StoryDef, TemplateMeta, Token, TokenCategory } from '../mcp/types.js';
+import type { ComponentLevel, ComponentMeta, DocFile, LibraryImage, Metadata, SkillFile, SkillMeta, PatternDef, PropDef, StopDef, StoryDef, TemplateMeta, Token, TokenCategory } from '../mcp/types.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'src');
@@ -476,6 +478,59 @@ function readDoc(fileName: string): DocFile {
   return { source: rel(full), content };
 }
 
+// ── Skills ───────────────────────────────────────────────────────────────────
+
+const SKILLS_DIR = path.join(src, 'docs', 'skills');
+const SKILL_MIME_TYPES: Record<string, string> = { '.md': 'text/markdown', '.json': 'application/json', '.txt': 'text/plain' };
+
+/**
+ * The fields of a SKILL.md frontmatter. Only `key: value` lines, with the value plain or in single or double
+ * quotes: enough for name and description, without a YAML dependency. Other lines (lists…) are skipped.
+ */
+export function parseFrontmatter(markdown: string): Record<string, string> | null {
+  const match = markdown.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  if (!match) return null;
+  const fields: Record<string, string> = {};
+  for (const line of match[1].split(/\r?\n/)) {
+    const field = line.match(/^([A-Za-z][\w-]*):\s*(.*)$/);
+    if (!field || !field[2]) continue;
+    let value = field[2].trim();
+    if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1).replace(/''/g, "'");
+    else if (value.startsWith('"') && value.endsWith('"')) value = JSON.parse(value);
+    fields[field[1]] = value;
+  }
+  return fields;
+}
+
+function skillFile(dir: string, relPath: string): SkillFile {
+  const content = read(path.join(dir, relPath));
+  const bytes = Buffer.from(content, 'utf-8');
+  return {
+    path: relPath.split(path.sep).join('/'),
+    mimeType: SKILL_MIME_TYPES[path.extname(relPath)] ?? 'text/plain',
+    content,
+    digest: `sha256:${createHash('sha256').update(bytes).digest('hex')}`,
+    size: bytes.length,
+  };
+}
+
+/** Every folder of src/docs/skills with a SKILL.md. Its frontmatter gaps are reported, not thrown. */
+function buildSkills(): SkillMeta[] {
+  if (!fs.existsSync(SKILLS_DIR)) return [];
+  const skills: SkillMeta[] = [];
+  for (const name of fs.readdirSync(SKILLS_DIR).sort()) {
+    const dir = path.join(SKILLS_DIR, name);
+    if (!fs.statSync(dir).isDirectory() || !fs.existsSync(path.join(dir, 'SKILL.md'))) continue;
+    const others = (fs.readdirSync(dir, { recursive: true }) as string[])
+      .filter((f) => f !== 'SKILL.md' && fs.statSync(path.join(dir, f)).isFile() && !path.basename(f).startsWith('.'))
+      .sort();
+    const files = ['SKILL.md', ...others].map((f) => skillFile(dir, f));
+    const frontmatter = parseFrontmatter(files[0].content) ?? {};
+    skills.push({ name, description: frontmatter.description ?? '', frontmatter, source: rel(dir), files });
+  }
+  return skills;
+}
+
 // ── Rules ────────────────────────────────────────────────────────────────────
 
 function buildRules(): Metadata['rules'] {
@@ -689,10 +744,15 @@ function buildTemplates(components: Record<string, ComponentMeta>, rules: Metada
 
 // ── Gaps report (task 15) ────────────────────────────────────────────────────
 
-function reportGaps({ instructions, designGuide, components, rules, templates }: Metadata): string[] {
+function reportGaps({ instructions, designGuide, skills, components, rules, templates }: Metadata): string[] {
   const gaps: string[] = [];
   if (!instructions.content) gaps.push(`no MCP instructions at ${instructions.source}`);
   if (!designGuide.content) gaps.push(`no design guide at ${designGuide.source}`);
+  for (const skill of skills) {
+    // The MCP skills extension: the last segment of the skill's path MUST equal its frontmatter name.
+    if (skill.frontmatter.name !== skill.name) gaps.push(`${skill.source}/SKILL.md: frontmatter name must be "${skill.name}"`);
+    if (!skill.description) gaps.push(`${skill.source}/SKILL.md: no description in its frontmatter`);
+  }
   for (const { pieceType, rulesFile, templateDir } of PIECE_TYPE_SOURCES) {
     if (!rules[pieceType]) gaps.push(`${pieceType}: no rules at src/docs/${rulesFile}`);
     if (!templates[pieceType]) gaps.push(`${pieceType}: no template at src/templates/${templateDir}`);
@@ -725,6 +785,7 @@ export function buildMetadata(): Metadata {
     storybookUrl: STORYBOOK_URL,
     instructions: readDoc(INSTRUCTIONS_FILE),
     designGuide: readDoc(DESIGN_GUIDE_FILE),
+    skills: buildSkills(),
     components,
     tokens: {
       color: parseTokens('color', primitives),

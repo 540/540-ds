@@ -44,6 +44,14 @@ describe('handleMcpRequest', () => {
     expect(JSON.parse(call.content[0].text).name).toBe('Quote');
   });
 
+  it('serves the skills without a session: skills/list and the skill:// resources', async () => {
+    const list = await resultOf(await handleMcpRequest(rpc('skills/list'), metadata));
+    expect(list.skills.map((s: { uri: string }) => s.uri)).toContain('skill://540-ds/SKILL.md');
+
+    const read = await resultOf(await handleMcpRequest(rpc('resources/read', { uri: 'skill://540-ds/SKILL.md' }, 2), metadata));
+    expect(read.contents[0].text).toMatch(/^---\nname: 540-ds\n/);
+  });
+
   it('answers 405 to GET and DELETE: there is no session stream', async () => {
     for (const method of ['GET', 'DELETE']) {
       const response = await handleMcpRequest(new Request(URL_MCP, { method }), metadata);

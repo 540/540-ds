@@ -130,6 +130,31 @@ export interface DocFile {
   content: string;
 }
 
+/** One file of a skill: SKILL.md or a supporting file, served as `skill://<skill>/<path>`. */
+export interface SkillFile {
+  /** Relative to the skill's folder, with forward slashes, e.g. `SKILL.md`, `referencias/react.md`. */
+  path: string;
+  mimeType: string;
+  content: string;
+  /** `sha256:<64 hex>` of the content, as the MCP skills extension asks. */
+  digest: string;
+  /** Bytes, UTF-8. */
+  size: number;
+}
+
+/** An Agent Skill served by the MCP, from src/docs/skills/<name>/. */
+export interface SkillMeta {
+  /** The folder name, equal to the `name` of its frontmatter. */
+  name: string;
+  description: string;
+  /** The SKILL.md frontmatter, its fields as written. */
+  frontmatter: Record<string, string>;
+  /** The skill's folder, e.g. `src/docs/skills/540-ds`. */
+  source: string;
+  /** SKILL.md first, then the supporting files by path. */
+  files: SkillFile[];
+}
+
 /** A photo of the image library, from src/images/catalog.json. */
 export interface LibraryImage {
   /** File name without extension, e.g. `carretera-costa-atardecer`. */
@@ -161,6 +186,8 @@ export interface Metadata {
   instructions: DocFile;
   /** 540's design criteria, from src/docs/diseno.md: served by get-design-guide. */
   designGuide: DocFile;
+  /** The skills in src/docs/skills/: served as skill:// resources, by skills/list and skills/get, and by get-skill. */
+  skills: SkillMeta[];
   components: Record<string, ComponentMeta>;
   tokens: Record<TokenCategory, Token[]>;
   /** Composition rules per piece type, e.g. `talk`. */

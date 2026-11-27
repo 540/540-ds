@@ -4,10 +4,14 @@ Instrucciones del MCP: lo que recibe cualquier agente (claude.ai, Claude Code…
 - Se envían tal cual, sin este comentario. Van en inglés porque las lee el agente.
 - Que sean cortas: algunos clientes recortan o resumen las instrucciones largas. Aquí va el proceso y a qué tool ir;
   el criterio de diseño va en diseno.md, que el agente recibe completo con la tool get-design-guide.
+- El proceso con la persona (plantilla o diseño libre, HTML o React, aprobar la estructura, entregar) va en la
+  skill de skills/540-ds/, que el MCP sirve como recurso skill://540-ds/SKILL.md y con la tool get-skill.
 - Si cambias los nombres de las tools o el orden de los pasos, revisa mcp/server.test.ts.
 - El cambio llega al agente en el siguiente despliegue del MCP, sin tocar código.
 -->
 The 540 design system: the React components, composition rules, templates and tokens 540 uses to build its pieces.
+
+Before building a piece, read the 540-ds skill (resource skill://540-ds/SKILL.md, or the get-skill tool if you cannot read resources) and follow it: it is how to work with the person and how to deliver the piece. Within it, use this server like this:
 
 How to build a piece:
 1. Call get-design-guide first and keep its criteria in mind while you design: it is how 540 decides what a good piece looks like.
