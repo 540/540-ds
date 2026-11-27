@@ -1,0 +1,30 @@
+{
+  "id": "20261127120525-pull-request-merged-16-f2d9",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 16,
+    "title": "docs(specs): island server rendering capability",
+    "author": "predictable-code[bot]",
+    "url": "https://github.com/540/540-ds/pull/16",
+    "ref": "main",
+    "sha": "cf245bbb2fae777fb9b2e7e7b438dbb4a6b3d01e",
+    "body": "## Why\n\nThe server side of the island runtime — src/runtime/server.ts (renderIsland, renderStatic, renderToString, renderToStaticMarkup) and src/runtime/islands.ts (registryOf, revive, Slot, ISLAND_TAG, SLOT_TAG), which scripts/render/core.mjs and scripts/lib/pieces-harness.mjs use to pre-render every piece — was documented by no capability: 'predictable specs undocumented' listed its exports among 134 exported functions no capability documents, and no test called renderIsland, revive or registryOf directly (src/islands.test.tsx renders stories with preact-render-to-string, not through this runtime).\n\n## What changed\n\n- New capability SPEC-403 'Island server rendering', covering src/runtime/server.ts and src/runtime/islands.ts. Its description states only what the code does, checked against it: registryOf keeps capitalised component exports; renderIsland throws for an unregistered name, prefixes generated ids with the island id and wraps the HTML in <ds-island data-c data-id data-p> with &, \" and < escaped; revive's $slot (ds-slot, error when the slot has no HTML) and $el (lowercase tag or registered component, error otherwise) handling; renderStatic/renderToString prefixes; renderToStaticMarkup is renderToString. The client half of islands.ts (Slot's remount callback) and src/runtime/client.ts are not stated.\n- New test src/runtime/server.test.tsx (9 tests) covering each statement, run in the islands vitest project (react aliased to preact/compat, as the pieces build does): vite.config.ts adds 'src/runtime/**/*.test.tsx' to that project's include.\n- Verified: npx tsc -p tsconfig.app.json --noEmit, npx vitest run --project=islands src/runtime (9 passed), predictable sync (incremental). This PR changes no source code. The 28 violated requirements the sync reports are derived from analysis findings in other specs, none written by a person and none touched here.\n- Shares no file with #15 (merged).\n\n## How it was verified\n\nNot verified by the analysis: no `predictable fix-check` in this session reported a defect gone for this change. Review it as an unverified change.\n\n<!-- predictable-code:auto-merge off method=squash -->\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-27T12:05:25.446Z",
+  "updatedAt": "2026-11-27T12:05:25.446Z"
+}
