@@ -185,6 +185,20 @@
       "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
       "tool": "toolu_01L43S9sa9m7tuQBtqnXYX7K",
       "description": "Queue the new capability's description"
+    },
+    {
+      "at": "2026-11-27T20:16:56.472Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; date -u; P='…/predictable-runtime-inst…",
+      "tool": "toolu_014F9eS5bdJv2N9ozcsAkeTx",
+      "description": "Run the full SSR project and an incremental sync before proposing"
+    },
+    {
+      "at": "2026-11-27T20:17:12.079Z",
+      "verb": "Ran",
+      "detail": "cd …/work/540-ds/540-ds; P='…/predictable-runtime-installed/bin…",
+      "tool": "toolu_01V3zwY86zApQgowGATgJLwC",
+      "description": "Propose the new capability with its test as one documentation pull request"
     }
   ],
   "messages": [],
@@ -199,5 +213,5 @@
     "model": null
   },
   "startedAt": "2026-11-27T20:14:18.183Z",
-  "updatedAt": "2026-11-27T20:16:50.889Z"
+  "updatedAt": "2026-11-27T20:17:12.754Z"
 }
