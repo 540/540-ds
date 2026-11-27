@@ -1,0 +1,30 @@
+{
+  "id": "20261127201312-pull-request-merged-21-6c19",
+  "event": {
+    "kind": "pull-request-merged",
+    "number": 21,
+    "title": "docs(specs): piece rendering capability; cover Firebase entry and IdPrefix (rebased on main)",
+    "author": "predictable-code[bot]",
+    "url": "https://github.com/540/540-ds/pull/21",
+    "ref": "main",
+    "sha": "a5552befef71e17d45893b7cf40626e10889df5d",
+    "body": "## Why\n\n#19 no longer merges: #18 (design tokens) landed on main with the same design-tokens spec, tokens test and vite.config.ts change, and the capability metadata lines of island-server-rendering and mcp-transports changed on main, so #19 shows CONFLICTING. Without it, scripts/render (renderTalk, checkSpelling, the tag rules) has no capability, and mcp/firebase.ts and src/runtime/compat/react.ts IdPrefix stay undocumented per 'predictable specs undocumented'.\n\n## What changed\n\nSame documentation as #19, rebuilt on current main: adds the Piece rendering capability (SPEC-544, scripts/render/*), and with 'predictable specs cover' records mcp/firebase.ts on MCP transports (SPEC-264) and src.runtime.compat.react.IdPrefix on Island server rendering (SPEC-403). The design-tokens parts of #19 are already on main through #18 and are left out. Supersedes #19, which can be closed. No code changed.\n\n## How it was verified\n\nNot verified by the analysis: no `predictable fix-check` in this session reported a defect gone for this change. Review it as an unverified change.\n\n<!-- predictable-code:auto-merge off method=squash -->\n",
+    "defaultBranch": "main"
+  },
+  "state": "not-acted",
+  "reason": "Pull request merged is not an event the agent reacts to",
+  "instructions": {
+    "agent": "",
+    "person": ""
+  },
+  "labels": null,
+  "openPullRequests": null,
+  "notices": [],
+  "messages": [],
+  "actions": [],
+  "title": null,
+  "summary": null,
+  "runUrl": null,
+  "startedAt": "2026-11-27T20:13:12.952Z",
+  "updatedAt": "2026-11-27T20:13:12.952Z"
+}
